@@ -5,6 +5,7 @@ import {
   ExternalLink, 
   HelpCircle, 
   AlertTriangle, 
+  Target,
   Lightbulb, 
   Film, 
   Tv, 
@@ -43,20 +44,46 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
         </p>
       </div>
 
-      {/* 2. Real-World Problem Callout */}
-      <div className="rounded-2xl p-6 border border-rose-500/20 bg-gradient-to-r from-rose-950/20 via-dark-900/60 to-dark-950">
-        <div className="flex items-start gap-4">
-          <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 shrink-0 mt-0.5">
-            <AlertTriangle className="w-5 h-5" />
+      {/* 2. Real-World Problem & Why This Matters */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {/* The Real-World Problem */}
+        <div className="rounded-2xl p-6 border border-rose-500/20 bg-gradient-to-br from-rose-950/25 via-dark-900/70 to-dark-950 flex flex-col justify-between">
+          <div className="flex items-start gap-4 mb-3">
+            <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 shrink-0 mt-0.5">
+              <AlertTriangle className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-xs font-mono uppercase tracking-wider text-rose-400 font-semibold block mb-1">
+                The Real-World Problem
+              </span>
+              <h2 className="text-base font-bold text-white leading-snug">
+                Bloated Budgets & Severe Financial Losses
+              </h2>
+            </div>
           </div>
-          <div>
-            <span className="text-xs font-mono uppercase tracking-wider text-rose-400 font-semibold block mb-1">
-              The Real-World Problem
-            </span>
-            <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
-              A vast quantity of movies result in major financial losses due to an ongoing trend of massive budgets and disappointing revenue results.
-            </p>
+          <p className="text-sm text-slate-200 leading-relaxed font-normal">
+            A vast quantity of movies result in major financial losses due to an ongoing trend of massive budgets and disappointing revenue results.
+          </p>
+        </div>
+
+        {/* Why This Project Matters */}
+        <div className="rounded-2xl p-6 border border-emerald-500/20 bg-gradient-to-br from-emerald-950/25 via-dark-900/70 to-dark-950 flex flex-col justify-between">
+          <div className="flex items-start gap-4 mb-3">
+            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0 mt-0.5">
+              <Target className="w-5 h-5" />
+            </div>
+            <div>
+              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold block mb-1">
+                Why This Project Matters
+              </span>
+              <h2 className="text-base font-bold text-white leading-snug">
+                Industry Impact & Strategic Cost Savings
+              </h2>
+            </div>
           </div>
+          <p className="text-sm text-slate-200 leading-relaxed font-normal">
+            This problem matters because movies are a gigantic industry where large corporations are sinking a major amount of money and resources into singular projects. In addition to that you have smaller companies investing less but producing equal or even more revenue. By understanding the trends in budget vs revenue one can draw conclusions that may result in significant cost savings.
+          </p>
         </div>
       </div>
 
