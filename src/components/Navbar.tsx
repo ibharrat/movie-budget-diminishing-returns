@@ -2,8 +2,8 @@ import React from 'react';
 import { Film, ExternalLink } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage: 'question' | 'visualization';
-  onNavigate: (page: 'question' | 'visualization') => void;
+  currentPage: 'question' | 'visualization' | 'about';
+  onNavigate: (page: 'question' | 'visualization' | 'about') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
@@ -45,6 +45,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             }`}
           >
             Data Visualization
+          </button>
+          <button
+            onClick={() => onNavigate('about')}
+            className={`px-3.5 py-1.5 rounded-lg transition-all ${
+              currentPage === 'about'
+                ? 'bg-white/10 text-white font-semibold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            About Me
           </button>
         </nav>
 
