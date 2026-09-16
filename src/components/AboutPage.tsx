@@ -26,13 +26,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* 1. Header Profile */}
       <div className="relative">
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 mb-6">
-          <User className="w-3.5 h-3.5 text-emerald-400" />
+          <User className="w-3.5 h-3.5 text-purple-400" />
           <span>ABOUT THE RESEARCHER</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
           Hi, I'm{' '}
-          <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-400 via-violet-300 to-fuchsia-400 bg-clip-text text-transparent">
             Ian Bharrat
           </span>
         </h1>
@@ -73,11 +73,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         {/* Why Data Visualization */}
         <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between">
           <div>
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-5">
+            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-5">
               <BarChart3 className="w-5 h-5" />
             </div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-wider text-purple-400 font-semibold">
                 The Medium
               </span>
             </div>
@@ -89,7 +89,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
 
-          <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-emerald-300">
+          <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-purple-300">
             <Sparkles className="w-4 h-4" />
             <span>Transforming Data into Intuitive Insight</span>
           </div>
@@ -126,9 +126,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* Parasite */}
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-emerald-500/30 transition-all">
+            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                <span className="text-xs font-mono text-purple-400 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/30">
                   2019
                 </span>
                 <span className="text-xs text-slate-400 font-mono">Bong Joon-ho</span>
@@ -182,7 +182,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </button>
           <button
             onClick={onNavigateToViz}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black text-xs font-semibold transition-all shadow-glow-emerald"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold transition-all shadow-glow-purple"
           >
             <span>Go to Data Visualization</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -190,7 +190,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-          <Database className="w-3.5 h-3.5 text-emerald-400" />
+          <Database className="w-3.5 h-3.5 text-purple-400" />
           <span>Analyzing 45,000+ Titles via Python</span>
         </div>
       </div>

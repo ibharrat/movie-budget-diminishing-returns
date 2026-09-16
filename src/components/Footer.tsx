@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
           href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
           target="_blank"
           rel="noreferrer"
-          className="hover:text-emerald-400 transition-colors inline-flex items-center gap-1.5"
+          className="hover:text-purple-400 transition-colors inline-flex items-center gap-1.5"
         >
           <span>Kaggle Dataset by sibamsamanta07</span>
           <ExternalLink className="w-3 h-3" />

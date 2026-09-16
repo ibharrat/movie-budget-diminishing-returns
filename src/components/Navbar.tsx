@@ -16,7 +16,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           onClick={() => onNavigate('question')}
           className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity"
         >
-          <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+          <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
             <Film className="w-4 h-4" />
           </div>
           <span className="font-semibold text-white tracking-tight text-sm sm:text-base">
@@ -63,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-emerald-400 px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/20 transition-all"
+          className="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-purple-400 px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/20 transition-all"
         >
           <span>45k Kaggle Dataset</span>
           <ExternalLink className="w-3.5 h-3.5" />

@@ -27,13 +27,13 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       {/* 1. Header & Primary Question */}
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 mb-6">
-          <HelpCircle className="w-3.5 h-3.5 text-emerald-400" />
+          <HelpCircle className="w-3.5 h-3.5 text-purple-400" />
           <span>CENTRAL RESEARCH QUESTION</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
           "At what budget range do movies tend to have{' '}
-          <span className="bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-purple-400 via-violet-300 to-fuchsia-400 bg-clip-text text-transparent">
             diminishing returns?
           </span>
           "
@@ -67,13 +67,13 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
         </div>
 
         {/* Why This Project Matters */}
-        <div className="rounded-2xl p-6 border border-emerald-500/20 bg-gradient-to-br from-emerald-950/25 via-dark-900/70 to-dark-950 flex flex-col justify-between">
+        <div className="rounded-2xl p-6 border border-purple-500/20 bg-gradient-to-br from-purple-950/25 via-dark-900/70 to-dark-950 flex flex-col justify-between">
           <div className="flex items-start gap-4 mb-3">
-            <div className="p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 shrink-0 mt-0.5">
+            <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 shrink-0 mt-0.5">
               <Target className="w-5 h-5" />
             </div>
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-emerald-400 font-semibold block mb-1">
+              <span className="text-xs font-mono uppercase tracking-wider text-purple-400 font-semibold block mb-1">
                 Why This Project Matters
               </span>
               <h2 className="text-base font-bold text-white leading-snug">
@@ -90,7 +90,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       {/* 3. Subquestions */}
       <div>
         <div className="flex items-center gap-2 mb-6">
-          <span className="w-1.5 h-4 bg-emerald-400 rounded-full"></span>
+          <span className="w-1.5 h-4 bg-purple-400 rounded-full"></span>
           <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
             Investigative Subquestions
           </h2>
@@ -100,10 +100,10 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
           {/* Subquestion 1 */}
           <div className="glass-panel rounded-2xl p-6 border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between">
             <div>
-              <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+              <div className="w-9 h-9 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4">
                 <Film className="w-4 h-4" />
               </div>
-              <span className="text-xs font-mono text-emerald-400 uppercase tracking-wide block mb-2">
+              <span className="text-xs font-mono text-purple-400 uppercase tracking-wide block mb-2">
                 Subquestion 01
               </span>
               <h3 className="text-base font-semibold text-white leading-snug">
@@ -179,10 +179,10 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
 
           <div className="glass-panel rounded-2xl p-6 border border-white/10 relative">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center">
                 <Lightbulb className="w-4 h-4" />
               </div>
-              <span className="text-xs font-mono text-emerald-300 font-semibold uppercase tracking-wider">
+              <span className="text-xs font-mono text-purple-300 font-semibold uppercase tracking-wider">
                 Hypothesis #2
               </span>
             </div>
@@ -253,13 +253,13 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-emerald-500/20 text-emerald-400">
+          <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/20 flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-purple-500/20 text-purple-400">
               <SlidersHorizontal className="w-4 h-4" />
             </div>
             <div>
-              <span className="text-xs text-emerald-400 font-mono block">Primary Target</span>
-              <span className="text-sm font-medium text-emerald-200">Budget vs. Revenue Multiplier</span>
+              <span className="text-xs text-purple-400 font-mono block">Primary Target</span>
+              <span className="text-sm font-medium text-purple-200">Budget vs. Revenue Multiplier</span>
             </div>
           </div>
         </div>
@@ -269,7 +269,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/10">
         <button
           onClick={onNavigateToViz}
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-all shadow-glow-emerald"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-sm transition-all shadow-glow-purple"
         >
           <span>Go to Data Visualization</span>
           <ArrowRight className="w-4 h-4" />
@@ -281,7 +281,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
           rel="noreferrer"
           className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 text-xs font-medium transition-all"
         >
-          <Database className="w-4 h-4 text-emerald-400" />
+          <Database className="w-4 h-4 text-purple-400" />
           <span>Kaggle: Movies Dataset 45k Films</span>
           <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
         </a>
