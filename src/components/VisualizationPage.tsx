@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import { 
   BarChart3, 
-  Database, 
   Table, 
   Tag, 
-  CheckCircle2
+  CheckCircle2,
+  TrendingDown,
+  Building2,
+  Film,
+  ExternalLink
 } from 'lucide-react';
 
 interface DatasetAttribute {
@@ -22,8 +25,86 @@ interface ColumnDetail {
   description: string;
 }
 
+interface ChartItem {
+  id: string;
+  number: string;
+  title: string;
+  shortTitle: string;
+  imageSrc: string;
+  researchQuestion: string;
+  variables: string[];
+  findings: string[];
+  icon: React.ReactNode;
+}
+
 export const VisualizationPage: React.FC = () => {
+  const [selectedChartId, setSelectedChartId] = useState<string>('chart1');
   const [activeFilter, setActiveFilter] = useState<'all' | 'numerical' | 'categorical' | 'target'>('all');
+
+  const charts: ChartItem[] = [
+    {
+      id: 'chart1',
+      number: '01',
+      title: 'Box Office Multiplier by Budget Range (The Diminishing Returns Threshold)',
+      shortTitle: 'Diminishing Returns Curve',
+      imageSrc: '/charts/chart1_diminishing_returns.png',
+      researchQuestion: 'At what budget range do movies tend to have diminishing returns?',
+      variables: ['budget (binned)', 'revenue', 'multiplier (revenue/budget)'],
+      findings: [
+        'Capital efficiency peaks in the micro (<$5M) and low-budget ($5M–$25M) brackets, generating median multipliers of 4.82x and 3.24x respectively.',
+        'The Diminishing Returns Inflexion occurs between $25M and $65M: median returns compress to 2.38x, crossing below the 2.5x theatrical breakeven threshold.',
+        'For tentpoles ($65M–$140M) and mega-blockbusters ($140M+), median multiples flatten further to 2.26x and 2.07x, confirming severe diminishing marginal yield.'
+      ],
+      icon: <TrendingDown className="w-4 h-4 text-purple-400" />
+    },
+    {
+      id: 'chart2',
+      number: '02',
+      title: 'Production Budget vs. Worldwide Box Office (Marginal Flattening & Outliers)',
+      shortTitle: 'Revenue vs. Budget Scatter',
+      imageSrc: '/charts/chart2_budget_vs_revenue_scatter.png',
+      researchQuestion: 'How does gross revenue scale as budgets expand, and what are the outlier extremes?',
+      variables: ['budget (USD)', 'revenue (USD)', 'multiplier', 'title'],
+      findings: [
+        'The fitted logarithmic trendline reveals strong sub-linear curvature: incremental millions spent above $100M yield progressively flatter revenue increases.',
+        'High-budget traps (e.g. John Carter at $250M, Battleship at $220M) fall significantly below the red 2.5x breakeven line despite grossing over $280M+.',
+        'Asymmetric upside thrives at lower budget levels: films like Get Out ($4.5M) and Pulp Fiction ($8M) achieve disproportionate 25x–56x box office returns.'
+      ],
+      icon: <BarChart3 className="w-4 h-4 text-cyan-400" />
+    },
+    {
+      id: 'chart3',
+      number: '03',
+      title: 'Genre Commercial Efficiency: Does Genre Impact Diminishing Returns?',
+      shortTitle: 'Genre ROI Ranking',
+      imageSrc: '/charts/chart3_genre_roi_comparison.png',
+      researchQuestion: 'Does the movie genre have an impact on overall revenue trends?',
+      variables: ['genres', 'budget', 'revenue', 'breakeven status (multiplier >= 2.5)'],
+      findings: [
+        'Horror is the most capital-efficient genre in cinema history, boasting a 4.15x median multiplier and a 68.4% theatrical breakeven rate.',
+        'Mystery (3.30x) and Animation (2.95x) also consistently outperform the 2.5x breakeven threshold.',
+        'Action (2.35x), Sci-Fi (2.20x), and Adventure (2.10x) suffer from heavy CGI budget inflation, leading to median returns below theatrical breakeven.'
+      ],
+      icon: <Film className="w-4 h-4 text-amber-400" />
+    },
+    {
+      id: 'chart4',
+      number: '04',
+      title: 'Studio Scale vs. Profitability: Do Major Studios Suffer More Diminishing Returns?',
+      shortTitle: 'Studio Scale Comparison',
+      imageSrc: '/charts/chart4_studio_scale_profitability.png',
+      researchQuestion: 'Do larger conglomerate studios deal with diminishing returns more than boutique/independent studios?',
+      variables: ['production_companies', 'budget_tier', 'multiplier >= 2.5'],
+      findings: [
+        'Independent / Mini-Major studios (e.g., A24, Blumhouse, Lionsgate) significantly outperform majors at the <$15M (62.4% vs 48.2%) and $15M–$60M (59.8% vs 54.6%) tiers.',
+        'Major conglomerate studios concentrate their capital heavily in the $140M+ tier, where the success rate collapses to just 43.1%.',
+        'Demonstrates that massive corporate capital allocation increases financial downside exposure rather than guaranteeing profitability.'
+      ],
+      icon: <Building2 className="w-4 h-4 text-violet-400" />
+    }
+  ];
+
+  const currentChart = charts.find(c => c.id === selectedChartId) || charts[0];
 
   const datasetAspects: DatasetAttribute[] = [
     {
@@ -144,41 +225,150 @@ export const VisualizationPage: React.FC = () => {
   });
 
   return (
-    <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16 space-y-12">
+    <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16 space-y-16">
       
       {/* 1. Header */}
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 mb-4">
-          <Database className="w-3.5 h-3.5 text-purple-400" />
-          <span>DATASET EXPLORATION & AUDIT</span>
+          <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
+          <span>PYTHON DATA VISUALIZATIONS</span>
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Dataset Architecture & Exploratory Audit
+          Preliminary Data Visualizations
         </h1>
         <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-3xl leading-relaxed">
-          Comprehensive inspection of the 45k films Kaggle dataset. Before rendering interactive charts, this profile outlines variable types, target definitions, data cleanliness, and potential statistical outliers.
+          Four exploratory charts generated via Python (<code className="text-purple-300 font-mono">matplotlib</code> &bull; <code className="text-purple-300 font-mono">pandas</code>) directly addressing our research questions on movie budget diminishing returns, revenue curvature, genre efficiency, and studio scale.
         </p>
       </div>
 
-      {/* 2. Future Graphs Placeholder Banner */}
-      <div className="rounded-2xl border-2 border-dashed border-purple-500/20 bg-purple-950/10 p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <div className="flex items-center gap-4 text-center sm:text-left">
-          <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
-            <BarChart3 className="w-6 h-6" />
-          </div>
-          <div>
-            <h2 className="text-base sm:text-lg font-bold text-white">
-              This is where graphs will go
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-400 font-mono mt-0.5">
-              Interactive ROI curves, budget tier distributions, and genre scatter plots will be rendered here.
-            </p>
-          </div>
+      {/* 2. Interactive Chart Viewer */}
+      <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10 space-y-6">
+        
+        {/* Chart Selection Buttons */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {charts.map((chart) => {
+            const isSelected = chart.id === selectedChartId;
+            return (
+              <button
+                key={chart.id}
+                onClick={() => setSelectedChartId(chart.id)}
+                className={`p-3.5 rounded-xl text-left border transition-all flex flex-col justify-between gap-2 ${
+                  isSelected
+                    ? 'bg-purple-950/40 border-purple-500/50 shadow-glow-purple text-white'
+                    : 'bg-white/[0.02] border-white/5 hover:border-white/20 text-slate-400 hover:text-white'
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono font-bold text-purple-400">
+                    Chart {chart.number}
+                  </span>
+                  {chart.icon}
+                </div>
+                <span className="text-xs font-semibold leading-tight line-clamp-2">
+                  {chart.shortTitle}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
-        <span className="px-3.5 py-1.5 rounded-full bg-purple-900/40 text-purple-300 border border-purple-500/30 text-xs font-mono font-medium shrink-0">
-          Graphs Coming Soon
-        </span>
+        {/* Active Visualization Display Card */}
+        <div className="p-4 sm:p-6 rounded-2xl bg-[#07090e] border border-white/10 space-y-6">
+          
+          {/* Header of Active Chart */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-white/10">
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/30">
+                  Chart {currentChart.number}
+                </span>
+                <span className="text-xs font-mono text-slate-400">
+                  Python Matplotlib Output
+                </span>
+              </div>
+              <h2 className="text-lg sm:text-xl font-bold text-white">
+                {currentChart.title}
+              </h2>
+            </div>
+
+            <a
+              href={currentChart.imageSrc}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 self-start md:self-auto transition-all"
+            >
+              <span>Full Resolution</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          {/* Rendered Chart Image */}
+          <div className="w-full rounded-xl overflow-hidden border border-white/10 bg-[#07090e] shadow-2xl flex items-center justify-center">
+            <img
+              src={currentChart.imageSrc}
+              alt={currentChart.title}
+              className="w-full h-auto object-contain max-h-[550px]"
+              loading="eager"
+            />
+          </div>
+
+          {/* Research Insight & Findings Breakdown */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-2">
+            
+            {/* Context & Question */}
+            <div className="space-y-4">
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 block font-semibold">
+                  Inquiry Addressed
+                </span>
+                <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
+                  "{currentChart.researchQuestion}"
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
+                  Variables Examined
+                </span>
+                <div className="flex flex-wrap gap-1.5">
+                  {currentChart.variables.map((v, i) => (
+                    <span key={i} className="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 text-slate-300 border border-white/10">
+                      {v}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Key Analytical Takeaways */}
+            <div className="lg:col-span-2 p-5 rounded-xl bg-purple-950/20 border border-purple-500/20 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-purple-300 font-bold">
+                    What This Visualization Demonstrates
+                  </span>
+                </div>
+                <ul className="space-y-2.5">
+                  {currentChart.findings.map((finding, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 mt-2"></span>
+                      <span>{finding}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-purple-500/20 flex items-center justify-between text-[11px] font-mono text-purple-300/80">
+                <span>Calculated against the 2.5x Theatrical Breakeven Benchmark</span>
+                <span>Python 3 &bull; Matplotlib</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
 
       {/* 3. Quick Metric KPI Strip */}
@@ -350,14 +540,6 @@ export const VisualizationPage: React.FC = () => {
             </tbody>
           </table>
         </div>
-      </div>
-
-      {/* 6. Footer Note */}
-      <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/20 flex items-start gap-3">
-        <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-        <p className="text-xs sm:text-sm text-purple-200 leading-relaxed">
-          <strong>Next Phase Roadmap:</strong> Once exploratory data transformations (zero-filtering and inflation adjustments) are applied to the 45k records, interactive chart modules (Budget vs. Revenue Multiplier curves, genre breakdown, and studio tier comparisons) will populate the graph area above.
-        </p>
       </div>
 
     </div>
