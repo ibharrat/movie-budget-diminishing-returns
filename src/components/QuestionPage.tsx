@@ -47,8 +47,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       {/* 2. Real-World Problem & Why This Matters */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* The Real-World Problem */}
-        <div className="rounded-2xl p-6 border border-rose-500/20 bg-gradient-to-br from-rose-950/25 via-dark-900/70 to-dark-950 flex flex-col justify-between">
-          <div className="flex items-start gap-4 mb-3">
+        <div className="rounded-2xl p-6 border border-rose-500/20 bg-gradient-to-br from-rose-950/25 via-dark-900/70 to-dark-950 flex flex-col gap-3.5">
+          <div className="flex items-start gap-4">
             <div className="p-2.5 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 shrink-0 mt-0.5">
               <AlertTriangle className="w-5 h-5" />
             </div>
@@ -67,8 +67,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
         </div>
 
         {/* Why This Project Matters */}
-        <div className="rounded-2xl p-6 border border-purple-500/20 bg-gradient-to-br from-purple-950/25 via-dark-900/70 to-dark-950 flex flex-col justify-between">
-          <div className="flex items-start gap-4 mb-3">
+        <div className="rounded-2xl p-6 border border-purple-500/20 bg-gradient-to-br from-purple-950/25 via-dark-900/70 to-dark-950 flex flex-col gap-3.5">
+          <div className="flex items-start gap-4">
             <div className="p-2.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 shrink-0 mt-0.5">
               <Target className="w-5 h-5" />
             </div>
