@@ -8,7 +8,13 @@ import {
   Heart, 
   Sparkles, 
   ArrowRight,
-  Database
+  Database,
+  ExternalLink,
+  Github,
+  Ticket,
+  Cloud,
+  Layers,
+  CheckCircle2
 } from 'lucide-react';
 
 interface AboutPageProps {
@@ -97,7 +103,175 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
       </div>
 
-      {/* 3. Why This Dataset & Favorite Movies */}
+      {/* 3. Featured Technical Projects */}
+      <div className="space-y-6">
+        <div>
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-mono text-purple-300 mb-3">
+            <Layers className="w-3.5 h-3.5 text-purple-400" />
+            <span>FEATURED WORK & REPOSITORIES</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Technical Projects
+          </h2>
+          <p className="text-sm text-slate-300 mt-2 max-w-2xl font-light">
+            Beyond data analysis and Python scripting, I actively develop full-stack applications and automated cloud infrastructure. Here are two featured projects from my GitHub:
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {/* Project 1: IT Ticketing System */}
+          <div className="glass-panel rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group">
+            <div>
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+                    <Ticket className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold block">
+                      Full-Stack Web App
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-purple-200 transition-colors">
+                      IT Ticketing System
+                    </h3>
+                  </div>
+                </div>
+                <a
+                  href="https://github.com/ibharrat/it-ticketing-final-version"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors"
+                  aria-label="View IT Ticketing System on GitHub"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+
+              <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                A complete full-stack IT service desk platform engineered with a React frontend and Express.js backend. Features secure role-based access control, ticket lifecycle triage, technician assignments, and SQLite relational persistence.
+              </p>
+
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>Role-based access control (RBAC) for standard users & IT staff</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>Real-time ticket assignment, prioritization & status lifecycle</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <span>JWT-authenticated REST API with SQLite database backend</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5 mb-4">
+                {['React', 'Node.js', 'Express', 'SQLite3', 'Tailwind CSS', 'JWT Auth'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-purple-950/40 text-purple-300 border border-purple-500/20"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href="https://github.com/ibharrat/it-ticketing-final-version"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/5 hover:bg-purple-600/20 text-slate-200 hover:text-white border border-white/10 hover:border-purple-500/40 text-xs font-semibold transition-all group-hover:border-purple-500/40"
+              >
+                <div className="flex items-center gap-2">
+                  <Github className="w-4 h-4 text-purple-400" />
+                  <span className="font-mono">ibharrat/it-ticketing-final-version</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
+              </a>
+            </div>
+          </div>
+
+          {/* Project 2: Packer Golden AMI – Apache */}
+          <div className="glass-panel rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-violet-500/30 transition-all flex flex-col justify-between group">
+            <div>
+              <div className="flex items-start justify-between gap-4 mb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center shrink-0">
+                    <Cloud className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-violet-400 font-semibold block">
+                      Infrastructure as Code (IaC)
+                    </span>
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-violet-200 transition-colors">
+                      Packer Golden AMI – Apache
+                    </h3>
+                  </div>
+                </div>
+                <a
+                  href="https://github.com/ibharrat/packer-golden-ami-apache"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors"
+                  aria-label="View Packer Golden AMI on GitHub"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                </a>
+              </div>
+
+              <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                An automated Infrastructure-as-Code pipeline using HashiCorp Packer to bake immutable Golden Amazon Machine Images (AMIs) on AWS EC2. Standardizes web server provisioning on Amazon Linux 2023 for scalable cloud deployments.
+              </p>
+
+              <div className="space-y-2 mb-6">
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                  <span>Declarative image baking using HashiCorp Packer HCL2 configuration</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                  <span>Automated Apache (httpd) setup & static web server deployment</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                  <span>Reusable baseline AMI generation tailored for EC2 Auto Scaling Groups</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5 mb-4">
+                {['Packer (HCL2)', 'AWS EC2', 'Amazon Linux 2023', 'Apache httpd', 'AWS CLI', 'DevOps'].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-violet-950/40 text-violet-300 border border-violet-500/20"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href="https://github.com/ibharrat/packer-golden-ami-apache"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/5 hover:bg-violet-600/20 text-slate-200 hover:text-white border border-white/10 hover:border-violet-500/40 text-xs font-semibold transition-all group-hover:border-violet-500/40"
+              >
+                <div className="flex items-center gap-2">
+                  <Github className="w-4 h-4 text-violet-400" />
+                  <span className="font-mono">ibharrat/packer-golden-ami-apache</span>
+                </div>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* 4. Why This Dataset & Favorite Movies */}
       <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10">
         <div className="max-w-3xl mb-8">
           <div className="flex items-center gap-2 mb-3">
@@ -171,7 +345,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
       </div>
 
-      {/* 4. Quick Action Navigation */}
+      {/* 5. Quick Action Navigation */}
       <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/10">
         <div className="flex items-center gap-3">
           <button
