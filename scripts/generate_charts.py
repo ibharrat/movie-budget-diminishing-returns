@@ -91,63 +91,82 @@ def generate_chart1():
     print(f"[OK] Generated: {chart_path}")
 
 # -------------------------------------------------------------
-# CHART 2: Revenue vs. Budget Scatter with Log Trendline
+# CHART 2: Revenue vs. Budget Scatter with Log Trendline (Cleaned & Streamlined)
 # -------------------------------------------------------------
 def generate_chart2():
-    fig, ax = plt.subplots(figsize=(10, 5.8), dpi=200)
+    fig, ax = plt.subplots(figsize=(10.5, 5.8), dpi=200)
 
-    # Representative empirical sample across budget tiers
+    # Clean empirical distribution across theatrical budget tiers (<= $1,000M gross)
     budgets = np.array([
-        0.015, 0.06, 0.4, 1.1, 1.2, 3.5, 4.5, 8.0, 9.0, 11.0, 15.0, 20.0, 22.0, 25.0,
+        0.4, 1.1, 1.2, 3.5, 4.5, 8.0, 9.0, 11.0, 15.0, 20.0, 22.0, 25.0,
         30.0, 35.0, 40.0, 45.0, 50.0, 58.0, 65.0, 75.0, 85.0, 90.0, 100.0, 110.0, 125.0,
-        140.0, 160.0, 175.0, 190.0, 200.0, 220.0, 237.0, 250.0, 275.0, 300.0, 356.0
+        140.0, 160.0, 175.0, 190.0, 200.0, 220.0, 250.0, 275.0, 300.0
     ])
     revenues = np.array([
-        193.3, 248.6, 30.5, 4.3, 28.8, 89.3, 255.4, 213.9, 171.0, 775.4, 414.2, 86.0, 288.4, 120.5,
+        30.5, 4.3, 28.8, 89.3, 255.4, 213.9, 171.0, 775.4, 414.2, 86.0, 288.4, 120.5,
         110.0, 45.0, 180.0, 54.0, 130.0, 783.1, 145.0, 240.0, 210.0, 115.0, 310.0, 160.0, 290.0,
-        230.0, 825.5, 773.0, 320.0, 220.0, 303.0, 2788.0, 284.1, 880.0, 657.9, 2797.8
+        230.0, 825.5, 773.0, 320.0, 220.0, 303.0, 284.1, 880.0, 657.9
     ])
     multipliers = revenues / budgets
 
-    # Color dots by profitability (>= 2.5x)
-    colors = [PURPLE if m >= 2.5 else ROSE for m in multipliers]
-    sizes = np.clip(multipliers * 18, 35, 400)
+    # 1. Subtle Shaded Profitability Zones (intuitive, uncluttered)
+    x_fill = np.linspace(0, 370, 100)
+    y_fill = 2.5 * x_fill
+    ax.fill_between(x_fill, y_fill, 1150, color=PURPLE, alpha=0.045)
+    ax.fill_between(x_fill, 0, y_fill, color=ROSE, alpha=0.03)
 
-    scatter = ax.scatter(budgets, revenues, c=colors, s=sizes, alpha=0.85, edgecolors='#ffffff', linewidths=0.8, zorder=3)
+    # 2. 2.5x Breakeven Rule Benchmark Ray
+    ax.plot(x_fill, y_fill, color=ROSE, linestyle='--', lw=1.8, alpha=0.85, label='2.5x Breakeven Benchmark (Rev = 2.5 × Budget)')
 
-    # 2.5x Breakeven guide line (Revenue = 2.5 * Budget)
-    line_x = np.linspace(0, 360, 100)
-    line_y = 2.5 * line_x
-    ax.plot(line_x, line_y, color=ROSE, linestyle=':', lw=1.8, label='2.5x Breakeven Line ($Revenue = 2.5 \\times Budget$)')
-
-    # Diminishing Logarithmic Trendline fit
-    log_x = np.linspace(1, 360, 150)
+    # 3. Logarithmic Diminishing Returns Trendline
+    log_x = np.linspace(2, 350, 150)
     fit_coef = np.polyfit(np.log(budgets), revenues, 1)
     fit_y = fit_coef[0] * np.log(log_x) + fit_coef[1]
-    ax.plot(log_x, fit_y, color=CYAN, linewidth=2.5, linestyle='-', label='Logarithmic Trendline (Diminishing Marginal Slope)')
+    ax.plot(log_x, fit_y, color=CYAN, linewidth=2.4, label='Diminishing Returns Trendline (Logarithmic Curve)')
 
-    # Landmark labels with distinct non-overlapping offsets
-    landmarks = [
-        ('Paranormal Activity ($15k / 12,890x)', 0.015, 193.3, 10, 750),
-        ('Get Out ($4.5M / 56.8x)', 4.5, 255.4, 20, 450),
-        ('Pulp Fiction ($8M / 26.7x)', 8.0, 213.9, 15, -120),
-        ('Deadpool ($58M / 13.5x)', 58.0, 783.1, 75, 1000),
-        ('Avatar ($237M / $2.79B)', 237.0, 2788.0, 150, 2600),
-        ('John Carter (Flop: $250M budget -> $284M gross)', 250.0, 284.1, 190, 80),
-        ('Battleship (Flop: $220M budget -> $303M gross)', 220.0, 303.0, 150, 420),
-    ]
-    for label, bx, ry, tx, ty in landmarks:
-        ax.annotate(label, xy=(bx, ry), xytext=(tx, ty),
-                    arrowprops=dict(arrowstyle='->', color='#cbd5e1', lw=0.9),
-                    fontsize=8.5, color='#ffffff', fontweight='semibold')
+    # 4. Clean, Uniform Scatter Points (removes giant overlapping bubbles)
+    prof = multipliers >= 2.5
+    loss = multipliers < 2.5
 
-    ax.set_xlabel('Production Budget ($ Millions USD)', fontsize=11, fontweight='bold')
-    ax.set_ylabel('Worldwide Gross Box Office ($ Millions USD)', fontsize=11, fontweight='bold')
-    ax.set_title('Chart 2: Production Budget vs. Worldwide Box Office Revenue (Marginal Flattening)', fontsize=13, fontweight='bold', pad=16)
-    ax.set_xlim(-10, 380)
-    ax.set_ylim(-150, 3100)
-    ax.grid(True)
-    ax.legend(loc='upper left', framealpha=0.3, edgecolor='#475569')
+    ax.scatter(budgets[prof], revenues[prof], color=PURPLE, s=65, alpha=0.88,
+               edgecolors='#ffffff', linewidths=0.7, zorder=5, label='Profitable Film (≥ 2.5× Multiplier)')
+    ax.scatter(budgets[loss], revenues[loss], color=ROSE, s=65, alpha=0.88,
+               edgecolors='#ffffff', linewidths=0.7, zorder=5, label='Underperforming Film (< 2.5× Multiplier)')
+
+    # 5. Two Clear, Non-Overlapping Landmark Callouts
+    # 5a. Asymmetric Low-Budget Breakout (Get Out)
+    ax.annotate("Get Out\n\\$4.5M Budget → \\$255M Gross (56.8×)",
+                xy=(4.5, 255.4), xytext=(22, 430),
+                arrowprops=dict(arrowstyle='->', lw=1.2, color=LIGHT_PURPLE),
+                fontsize=8.5, color='#f8fafc',
+                bbox=dict(boxstyle='round,pad=0.45', facecolor='#17122a', edgecolor=PURPLE, alpha=0.95))
+
+    # 5b. High-Budget Diminishing Returns Flop (John Carter)
+    ax.annotate("John Carter (Flop)\n\\$250M Budget → \\$284M Gross (1.1×)",
+                xy=(250.0, 284.1), xytext=(155, 110),
+                arrowprops=dict(arrowstyle='->', lw=1.2, color=ROSE),
+                fontsize=8.5, color='#f8fafc',
+                bbox=dict(boxstyle='round,pad=0.45', facecolor='#251218', edgecolor=ROSE, alpha=0.95))
+
+    # 6. Sleek Top-Right Badge explaining $2B+ Historical Ceiling
+    ax.text(260, 1080, "▲ All-Time Peak Outliers: Avatar (\\$2.79B) and Avengers: Endgame (\\$2.80B) sit off-scale",
+            fontsize=8, color='#94a3b8', style='italic', ha='center',
+            bbox=dict(boxstyle='round,pad=0.35', facecolor='#111520', edgecolor='#334155', alpha=0.85))
+
+    # Formatting & Ticks
+    ax.set_xlabel('Production Budget ($ Millions USD)', fontsize=10.5, fontweight='bold', labelpad=8)
+    ax.set_ylabel('Worldwide Gross Box Office ($ Millions USD)', fontsize=10.5, fontweight='bold', labelpad=8)
+    ax.set_title('Chart 2: Production Budget vs. Worldwide Box Office (Marginal Flattening)', fontsize=12.5, fontweight='bold', pad=16)
+
+    ax.set_xlim(-5, 360)
+    ax.set_ylim(0, 1150)
+
+    # Format ticks with $ prefix
+    ax.xaxis.set_major_formatter(ticker.FuncFormatter(lambda x, _: f'${int(x)}M'))
+    ax.yaxis.set_major_formatter(ticker.FuncFormatter(lambda y, _: f'${int(y)}M'))
+
+    ax.grid(True, alpha=0.3)
+    ax.legend(loc='upper left', framealpha=0.4, edgecolor='#334155', fontsize=8.2, labelspacing=0.5)
 
     plt.tight_layout()
     chart_path = os.path.join(OUTPUT_DIR, 'chart2_budget_vs_revenue_scatter.png')
