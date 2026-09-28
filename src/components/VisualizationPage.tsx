@@ -15,7 +15,9 @@ import {
   Layers,
   Database,
   Bot,
-  Cpu
+  Cpu,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-react';
 
 interface DatasetAttribute {
@@ -60,6 +62,7 @@ interface ChartItem {
 
 export const VisualizationPage: React.FC = () => {
   const [selectedModel, setSelectedModel] = useState<string>('gemini');
+  const [currentChartIndex, setCurrentChartIndex] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'numerical' | 'categorical' | 'target'>('all');
   const [selectedPillarId, setSelectedPillarId] = useState<string>('missing-values');
 
@@ -125,6 +128,16 @@ export const VisualizationPage: React.FC = () => {
       icon: <Building2 className="w-4 h-4 text-violet-400" />
     }
   ];
+
+  const currentChart = charts[currentChartIndex] || charts[0];
+
+  const nextChart = () => {
+    setCurrentChartIndex((prev) => (prev + 1) % charts.length);
+  };
+
+  const prevChart = () => {
+    setCurrentChartIndex((prev) => (prev - 1 + charts.length) % charts.length);
+  };
 
   const modelTabs = [
     {
@@ -485,204 +498,221 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
   return (
     <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16 space-y-16">
       
-      {/* 1. Header */}
-      <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300 mb-2">
-          <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
-          <span>AI MODEL VISUALIZATION BENCHMARK</span>
+      {/* 1. Header & AI Model Switcher */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2">
+        <div className="space-y-2">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
+            <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
+            <span>AI MODEL BENCHMARK</span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            Visualizations & Model Comparison
+          </h1>
+          <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
+            Evaluating exploratory data visualizations generated across frontier AI models on movie budget diminishing returns.
+          </p>
         </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-          Visualizations & Model Comparison
-        </h1>
-        <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-3xl leading-relaxed">
-          Comparing exploratory data visualizations generated across frontier AI models on movie budget diminishing returns, revenue curvature, genre efficiency, and studio scale. Select a model below to explore its complete visual suite.
-        </p>
 
         {/* Model Switcher Tabs */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-3">
+        <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 shrink-0 self-start md:self-end">
           {modelTabs.map((tab) => {
             const isSelected = tab.id === selectedModel;
             return (
               <button
                 key={tab.id}
                 onClick={() => setSelectedModel(tab.id)}
-                className={`p-4 rounded-xl border text-left transition-all relative overflow-hidden flex flex-col justify-between gap-3 ${
+                className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${
                   isSelected
-                    ? 'bg-purple-950/50 border-purple-500 shadow-glow-purple text-white'
-                    : 'bg-white/[0.02] border-white/10 hover:border-white/20 text-slate-400 hover:text-white'
+                    ? 'bg-purple-600 text-white shadow-glow-purple font-semibold'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                 }`}
               >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className={`p-1.5 rounded-lg ${isSelected ? 'bg-purple-500/20 text-purple-300' : 'bg-white/5 text-slate-400'}`}>
-                      {tab.icon}
-                    </div>
-                    <div>
-                      <span className="text-sm font-bold block text-white">{tab.name}</span>
-                      <span className="text-[11px] font-mono text-slate-400">{tab.tagline}</span>
-                    </div>
-                  </div>
-                  {isSelected && (
-                    <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                  )}
-                </div>
-
-                <div className="flex items-center justify-between pt-2 border-t border-white/5 text-xs font-mono">
-                  <span className={isSelected ? 'text-purple-300 font-semibold' : 'text-slate-500'}>
-                    {tab.badge}
-                  </span>
-                  <span className={`px-2 py-0.5 rounded text-[10px] uppercase font-bold ${
-                    tab.status === 'active'
-                      ? 'bg-purple-500/20 text-purple-300 border border-purple-500/30'
-                      : 'bg-white/5 text-slate-400 border border-white/10'
-                  }`}>
-                    {tab.status === 'active' ? 'Active Feed' : 'Staging'}
-                  </span>
-                </div>
+                {tab.icon}
+                <span>{tab.name}</span>
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
+                  isSelected ? 'bg-purple-900/80 text-purple-200' : 'bg-white/5 text-slate-400'
+                }`}>
+                  {tab.chartCount > 0 ? tab.chartCount : 'Staging'}
+                </span>
               </button>
             );
           })}
         </div>
       </div>
 
-      {/* Model Content Area */}
+      {/* 2. Model Visualization Canvas */}
       {selectedModel === 'gemini' ? (
-        <div className="space-y-8">
-          {/* Gemini Model Info & Anchor Quick-Jump Bar */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-purple-950/20 border border-purple-500/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-purple-400" />
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-purple-300">
-                  Google Gemini Output Feed
+        <div className="glass-panel rounded-2xl p-5 sm:p-8 border border-white/10 space-y-6">
+          
+          {/* Header of Active Chart: Title, Counter & Arrow Navigation */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+            <div>
+              <div className="flex items-center gap-2 mb-1.5">
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
+                  Chart {currentChart.number} of {charts.length.toString().padStart(2, '0')}
                 </span>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-purple-500/20 text-purple-300 border border-purple-500/40 font-bold">
-                  4 Graphs Available
+                <span className="text-xs font-mono text-slate-400">
+                  Google Gemini &bull; Matplotlib
                 </span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300">
-                All 4 visualizations below were generated by Gemini using Python (<code className="text-purple-300 font-mono">matplotlib</code> &bull; <code className="text-purple-300 font-mono">pandas</code>). Scroll through the entire suite or click a quick-jump anchor below.
-              </p>
+              <h2 className="text-lg sm:text-2xl font-bold text-white tracking-tight">
+                {currentChart.title}
+              </h2>
             </div>
 
-            {/* Quick jump anchor buttons */}
-            <div className="flex flex-wrap items-center gap-2 shrink-0">
-              <span className="text-[11px] font-mono text-slate-400 font-semibold uppercase mr-1 hidden sm:inline">
-                Jump To:
-              </span>
-              {charts.map((chart) => (
-                <a
-                  key={chart.id}
-                  href={`#${chart.id}`}
-                  className="px-2.5 py-1 rounded-lg text-xs font-mono bg-white/5 hover:bg-purple-900/40 text-slate-300 hover:text-purple-200 border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-1.5"
-                >
-                  <span className="text-purple-400 font-bold">{chart.number}</span>
-                  <span className="hidden lg:inline">{chart.shortTitle}</span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Continuous Scrollable Charts Feed */}
-          <div className="space-y-10">
-            {charts.map((chart) => (
-              <div
-                key={chart.id}
-                id={chart.id}
-                className="scroll-mt-24 glass-panel rounded-2xl p-5 sm:p-8 border border-white/10 space-y-6 shadow-2xl relative"
+            {/* Controls: Prev / Indicators / Next & Full Res Link */}
+            <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
+              <button
+                onClick={prevChart}
+                className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-900/40 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-1 text-xs font-mono"
+                title="Previous Chart"
               >
-                {/* Header of Chart Card */}
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 border-b border-white/10">
-                  <div>
-                    <div className="flex items-center gap-2 mb-1.5">
-                      <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
-                        Chart {chart.number}
-                      </span>
-                      <span className="text-xs font-mono text-slate-400">
-                        Gemini &bull; Python Matplotlib Output
-                      </span>
-                    </div>
-                    <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                      {chart.title}
-                    </h2>
-                  </div>
+                <ChevronLeft className="w-4 h-4 text-purple-400" />
+                <span className="hidden sm:inline">Prev</span>
+              </button>
 
-                  <a
-                    href={chart.imageSrc}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-mono text-slate-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 self-start md:self-auto transition-all"
-                  >
-                    <span>Full Resolution</span>
-                    <ExternalLink className="w-3.5 h-3.5 text-purple-400" />
-                  </a>
-                </div>
-
-                {/* Rendered Chart High-Contrast Frame */}
-                <div className="w-full rounded-xl overflow-hidden border border-white/10 bg-[#07090e] shadow-inner p-2 sm:p-4 flex items-center justify-center">
-                  <img
-                    src={chart.imageSrc}
-                    alt={chart.title}
-                    className="w-full h-auto object-contain max-h-[600px] rounded-lg"
-                    loading="lazy"
+              <div className="flex items-center gap-1.5 px-2">
+                {charts.map((c, idx) => (
+                  <button
+                    key={c.id}
+                    onClick={() => setCurrentChartIndex(idx)}
+                    className={`h-2 rounded-full transition-all ${
+                      idx === currentChartIndex
+                        ? 'w-6 bg-purple-400'
+                        : 'w-2 bg-white/20 hover:bg-white/40'
+                    }`}
+                    title={`Jump to Chart ${c.number}`}
                   />
-                </div>
+                ))}
+              </div>
 
-                {/* Research Insight & Findings Breakdown */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-2">
-                  {/* Context & Question */}
-                  <div className="space-y-4">
-                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 block font-semibold">
-                        Inquiry Addressed
-                      </span>
-                      <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
-                        "{chart.researchQuestion}"
-                      </p>
-                    </div>
+              <button
+                onClick={nextChart}
+                className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-900/40 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-1 text-xs font-mono"
+                title="Next Chart"
+              >
+                <span className="hidden sm:inline">Next</span>
+                <ChevronRight className="w-4 h-4 text-purple-400" />
+              </button>
 
-                    <div className="p-4 rounded-xl bg-white/[0.03] border border-white/5 space-y-2">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 block font-semibold">
-                        Variables Examined
-                      </span>
-                      <div className="flex flex-wrap gap-1.5">
-                        {chart.variables.map((v, i) => (
-                          <span key={i} className="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 text-slate-300 border border-white/10">
-                            {v}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+              <a
+                href={currentChart.imageSrc}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-1 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all inline-flex items-center"
+                title="Open Full Resolution in new tab"
+              >
+                <ExternalLink className="w-4 h-4 text-purple-400" />
+              </a>
+            </div>
+          </div>
 
-                  {/* Key Analytical Takeaways */}
-                  <div className="lg:col-span-2 p-5 rounded-xl bg-purple-950/20 border border-purple-500/20 flex flex-col justify-between">
-                    <div>
-                      <div className="flex items-center gap-2 mb-3">
-                        <CheckCircle2 className="w-4 h-4 text-purple-400" />
-                        <span className="text-xs font-mono uppercase tracking-wider text-purple-300 font-bold">
-                          What This Visualization Demonstrates
-                        </span>
-                      </div>
-                      <ul className="space-y-2.5">
-                        {chart.findings.map((finding, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
-                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 mt-2"></span>
-                            <span>{finding}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+          {/* Rendered Chart Image with Floating Left/Right Arrow Overlays */}
+          <div className="relative group rounded-xl overflow-hidden border border-white/10 bg-[#07090e] p-2 sm:p-4 flex items-center justify-center min-h-[380px]">
+            {/* Floating Left Arrow */}
+            <button
+              onClick={prevChart}
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/60 hover:bg-purple-600/90 text-white backdrop-blur-md border border-white/10 opacity-70 group-hover:opacity-100 hover:scale-105 transition-all shadow-xl"
+              title="Previous Chart"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
 
-                    <div className="mt-4 pt-3 border-t border-purple-500/20 flex items-center justify-between text-[11px] font-mono text-purple-300/80">
-                      <span>Calculated against the 2.5x Theatrical Breakeven Benchmark</span>
-                      <span>Python 3 &bull; Matplotlib</span>
-                    </div>
-                  </div>
+            {/* Active Chart Image */}
+            <img
+              key={currentChart.id}
+              src={currentChart.imageSrc}
+              alt={currentChart.title}
+              className="w-full h-auto object-contain max-h-[560px] rounded-lg transition-opacity duration-300"
+              loading="eager"
+            />
+
+            {/* Floating Right Arrow */}
+            <button
+              onClick={nextChart}
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/60 hover:bg-purple-600/90 text-white backdrop-blur-md border border-white/10 opacity-70 group-hover:opacity-100 hover:scale-105 transition-all shadow-xl"
+              title="Next Chart"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Clean, Uncrowded Context & Findings Breakdown */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-1">
+            {/* Left: Research Question & Variables */}
+            <div className="lg:col-span-4 space-y-4">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold block">
+                  Inquiry Addressed
+                </span>
+                <p className="text-xs sm:text-sm text-slate-200 font-medium leading-relaxed">
+                  "{currentChart.researchQuestion}"
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
+                  Variables Examined
+                </span>
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {currentChart.variables.map((v, i) => (
+                    <span key={i} className="px-2 py-0.5 rounded text-[11px] font-mono bg-white/5 text-slate-300 border border-white/10">
+                      {v}
+                    </span>
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right: Key Visual Takeaways */}
+            <div className="lg:col-span-8 p-5 rounded-xl bg-purple-950/20 border border-purple-500/20 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <CheckCircle2 className="w-4 h-4 text-purple-400" />
+                  <span className="text-xs font-mono uppercase tracking-wider text-purple-300 font-bold">
+                    Key Visual Insights
+                  </span>
+                </div>
+                <ul className="space-y-2.5">
+                  {currentChart.findings.map((finding, idx) => (
+                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 leading-relaxed">
+                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 mt-2" />
+                      <span>{finding}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-4 pt-3 border-t border-purple-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-purple-300/80">
+                <span>Evaluated against the 2.5x Theatrical Breakeven Benchmark</span>
+                <span>Click arrows or dots to browse graphs</span>
+              </div>
+            </div>
           </div>
+
+          {/* Bottom Prev / Next Navigation Bar */}
+          <div className="flex items-center justify-between pt-3 border-t border-white/10">
+            <button
+              onClick={prevChart}
+              className="px-4 py-2 rounded-xl bg-white/5 hover:bg-purple-900/30 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-2 text-xs font-mono"
+            >
+              <ChevronLeft className="w-4 h-4 text-purple-400" />
+              <span>Previous Chart</span>
+            </button>
+
+            <span className="text-xs font-mono text-slate-400">
+              Viewing <span className="text-purple-300 font-bold">{currentChart.number}</span> of {charts.length.toString().padStart(2, '0')}
+            </span>
+
+            <button
+              onClick={nextChart}
+              className="px-4 py-2 rounded-xl bg-white/5 hover:bg-purple-900/30 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-2 text-xs font-mono"
+            >
+              <span>Next Chart</span>
+              <ChevronRight className="w-4 h-4 text-purple-400" />
+            </button>
+          </div>
+
         </div>
       ) : (
         /* Staging Placeholder for Other Models (ChatGPT / Claude) */
@@ -707,19 +737,19 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
               <span className="text-xs font-mono text-purple-400 font-bold">01. Standardized Prompts</span>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Identical research prompts fed to both models asking for budget diminishing returns and studio efficiency curves.
+                Identical research prompts asking for budget diminishing returns and studio efficiency curves.
               </p>
             </div>
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
               <span className="text-xs font-mono text-purple-400 font-bold">02. Identical Dataset</span>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Both models operate on the exact 45,466 records from TMDB movies_metadata.csv with identical cleaning steps.
+                Evaluated against the exact 45,466 cleaned TMDB records with identical filtering standards.
               </p>
             </div>
             <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
               <span className="text-xs font-mono text-purple-400 font-bold">03. Comparative Evaluation</span>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Evaluation on statistical fidelity, graphical readability, palette choice, and analytical deduction quality.
+                Evaluation on statistical fidelity, visual hierarchy, palette choice, and analytical deduction.
               </p>
             </div>
           </div>
