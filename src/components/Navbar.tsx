@@ -14,18 +14,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         {/* Brand */}
         <div 
           onClick={() => onNavigate('question')}
-          className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity"
+          className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity shrink-0"
         >
-          <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400">
+          <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
             <Film className="w-4 h-4" />
           </div>
-          <span className="font-semibold text-white tracking-tight text-sm sm:text-base">
+          <span className="font-semibold text-white tracking-tight text-xs sm:text-base truncate max-w-[130px] sm:max-w-none">
             Movie Budget Analysis
           </span>
         </div>
 
         {/* Page Switcher Navigation */}
-        <nav className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 text-xs font-medium">
+        <nav className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 text-xs font-medium shrink-0">
           <button
             onClick={() => onNavigate('question')}
             className={`px-3.5 py-1.5 rounded-lg transition-all ${

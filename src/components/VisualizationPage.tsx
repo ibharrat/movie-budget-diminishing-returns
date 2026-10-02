@@ -145,6 +145,7 @@ export const VisualizationPage: React.FC = () => {
     {
       id: 'gemini',
       name: 'Google Gemini',
+      shortName: 'Gemini',
       tagline: 'Gemini 2.5 Flash / Pro (via Antigravity)',
       badge: '4 Visualizations Available',
       chartCount: 4,
@@ -155,6 +156,7 @@ export const VisualizationPage: React.FC = () => {
     {
       id: 'claude',
       name: 'Claude / Anthropic',
+      shortName: 'Claude',
       tagline: 'Claude 3.7 Sonnet / Artifacts',
       badge: 'Ready for Staging',
       chartCount: 0,
@@ -165,6 +167,7 @@ export const VisualizationPage: React.FC = () => {
     {
       id: 'classifier',
       name: 'Supervised Classifier',
+      shortName: 'Classifier',
       tagline: 'Random Forest / XGBoost',
       badge: 'ML Staging',
       chartCount: 0,
@@ -175,6 +178,7 @@ export const VisualizationPage: React.FC = () => {
     {
       id: 'regression',
       name: 'Supervised Regressor',
+      shortName: 'Regressor',
       tagline: 'Polynomial & ElasticNet',
       badge: 'ML Staging',
       chartCount: 0,
@@ -185,6 +189,7 @@ export const VisualizationPage: React.FC = () => {
     {
       id: 'clustering',
       name: 'Unsupervised Clustering',
+      shortName: 'Clustering',
       tagline: 'K-Means & PCA Archetypes',
       badge: 'ML Staging',
       chartCount: 0,
@@ -518,47 +523,59 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
   const activePillar = cleaningPillars.find(p => p.id === selectedPillarId) || cleaningPillars[0];
 
   return (
-    <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16 space-y-16">
+    <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16 space-y-12 overflow-x-hidden">
       
-      {/* 1. Header & AI Model Switcher */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-2">
+      {/* 1. Header & Consolidated Model Selector */}
+      <div className="space-y-4">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
             <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
-            <span>AI MODEL BENCHMARK</span>
+            <span>MODEL BENCHMARK SUITE</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Visualizations & Model Comparison
           </h1>
-          <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
-            Evaluating exploratory data visualizations generated across frontier AI models on movie budget diminishing returns.
+          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
+            Comparing visual exploratory analytics and predictive architectures on movie budget diminishing returns across AI agents and machine learning models.
           </p>
         </div>
 
-        {/* Model Switcher Tabs */}
-        <div className="flex flex-wrap p-1 rounded-xl bg-white/[0.04] border border-white/10 shrink-0 self-start md:self-end gap-1">
-          {modelTabs.map((tab) => {
-            const isSelected = tab.id === selectedModel;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setSelectedModel(tab.id)}
-                className={`px-3.5 py-1.5 rounded-lg text-xs font-mono transition-all flex items-center gap-2 ${
-                  isSelected
-                    ? 'bg-purple-600 text-white shadow-glow-purple font-semibold'
-                    : 'text-slate-400 hover:text-white hover:bg-white/5'
-                }`}
-              >
-                {tab.icon}
-                <span>{tab.name}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded font-mono ${
-                  isSelected ? 'bg-purple-900/80 text-purple-200' : 'bg-white/5 text-slate-400'
-                }`}>
-                  {tab.chartCount > 0 ? tab.chartCount : 'Staging'}
-                </span>
-              </button>
-            );
-          })}
+        {/* Consolidated, Sleek Model Segmented Control Bar */}
+        <div className="w-full pt-1">
+          <div className="w-full bg-[#080a0f] p-1.5 rounded-2xl border border-white/10 shadow-lg">
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 w-full">
+              {modelTabs.map((tab, idx) => {
+                const isSelected = tab.id === selectedModel;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => setSelectedModel(tab.id)}
+                    className={`py-2.5 px-2.5 rounded-xl text-xs font-mono transition-all flex items-center justify-center gap-2 border ${
+                      isSelected
+                        ? 'bg-purple-950/70 border-purple-500/60 text-white shadow-glow-purple font-semibold'
+                        : 'border-transparent text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                    } ${idx === modelTabs.length - 1 ? 'col-span-2 sm:col-span-1' : ''}`}
+                  >
+                    <div className={isSelected ? 'text-purple-400' : 'text-slate-400'}>
+                      {tab.icon}
+                    </div>
+                    <span className="font-medium tracking-tight truncate">
+                      {tab.shortName}
+                    </span>
+                    {tab.chartCount > 0 ? (
+                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">
+                        {tab.chartCount}
+                      </span>
+                    ) : (
+                      <span className="hidden md:inline px-1.5 py-0.5 rounded text-[9px] bg-white/5 text-slate-500 uppercase tracking-wider">
+                        Staging
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
