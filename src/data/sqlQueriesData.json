@@ -1,0 +1,673 @@
+[
+  {
+    "id": "q1",
+    "category": "Basic selection",
+    "number": "01",
+    "title": "Baseline Theatrical Financial Selection",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "LIMIT"
+    ],
+    "question": "How do we inspect the baseline financial profile (budget, gross, and multiplier) of films in the database?",
+    "explanation": "Demonstrates primary SELECT extraction with a derived box office multiplier column, extracting foundational financial attributes from the movies table.",
+    "sql": "SELECT \n    movie_id,\n    title,\n    release_year,\n    budget,\n    revenue,\n    ROUND(revenue / budget, 2) AS multiplier\nFROM movies\nLIMIT 8;",
+    "columns": [
+      "movie_id",
+      "title",
+      "release_year",
+      "budget",
+      "revenue",
+      "multiplier"
+    ],
+    "rows": [
+      {
+        "movie_id": 1,
+        "title": "Paranormal Activity",
+        "release_year": 2007,
+        "budget": 15000.0,
+        "revenue": 193355800.0,
+        "multiplier": 12890.39
+      },
+      {
+        "movie_id": 2,
+        "title": "The Blair Witch Project",
+        "release_year": 1999,
+        "budget": 60000.0,
+        "revenue": 248639099.0,
+        "multiplier": 4143.98
+      },
+      {
+        "movie_id": 3,
+        "title": "Eraserhead",
+        "release_year": 1977,
+        "budget": 400000.0,
+        "revenue": 30500000.0,
+        "multiplier": 76.25
+      },
+      {
+        "movie_id": 4,
+        "title": "Primer",
+        "release_year": 2004,
+        "budget": 7000.0,
+        "revenue": 425000.0,
+        "multiplier": 60.71
+      },
+      {
+        "movie_id": 5,
+        "title": "Saw",
+        "release_year": 2004,
+        "budget": 1200000.0,
+        "revenue": 103911669.0,
+        "multiplier": 86.59
+      },
+      {
+        "movie_id": 6,
+        "title": "Insidious",
+        "release_year": 2010,
+        "budget": 1500000.0,
+        "revenue": 99557032.0,
+        "multiplier": 66.37
+      },
+      {
+        "movie_id": 7,
+        "title": "Get Out",
+        "release_year": 2017,
+        "budget": 4500000.0,
+        "revenue": 255407969.0,
+        "multiplier": 56.76
+      },
+      {
+        "movie_id": 8,
+        "title": "The Witch",
+        "release_year": 2015,
+        "budget": 4000000.0,
+        "revenue": 40423945.0,
+        "multiplier": 10.11
+      }
+    ],
+    "rowCount": 8
+  },
+  {
+    "id": "q2",
+    "category": "Filtering",
+    "number": "02",
+    "title": "Filtering Capital-Efficient Low-Budget Releases",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "WHERE"
+    ],
+    "question": "Which low-budget releases produced under $15M achieved commercial viability?",
+    "explanation": "Demonstrates simple WHERE filtering to isolate lean productions produced under the $15M threshold.",
+    "sql": "SELECT \n    title,\n    release_year,\n    budget,\n    revenue,\n    ROUND(revenue / budget, 2) AS box_office_multiplier\nFROM movies\nWHERE budget <= 15000000\nORDER BY box_office_multiplier DESC\nLIMIT 8;",
+    "columns": [
+      "title",
+      "release_year",
+      "budget",
+      "revenue",
+      "box_office_multiplier"
+    ],
+    "rows": [
+      {
+        "title": "Paranormal Activity",
+        "release_year": 2007,
+        "budget": 15000.0,
+        "revenue": 193355800.0,
+        "box_office_multiplier": 12890.39
+      },
+      {
+        "title": "The Blair Witch Project",
+        "release_year": 1999,
+        "budget": 60000.0,
+        "revenue": 248639099.0,
+        "box_office_multiplier": 4143.98
+      },
+      {
+        "title": "Halloween",
+        "release_year": 1978,
+        "budget": 325000.0,
+        "revenue": 70000000.0,
+        "box_office_multiplier": 215.38
+      },
+      {
+        "title": "Saw",
+        "release_year": 2004,
+        "budget": 1200000.0,
+        "revenue": 103911669.0,
+        "box_office_multiplier": 86.59
+      },
+      {
+        "title": "Eraserhead",
+        "release_year": 1977,
+        "budget": 400000.0,
+        "revenue": 30500000.0,
+        "box_office_multiplier": 76.25
+      },
+      {
+        "title": "Insidious",
+        "release_year": 2010,
+        "budget": 1500000.0,
+        "revenue": 99557032.0,
+        "box_office_multiplier": 66.37
+      },
+      {
+        "title": "Primer",
+        "release_year": 2004,
+        "budget": 7000.0,
+        "revenue": 425000.0,
+        "box_office_multiplier": 60.71
+      },
+      {
+        "title": "Get Out",
+        "release_year": 2017,
+        "budget": 4500000.0,
+        "revenue": 255407969.0,
+        "box_office_multiplier": 56.76
+      }
+    ],
+    "rowCount": 8
+  },
+  {
+    "id": "q3",
+    "category": "Multiple conditions",
+    "number": "03",
+    "title": "Multi-Condition Screening for Mid-Budget Breakeven Hits",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "WHERE (BETWEEN, AND, >=)"
+    ],
+    "question": "Which modern releases (2000+) in the mid-budget range ($25M\u2013$100M) cleared the theatrical 2.5x breakeven rule?",
+    "explanation": "Demonstrates compound boolean logic using BETWEEN, AND, and comparison operators to filter modern mid-budget hits.",
+    "sql": "SELECT \n    title,\n    release_year,\n    budget,\n    revenue,\n    ROUND(revenue / budget, 2) AS multiplier,\n    'Profitable' AS theatrical_status\nFROM movies\nWHERE budget BETWEEN 25000000 AND 100000000\n  AND revenue >= (2.5 * budget)\n  AND release_year >= 2000\nORDER BY multiplier DESC;",
+    "columns": [
+      "title",
+      "release_year",
+      "budget",
+      "revenue",
+      "multiplier",
+      "theatrical_status"
+    ],
+    "rows": [
+      {
+        "title": "Deadpool",
+        "release_year": 2016,
+        "budget": 58000000.0,
+        "revenue": 783112979.0,
+        "multiplier": 13.5,
+        "theatrical_status": "Profitable"
+      },
+      {
+        "title": "Knives Out",
+        "release_year": 2019,
+        "budget": 40000000.0,
+        "revenue": 312897920.0,
+        "multiplier": 7.82,
+        "theatrical_status": "Profitable"
+      },
+      {
+        "title": "Gravity",
+        "release_year": 2013,
+        "budget": 100000000.0,
+        "revenue": 723192705.0,
+        "multiplier": 7.23,
+        "theatrical_status": "Profitable"
+      },
+      {
+        "title": "Baby Driver",
+        "release_year": 2017,
+        "budget": 34000000.0,
+        "revenue": 226945087.0,
+        "multiplier": 6.67,
+        "theatrical_status": "Profitable"
+      },
+      {
+        "title": "Arrival",
+        "release_year": 2016,
+        "budget": 47000000.0,
+        "revenue": 203388186.0,
+        "multiplier": 4.33,
+        "theatrical_status": "Profitable"
+      },
+      {
+        "title": "Sicario",
+        "release_year": 2015,
+        "budget": 30000000.0,
+        "revenue": 84872444.0,
+        "multiplier": 2.83,
+        "theatrical_status": "Profitable"
+      }
+    ],
+    "rowCount": 6
+  },
+  {
+    "id": "q4",
+    "category": "Sorting",
+    "number": "04",
+    "title": "Ranking Mega-Budget Diminishing Return Traps",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "WHERE",
+      "ORDER BY DESC"
+    ],
+    "question": "What are the largest production budget films that failed to meet the 2.5x theatrical breakeven threshold?",
+    "explanation": "Demonstrates sorting with ORDER BY ... DESC to surface the most severe high-budget financial catastrophes where massive capital yielded diminishing returns.",
+    "sql": "SELECT \n    title,\n    release_year,\n    budget,\n    revenue,\n    ROUND(revenue - budget, 2) AS net_cash_diff,\n    ROUND(revenue / budget, 2) AS multiplier\nFROM movies\nWHERE budget >= 150000000 \n  AND revenue < (2.5 * budget)\nORDER BY budget DESC\nLIMIT 8;",
+    "columns": [
+      "title",
+      "release_year",
+      "budget",
+      "revenue",
+      "net_cash_diff",
+      "multiplier"
+    ],
+    "rows": [
+      {
+        "title": "Justice League",
+        "release_year": 2017,
+        "budget": 300000000.0,
+        "revenue": 657924295.0,
+        "net_cash_diff": 357924295.0,
+        "multiplier": 2.19
+      },
+      {
+        "title": "John Carter",
+        "release_year": 2012,
+        "budget": 250000000.0,
+        "revenue": 284139100.0,
+        "net_cash_diff": 34139100.0,
+        "multiplier": 1.14
+      },
+      {
+        "title": "Battleship",
+        "release_year": 2012,
+        "budget": 220000000.0,
+        "revenue": 303025485.0,
+        "net_cash_diff": 83025485.0,
+        "multiplier": 1.38
+      },
+      {
+        "title": "Green Lantern",
+        "release_year": 2011,
+        "budget": 200000000.0,
+        "revenue": 219851172.0,
+        "net_cash_diff": 19851172.0,
+        "multiplier": 1.1
+      },
+      {
+        "title": "Tomorrowland",
+        "release_year": 2015,
+        "budget": 190000000.0,
+        "revenue": 209154322.0,
+        "net_cash_diff": 19154322.0,
+        "multiplier": 1.1
+      },
+      {
+        "title": "Edge of Tomorrow",
+        "release_year": 2014,
+        "budget": 178000000.0,
+        "revenue": 370541256.0,
+        "net_cash_diff": 192541256.0,
+        "multiplier": 2.08
+      },
+      {
+        "title": "Jupiter Ascending",
+        "release_year": 2015,
+        "budget": 176000000.0,
+        "revenue": 183987723.0,
+        "net_cash_diff": 7987723.0,
+        "multiplier": 1.05
+      },
+      {
+        "title": "Alita: Battle Angel",
+        "release_year": 2019,
+        "budget": 170000000.0,
+        "revenue": 404852543.0,
+        "net_cash_diff": 234852543.0,
+        "multiplier": 2.38
+      }
+    ],
+    "rowCount": 8
+  },
+  {
+    "id": "q5",
+    "category": "Aggregation",
+    "number": "05",
+    "title": "Macro Aggregations & Dataset-Wide Financial Summary",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "COUNT",
+      "SUM",
+      "AVG",
+      "MAX"
+    ],
+    "question": "What are the aggregate industry totals for production capital, worldwide gross, average budget, and peak multiples?",
+    "explanation": "Applies standard SQL aggregate functions (COUNT, SUM, AVG, MAX) across the entire theatrical sample to summarize macro economics.",
+    "sql": "SELECT \n    COUNT(*) AS total_films_evaluated,\n    ROUND(SUM(budget) / 1000000.0, 1) AS total_budget_millions,\n    ROUND(SUM(revenue) / 1000000.0, 1) AS total_revenue_millions,\n    ROUND(AVG(budget) / 1000000.0, 1) AS avg_budget_millions,\n    ROUND(AVG(revenue) / 1000000.0, 1) AS avg_revenue_millions,\n    ROUND(AVG(revenue / budget), 2) AS avg_multiplier,\n    ROUND(MAX(revenue / budget), 1) AS max_viral_multiplier\nFROM movies\nWHERE budget > 0;",
+    "columns": [
+      "total_films_evaluated",
+      "total_budget_millions",
+      "total_revenue_millions",
+      "avg_budget_millions",
+      "avg_revenue_millions",
+      "avg_multiplier",
+      "max_viral_multiplier"
+    ],
+    "rows": [
+      {
+        "total_films_evaluated": 50,
+        "total_budget_millions": 4465.8,
+        "total_revenue_millions": 20080.5,
+        "avg_budget_millions": 89.3,
+        "avg_revenue_millions": 401.6,
+        "avg_multiplier": 358.56,
+        "max_viral_multiplier": 12890.4
+      }
+    ],
+    "rowCount": 1
+  },
+  {
+    "id": "q6",
+    "category": "Group comparison",
+    "number": "06",
+    "title": "Group Comparison: Diminishing Returns by Budget Tier",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "GROUP BY",
+      "ORDER BY"
+    ],
+    "question": "How does average multiplier and breakeven profitability percentage decay across discretized budget tiers?",
+    "explanation": "Performs categorical GROUP BY aggregation across budget tiers to pinpoint the exact diminishing returns curve. Serves as SQL-to-Visualization #1.",
+    "sql": "SELECT \n    budget_tier,\n    COUNT(*) AS movie_count,\n    ROUND(AVG(budget) / 1000000.0, 1) AS avg_budget_mil,\n    ROUND(AVG(revenue) / 1000000.0, 1) AS avg_revenue_mil,\n    ROUND(AVG(revenue / budget), 2) AS avg_multiplier,\n    ROUND(100.0 * SUM(CASE WHEN revenue >= 2.5 * budget THEN 1 ELSE 0 END) / COUNT(*), 1) AS pct_profitable\nFROM movies\nGROUP BY budget_tier\nORDER BY MIN(budget) ASC;",
+    "isVisualizationTarget": true,
+    "vizType": "bar-trend",
+    "vizLabel": "SQL \u2192 Visualization #1: Capital Efficiency vs. Budget Tier",
+    "columns": [
+      "budget_tier",
+      "movie_count",
+      "avg_budget_mil",
+      "avg_revenue_mil",
+      "avg_multiplier",
+      "pct_profitable"
+    ],
+    "rows": [
+      {
+        "budget_tier": "< $5M",
+        "movie_count": 12,
+        "avg_budget_mil": 1.9,
+        "avg_revenue_mil": 103.8,
+        "avg_multiplier": 1472.29,
+        "pct_profitable": 100.0
+      },
+      {
+        "budget_tier": "$5M-$25M",
+        "movie_count": 10,
+        "avg_budget_mil": 13.2,
+        "avg_revenue_mil": 175.3,
+        "avg_multiplier": 14.72,
+        "pct_profitable": 90.0
+      },
+      {
+        "budget_tier": "$25M-$65M",
+        "movie_count": 7,
+        "avg_budget_mil": 41.3,
+        "avg_revenue_mil": 244.1,
+        "avg_multiplier": 5.37,
+        "pct_profitable": 71.4
+      },
+      {
+        "budget_tier": "$65M-$140M",
+        "movie_count": 3,
+        "avg_budget_mil": 101.9,
+        "avg_revenue_mil": 526.3,
+        "avg_multiplier": 5.13,
+        "pct_profitable": 66.7
+      },
+      {
+        "budget_tier": "$140M+",
+        "movie_count": 18,
+        "avg_budget_mil": 206.5,
+        "avg_revenue_mil": 766.3,
+        "avg_multiplier": 3.36,
+        "pct_profitable": 38.9
+      }
+    ],
+    "rowCount": 5
+  },
+  {
+    "id": "q7",
+    "category": "HAVING",
+    "number": "07",
+    "title": "Genre Efficiency Threshold Filter with HAVING Clause",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "JOIN",
+      "GROUP BY",
+      "HAVING",
+      "ORDER BY"
+    ],
+    "question": "Which genre categories maintain both a substantial release volume AND an average box office multiple clearing theatrical breakeven (>= 2.5x)?",
+    "explanation": "Demonstrates post-aggregation filtering using the HAVING clause after grouping by genre and joining through the relational junction table. Serves as SQL-to-Visualization #2.",
+    "sql": "SELECT \n    g.genre_name,\n    COUNT(m.movie_id) AS total_releases,\n    ROUND(AVG(m.budget) / 1000000.0, 1) AS avg_budget_mil,\n    ROUND(AVG(m.revenue) / 1000000.0, 1) AS avg_revenue_mil,\n    ROUND(AVG(m.revenue / m.budget), 2) AS avg_multiplier,\n    ROUND(100.0 * SUM(CASE WHEN m.revenue >= 2.5 * m.budget THEN 1 ELSE 0 END) / COUNT(*), 1) AS breakeven_rate_pct\nFROM movies m\nJOIN movie_genres mg ON m.movie_id = mg.movie_id\nJOIN genres g ON mg.genre_id = g.genre_id\nGROUP BY g.genre_name\nHAVING COUNT(m.movie_id) >= 4 \n   AND AVG(m.revenue / m.budget) >= 2.5\nORDER BY avg_multiplier DESC;",
+    "isVisualizationTarget": true,
+    "vizType": "genre-bar",
+    "vizLabel": "SQL \u2192 Visualization #2: High-Yield Genre Breakeven Benchmark",
+    "columns": [
+      "genre_name",
+      "total_releases",
+      "avg_budget_mil",
+      "avg_revenue_mil",
+      "avg_multiplier",
+      "breakeven_rate_pct"
+    ],
+    "rows": [
+      {
+        "genre_name": "Horror",
+        "total_releases": 13,
+        "avg_budget_mil": 4.7,
+        "avg_revenue_mil": 152.9,
+        "avg_multiplier": 1357.73,
+        "breakeven_rate_pct": 100.0
+      },
+      {
+        "genre_name": "Thriller",
+        "total_releases": 15,
+        "avg_budget_mil": 55.1,
+        "avg_revenue_mil": 286.8,
+        "avg_multiplier": 891.96,
+        "breakeven_rate_pct": 86.7
+      },
+      {
+        "genre_name": "Mystery",
+        "total_releases": 7,
+        "avg_budget_mil": 35.3,
+        "avg_revenue_mil": 202.8,
+        "avg_multiplier": 613.01,
+        "breakeven_rate_pct": 85.7
+      },
+      {
+        "genre_name": "Drama",
+        "total_releases": 19,
+        "avg_budget_mil": 43.8,
+        "avg_revenue_mil": 223.6,
+        "avg_multiplier": 11.99,
+        "breakeven_rate_pct": 78.9
+      },
+      {
+        "genre_name": "Sci-Fi",
+        "total_releases": 25,
+        "avg_budget_mil": 146.4,
+        "avg_revenue_mil": 627.6,
+        "avg_multiplier": 11.07,
+        "breakeven_rate_pct": 56.0
+      },
+      {
+        "genre_name": "Crime",
+        "total_releases": 5,
+        "avg_budget_mil": 32.4,
+        "avg_revenue_mil": 180.3,
+        "avg_multiplier": 9.06,
+        "breakeven_rate_pct": 80.0
+      },
+      {
+        "genre_name": "Comedy",
+        "total_releases": 5,
+        "avg_budget_mil": 35.2,
+        "avg_revenue_mil": 268.1,
+        "avg_multiplier": 7.23,
+        "breakeven_rate_pct": 80.0
+      },
+      {
+        "genre_name": "Fantasy",
+        "total_releases": 4,
+        "avg_budget_mil": 243.0,
+        "avg_revenue_mil": 1430.8,
+        "avg_multiplier": 5.87,
+        "breakeven_rate_pct": 50.0
+      },
+      {
+        "genre_name": "Action",
+        "total_releases": 20,
+        "avg_budget_mil": 166.8,
+        "avg_revenue_mil": 684.6,
+        "avg_multiplier": 4.09,
+        "breakeven_rate_pct": 50.0
+      },
+      {
+        "genre_name": "Adventure",
+        "total_releases": 15,
+        "avg_budget_mil": 207.8,
+        "avg_revenue_mil": 844.4,
+        "avg_multiplier": 3.74,
+        "breakeven_rate_pct": 46.7
+      }
+    ],
+    "rowCount": 10
+  },
+  {
+    "id": "q8",
+    "category": "JOIN",
+    "number": "08",
+    "title": "Multi-Table Relational JOIN: Conglomerate vs. Indie Studio Portfolios",
+    "clauses": [
+      "SELECT",
+      "FROM",
+      "INNER JOIN (x2)",
+      "GROUP BY",
+      "ORDER BY"
+    ],
+    "question": "How do major studio conglomerates compare against boutique independent distributors in aggregate capital deployed and commercial success rates?",
+    "explanation": "Demonstrates relational database capability by joining 3 normalized tables (studios -> movie_studios -> movies) to aggregate portfolio metrics across corporate studio tiers. Serves as SQL-to-Visualization #3.",
+    "sql": "SELECT \n    s.studio_tier,\n    s.studio_name,\n    COUNT(m.movie_id) AS portfolio_size,\n    ROUND(SUM(m.budget) / 1000000.0, 1) AS total_invested_mil,\n    ROUND(SUM(m.revenue) / 1000000.0, 1) AS total_gross_mil,\n    ROUND(AVG(m.revenue / m.budget), 2) AS avg_multiplier,\n    ROUND(100.0 * SUM(CASE WHEN m.revenue >= 2.5 * m.budget THEN 1 ELSE 0 END) / COUNT(*), 1) AS profitable_success_rate\nFROM studios s\nJOIN movie_studios ms ON s.studio_id = ms.studio_id\nJOIN movies m ON ms.movie_id = m.movie_id\nGROUP BY s.studio_tier, s.studio_name\nORDER BY total_gross_mil DESC;",
+    "isVisualizationTarget": true,
+    "vizType": "studio-matrix",
+    "vizLabel": "SQL \u2192 Visualization #3: Studio Scale & Capital Return Matrix",
+    "columns": [
+      "studio_tier",
+      "studio_name",
+      "portfolio_size",
+      "total_invested_mil",
+      "total_gross_mil",
+      "avg_multiplier",
+      "profitable_success_rate"
+    ],
+    "rows": [
+      {
+        "studio_tier": "Major Conglomerate",
+        "studio_name": "20th Century Fox",
+        "portfolio_size": 8,
+        "total_invested_mil": 948.6,
+        "total_gross_mil": 6193.4,
+        "avg_multiplier": 8.79,
+        "profitable_success_rate": 75.0
+      },
+      {
+        "studio_tier": "Major Conglomerate",
+        "studio_name": "Walt Disney Pictures",
+        "portfolio_size": 5,
+        "total_invested_mil": 1201.0,
+        "total_gross_mil": 5421.0,
+        "avg_multiplier": 3.78,
+        "profitable_success_rate": 40.0
+      },
+      {
+        "studio_tier": "Major Conglomerate",
+        "studio_name": "Warner Bros. Pictures",
+        "portfolio_size": 11,
+        "total_invested_mil": 1794.0,
+        "total_gross_mil": 4782.5,
+        "avg_multiplier": 2.82,
+        "profitable_success_rate": 36.4
+      },
+      {
+        "studio_tier": "Major Conglomerate",
+        "studio_name": "Sony Pictures / Columbia",
+        "portfolio_size": 5,
+        "total_invested_mil": 442.2,
+        "total_gross_mil": 1573.0,
+        "avg_multiplier": 8.54,
+        "profitable_success_rate": 80.0
+      },
+      {
+        "studio_tier": "Major Conglomerate",
+        "studio_name": "Paramount Pictures",
+        "portfolio_size": 3,
+        "total_invested_mil": 229.0,
+        "total_gross_mil": 1246.1,
+        "avg_multiplier": 9.55,
+        "profitable_success_rate": 100.0
+      },
+      {
+        "studio_tier": "Major Conglomerate",
+        "studio_name": "Universal Pictures",
+        "portfolio_size": 6,
+        "total_invested_mil": 281.5,
+        "total_gross_mil": 997.5,
+        "avg_multiplier": 20.41,
+        "profitable_success_rate": 50.0
+      },
+      {
+        "studio_tier": "Independent / Mini-Major",
+        "studio_name": "Blumhouse Productions",
+        "portfolio_size": 5,
+        "total_invested_mil": 18.0,
+        "total_gross_mil": 916.1,
+        "avg_multiplier": 2614.85,
+        "profitable_success_rate": 100.0
+      },
+      {
+        "studio_tier": "Independent / Mini-Major",
+        "studio_name": "Lionsgate",
+        "portfolio_size": 6,
+        "total_invested_mil": 91.6,
+        "total_gross_mil": 906.3,
+        "avg_multiplier": 743.49,
+        "profitable_success_rate": 100.0
+      },
+      {
+        "studio_tier": "Independent / Mini-Major",
+        "studio_name": "A24",
+        "portfolio_size": 6,
+        "total_invested_mil": 28.4,
+        "total_gross_mil": 295.4,
+        "avg_multiplier": 29.88,
+        "profitable_success_rate": 100.0
+      },
+      {
+        "studio_tier": "Independent / Mini-Major",
+        "studio_name": "Miramax Films",
+        "portfolio_size": 1,
+        "total_invested_mil": 8.0,
+        "total_gross_mil": 213.9,
+        "avg_multiplier": 26.74,
+        "profitable_success_rate": 100.0
+      }
+    ],
+    "rowCount": 10
+  }
+]

@@ -62,7 +62,11 @@ interface ChartItem {
   icon: React.ReactNode;
 }
 
-export const VisualizationPage: React.FC = () => {
+interface VisualizationPageProps {
+  onNavigateToSql?: () => void;
+}
+
+export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigateToSql }) => {
   const [selectedModel, setSelectedModel] = useState<string>('gemini');
   const [activeStage, setActiveStage] = useState<'input' | 'output'>('input');
   const [currentChartIndex, setCurrentChartIndex] = useState<number>(0);
@@ -593,9 +597,20 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       {/* 1. Header & Consolidated Model Selector */}
       <div className="space-y-4">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
-            <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
-            <span>MODEL BENCHMARK SUITE</span>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
+              <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
+              <span>MODEL BENCHMARK SUITE</span>
+            </div>
+            {onNavigateToSql && (
+              <button
+                onClick={onNavigateToSql}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 transition-all self-start sm:self-auto"
+              >
+                <Database className="w-3.5 h-3.5 text-cyan-400" />
+                <span>Explore Required SQL &amp; Query Visualizations (8 Queries) &rarr;</span>
+              </button>
+            )}
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Visualizations & Model Comparison

@@ -2,8 +2,8 @@ import React from 'react';
 import { Film, ExternalLink } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage: 'question' | 'visualization' | 'about';
-  onNavigate: (page: 'question' | 'visualization' | 'about') => void;
+  currentPage: 'question' | 'visualization' | 'sql' | 'about';
+  onNavigate: (page: 'question' | 'visualization' | 'sql' | 'about') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
@@ -19,7 +19,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
             <Film className="w-4 h-4" />
           </div>
-          <span className="font-semibold text-white tracking-tight text-xs sm:text-base truncate max-w-[130px] sm:max-w-none">
+          <span className="font-semibold text-white tracking-tight text-xs sm:text-base truncate max-w-[120px] sm:max-w-none">
             Movie Budget Analysis
           </span>
         </div>
@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         <nav className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 text-xs font-medium shrink-0">
           <button
             onClick={() => onNavigate('question')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
               currentPage === 'question'
                 ? 'bg-white/10 text-white font-semibold'
                 : 'text-slate-400 hover:text-white'
@@ -38,17 +38,28 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('visualization')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
               currentPage === 'visualization'
                 ? 'bg-white/10 text-white font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Data Visualization
+            Visualizations
+          </button>
+          <button
+            onClick={() => onNavigate('sql')}
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+              currentPage === 'sql'
+                ? 'bg-purple-600 text-white font-semibold shadow-glow-purple'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <span>SQL</span>
+            <span className="hidden md:inline px-1.5 py-0.2 rounded text-[10px] bg-white/10 font-mono">8</span>
           </button>
           <button
             onClick={() => onNavigate('about')}
-            className={`px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
               currentPage === 'about'
                 ? 'bg-white/10 text-white font-semibold'
                 : 'text-slate-400 hover:text-white'

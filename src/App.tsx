@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { QuestionPage } from './components/QuestionPage';
 import { VisualizationPage } from './components/VisualizationPage';
+import { SqlAnalyticsPage } from './components/SqlAnalyticsPage';
 import { AboutPage } from './components/AboutPage';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'question' | 'visualization' | 'about'>('question');
+  const [currentPage, setCurrentPage] = useState<'question' | 'visualization' | 'sql' | 'about'>('question');
 
   return (
     <div className="min-h-screen bg-[#040507] text-slate-200 flex flex-col font-sans selection:bg-purple-500/30 selection:text-purple-300 overflow-x-hidden w-full max-w-full">
@@ -16,7 +17,10 @@ export const App: React.FC = () => {
           <QuestionPage onNavigateToViz={() => setCurrentPage('visualization')} />
         )}
         {currentPage === 'visualization' && (
-          <VisualizationPage />
+          <VisualizationPage onNavigateToSql={() => setCurrentPage('sql')} />
+        )}
+        {currentPage === 'sql' && (
+          <SqlAnalyticsPage />
         )}
         {currentPage === 'about' && (
           <AboutPage 
