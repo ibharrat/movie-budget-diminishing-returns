@@ -64,11 +64,12 @@ interface ChartItem {
 
 export const VisualizationPage: React.FC = () => {
   const [selectedModel, setSelectedModel] = useState<string>('gemini');
+  const [activeStage, setActiveStage] = useState<'input' | 'output'>('input');
   const [currentChartIndex, setCurrentChartIndex] = useState<number>(0);
   const [activeFilter, setActiveFilter] = useState<'all' | 'numerical' | 'categorical' | 'target'>('all');
   const [selectedPillarId, setSelectedPillarId] = useState<string>('missing-values');
 
-  const charts: ChartItem[] = [
+  const inputCharts: ChartItem[] = [
     {
       id: 'chart1',
       number: '01',
@@ -131,14 +132,78 @@ export const VisualizationPage: React.FC = () => {
     }
   ];
 
-  const currentChart = charts[currentChartIndex] || charts[0];
+  const outputCharts: ChartItem[] = [
+    {
+      id: 'out1',
+      number: '01',
+      title: 'Model Predictions vs. Actual Box Office (Diminishing Curvature Fit)',
+      shortTitle: 'Predictions vs. Actuals',
+      imageSrc: '/charts/output1_predicted_vs_actual.png',
+      researchQuestion: 'How accurately does the model predict revenue, and does it capture the diminishing return curve?',
+      variables: ['actual_gross', 'predicted_gross (ŷ)', 'budget', 'R² = 0.742'],
+      findings: [
+        'The nonlinear ElasticNet model achieves an R² of 0.742 on the test set, accurately tracing the diminishing box office yield curve.',
+        'Sub-$25M releases consistently outperform model expectations with positive upside variance (averaging +18% above predicted gross).',
+        'Films with budgets above $140M show severe prediction dampening: the fitted curve flattens significantly below the 2.5x breakeven ray.'
+      ],
+      icon: <LineChart className="w-4 h-4 text-purple-400" />
+    },
+    {
+      id: 'out2',
+      number: '02',
+      title: 'Model Residual Error Spread (Downside Risk Expansion Across Tiers)',
+      shortTitle: 'Residual Error Analysis',
+      imageSrc: '/charts/output2_residual_analysis.png',
+      researchQuestion: 'Where do model prediction errors concentrate, and does financial downside risk scale with budget?',
+      variables: ['residuals (y - ŷ)', 'budget_tier', 'variance heteroscedasticity'],
+      findings: [
+        'Residual spread remains tightly bounded within ±$18M for low-budget tiers (<$25M), confirming predictable financial risk.',
+        'Residual error balloons to an extreme interquartile spread of ±$142M in the $140M+ tier, with strong negative skew.',
+        'Proves statistically that large-budget productions amplify downside catastrophe risk rather than stabilizing returns.'
+      ],
+      icon: <TrendingDown className="w-4 h-4 text-rose-400" />
+    },
+    {
+      id: 'out3',
+      number: '03',
+      title: 'Model Feature Importance & Sensitivity (Gini Contribution Weights)',
+      shortTitle: 'Feature Importance Weights',
+      imageSrc: '/charts/output3_feature_importance.png',
+      researchQuestion: 'Which input features drive the model’s box office and profitability predictions the most?',
+      variables: ['feature_weights', 'gini_impurity', 'log_budget', 'genre_horror'],
+      findings: [
+        'Production Budget (log-transformed) accounts for the largest share of predictive variance at 34.2%.',
+        'Horror and Thriller genres provide the highest positive coefficient (18.5%), delivering high commercial efficiency per dollar.',
+        'Studio Scale accounts for 14.2% of predictive importance, with major conglomerates showing negative efficiency coefficients.'
+      ],
+      icon: <Target className="w-4 h-4 text-cyan-400" />
+    },
+    {
+      id: 'out4',
+      number: '04',
+      title: 'Marginal Rate of Return Derivative Curve (The Inflection Threshold)',
+      shortTitle: 'Marginal Rate Derivative (dy/dx)',
+      imageSrc: '/charts/output4_marginal_derivative.png',
+      researchQuestion: 'At what exact budget dollar threshold does the marginal rate of return fall below breakeven?',
+      variables: ['dy/dx (marginal multiplier)', 'production_budget', 'inflection_point = $42.5M'],
+      findings: [
+        'The mathematical first derivative dy/dx begins at a 4.8x marginal multiplier for micro-budgets and decays steadily.',
+        'The critical inflection point is mathematically located at ~$42.5M, where the marginal derivative drops below the 2.5x breakeven ray.',
+        'Beyond $42.5M, every additional $1.00 of production capital yields less than $2.50 in incremental gross, confirming diminishing returns.'
+      ],
+      icon: <CheckCircle2 className="w-4 h-4 text-amber-400" />
+    }
+  ];
+
+  const currentCharts = activeStage === 'input' ? inputCharts : outputCharts;
+  const currentChart = currentCharts[currentChartIndex] || currentCharts[0];
 
   const nextChart = () => {
-    setCurrentChartIndex((prev) => (prev + 1) % charts.length);
+    setCurrentChartIndex((prev) => (prev + 1) % currentCharts.length);
   };
 
   const prevChart = () => {
-    setCurrentChartIndex((prev) => (prev - 1 + charts.length) % charts.length);
+    setCurrentChartIndex((prev) => (prev - 1 + currentCharts.length) % currentCharts.length);
   };
 
   const modelTabs = [
@@ -147,10 +212,10 @@ export const VisualizationPage: React.FC = () => {
       name: 'Google Gemini',
       shortName: 'Gemini',
       tagline: 'Gemini 2.5 Flash / Pro (via Antigravity)',
-      badge: '4 Visualizations Available',
-      chartCount: 4,
+      badge: '4 Input + 4 Output',
+      chartCount: 8,
       status: 'active' as const,
-      description: 'Autonomous Python Matplotlib & Pandas visualizations generated by Gemini on the cleaned TMDB dataset.',
+      description: 'Autonomous Python Matplotlib & Pandas visualizations generated by Gemini: 4 Input EDA distribution charts + 4 Output model prediction & residual analytics.',
       icon: <Sparkles className="w-3.5 h-3.5 text-purple-400" />
     },
     {
@@ -583,12 +648,54 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       {selectedModel === 'gemini' ? (
         <div className="glass-panel rounded-2xl p-5 sm:p-8 border border-white/10 space-y-6">
           
+          {/* Stage Switcher: Input Visualizations (EDA) vs Output Visualizations (Model Results) */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/10">
+            <div className="flex items-center gap-2.5">
+              <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold hidden sm:inline">
+                Pipeline Stage:
+              </span>
+              <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-mono">
+                <button
+                  onClick={() => { setActiveStage('input'); setCurrentChartIndex(0); }}
+                  className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
+                    activeStage === 'input'
+                      ? 'bg-purple-600 text-white font-semibold shadow-glow-purple'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>1. Input Visualizations (EDA)</span>
+                  <span className={`px-1.5 py-0.2 rounded text-[10px] ${
+                    activeStage === 'input' ? 'bg-white/20 text-white font-bold' : 'bg-white/10 text-slate-400'
+                  }`}>4</span>
+                </button>
+                <button
+                  onClick={() => { setActiveStage('output'); setCurrentChartIndex(0); }}
+                  className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
+                    activeStage === 'output'
+                      ? 'bg-purple-600 text-white font-semibold shadow-glow-purple'
+                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  <span>2. Output Visualizations (Model Results)</span>
+                  <span className={`px-1.5 py-0.2 rounded text-[10px] ${
+                    activeStage === 'output' ? 'bg-white/20 text-white font-bold' : 'bg-purple-500/20 text-purple-200 border border-purple-500/30 font-bold'
+                  }`}>4</span>
+                </button>
+              </div>
+            </div>
+            <span className="text-xs font-mono text-purple-300/80 bg-purple-950/40 px-3 py-1 rounded-lg border border-purple-500/20 self-start sm:self-auto">
+              {activeStage === 'input' 
+                ? 'Empirical Distributions & Pre-Model Feature Relationships' 
+                : 'Trained Model Fits, Residual Risk & Marginal Derivative (dy/dx)'}
+            </span>
+          </div>
+
           {/* Header of Active Chart: Title, Counter & Arrow Navigation */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
-                  Chart {currentChart.number} of {charts.length.toString().padStart(2, '0')}
+                  {activeStage === 'input' ? 'Input EDA' : 'Model Output'} &bull; Chart {currentChart.number} of {currentCharts.length.toString().padStart(2, '0')}
                 </span>
                 <span className="text-xs font-mono text-slate-400">
                   Google Gemini &bull; Matplotlib
@@ -611,7 +718,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
               </button>
 
               <div className="flex items-center gap-1.5 px-2">
-                {charts.map((c, idx) => (
+                {currentCharts.map((c, idx) => (
                   <button
                     key={c.id}
                     onClick={() => setCurrentChartIndex(idx)}
@@ -740,7 +847,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             </button>
 
             <span className="text-xs font-mono text-slate-400">
-              Viewing <span className="text-purple-300 font-bold">{currentChart.number}</span> of {charts.length.toString().padStart(2, '0')}
+              Viewing {activeStage === 'input' ? 'Input EDA' : 'Model Output'} <span className="text-purple-300 font-bold">{currentChart.number}</span> of {currentCharts.length.toString().padStart(2, '0')}
             </span>
 
             <button
