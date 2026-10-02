@@ -12,7 +12,11 @@ import {
   Network, 
   ArrowRight,
   Sparkles,
-  Info
+  Info,
+  TrendingUp,
+  AlertTriangle,
+  Building2,
+  Film
 } from 'lucide-react';
 import sqlQueriesRaw from '../data/sqlQueriesData.json';
 
@@ -42,7 +46,7 @@ export const SqlAnalyticsPage: React.FC = () => {
   const [isRunning, setIsRunning] = useState<boolean>(false);
   const [showErd, setShowErd] = useState<boolean>(false);
   const [activeVizTab, setActiveVizTab] = useState<'q6' | 'q7' | 'q8'>('q6');
-  const [activeViewMode, setActiveViewMode] = useState<'table' | 'viz'>('table');
+  const [activeViewMode, setActiveViewMode] = useState<'viz' | 'table'>('viz');
 
   const activeQuery = sqlQueries.find(q => q.id === selectedQueryId) || sqlQueries[0];
 
@@ -83,7 +87,7 @@ export const SqlAnalyticsPage: React.FC = () => {
   return (
     <div className="flex-1 max-w-6xl mx-auto w-full px-4 sm:px-6 py-10 sm:py-16 space-y-12 overflow-x-hidden">
       
-      {/* 1. Header & Academic Rubric Requirements Status */}
+      {/* 1. Header & Architecture Status */}
       <div className="space-y-4">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
@@ -91,19 +95,19 @@ export const SqlAnalyticsPage: React.FC = () => {
             <span>RELATIONAL SQL WORKBENCH</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Required SQL &amp; Query Visualizations
+            Relational SQL Analytics &amp; Visual Insights
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
-            Demonstrating relational database querying across 8 required categories, 7 mandatory SQL clauses, and direct conversion of SQL query results into exploratory visual charts.
+            Querying normalized relational cinema data across 8 analytical paradigms, evaluating budget scalability, genre commercial resilience, and corporate studio capital allocation.
           </p>
         </div>
 
-        {/* Clause Checklist & Rubric Verification Banner */}
+        {/* Clause Coverage & Relational Architecture */}
         <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.02] border border-white/10 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-3">
             <span className="text-xs font-mono text-purple-300 uppercase tracking-wider font-bold flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              Academic Rubric Requirements Checklist (All 7 Mandatory Clauses Verified)
+              SQL Query Architecture &amp; Clause Coverage
             </span>
             <button
               onClick={() => setShowErd(!showErd)}
@@ -114,16 +118,16 @@ export const SqlAnalyticsPage: React.FC = () => {
             </button>
           </div>
 
-          {/* 7 Required SQL Clauses Grid */}
+          {/* 7 SQL Clauses Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-xs font-mono">
             {[
-              { clause: 'SELECT', desc: 'Queries 1–8', satisfied: true },
-              { clause: 'FROM', desc: 'Queries 1–8', satisfied: true },
-              { clause: 'WHERE', desc: 'Queries 2, 3, 4, 5', satisfied: true },
-              { clause: 'ORDER BY', desc: 'Queries 2, 3, 4, 6, 7, 8', satisfied: true },
-              { clause: 'GROUP BY', desc: 'Queries 6, 7, 8', satisfied: true },
-              { clause: 'HAVING', desc: 'Query 7 (>= 2.5x)', satisfied: true },
-              { clause: 'JOIN', desc: 'Queries 7, 8 (3 Tables)', satisfied: true },
+              { clause: 'SELECT', desc: 'Queries 1–8' },
+              { clause: 'FROM', desc: 'Queries 1–8' },
+              { clause: 'WHERE', desc: 'Queries 2, 3, 4, 5' },
+              { clause: 'ORDER BY', desc: 'Queries 2, 3, 4, 6, 7, 8' },
+              { clause: 'GROUP BY', desc: 'Queries 6, 7, 8' },
+              { clause: 'HAVING', desc: 'Query 7 (≥ 2.5x)' },
+              { clause: 'JOIN', desc: 'Queries 7, 8 (3 Tables)' },
             ].map(item => (
               <div 
                 key={item.clause}
@@ -157,15 +161,15 @@ export const SqlAnalyticsPage: React.FC = () => {
                     <span className="text-[10px] text-slate-500">50 Rows Sample</span>
                   </div>
                   <ul className="text-slate-400 space-y-1 text-[11px]">
-                    <li className="text-amber-300 font-semibold">&bull; movie_id (PK) INT</li>
-                    <li>&bull; title VARCHAR(255)</li>
-                    <li>&bull; release_year INT</li>
-                    <li>&bull; budget NUMERIC</li>
-                    <li>&bull; revenue NUMERIC</li>
-                    <li>&bull; runtime INT</li>
-                    <li>&bull; budget_tier VARCHAR(20)</li>
-                    <li>&bull; multiplier NUMERIC</li>
-                    <li>&bull; is_profitable TINYINT</li>
+                    <li className="text-amber-300 font-semibold">• movie_id (PK) INT</li>
+                    <li>• title VARCHAR(255)</li>
+                    <li>• release_year INT</li>
+                    <li>• budget NUMERIC</li>
+                    <li>• revenue NUMERIC</li>
+                    <li>• runtime INT</li>
+                    <li>• budget_tier VARCHAR(20)</li>
+                    <li>• multiplier NUMERIC</li>
+                    <li>• is_profitable TINYINT</li>
                   </ul>
                 </div>
 
@@ -177,8 +181,8 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <span className="text-[10px] text-slate-500">Junction (M:N)</span>
                     </div>
                     <ul className="text-slate-400 space-y-0.5 text-[11px]">
-                      <li className="text-amber-300">&bull; movie_id (FK &rarr; movies)</li>
-                      <li className="text-amber-300">&bull; genre_id (FK &rarr; genres)</li>
+                      <li className="text-amber-300">• movie_id (FK → movies)</li>
+                      <li className="text-amber-300">• genre_id (FK → genres)</li>
                     </ul>
                   </div>
 
@@ -188,8 +192,8 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <span className="text-[10px] text-slate-500">Junction (M:N)</span>
                     </div>
                     <ul className="text-slate-400 space-y-0.5 text-[11px]">
-                      <li className="text-amber-300">&bull; movie_id (FK &rarr; movies)</li>
-                      <li className="text-amber-300">&bull; studio_id (FK &rarr; studios)</li>
+                      <li className="text-amber-300">• movie_id (FK → movies)</li>
+                      <li className="text-amber-300">• studio_id (FK → studios)</li>
                     </ul>
                   </div>
                 </div>
@@ -202,8 +206,8 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <span className="text-[10px] text-slate-500">Dimension</span>
                     </div>
                     <ul className="text-slate-400 space-y-0.5 text-[11px]">
-                      <li className="text-amber-300">&bull; genre_id (PK) INT</li>
-                      <li>&bull; genre_name VARCHAR(50)</li>
+                      <li className="text-amber-300">• genre_id (PK) INT</li>
+                      <li>• genre_name VARCHAR(50)</li>
                     </ul>
                   </div>
 
@@ -213,9 +217,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <span className="text-[10px] text-slate-500">Dimension</span>
                     </div>
                     <ul className="text-slate-400 space-y-0.5 text-[11px]">
-                      <li className="text-amber-300">&bull; studio_id (PK) INT</li>
-                      <li>&bull; studio_name VARCHAR(100)</li>
-                      <li>&bull; studio_tier VARCHAR(50)</li>
+                      <li className="text-amber-300">• studio_id (PK) INT</li>
+                      <li>• studio_name VARCHAR(100)</li>
+                      <li>• studio_tier VARCHAR(50)</li>
                     </ul>
                   </div>
                 </div>
@@ -234,7 +238,7 @@ export const SqlAnalyticsPage: React.FC = () => {
               <span>Interactive SQL Query Suite</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
-              Select any query from the 8 required analytical categories to inspect its syntax, logic, and execute against the SQLite database.
+              Select any query across the 8 analytical categories to inspect its syntax, logic, and execute against the SQLite database.
             </p>
           </div>
 
@@ -289,7 +293,7 @@ export const SqlAnalyticsPage: React.FC = () => {
               }`}
             >
               <Sparkles className="w-3 h-3" />
-              <span>SQL &rarr; Viz Targets (3)</span>
+              <span>Visual Targets (3)</span>
             </button>
           </div>
         </div>
@@ -347,7 +351,7 @@ export const SqlAnalyticsPage: React.FC = () => {
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
-                  Query {activeQuery.number} &bull; {activeQuery.category}
+                  Query {activeQuery.number} • {activeQuery.category}
                 </span>
                 {activeQuery.clauses.map(c => (
                   <span key={c} className="px-2 py-0.5 rounded text-[10px] font-mono bg-white/5 text-slate-300 border border-white/10">
@@ -357,7 +361,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 {activeQuery.isVisualizationTarget && (
                   <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-cyan-950 text-cyan-300 border border-cyan-500/40 flex items-center gap-1 font-semibold">
                     <Sparkles className="w-3 h-3" />
-                    SQL &rarr; Visualization Target
+                    Visual Target
                   </span>
                 )}
               </div>
@@ -402,7 +406,7 @@ export const SqlAnalyticsPage: React.FC = () => {
           {/* SQL Code Block with Syntax Accent */}
           <div className="relative rounded-xl overflow-hidden border border-white/10 bg-[#06080d] p-4 font-mono text-xs sm:text-sm text-slate-200">
             <div className="flex items-center justify-between text-[11px] text-slate-500 pb-2 border-b border-white/5 mb-3">
-              <span>SQL Query Statement &bull; SQLite Engine</span>
+              <span>SQL Query Statement • SQLite Engine</span>
               <span>{activeQuery.clauses.join(' • ')}</span>
             </div>
             <pre className="overflow-x-auto whitespace-pre leading-relaxed text-purple-200">
@@ -414,7 +418,7 @@ export const SqlAnalyticsPage: React.FC = () => {
           <div className="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/20 flex items-start gap-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
             <Info className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
             <div>
-              <span className="font-semibold text-purple-300 font-mono">Academic Demonstration: </span>
+              <span className="font-semibold text-purple-300 font-mono">Analytical Insight: </span>
               <span>{activeQuery.explanation}</span>
             </div>
           </div>
@@ -426,9 +430,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 Status: 200 OK
               </span>
-              <span>&bull;</span>
+              <span>•</span>
               <span>Execution Time: ~14ms</span>
-              <span>&bull;</span>
+              <span>•</span>
               <span>Rows Returned: <strong className="text-purple-300">{activeQuery.rowCount}</strong></span>
             </div>
 
@@ -442,7 +446,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 }}
                 className="hidden sm:inline-flex items-center gap-1 text-cyan-400 hover:text-cyan-300 font-semibold text-xs"
               >
-                <span>Jump to SQL &rarr; Visualization</span>
+                <span>Jump to Visual Analytics</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             )}
@@ -508,7 +512,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                         } else if (val === 'Profitable') {
                           renderedVal = (
                             <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-500/30 font-bold">
-                              Profitable (&ge; 2.5x)
+                              Profitable (≥ 2.5x)
                             </span>
                           );
                         }
@@ -529,18 +533,18 @@ export const SqlAnalyticsPage: React.FC = () => {
         </div>
       </div>
 
-      {/* 3. SQL → Visualization Showcase (Course Rubric Requirement) */}
+      {/* 3. SQL → Visual Analytics Showcase */}
       <div id="sql-viz-section" className="space-y-6 pt-4 border-t border-white/10">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-cyan-300">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
-            <span>MANDATORY REQUIREMENT</span>
+            <span>DATA VISUALIZATION</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            SQL &rarr; Visualization Conversions
+            SQL → Visual Analytics
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 max-w-3xl leading-relaxed">
-            Per the project rubric: <em>"Students must take at least two SQL query results and convert them into visualizations."</em> Below, Queries 6, 7, and 8 are directly rendered into visual charts.
+            Converting complex relational query outputs directly into visual analytical charts to reveal profitability curves, genre efficiency benchmarks, and studio capital returns.
           </p>
         </div>
 
@@ -607,76 +611,142 @@ export const SqlAnalyticsPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
               <div>
                 <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
-                  SQL &rarr; Visualization #1 &bull; Query 06 (Group Comparison)
+                  SQL → Visual Analytics • Query 06 (Group Comparison)
                 </span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">
-                  Capital Efficiency &amp; Breakeven Rate Decays by Budget Tier
+                  Capital Efficiency &amp; Theatrical Breakeven Rate by Budget Tier
                 </h3>
                 <p className="text-xs text-slate-400 font-mono mt-0.5">
-                  Direct visual conversion of SQL query: <code className="text-purple-300 font-mono">GROUP BY budget_tier</code>
+                  Generated directly from: <code className="text-purple-300 font-mono">GROUP BY budget_tier</code>
                 </p>
               </div>
               <span className="text-xs font-mono text-purple-300 bg-purple-950/60 px-3 py-1 rounded-lg border border-purple-500/20">
-                Breakeven Benchmark: 2.5x
+                Breakeven Benchmark: 2.5x Multiplier
               </span>
+            </div>
+
+            {/* Top 3 KPI Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-1">
+                <span className="text-[11px] font-mono uppercase text-emerald-400 font-bold flex items-center gap-1.5">
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  Optimal Efficiency Zone
+                </span>
+                <div className="text-lg font-bold text-white">&lt; $5M to $25M</div>
+                <p className="text-xs text-slate-300">
+                  90% to 100% of films clear breakeven, yielding average multiples up to 14.7x.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/30 space-y-1">
+                <span className="text-[11px] font-mono uppercase text-purple-300 font-bold flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Inflection Threshold
+                </span>
+                <div className="text-lg font-bold text-white">$25M to $65M</div>
+                <p className="text-xs text-slate-300">
+                  Median profit margins squeeze below 2.5x as theatrical marketing costs escalate.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-rose-950/20 border border-rose-500/30 space-y-1">
+                <span className="text-[11px] font-mono uppercase text-rose-300 font-bold flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5 text-rose-400" />
+                  Diminishing Return Trap
+                </span>
+                <div className="text-lg font-bold text-white">$140M+ Mega-Budgets</div>
+                <p className="text-xs text-slate-300">
+                  Success rate drops to only 38.9%, heavily amplifying catastrophic downside exposure.
+                </p>
+              </div>
             </div>
 
             {activeViewMode === 'viz' ? (
               <div className="space-y-6">
-                {/* Visual Comparative Bars */}
-                <div className="space-y-4">
-                  {q6Rows.map(tier => {
-                    const pctProfitable = tier.pct_profitable;
-                    const avgMult = tier.avg_multiplier;
-                    const isOptimal = tier.budget_tier === '< $5M' || tier.budget_tier === '$5M-$25M';
-                    const isTrap = tier.budget_tier === '$140M+';
+                {/* Visual Column / Vertical Bar Canvas */}
+                <div className="p-6 rounded-xl bg-[#06080d] border border-white/10 space-y-6">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-white/5 pb-2">
+                    <span className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+                      % of Films Clearing Theatrical Breakeven (2.5x Multiplier)
+                    </span>
+                    <span className="hidden sm:inline text-purple-300">
+                      Dashed Line = 50% Majority Threshold
+                    </span>
+                  </div>
 
-                    return (
-                      <div key={tier.budget_tier} className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-2.5">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-white text-sm">{tier.budget_tier}</span>
-                            <span className="text-slate-400">({tier.movie_count} films evaluated)</span>
-                            {isOptimal && (
-                              <span className="px-2 py-0.2 rounded text-[10px] bg-emerald-950 text-emerald-300 border border-emerald-500/30">
-                                Optimal Efficiency
-                              </span>
-                            )}
-                            {isTrap && (
-                              <span className="px-2 py-0.2 rounded text-[10px] bg-rose-950 text-rose-300 border border-rose-500/30">
-                                Diminishing Return Trap
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-4 text-slate-300">
-                            <span>Avg Budget: <strong className="text-white">${tier.avg_budget_mil}M</strong></span>
-                            <span>Avg Multiplier: <strong className="text-purple-300">{avgMult > 100 ? avgMult.toFixed(0) : avgMult.toFixed(2)}x</strong></span>
-                            <span>Surpassing 2.5x: <strong className="text-emerald-400">{pctProfitable}%</strong></span>
-                          </div>
-                        </div>
+                  {/* 5-Column Visual Bar Layout with 50% Benchmark Line */}
+                  <div className="relative pt-8 pb-4">
+                    {/* 50% Horizontal Reference Line */}
+                    <div 
+                      className="absolute left-0 right-0 border-b-2 border-dashed border-purple-500/40 z-10 flex items-center justify-end pr-2 pointer-events-none"
+                      style={{ bottom: '48%' }}
+                    >
+                      <span className="text-[10px] font-mono text-purple-300/80 bg-[#06080d] px-1.5 py-0.5 rounded border border-purple-500/30 -translate-y-2">
+                        50% Breakeven Line
+                      </span>
+                    </div>
 
-                        {/* Progress Bar of Profitability Rate */}
-                        <div className="space-y-1">
-                          <div className="w-full h-3 rounded-full bg-white/10 overflow-hidden relative">
-                            {/* 2.5x Breakeven reference line at 50% */}
-                            <div 
-                              className={`h-full rounded-full transition-all duration-700 ${
-                                isOptimal ? 'bg-gradient-to-r from-purple-500 to-emerald-400' :
-                                isTrap ? 'bg-gradient-to-r from-amber-500 to-rose-500' :
-                                'bg-purple-500'
-                              }`}
-                              style={{ width: `${pctProfitable}%` }}
-                            />
+                    <div className="grid grid-cols-5 gap-2 sm:gap-6 items-end h-64 sm:h-72">
+                      {q6Rows.map(tier => {
+                        const pct = tier.pct_profitable;
+                        const isOptimal = tier.budget_tier === '< $5M' || tier.budget_tier === '$5M-$25M';
+                        const isTrap = tier.budget_tier === '$140M+';
+
+                        return (
+                          <div key={tier.budget_tier} className="flex flex-col items-center h-full justify-end group">
+                            {/* Multiplier Tooltip badge */}
+                            <div className="mb-2 text-center">
+                              <span className={`text-[10px] sm:text-xs font-mono font-bold px-2 py-0.5 rounded-md shadow ${
+                                isOptimal ? 'bg-emerald-950 text-emerald-300 border border-emerald-500/40' :
+                                isTrap ? 'bg-rose-950 text-rose-300 border border-rose-500/40' :
+                                'bg-purple-950 text-purple-300 border border-purple-500/40'
+                              }`}>
+                                {tier.avg_multiplier > 100 ? `${tier.avg_multiplier.toFixed(0)}x` : `${tier.avg_multiplier.toFixed(1)}x`}
+                              </span>
+                            </div>
+
+                            {/* Vertical Bar */}
+                            <div className="w-full max-w-[70px] bg-white/[0.04] rounded-t-xl overflow-hidden relative flex flex-col justify-end p-1 transition-all group-hover:ring-2 group-hover:ring-purple-400"
+                              style={{ height: `${pct}%` }}
+                            >
+                              <div 
+                                className={`w-full h-full rounded-t-lg transition-all duration-700 flex flex-col items-center justify-between py-2 ${
+                                  isOptimal 
+                                    ? 'bg-gradient-to-t from-emerald-600 to-emerald-400 text-white' 
+                                    : isTrap 
+                                    ? 'bg-gradient-to-t from-rose-700 to-amber-500 text-white' 
+                                    : 'bg-gradient-to-t from-purple-800 to-purple-500 text-white'
+                                }`}
+                              >
+                                <span className="font-mono font-extrabold text-xs sm:text-sm drop-shadow">
+                                  {pct}%
+                                </span>
+                                <span className="text-[9px] font-mono opacity-80 uppercase tracking-tighter hidden sm:inline">
+                                  {tier.movie_count} films
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* X-Axis Labels */}
+                            <div className="mt-3 text-center space-y-0.5">
+                              <span className="font-bold text-white text-xs sm:text-sm font-mono block">
+                                {tier.budget_tier}
+                              </span>
+                              <span className="text-[10px] text-slate-400 font-mono block">
+                                Avg ${tier.avg_budget_mil}M
+                              </span>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    );
-                  })}
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
 
                 {/* Analytical Interpretation Callout */}
                 <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/20 text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed">
-                  <span className="font-bold text-purple-300 font-mono block">Data Science Deduction:</span>
+                  <span className="font-bold text-purple-300 font-mono block">Key Analytical Deduction:</span>
                   <p>
                     The SQL aggregation confirms the diminishing returns law: movies produced for <strong className="text-white">&lt; $5M</strong> and <strong className="text-white">$5M–$25M</strong> surpass the 2.5x theatrical breakeven threshold at <strong>100%</strong> and <strong>90%</strong> rates. In stark contrast, mega-budget releases (<strong className="text-white">$140M+</strong>) collapse to a <strong>38.9% success rate</strong>, despite averaging $766M in gross box office revenue.
                   </p>
@@ -693,7 +763,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <th className="px-4 py-3">Avg Budget ($M)</th>
                       <th className="px-4 py-3">Avg Revenue ($M)</th>
                       <th className="px-4 py-3">Avg Multiplier</th>
-                      <th className="px-4 py-3">% Profitable (&ge; 2.5x)</th>
+                      <th className="px-4 py-3">% Profitable (≥ 2.5x)</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-white/5 text-slate-300">
@@ -719,13 +789,13 @@ export const SqlAnalyticsPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
               <div>
                 <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
-                  SQL &rarr; Visualization #2 &bull; Query 07 (HAVING Clause)
+                  SQL → Visual Analytics • Query 07 (HAVING Clause)
                 </span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">
                   Qualifying High-Yield Genre Profitability Benchmark
                 </h3>
                 <p className="text-xs text-slate-400 font-mono mt-0.5">
-                  Filtered via SQL: <code className="text-purple-300 font-mono">HAVING COUNT(*) &gt;= 4 AND AVG(multiplier) &gt;= 2.5</code>
+                  Post-aggregation filter: <code className="text-purple-300 font-mono">HAVING COUNT(*) ≥ 4 AND AVG(multiplier) ≥ 2.5</code>
                 </p>
               </div>
               <span className="text-xs font-mono text-cyan-300 bg-cyan-950/60 px-3 py-1 rounded-lg border border-cyan-500/20">
@@ -733,50 +803,101 @@ export const SqlAnalyticsPage: React.FC = () => {
               </span>
             </div>
 
+            {/* Quick KPI comparison */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/30 space-y-1">
+                <span className="text-[11px] font-mono uppercase text-emerald-400 font-bold flex items-center gap-1.5">
+                  <Film className="w-3.5 h-3.5" />
+                  Most Resilient: Horror &amp; Thriller
+                </span>
+                <div className="text-lg font-bold text-white">86.7% to 100% Breakeven Rate</div>
+                <p className="text-xs text-slate-300">
+                  Low production costs (averaging $4.7M to $55M) shield genre films from box office failure.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-xl bg-amber-950/20 border border-amber-500/30 space-y-1">
+                <span className="text-[11px] font-mono uppercase text-amber-400 font-bold flex items-center gap-1.5">
+                  <AlertTriangle className="w-3.5 h-3.5" />
+                  Highest Risk: Action &amp; Adventure
+                </span>
+                <div className="text-lg font-bold text-white">46.7% to 50.0% Breakeven Rate</div>
+                <p className="text-xs text-slate-300">
+                  Severe VFX budget inflation ($166M+ average budget) forces more than half of releases into the red.
+                </p>
+              </div>
+            </div>
+
             {activeViewMode === 'viz' ? (
               <div className="space-y-6">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {q7Rows.map((g, idx) => {
-                    const breakevenPct = g.breakeven_rate_pct;
-                    const isTop = idx < 3;
+                {/* Ranked Horizontal Bar Chart with Scale Axis */}
+                <div className="p-5 sm:p-6 rounded-xl bg-[#06080d] border border-white/10 space-y-4">
+                  {/* Axis Header */}
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-white/10 pb-2">
+                    <span>Rank &amp; Genre</span>
+                    <div className="hidden sm:flex items-center gap-8 pr-16 text-slate-500">
+                      <span>0%</span>
+                      <span>25%</span>
+                      <span>50%</span>
+                      <span>75%</span>
+                      <span>100%</span>
+                    </div>
+                    <span>Commercial Multiplier</span>
+                  </div>
 
-                    return (
-                      <div key={g.genre_name} className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
-                        <div className="flex items-center justify-between text-xs font-mono">
-                          <div className="flex items-center gap-2">
-                            <span className="text-purple-400 font-bold">#{idx + 1}</span>
-                            <span className="font-bold text-white text-sm">{g.genre_name}</span>
-                            {isTop && (
-                              <span className="px-1.5 py-0.2 rounded text-[9px] bg-purple-950 text-purple-300 border border-purple-500/30">
-                                Top Tier
+                  {/* Ranked Genre Rows */}
+                  <div className="space-y-3">
+                    {q7Rows.map((g, idx) => {
+                      const breakevenPct = g.breakeven_rate_pct;
+                      const isTopTier = breakevenPct >= 80;
+                      const isMidTier = breakevenPct >= 60 && breakevenPct < 80;
+
+                      return (
+                        <div key={g.genre_name} className="space-y-1.5 group">
+                          <div className="flex items-center justify-between text-xs font-mono">
+                            <div className="flex items-center gap-2 w-32 sm:w-44 shrink-0">
+                              <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
+                                idx < 3 ? 'bg-purple-500 text-white' : 'bg-white/10 text-slate-400'
+                              }`}>
+                                #{idx + 1}
                               </span>
-                            )}
+                              <span className="font-bold text-white text-sm truncate">{g.genre_name}</span>
+                              <span className="text-[10px] text-slate-400 hidden sm:inline">({g.total_releases})</span>
+                            </div>
+
+                            {/* Visual Bar with Guideline */}
+                            <div className="flex-1 mx-3 sm:mx-6 h-4 bg-white/[0.04] rounded-full overflow-hidden relative">
+                              <div 
+                                className={`h-full rounded-full transition-all duration-700 flex items-center justify-end pr-2 ${
+                                  isTopTier ? 'bg-gradient-to-r from-purple-600 to-emerald-400' :
+                                  isMidTier ? 'bg-gradient-to-r from-purple-700 to-purple-500' :
+                                  'bg-gradient-to-r from-amber-600 to-rose-500'
+                                }`}
+                                style={{ width: `${breakevenPct}%` }}
+                              >
+                                <span className="text-[10px] font-mono font-bold text-white drop-shadow">
+                                  {breakevenPct}%
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Multiplier Tag */}
+                            <div className="w-24 text-right shrink-0">
+                              <span className={`text-xs font-mono font-bold ${
+                                g.avg_multiplier >= 10 ? 'text-emerald-400' : 'text-purple-300'
+                              }`}>
+                                {g.avg_multiplier > 100 ? `${g.avg_multiplier.toFixed(0)}x` : `${g.avg_multiplier.toFixed(1)}x`}
+                              </span>
+                            </div>
                           </div>
-                          <span className="text-slate-400 text-[11px]">{g.total_releases} releases</span>
                         </div>
-
-                        <div className="flex items-center justify-between text-xs font-mono text-slate-300 pt-1">
-                          <span>Avg Budget: <strong className="text-white">${g.avg_budget_mil}M</strong></span>
-                          <span>Breakeven Rate: <strong className="text-emerald-400">{breakevenPct}%</strong></span>
-                        </div>
-
-                        {/* Bar */}
-                        <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-                          <div 
-                            className={`h-full rounded-full ${
-                              breakevenPct >= 80 ? 'bg-emerald-400' :
-                              breakevenPct >= 60 ? 'bg-purple-400' : 'bg-amber-400'
-                            }`}
-                            style={{ width: `${breakevenPct}%` }}
-                          />
-                        </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
 
                 <div className="p-4 rounded-xl bg-cyan-950/20 border border-cyan-500/20 text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed">
-                  <span className="font-bold text-cyan-300 font-mono block">Data Science Deduction:</span>
+                  <span className="font-bold text-cyan-300 font-mono block">Key Analytical Deduction:</span>
                   <p>
                     The <code className="text-purple-300 font-mono">HAVING</code> clause isolates genres that simultaneously satisfy sample reliability and profitability. <strong className="text-white">Horror</strong> and <strong className="text-white">Thriller</strong> boast the highest commercial resilience (100% and 86.7% breakeven rates), whereas heavy-CGI genres like <strong className="text-white">Action</strong> and <strong className="text-white">Adventure</strong> hover at ~46%–50% due to budget inflation exceeding $160M+ averages.
                   </p>
@@ -818,7 +939,7 @@ export const SqlAnalyticsPage: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-white/10">
               <div>
                 <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
-                  SQL &rarr; Visualization #3 &bull; Query 08 (Relational JOIN)
+                  SQL → Visual Analytics • Query 08 (Relational JOIN)
                 </span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">
                   Major Conglomerates vs. Independent Studios Portfolio Matrix
@@ -832,85 +953,73 @@ export const SqlAnalyticsPage: React.FC = () => {
               </span>
             </div>
 
-            {activeViewMode === 'viz' ? (
-              <div className="space-y-6">
-                <div className="space-y-3">
-                  {q8Rows.map(studio => {
-                    const isMajor = studio.studio_tier === 'Major Conglomerate';
-                    const successRate = studio.profitable_success_rate;
-
-                    return (
-                      <div key={studio.studio_name} className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 text-xs font-mono">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-white text-sm">{studio.studio_name}</span>
-                            <span className={`px-2 py-0.2 rounded text-[10px] ${
-                              isMajor 
-                                ? 'bg-purple-950 text-purple-300 border border-purple-500/30' 
-                                : 'bg-emerald-950 text-emerald-300 border border-emerald-500/30'
-                            }`}>
-                              {studio.studio_tier}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-3 text-slate-300">
-                            <span>Deployed: <strong className="text-white">${studio.total_invested_mil}M</strong></span>
-                            <span>Gross: <strong className="text-white">${studio.total_gross_mil}M</strong></span>
-                            <span>Success Rate: <strong className="text-emerald-400">{successRate}%</strong></span>
-                          </div>
-                        </div>
-
-                        {/* Bar */}
-                        <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden">
-                          <div 
-                            className={`h-full rounded-full ${
-                              successRate >= 80 ? 'bg-emerald-400' :
-                              successRate >= 50 ? 'bg-purple-400' : 'bg-rose-400'
-                            }`}
-                            style={{ width: `${successRate}%` }}
-                          />
-                        </div>
+            {/* Split Comparison Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Independent / Boutique Model */}
+              <div className="p-5 rounded-xl bg-emerald-950/10 border border-emerald-500/30 space-y-3">
+                <div className="flex items-center justify-between border-b border-emerald-500/20 pb-2">
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-emerald-400" />
+                    <span className="text-sm font-bold text-white font-mono">Boutique &amp; Mini-Major Studios</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-emerald-300">100% Breakeven Rate</span>
+                </div>
+                <div className="space-y-2 text-xs font-mono">
+                  {q8Rows.filter(s => s.studio_tier !== 'Major Conglomerate').map(studio => (
+                    <div key={studio.studio_name} className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-white">{studio.studio_name}</span>
+                        <span className="text-emerald-400 font-bold">{studio.profitable_success_rate}% Success</span>
                       </div>
-                    );
-                  })}
+                      <div className="flex items-center justify-between text-slate-400 text-[11px]">
+                        <span>Capital: ${studio.total_invested_mil}M</span>
+                        <span>Gross: ${studio.total_gross_mil}M</span>
+                        <span className="text-purple-300">{studio.avg_multiplier.toFixed(1)}x Multiplier</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
+              </div>
 
-                <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed">
-                  <span className="font-bold text-emerald-300 font-mono block">Data Science Deduction:</span>
-                  <p>
-                    The relational multi-table JOIN reveals an inverse relationship between corporate scale and portfolio hit rate: Boutique/indie distributors (<strong className="text-white">Blumhouse, Lionsgate, A24</strong>) maintain near <strong>100% breakeven rates</strong> by limiting exposure per film, while major conglomerates (<strong className="text-white">Disney, Warner Bros</strong>) sink billions into mega-productions where only <strong>36%–40%</strong> clear theatrical breakeven.
-                  </p>
+              {/* Major Conglomerate Model */}
+              <div className="p-5 rounded-xl bg-purple-950/10 border border-purple-500/30 space-y-3">
+                <div className="flex items-center justify-between border-b border-purple-500/20 pb-2">
+                  <div className="flex items-center gap-2">
+                    <Building2 className="w-4 h-4 text-purple-400" />
+                    <span className="text-sm font-bold text-white font-mono">Major Conglomerate Studios</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold text-amber-300">36% to 80% Breakeven Rate</span>
+                </div>
+                <div className="space-y-2 text-xs font-mono">
+                  {q8Rows.filter(s => s.studio_tier === 'Major Conglomerate').map(studio => (
+                    <div key={studio.studio_name} className="p-2.5 rounded-lg bg-white/[0.02] border border-white/5 space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-white">{studio.studio_name}</span>
+                        <span className={`font-bold ${
+                          studio.profitable_success_rate >= 70 ? 'text-emerald-400' :
+                          studio.profitable_success_rate >= 50 ? 'text-amber-300' : 'text-rose-400'
+                        }`}>
+                          {studio.profitable_success_rate}% Success
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-slate-400 text-[11px]">
+                        <span>Capital: ${studio.total_invested_mil}M</span>
+                        <span>Gross: ${studio.total_gross_mil}M</span>
+                        <span className="text-purple-300">{studio.avg_multiplier.toFixed(1)}x Multiplier</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-            ) : (
-              <div className="rounded-xl border border-white/10 bg-[#07090e] overflow-x-auto">
-                <table className="w-full text-left text-xs font-mono divide-y divide-white/10">
-                  <thead className="bg-white/[0.03] text-purple-300">
-                    <tr>
-                      <th className="px-4 py-3">Studio Name</th>
-                      <th className="px-4 py-3">Corporate Tier</th>
-                      <th className="px-4 py-3">Portfolio Size</th>
-                      <th className="px-4 py-3">Total Invested ($M)</th>
-                      <th className="px-4 py-3">Total Gross ($M)</th>
-                      <th className="px-4 py-3">Avg Multiplier</th>
-                      <th className="px-4 py-3">Success Rate (%)</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-white/5 text-slate-300">
-                    {q8Rows.map(r => (
-                      <tr key={r.studio_name} className="hover:bg-white/[0.02]">
-                        <td className="px-4 py-2.5 font-bold text-white">{r.studio_name}</td>
-                        <td className="px-4 py-2.5">{r.studio_tier}</td>
-                        <td className="px-4 py-2.5">{r.portfolio_size}</td>
-                        <td className="px-4 py-2.5">${r.total_invested_mil}M</td>
-                        <td className="px-4 py-2.5">${r.total_gross_mil}M</td>
-                        <td className="px-4 py-2.5 text-purple-300 font-bold">{r.avg_multiplier}x</td>
-                        <td className="px-4 py-2.5 text-emerald-400 font-bold">{r.profitable_success_rate}%</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+            </div>
+
+            <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed">
+              <span className="font-bold text-emerald-300 font-mono block">Key Analytical Deduction:</span>
+              <p>
+                The relational multi-table JOIN reveals an inverse relationship between corporate scale and portfolio hit rate: Boutique/indie distributors (<strong className="text-white">Blumhouse, Lionsgate, A24</strong>) maintain near <strong>100% breakeven rates</strong> by limiting exposure per film, while major conglomerates (<strong className="text-white">Disney, Warner Bros</strong>) sink billions into mega-productions where only <strong>36%–40%</strong> clear theatrical breakeven.
+              </p>
+            </div>
+
           </div>
         )}
 

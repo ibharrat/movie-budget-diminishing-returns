@@ -608,7 +608,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 transition-all self-start sm:self-auto"
               >
                 <Database className="w-3.5 h-3.5 text-cyan-400" />
-                <span>Explore Required SQL &amp; Query Visualizations (8 Queries) &rarr;</span>
+                <span>Explore Relational SQL Analytics &amp; Visualizations &rarr;</span>
               </button>
             )}
           </div>
