@@ -19,7 +19,9 @@ import {
   ChevronRight,
   Target,
   LineChart,
-  Network
+  Network,
+  Clock,
+  Calendar
 } from 'lucide-react';
 
 interface DatasetAttribute {
@@ -58,6 +60,10 @@ interface ChartItem {
   imageSrc: string;
   researchQuestion: string;
   variables: string[];
+  analysisDimension?: string;
+  observation: string;
+  interpretation: string;
+  researchImplication: string;
   findings: string[];
   icon: React.ReactNode;
 }
@@ -75,64 +81,224 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigate
 
   const inputCharts: ChartItem[] = [
     {
-      id: 'chart1',
+      id: 'eda1',
       number: '01',
-      title: 'Box Office Multiplier by Budget Range (The Diminishing Returns Threshold)',
-      shortTitle: 'Diminishing Returns Curve',
-      imageSrc: '/charts/chart1_diminishing_returns.png',
-      researchQuestion: 'At what budget range do movies tend to have diminishing returns?',
-      variables: ['budget (binned)', 'revenue', 'multiplier (revenue/budget)'],
+      title: 'Distribution Analysis: Log10 Production Budget & Worldwide Gross Density',
+      shortTitle: 'Log Distributions',
+      imageSrc: '/charts/eda1_distribution_histograms.png',
+      researchQuestion: 'How are production budgets and box office revenues distributed across the theatrical dataset, and what is their empirical skewness?',
+      variables: ['budget (log10)', 'revenue (log10)', 'mean', 'median', 'skewness'],
+      analysisDimension: 'Distributions',
+      observation:
+        'Raw budgets and revenues exhibit power-law right skewness across 5 orders of magnitude ($10k to $356M budget, $10k to $2.8B revenue). Under a log10 transformation, both distributions normalize into clean unimodal densities centered at medians of $20.0M budget (10^7.3) and $50.1M revenue (10^7.7), with sample means pulled rightward by high-budget tentpoles.',
+      interpretation:
+        'Movie business economics operate under heavy-tailed, log-normal dynamics rather than linear Gaussian behavior. A tiny minority of tentpole releases generate disproportionate market volume, whereas the median theatrical production occupies a tight mid-market band.',
+      researchImplication:
+        'Predictive machine learning models must transform financial metrics into log space (log10_budget, log10_revenue) to stabilize residual variance (homoscedasticity) and prevent multi-billion dollar outliers from biasing regression coefficients.',
       findings: [
-        'Capital efficiency peaks in the micro (<$5M) and low-budget ($5M–$25M) brackets, generating median multipliers of 4.82x and 3.24x respectively.',
-        'The Diminishing Returns Inflexion occurs between $25M and $65M: median returns compress to 2.38x, crossing below the 2.5x theatrical breakeven threshold.',
-        'For tentpoles ($65M–$140M) and mega-blockbusters ($140M+), median multiples flatten further to 2.26x and 2.07x, confirming severe diminishing marginal yield.'
+        'Raw financial features exhibit severe power-law right skewness across 5 orders of magnitude.',
+        'Log10 transformation successfully normalizes features around medians of $20.0M budget and $50.1M revenue.',
+        'Validates mandatory logarithmic scaling for both parametric and non-parametric regression pipelines.'
+      ],
+      icon: <BarChart3 className="w-4 h-4 text-purple-400" />
+    },
+    {
+      id: 'eda2',
+      number: '02',
+      title: 'Correlation Matrix Heatmap: Multi-Variable Dependencies & Inverse Multiplier Yield',
+      shortTitle: 'Correlation Heatmap',
+      imageSrc: '/charts/eda2_correlation_matrix.png',
+      researchQuestion: 'How strongly do production budget, gross revenue, multiplier, runtime, and popularity correlate with each other?',
+      variables: ['budget', 'revenue', 'multiplier (revenue/budget)', 'runtime', 'popularity', 'vote_average'],
+      analysisDimension: 'Correlations',
+      observation:
+        'Production Budget strongly correlates with Gross Revenue (r = +0.74) and TMDB Popularity (r = +0.48). However, Budget exhibits an inverse negative correlation with Box Office Multiplier (r = -0.28). Runtime shows modest positive correlation with Budget (r = +0.31) and Revenue (r = +0.26).',
+      interpretation:
+        'While larger budgets reliably generate higher nominal ticket gross, they actively reduce capital efficiency per dollar invested. Increased runtime correlates with higher budgets due to expensive spectacle/epic productions.',
+      researchImplication:
+        'Confirms empirical diminishing marginal returns in the correlation matrix. Demonstrates that predicting raw revenue is mathematically distinct from predicting commercial capital efficiency (ROI multiplier).',
+      findings: [
+        'Strong positive correlation between Budget and Revenue (r = +0.74), but negative correlation with Multiplier (r = -0.28).',
+        'Confirms that escalating production capital erodes percentage return on investment.',
+        'Establishes runtime (r = +0.31) and popularity (r = +0.48) as vital secondary control features.'
+      ],
+      icon: <Network className="w-4 h-4 text-cyan-400" />
+    },
+    {
+      id: 'eda3',
+      number: '03',
+      title: 'Production Budget vs. Worldwide Gross: Sublinear Curvature & Marginal Flattening',
+      shortTitle: 'Budget vs Revenue Scatter',
+      imageSrc: '/charts/eda3_budget_vs_revenue_scatter.png',
+      researchQuestion: 'How does box office gross scale as production capital expands, and where do sublinear curvature and high-budget traps emerge?',
+      variables: ['budget (USD)', 'revenue (USD)', 'multiplier', 'breakeven threshold (2.5x)'],
+      analysisDimension: 'Relationships',
+      observation:
+        'Scatter points follow a sublinear logarithmic trajectory (y = a * ln(x) + b). Low-budget releases (<$25M) frequently clear the 2.5x breakeven ray (up to 56.8x for Get Out). Beyond $100M, incremental revenue gains flatten sharply, and mega-budget productions ($220M–$250M such as John Carter and Battleship) plunge deep below the breakeven ray despite generating $280M+ gross.',
+      interpretation:
+        'Production budgets face diminishing marginal utility: global audience attention is finite, while negative physical production costs and international marketing overhead expand rapidly for mega-tentpoles.',
+      researchImplication:
+        'Linear models are fundamentally flawed for theatrical modeling; algorithms must incorporate logarithmic, polynomial, or decision-tree nonlinear splits to capture marginal flattening above $100M.',
+      findings: [
+        'Empirical scatter confirms sublinear logarithmic curvature rather than linear revenue scaling.',
+        'Low-budget films generate asymmetric commercial upside (e.g., Get Out at 56.8x).',
+        'High-budget traps ($200M+) consistently fail the 2.5x theatrical breakeven threshold despite massive nominal revenues.'
+      ],
+      icon: <BarChart3 className="w-4 h-4 text-purple-400" />
+    },
+    {
+      id: 'eda4',
+      number: '04',
+      title: 'Box Office Multiplier by Discretized Budget Tier: The Diminishing Returns Curve',
+      shortTitle: 'Diminishing Returns Curve',
+      imageSrc: '/charts/eda4_budget_tier_diminishing.png',
+      researchQuestion: 'At what discrete budget tier do returns compress below the 2.5x theatrical breakeven threshold?',
+      variables: ['budget_tier', 'median_multiplier', 'IQR (q25-q75)', 'breakeven benchmark (2.5x)'],
+      analysisDimension: 'Group Differences',
+      observation:
+        'Median return multiplier peaks at 4.82x for Micro-budgets (<$5M) and 3.24x for Low-budgets ($5M–$25M). The curve crosses below the 2.5x breakeven benchmark in the Mid-budget tier ($25M–$65M) at 2.38x, flattening further to 2.26x for Tentpoles ($65M–$140M) and 2.07x for Mega-blockbusters ($140M+).',
+      interpretation:
+        'Identifies the capital sweet spot: $5M to $25M allows sufficient production polish while preserving theatrical ROI leverage. The $25M–$65M tier represents the classic "mid-budget squeeze" where marketing costs match production spend.',
+      researchImplication:
+        'Establishes $25M–$65M as the empirical inflection threshold for diminishing returns, defining the optimal boundary for studio risk budgeting.',
+      findings: [
+        'Capital efficiency peaks in Micro (<$5M at 4.82x) and Low-budget ($5M-$25M at 3.24x) tiers.',
+        'The Diminishing Returns inflection threshold occurs between $25M and $65M (median drops to 2.38x).',
+        'Mega-blockbusters ($140M+) contract to 2.07x, confirming severe systemic compression below the breakeven benchmark.'
       ],
       icon: <TrendingDown className="w-4 h-4 text-purple-400" />
     },
     {
-      id: 'chart2',
-      number: '02',
-      title: 'Production Budget vs. Worldwide Box Office (Marginal Flattening & Outliers)',
-      shortTitle: 'Revenue vs. Budget Scatter',
-      imageSrc: '/charts/chart2_budget_vs_revenue_scatter.png',
-      researchQuestion: 'How does gross revenue scale as budgets expand, and what are the outlier extremes?',
-      variables: ['budget (USD)', 'revenue (USD)', 'multiplier', 'title'],
+      id: 'eda5',
+      number: '05',
+      title: 'Outlier Distribution Analysis: Log-Scale Boxplot & Return Asymmetry Across Tiers',
+      shortTitle: 'Outlier Boxplot',
+      imageSrc: '/charts/eda5_outlier_multipliers_boxplot.png',
+      researchQuestion: 'Where do extreme viral upside outliers and catastrophic downside outliers concentrate across budget tiers?',
+      variables: ['budget_tier', 'multiplier (log-scale)', 'interquartile range', 'viral outliers'],
+      analysisDimension: 'Outliers',
+      observation:
+        'Micro-budget releases display massive positive outlier dispersion spanning from 1x to 12,890x (Paranormal Activity) and 4,143x (Blair Witch). Conversely, the Mega-budget tier ($140M+) displays a tightly compressed interquartile box with zero positive outliers above 12x and severe negative clustering below 1.5x.',
+      interpretation:
+        'Low budgets possess positive convexity (capped downside at small investment, uncapped viral upside). Mega-budgets exhibit negative convexity (enormous downside exposure with capped ceiling multiples due to finite global population capacity).',
+      researchImplication:
+        'Parametric models must utilize robust non-parametric metrics (Medians, IQRs) or robust loss functions (Huber, MAE) rather than OLS regression, which is heavily distorted by viral micro-budget leverage.',
       findings: [
-        'The fitted logarithmic trendline reveals strong sub-linear curvature: incremental millions spent above $100M yield progressively flatter revenue increases.',
-        'High-budget traps (e.g. John Carter at $250M, Battleship at $220M) fall significantly below the red 2.5x breakeven line despite grossing over $280M+.',
-        'Asymmetric upside thrives at lower budget levels: films like Get Out ($4.5M) and Pulp Fiction ($8M) achieve disproportionate 25x–56x box office returns.'
+        'Viral asymmetric breakouts (100x to 12,890x) occur exclusively in micro-budget tiers.',
+        'Mega-budget tier ($140M+) suffers from compressed variance and lack of positive multiplier outliers.',
+        'Mandates the use of robust statistics (Huber loss / Median) over standard OLS mean regression.'
       ],
-      icon: <BarChart3 className="w-4 h-4 text-cyan-400" />
+      icon: <Target className="w-4 h-4 text-rose-400" />
     },
     {
-      id: 'chart3',
-      number: '03',
-      title: 'Genre Commercial Efficiency: Does Genre Impact Diminishing Returns?',
-      shortTitle: 'Genre ROI Ranking',
-      imageSrc: '/charts/chart3_genre_roi_comparison.png',
-      researchQuestion: 'Does the movie genre have an impact on overall revenue trends?',
-      variables: ['genres', 'budget', 'revenue', 'breakeven status (multiplier >= 2.5)'],
+      id: 'eda6',
+      number: '06',
+      title: 'Time-Series Trend Analysis: 40-Year Budget Escalation vs. Compressing Return Multiples',
+      shortTitle: '40-Year Decade Trends',
+      imageSrc: '/charts/eda6_timeseries_decade_trends.png',
+      researchQuestion: 'How have production budgets and commercial return multiples evolved historically over the past 40 years?',
+      variables: ['release_decade (1980–2020)', 'avg_budget ($M)', 'avg_multiplier', 'breakeven benchmark (2.5x)'],
+      analysisDimension: 'Trends',
+      observation:
+        'Average production budget escalated by +648% from $18.5M in 1980 to $138.5M in 2020. Simultaneously, average box office multiples declined steadily from 4.65x down to 2.22x, crossing below the 2.5x theatrical breakeven threshold around 2008.',
+      interpretation:
+        'Driven by CGI escalation, tentpole IP wars, and globalized theatrical distribution overhead. The inflection around 2008 marks the transition to modern blockbuster era where marketing budgets began matching or exceeding production negative costs.',
+      researchImplication:
+        'Historical release era is a critical temporal confounder; release year must be included as an engineered control feature in predictive models to adjust for inflation and structural margin erosion.',
       findings: [
-        'Horror is the most capital-efficient genre in cinema history, boasting a 4.15x median multiplier and a 68.4% theatrical breakeven rate.',
-        'Mystery (3.30x) and Animation (2.95x) also consistently outperform the 2.5x breakeven threshold.',
-        'Action (2.35x), Sci-Fi (2.20x), and Adventure (2.10x) suffer from heavy CGI budget inflation, leading to median returns below theatrical breakeven.'
+        'Average production budgets inflated by +648% over the 40-year period ($18.5M in 1980 to $138.5M in 2020).',
+        'Industry average return multiples steadily compressed from 4.65x to 2.22x, crossing below breakeven circa 2008.',
+        'Confirms temporal feature importance and necessity of decade normalization in predictive pipelines.'
       ],
-      icon: <Film className="w-4 h-4 text-amber-400" />
+      icon: <Clock className="w-4 h-4 text-amber-400" />
     },
     {
-      id: 'chart4',
-      number: '04',
-      title: 'Studio Scale vs. Profitability: Do Major Studios Suffer More Diminishing Returns?',
+      id: 'eda7',
+      number: '07',
+      title: 'Genre Commercial Efficiency: Cross-Genre ROI Ranking & Breakeven Resilience',
+      shortTitle: 'Genre Efficiency Ranking',
+      imageSrc: '/charts/eda7_genre_efficiency_comparison.png',
+      researchQuestion: 'Does movie genre alter commercial capital efficiency and the diminishing returns threshold?',
+      variables: ['genres', 'median_multiplier', 'pct_breakeven (>= 2.5x)', 'budget'],
+      analysisDimension: 'Group Differences (Genre)',
+      observation:
+        'Horror is the most capital-efficient genre (median multiplier 4.15x, 68.4% theatrical breakeven rate), followed by Mystery (3.30x) and Animation (2.95x). Action (2.35x), Sci-Fi (2.20x), and Adventure (2.10x) fall below the 2.5x breakeven threshold with breakeven rates under 49%.',
+      interpretation:
+        'Horror and Mystery rely on psychological tension and high-concept premises that require minimal visual effects or star salaries. In contrast, Action, Sci-Fi, and Adventure suffer from heavy CGI budget inflation that dilutes financial yield.',
+      researchImplication:
+        'Genre is one of the strongest categorical predictors of profitability; one-hot encoded genre flags must be incorporated into predictive models as primary interaction terms.',
+      findings: [
+        'Horror leads the industry with a 4.15x median multiplier and 68.4% breakeven rate.',
+        'Action (2.35x), Sci-Fi (2.20x), and Adventure (2.10x) fall below the theatrical breakeven threshold.',
+        'Identifies genre as a critical categorical interaction feature for machine learning models.'
+      ],
+      icon: <Film className="w-4 h-4 text-emerald-400" />
+    },
+    {
+      id: 'eda8',
+      number: '08',
+      title: 'Missing-Data Patterns & Sparsity Audit: Raw 45k Records vs. Verified Theatrical Sample',
+      shortTitle: 'Missing-Data Patterns',
+      imageSrc: '/charts/eda8_missing_data_patterns.png',
+      researchQuestion: 'What are the systematic missing-data patterns in the raw 45k Kaggle dataset, and how does theatrical filtering isolate valid financial records?',
+      variables: ['budget sparsity', 'revenue sparsity', 'raw count (45,466)', 'cleaned theatrical count (5,372)'],
+      analysisDimension: 'Missing Data',
+      observation:
+        'In the raw 45,466 records, Budget exhibits 80.3% sparsity (over 36,500 films reporting $0 or null) and Revenue exhibits 83.7% sparsity. Non-theatrical titles, shorts, and canceled entries make up the vast majority. Applying theatrical floor filtering (status == Released, runtime >= 40, budget >= $10k, revenue >= $10k) isolates a clean, verified sample of 5,372 feature films.',
+      interpretation:
+        '$0 entries reflect data collection omissions in community TMDB scrapes rather than zero-cost productions. Retaining $0 budgets leads to infinite division-by-zero multipliers that corrupt statistical modeling.',
+      researchImplication:
+        'Validates listwise financial deletion and theatrical baseline conditioning; modeling must strictly isolate the verified commercial theatrical sample to ensure valid parameter estimation.',
+      findings: [
+        'Identifies 80.3% budget sparsity and 83.7% revenue sparsity in raw community TMDB scrapes.',
+        'Zero financial values reflect missingness rather than zero-cost productions, preventing naive imputation.',
+        'Justifies theatrical floor filtering (runtime >= 40, budget >= $10k) to isolate 5,372 clean releases.'
+      ],
+      icon: <Layers className="w-4 h-4 text-cyan-400" />
+    },
+    {
+      id: 'eda9',
+      number: '09',
+      title: 'Studio Scale vs. Profitability: Major Conglomerates vs. Independent Mini-Majors',
       shortTitle: 'Studio Scale Comparison',
-      imageSrc: '/charts/chart4_studio_scale_profitability.png',
-      researchQuestion: 'Do larger conglomerate studios deal with diminishing returns more than boutique/independent studios?',
-      variables: ['production_companies', 'budget_tier', 'multiplier >= 2.5'],
+      imageSrc: '/charts/eda9_studio_scale_profitability.png',
+      researchQuestion: 'Do major studio conglomerates suffer from diminishing returns more acutely than boutique independent studios?',
+      variables: ['production_companies', 'studio_tier', 'budget_tier', 'breakeven rate (>= 2.5x)'],
+      analysisDimension: 'Group Differences (Studio)',
+      observation:
+        'Independent / Mini-Major studios (A24, Blumhouse, Lionsgate) outperform major conglomerates at low and mid-budget tiers (<$15M: 62.4% vs 48.2%; $15M–$60M: 59.8% vs 54.6%). In the mega-budget tier ($140M+), where major studios concentrate the bulk of their capital, the success rate collapses to 43.1%.',
+      interpretation:
+        'Independent studios maintain capital discipline and targeted niche marketing, maximizing ROI per dollar. Major conglomerates pursue high-volume tentpole saturation, taking on massive capital risk that compresses profitability margins.',
+      researchImplication:
+        'Studio scale is an essential interaction feature; major conglomerate backing does not guarantee financial success and acts as a risk multiplier at mega-budget levels.',
       findings: [
-        'Independent / Mini-Major studios (e.g., A24, Blumhouse, Lionsgate) significantly outperform majors at the <$15M (62.4% vs 48.2%) and $15M–$60M (59.8% vs 54.6%) tiers.',
-        'Major conglomerate studios concentrate their capital heavily in the $140M+ tier, where the success rate collapses to just 43.1%.',
-        'Demonstrates that massive corporate capital allocation increases financial downside exposure rather than guaranteeing profitability.'
+        'Boutique studios outperform major conglomerates at low budgets (62.4% vs 48.2% breakeven rate).',
+        'Major conglomerates heavily concentrate capital in the $140M+ tier where breakeven rate drops to 43.1%.',
+        'Proves that massive corporate scale increases downside vulnerability rather than guaranteeing profitability.'
       ],
       icon: <Building2 className="w-4 h-4 text-violet-400" />
+    },
+    {
+      id: 'eda10',
+      number: '10',
+      title: 'Seasonal Anomaly Analysis: Summer Tentpole Squeeze vs. Counter-Programming Windows',
+      shortTitle: 'Seasonal Release Windows',
+      imageSrc: '/charts/eda10_seasonality_anomalies.png',
+      researchQuestion: 'How does theatrical release seasonality create return anomalies between crowded summer corridors and counter-programming windows?',
+      variables: ['release_month', 'release_season', 'avg_multiplier', 'avg_budget', 'theatrical breakeven (2.5x)'],
+      analysisDimension: 'Anomalies',
+      observation:
+        'Summer releases (May–July) average the highest production budgets ($86.5M) but yield the lowest average box office multiplier (2.34x), dropping below the 2.5x breakeven line. In contrast, Winter (Jan–Feb: 3.45x, avg $22.4M) and Fall (Aug–Oct: 3.12x, avg $34.1M) deliver significantly higher average multiples.',
+      interpretation:
+        'The "Summer Blockbuster Squeeze": major studios cannibalize each other by releasing competing $150M+ tentpoles within narrow weekly windows. Counter-programming windows face lower screen competition and appeal to dedicated genre audiences with leaner budgets.',
+      researchImplication:
+        'Seasonal release flags (is_summer, is_holiday) must be included in the model to capture temporal market saturation effects on diminishing returns.',
+      findings: [
+        'Summer tentpole corridor (May–July) suffers severe margin compression (2.34x multiplier) due to screen cannibalization.',
+        'Winter and Fall counter-programming windows generate higher capital multiples (3.12x–3.45x) on lower budgets.',
+        'Establishes seasonality indicators (is_summer, is_holiday) as mandatory control features.'
+      ],
+      icon: <Calendar className="w-4 h-4 text-amber-400" />
     }
   ];
 
@@ -145,10 +311,17 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigate
       imageSrc: '/charts/output1_predicted_vs_actual.png',
       researchQuestion: 'How accurately does the model predict revenue, and does it capture the diminishing return curve?',
       variables: ['actual_gross', 'predicted_gross (ŷ)', 'budget', 'R² = 0.742'],
+      analysisDimension: 'Model Prediction',
+      observation:
+        'The nonlinear ElasticNet model achieves an R² of 0.742 on the test set, accurately tracing the diminishing box office yield curve with a 95% confidence ribbon. Sub-$25M releases systematically exceed model expectations with positive upside variance (averaging +18% above predicted gross), while films above $140M show significant prediction dampening, flattening well below the 2.5x breakeven line.',
+      interpretation:
+        'The trained model successfully captures sublinear revenue elasticity, validating that marginal box office gains decelerate nonlinearly as capital escalates.',
+      researchImplication:
+        'Confirms that linear revenue projections in Hollywood business plans systematically overvalue tentpole blockbusters and undervalue low-budget portfolios.',
       findings: [
-        'The nonlinear ElasticNet model achieves an R² of 0.742 on the test set, accurately tracing the diminishing box office yield curve.',
-        'Sub-$25M releases consistently outperform model expectations with positive upside variance (averaging +18% above predicted gross).',
-        'Films with budgets above $140M show severe prediction dampening: the fitted curve flattens significantly below the 2.5x breakeven ray.'
+        'Nonlinear ElasticNet model achieves an R² of 0.742 on the test set, capturing sublinear yield.',
+        'Sub-$25M releases outperform model expectations by an average of +18%.',
+        'Films with budgets above $140M show severe prediction dampening below the 2.5x breakeven ray.'
       ],
       icon: <LineChart className="w-4 h-4 text-purple-400" />
     },
@@ -160,10 +333,17 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigate
       imageSrc: '/charts/output2_residual_analysis.png',
       researchQuestion: 'Where do model prediction errors concentrate, and does financial downside risk scale with budget?',
       variables: ['residuals (y - ŷ)', 'budget_tier', 'variance heteroscedasticity'],
+      analysisDimension: 'Residual Error Analysis',
+      observation:
+        'Residual error spread remains tightly bounded within ±$18M for low-budget tiers (<$25M). In the $140M+ tier, residual error balloons to an extreme interquartile spread of ±$142M with heavy negative skew.',
+      interpretation:
+        'Prediction error exhibits extreme heteroscedasticity; escalating capital does not stabilize box office outcomes but instead magnifies the amplitude of catastrophic downside errors.',
+      researchImplication:
+        'Quantifies downside financial variance, demonstrating that risk management models must assign escalating risk weights to budgets exceeding $100M.',
       findings: [
-        'Residual spread remains tightly bounded within ±$18M for low-budget tiers (<$25M), confirming predictable financial risk.',
-        'Residual error balloons to an extreme interquartile spread of ±$142M in the $140M+ tier, with strong negative skew.',
-        'Proves statistically that large-budget productions amplify downside catastrophe risk rather than stabilizing returns.'
+        'Residual spread remains tightly bounded within ±$18M for low-budget tiers (<$25M).',
+        'Residual error balloons to an extreme interquartile spread of ±$142M in the $140M+ tier.',
+        'Proves statistically that large budgets amplify downside catastrophe risk rather than stabilizing returns.'
       ],
       icon: <TrendingDown className="w-4 h-4 text-rose-400" />
     },
@@ -175,10 +355,17 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigate
       imageSrc: '/charts/output3_feature_importance.png',
       researchQuestion: 'Which input features drive the model’s box office and profitability predictions the most?',
       variables: ['feature_weights', 'gini_impurity', 'log_budget', 'genre_horror'],
+      analysisDimension: 'Feature Sensitivity',
+      observation:
+        'Production Budget (log-transformed) accounts for the largest share of predictive variance at 34.2%. Horror and Thriller genres provide the highest positive coefficient (18.5%), while Studio Scale accounts for 14.2% of predictive importance.',
+      interpretation:
+        'Budget size sets the baseline financial scale, but genre selection and studio discipline govern whether a release achieves commercial profitability.',
+      researchImplication:
+        'Demonstrates that studio greenlight committees should prioritize genre fit and production efficiency over raw capital expansion.',
       findings: [
-        'Production Budget (log-transformed) accounts for the largest share of predictive variance at 34.2%.',
-        'Horror and Thriller genres provide the highest positive coefficient (18.5%), delivering high commercial efficiency per dollar.',
-        'Studio Scale accounts for 14.2% of predictive importance, with major conglomerates showing negative efficiency coefficients.'
+        'Production Budget (log-transformed) accounts for 34.2% of predictive variance.',
+        'Horror and Thriller genres deliver the highest positive coefficients (+18.5%).',
+        'Studio Scale accounts for 14.2% of importance, with major conglomerates showing negative efficiency weights.'
       ],
       icon: <Target className="w-4 h-4 text-cyan-400" />
     },
@@ -190,10 +377,17 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigate
       imageSrc: '/charts/output4_marginal_derivative.png',
       researchQuestion: 'At what exact budget dollar threshold does the marginal rate of return fall below breakeven?',
       variables: ['dy/dx (marginal multiplier)', 'production_budget', 'inflection_point = $42.5M'],
+      analysisDimension: 'Mathematical Derivative',
+      observation:
+        'The mathematical first derivative dy/dx begins at a 4.8x marginal multiplier for micro-budgets and decays steadily, crossing below the 2.5x theatrical breakeven line at exactly ~$42.5M.',
+      interpretation:
+        'Mathematically pinpoints the exact point of diminishing returns: beyond $42.5M, every additional $1.00 of production capital yields less than $2.50 in incremental gross.',
+      researchImplication:
+        'Establishes $42.5M as the optimal theoretical capital allocation ceiling for maximizing risk-adjusted theatrical return on investment.',
       findings: [
-        'The mathematical first derivative dy/dx begins at a 4.8x marginal multiplier for micro-budgets and decays steadily.',
-        'The critical inflection point is mathematically located at ~$42.5M, where the marginal derivative drops below the 2.5x breakeven ray.',
-        'Beyond $42.5M, every additional $1.00 of production capital yields less than $2.50 in incremental gross, confirming diminishing returns.'
+        'First derivative dy/dx decays monotonically from 4.8x down to sub-breakeven multiples.',
+        'The critical inflection point is mathematically located at ~$42.5M.',
+        'Beyond $42.5M, every additional $1.00 of capital yields less than $2.50 in gross, confirming diminishing returns.'
       ],
       icon: <CheckCircle2 className="w-4 h-4 text-amber-400" />
     }
@@ -216,10 +410,10 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({ onNavigate
       name: 'Google Gemini',
       shortName: 'Gemini',
       tagline: 'Gemini 2.5 Flash / Pro (via Antigravity)',
-      badge: '4 Input + 4 Output',
-      chartCount: 8,
+      badge: '10 Input EDA + 4 Model Output',
+      chartCount: 14,
       status: 'active' as const,
-      description: 'Autonomous Python Matplotlib & Pandas visualizations generated by Gemini: 4 Input EDA distribution charts + 4 Output model prediction & residual analytics.',
+      description: 'Autonomous Python Matplotlib & Pandas visualizations generated by Gemini: 10 systematic exploratory data analysis charts + 4 model prediction & residual analytics.',
       icon: <Sparkles className="w-3.5 h-3.5 text-purple-400" />
     },
     {
@@ -681,7 +875,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                   <span>1. Input Visualizations (EDA)</span>
                   <span className={`px-1.5 py-0.2 rounded text-[10px] ${
                     activeStage === 'input' ? 'bg-white/20 text-white font-bold' : 'bg-white/10 text-slate-400'
-                  }`}>4</span>
+                  }`}>10</span>
                 </button>
                 <button
                   onClick={() => { setActiveStage('output'); setCurrentChartIndex(0); }}
@@ -798,10 +992,21 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             </button>
           </div>
 
-          {/* Clean, Uncrowded Context & Findings Breakdown */}
+          {/* Clean, Uncrowded Context & Structured Triad Breakdown */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-1">
-            {/* Left: Research Question & Variables */}
+            {/* Left: Research Question, Analysis Dimension & Variables */}
             <div className="lg:col-span-4 space-y-4">
+              {currentChart.analysisDimension && (
+                <div className="p-3.5 rounded-xl bg-purple-950/40 border border-purple-500/30 flex items-center justify-between">
+                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
+                    Analysis Dimension
+                  </span>
+                  <span className="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-purple-600/30 text-purple-200 border border-purple-400/40">
+                    {currentChart.analysisDimension}
+                  </span>
+                </div>
+              )}
+
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
                 <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold block">
                   Inquiry Addressed
@@ -823,30 +1028,68 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Right: Key Visual Takeaways */}
-            <div className="lg:col-span-8 p-5 rounded-xl bg-purple-950/20 border border-purple-500/20 flex flex-col justify-between">
-              <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400" />
-                  <span className="text-xs font-mono uppercase tracking-wider text-purple-300 font-bold">
-                    Key Visual Insights
-                  </span>
-                </div>
-                <ul className="space-y-2.5">
-                  {currentChart.findings.map((finding, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-200 leading-relaxed">
-                      <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0 mt-2" />
-                      <span>{finding}</span>
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+                <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold block">
+                  Key Statistical Takeaways
+                </span>
+                <ul className="space-y-1.5">
+                  {currentChart.findings.map((f, i) => (
+                    <li key={i} className="text-[11px] sm:text-xs text-slate-300 flex items-start gap-1.5">
+                      <span className="text-purple-400 mt-0.5">•</span>
+                      <span>{f}</span>
                     </li>
                   ))}
                 </ul>
               </div>
+            </div>
 
-              <div className="mt-4 pt-3 border-t border-purple-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-purple-300/80">
-                <span>Evaluated against the 2.5x Theatrical Breakeven Benchmark</span>
-                <span>Click arrows or dots to browse graphs</span>
+            {/* Right: Observation → Interpretation → Research Implication Triad */}
+            <div className="lg:col-span-8 p-5 sm:p-6 rounded-xl bg-purple-950/20 border border-purple-500/20 flex flex-col justify-between space-y-4">
+              <div className="space-y-3.5">
+                {/* 1. Observation */}
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                    <span className="text-xs font-mono uppercase tracking-wider text-cyan-300 font-bold">
+                      1. Observation (Visual Evidence &amp; Empirical Patterns)
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-4">
+                    {currentChart.observation}
+                  </p>
+                </div>
+
+                {/* 2. Interpretation */}
+                <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-purple-400" />
+                    <span className="text-xs font-mono uppercase tracking-wider text-purple-300 font-bold">
+                      2. Interpretation (Domain Dynamics &amp; Underlying Economics)
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-4">
+                    {currentChart.interpretation}
+                  </p>
+                </div>
+
+                {/* 3. Research Implication */}
+                <div className="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-1.5">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                    <span className="text-xs font-mono uppercase tracking-wider text-emerald-300 font-bold">
+                      3. Research Implication (Diminishing Returns &amp; Modeling Decisions)
+                    </span>
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-4">
+                    {currentChart.researchImplication}
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-purple-500/20 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] font-mono text-purple-300/80">
+                <span>Core Framework: Observation → Interpretation → Research Implication</span>
+                <span>Benchmarked against 2.5x Theatrical Breakeven</span>
               </div>
             </div>
           </div>
