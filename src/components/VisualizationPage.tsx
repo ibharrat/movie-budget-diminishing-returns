@@ -74,7 +74,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Log Normalization: Log10 scaling centers budgets at $20M and revenues at $50M.',
         'Model Rule: Log transforms prevent extreme outliers from biasing regressions.'
       ],
-      icon: <BarChart3 className="w-4 h-4 text-purple-400" />
+      icon: <BarChart3 className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda2',
@@ -98,7 +98,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Margin Erosion: Every additional dollar invested yields lower percentage returns.',
         'Secondary Factors: Popularity (+0.48) and runtime (+0.31) correlate positively with budget.'
       ],
-      icon: <Network className="w-4 h-4 text-cyan-400" />
+      icon: <Network className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda3',
@@ -122,7 +122,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Low-Budget Upside: Sub-$25M movies regularly achieve viral multiples (e.g. Get Out at 56x).',
         'Mega-Budget Traps: $200M+ films often fail the 2.5x breakeven line despite high sales.'
       ],
-      icon: <BarChart3 className="w-4 h-4 text-purple-400" />
+      icon: <BarChart3 className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda4',
@@ -146,7 +146,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'The Tipping Point: Returns dip below the 2.5x breakeven benchmark in the $25M–$65M tier (2.38x).',
         'Blockbuster Squeeze: Mega-budgets ($140M+) average only 2.07x, confirming diminishing returns.'
       ],
-      icon: <TrendingDown className="w-4 h-4 text-purple-400" />
+      icon: <TrendingDown className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda5',
@@ -170,7 +170,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Compressed Ceiling: Mega-budget films ($140M+) never exceed 12x return.',
         'Robust Math: Extreme low-budget outliers require median-based models over simple averages.'
       ],
-      icon: <Target className="w-4 h-4 text-rose-400" />
+      icon: <Target className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda6',
@@ -194,7 +194,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Margin Erosion: Average returns steadily dropped from 4.65x to 2.22x (crossing breakeven in 2008).',
         'Temporal Control: Release decade must be an explicit variable to adjust for inflation.'
       ],
-      icon: <Clock className="w-4 h-4 text-amber-400" />
+      icon: <Clock className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda7',
@@ -218,7 +218,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Least Efficient: Action (2.35x), Sci-Fi (2.20x), and Adventure (2.10x) fail the 2.5x threshold.',
         'Strong Predictor: Genre is one of the highest-weight features in predicting profitability.'
       ],
-      icon: <Film className="w-4 h-4 text-emerald-400" />
+      icon: <Film className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda8',
@@ -242,7 +242,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Quality Filter: We filter for verified theatrical pairs (budget >= $10k, revenue >= $10k).',
         'Clean Sample: Leaves 5,372 high-quality theatrical films for reliable modeling.'
       ],
-      icon: <Layers className="w-4 h-4 text-cyan-400" />
+      icon: <Layers className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda9',
@@ -266,7 +266,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Conglomerate Risk: Major studios concentrate capital in $140M+ tiers where breakeven falls to 43.1%.',
         'Scale Penalty: Massive corporate scale increases downside vulnerability rather than safety.'
       ],
-      icon: <Building2 className="w-4 h-4 text-violet-400" />
+      icon: <Building2 className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'eda10',
@@ -290,7 +290,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Counter-Programming: Winter (3.45x) and Fall (3.12x) deliver higher returns on lower budgets.',
         'Seasonal Control: Calendar release window is a mandatory control feature for models.'
       ],
-      icon: <Calendar className="w-4 h-4 text-amber-400" />
+      icon: <Calendar className="w-4 h-4 text-sky-400" />
     }
   ];
 
@@ -317,7 +317,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Low Budgets Win: Sub-$25M movies beat predictions by +18% on average.',
         'Blockbuster Ceiling: $140M+ films flatten out and fail to generate proportional box office.'
       ],
-      icon: <LineChart className="w-4 h-4 text-purple-400" />
+      icon: <LineChart className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'out2',
@@ -341,7 +341,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Mega-Budget Volatility: Above $140M, prediction error explodes eightfold to ±$142M.',
         'Flop Severity: Big budgets don\'t reduce risk; they amplify the financial severity of a miss.'
       ],
-      icon: <TrendingDown className="w-4 h-4 text-rose-400" />
+      icon: <TrendingDown className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'out3',
@@ -365,7 +365,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'Genre Drives Profit: Horror and Thriller provide the highest profit margin boost (+18.5%).',
         'Studio Discipline: Smaller, disciplined studios beat conglomerates on return per dollar.'
       ],
-      icon: <Target className="w-4 h-4 text-cyan-400" />
+      icon: <Target className="w-4 h-4 text-sky-400" />
     },
     {
       id: 'out4',
@@ -389,7 +389,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         'High Early Yield: Micro-budgets return up to $4.80 per dollar spent—well above breakeven.',
         'Sub-Breakeven Beyond $42.5M: Past $42.5M, each additional dollar yields less than $2.50 in box office.'
       ],
-      icon: <CheckCircle2 className="w-4 h-4 text-amber-400" />
+      icon: <CheckCircle2 className="w-4 h-4 text-sky-400" />
     }
   ];
 
@@ -414,7 +414,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
       chartCount: 14,
       status: 'active' as const,
       description: 'Autonomous Python Matplotlib & Pandas visualizations generated by Gemini: 10 systematic exploratory data analysis charts + 4 model prediction & residual analytics.',
-      icon: <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+      icon: <Sparkles className="w-3.5 h-3.5 text-sky-400" />
     },
     {
       id: 'claude',
@@ -436,7 +436,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
       chartCount: 0,
       status: 'staging' as const,
       description: 'Supervised classification pipeline predicting binary theatrical breakeven (multiplier >= 2.5x) and identifying films at high risk of falling into diminishing returns.',
-      icon: <Target className="w-3.5 h-3.5 text-purple-400" />
+      icon: <Target className="w-3.5 h-3.5 text-sky-400" />
     },
     {
       id: 'regression',
@@ -447,7 +447,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
       chartCount: 0,
       status: 'staging' as const,
       description: 'Supervised continuous regression modeling the nonlinear diminishing marginal revenue curve (dy/dx), predicting box office gross, and calculating the exact dollar inflection point.',
-      icon: <LineChart className="w-3.5 h-3.5 text-purple-400" />
+      icon: <LineChart className="w-3.5 h-3.5 text-sky-400" />
     },
     {
       id: 'clustering',
@@ -458,7 +458,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
       chartCount: 0,
       status: 'staging' as const,
       description: 'Unsupervised clustering pipeline discovering natural multi-dimensional film archetypes (e.g., "Indie Breakouts", "Steady Mid-Budget", "Tentpole Hits", "High-Budget Traps") without preset labels.',
-      icon: <Network className="w-3.5 h-3.5 text-purple-400" />
+      icon: <Network className="w-3.5 h-3.5 text-sky-400" />
     }
   ];
 
@@ -469,31 +469,31 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
       <div className="space-y-4">
         <div className="space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/30 text-xs font-mono text-purple-300">
-              <BarChart3 className="w-3.5 h-3.5 text-purple-400" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400">
+              <BarChart3 className="w-3.5 h-3.5" />
               <span>MODEL BENCHMARK SUITE</span>
             </div>
             {onNavigateToSql && (
               <button
                 onClick={onNavigateToSql}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/50 hover:bg-cyan-900/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 transition-all self-start sm:self-auto"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors self-start sm:self-auto"
               >
-                <Database className="w-3.5 h-3.5 text-cyan-400" />
+                <Database className="w-3.5 h-3.5 text-sky-400" />
                 <span>Explore Relational SQL Analytics &amp; Visualizations &rarr;</span>
               </button>
             )}
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Visualizations & Model Comparison
+            Visualizations &amp; Model Comparison
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
             Comparing visual exploratory analytics and predictive architectures on movie budget diminishing returns across AI agents and machine learning models.
           </p>
         </div>
 
-        {/* Consolidated, Sleek Model Segmented Control Bar */}
+        {/* Consolidated Model Segmented Control Bar */}
         <div className="w-full pt-1">
-          <div className="w-full bg-[#080a0f] p-1.5 rounded-2xl border border-white/10 shadow-lg">
+          <div className="w-full bg-[#0b0e15] p-1.5 rounded-xl border border-[#1c2436]">
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-1.5 w-full">
               {modelTabs.map((tab, idx) => {
                 const isSelected = tab.id === selectedModel;
@@ -501,24 +501,24 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
                   <button
                     key={tab.id}
                     onClick={() => setSelectedModel(tab.id)}
-                    className={`py-2.5 px-2.5 rounded-xl text-xs font-mono transition-all flex items-center justify-center gap-2 border ${
+                    className={`py-2.5 px-2.5 rounded-lg text-xs font-mono transition-colors flex items-center justify-center gap-2 border ${
                       isSelected
-                        ? 'bg-purple-950/70 border-purple-500/60 text-white shadow-glow-purple font-semibold'
-                        : 'border-transparent text-slate-400 hover:text-white hover:bg-white/[0.04]'
+                        ? 'bg-[#152338] border-sky-400 text-white font-semibold'
+                        : 'border-transparent text-slate-400 hover:text-white hover:bg-[#121824]'
                     } ${idx === modelTabs.length - 1 ? 'col-span-2 sm:col-span-1' : ''}`}
                   >
-                    <div className={isSelected ? 'text-purple-400' : 'text-slate-400'}>
+                    <div className={isSelected ? 'text-sky-400' : 'text-slate-400'}>
                       {tab.icon}
                     </div>
                     <span className="font-medium tracking-tight truncate">
                       {tab.shortName}
                     </span>
                     {tab.chartCount > 0 ? (
-                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-purple-500/20 text-purple-300 font-bold border border-purple-500/30">
+                      <span className="px-1.5 py-0.5 rounded text-[10px] bg-[#0c1626] text-sky-300 font-bold border border-sky-500/30">
                         {tab.chartCount}
                       </span>
                     ) : (
-                      <span className="hidden md:inline px-1.5 py-0.5 rounded text-[9px] bg-white/5 text-slate-500 uppercase tracking-wider">
+                      <span className="hidden md:inline px-1.5 py-0.5 rounded text-[9px] bg-[#121722] text-slate-500 uppercase tracking-wider">
                         Staging
                       </span>
                     )}
@@ -532,44 +532,44 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
 
       {/* 2. Model Visualization Canvas */}
       {selectedModel === 'gemini' ? (
-        <div className="glass-panel rounded-2xl p-5 sm:p-8 border border-white/10 space-y-6">
+        <div className="rounded-xl p-5 sm:p-8 border border-[#1c2436] bg-[#0f131c] space-y-6">
           
           {/* Stage Switcher: Input Visualizations (EDA) vs Output Visualizations (Model Results) */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-[#1c2436]">
             <div className="flex items-center gap-2.5">
               <span className="text-[11px] font-mono uppercase tracking-wider text-slate-400 font-semibold hidden sm:inline">
                 Pipeline Stage:
               </span>
-              <div className="inline-flex p-1 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-mono">
+              <div className="inline-flex p-1 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-xs font-mono">
                 <button
                   onClick={() => { setActiveStage('input'); setCurrentChartIndex(0); }}
-                  className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
+                  className={`px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-2 ${
                     activeStage === 'input'
-                      ? 'bg-purple-600 text-white font-semibold shadow-glow-purple'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-sky-500 text-slate-950 font-semibold'
+                      : 'text-slate-400 hover:text-white hover:bg-[#121824]'
                   }`}
                 >
                   <span>1. Input Visualizations (EDA)</span>
                   <span className={`px-1.5 py-0.2 rounded text-[10px] ${
-                    activeStage === 'input' ? 'bg-white/20 text-white font-bold' : 'bg-white/10 text-slate-400'
+                    activeStage === 'input' ? 'bg-slate-950/20 text-slate-950 font-bold' : 'bg-[#121722] text-slate-400'
                   }`}>10</span>
                 </button>
                 <button
                   onClick={() => { setActiveStage('output'); setCurrentChartIndex(0); }}
-                  className={`px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-2 ${
+                  className={`px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-2 ${
                     activeStage === 'output'
-                      ? 'bg-purple-600 text-white font-semibold shadow-glow-purple'
-                      : 'text-slate-400 hover:text-white hover:bg-white/5'
+                      ? 'bg-sky-500 text-slate-950 font-semibold'
+                      : 'text-slate-400 hover:text-white hover:bg-[#121824]'
                   }`}
                 >
                   <span>2. Output Visualizations (Model Results)</span>
                   <span className={`px-1.5 py-0.2 rounded text-[10px] ${
-                    activeStage === 'output' ? 'bg-white/20 text-white font-bold' : 'bg-purple-500/20 text-purple-200 border border-purple-500/30 font-bold'
+                    activeStage === 'output' ? 'bg-slate-950/20 text-slate-950 font-bold' : 'bg-[#0c1626] text-sky-300 border border-sky-500/30 font-bold'
                   }`}>4</span>
                 </button>
               </div>
             </div>
-            <span className="text-xs font-mono text-purple-300/80 bg-purple-950/40 px-3 py-1 rounded-lg border border-purple-500/20 self-start sm:self-auto">
+            <span className="text-xs font-mono text-sky-300 bg-[#0c1626] px-3 py-1 rounded-md border border-sky-500/30 self-start sm:self-auto">
               {activeStage === 'input' 
                 ? 'Empirical Distributions & Pre-Model Feature Relationships' 
                 : 'Trained Model Fits, Residual Risk & Marginal Derivative (dy/dx)'}
@@ -577,10 +577,10 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           </div>
 
           {/* Header of Active Chart: Title, Counter & Arrow Navigation */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#1c2436]">
             <div>
               <div className="flex items-center gap-2 mb-1.5">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-purple-950 text-purple-300 border border-purple-500/40">
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
                   {activeStage === 'input' ? 'Input EDA' : 'Model Output'} &bull; Chart {currentChart.number} of {currentCharts.length.toString().padStart(2, '0')}
                 </span>
                 <span className="text-xs font-mono text-slate-400">
@@ -596,10 +596,10 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
             <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
               <button
                 onClick={prevChart}
-                className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-900/40 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-1 text-xs font-mono"
+                className="px-2.5 py-1.5 rounded-md bg-[#0b0e15] hover:bg-[#141d2c] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 transition-colors flex items-center gap-1 text-xs font-mono"
                 title="Previous Chart"
               >
-                <ChevronLeft className="w-4 h-4 text-purple-400" />
+                <ChevronLeft className="w-4 h-4 text-sky-400" />
                 <span className="hidden sm:inline">Prev</span>
               </button>
 
@@ -608,10 +608,10 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
                   <button
                     key={c.id}
                     onClick={() => setCurrentChartIndex(idx)}
-                    className={`h-2 rounded-full transition-all ${
+                    className={`h-2 rounded-full transition-colors ${
                       idx === currentChartIndex
-                        ? 'w-6 bg-purple-400'
-                        : 'w-2 bg-white/20 hover:bg-white/40'
+                        ? 'w-6 bg-sky-400'
+                        : 'w-2 bg-[#1c2436] hover:bg-[#2c3852]'
                     }`}
                     title={`Jump to Chart ${c.number}`}
                   />
@@ -620,31 +620,31 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
 
               <button
                 onClick={nextChart}
-                className="px-2.5 py-1.5 rounded-lg bg-white/5 hover:bg-purple-900/40 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-1 text-xs font-mono"
+                className="px-2.5 py-1.5 rounded-md bg-[#0b0e15] hover:bg-[#141d2c] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 transition-colors flex items-center gap-1 text-xs font-mono"
                 title="Next Chart"
               >
                 <span className="hidden sm:inline">Next</span>
-                <ChevronRight className="w-4 h-4 text-purple-400" />
+                <ChevronRight className="w-4 h-4 text-sky-400" />
               </button>
 
               <a
                 href={currentChart.imageSrc}
                 target="_blank"
                 rel="noreferrer"
-                className="ml-1 p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all inline-flex items-center"
+                className="ml-1 p-2 rounded-md bg-[#0b0e15] hover:bg-[#141d2c] text-slate-300 hover:text-sky-400 border border-[#1c2436] hover:border-sky-500/40 transition-colors inline-flex items-center"
                 title="Open Full Resolution in new tab"
               >
-                <ExternalLink className="w-4 h-4 text-purple-400" />
+                <ExternalLink className="w-4 h-4 text-sky-400" />
               </a>
             </div>
           </div>
 
-          {/* Rendered Chart Image with Floating Left/Right Arrow Overlays */}
-          <div className="relative group rounded-xl overflow-hidden border border-white/10 bg-[#07090e] p-2 sm:p-4 flex items-center justify-center min-h-[380px]">
+          {/* Rendered Chart Image */}
+          <div className="relative group rounded-lg overflow-hidden border border-[#1c2436] bg-[#07090e] p-2 sm:p-4 flex items-center justify-center min-h-[380px]">
             {/* Floating Left Arrow */}
             <button
               onClick={prevChart}
-              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/60 hover:bg-purple-600/90 text-white backdrop-blur-md border border-white/10 opacity-70 group-hover:opacity-100 hover:scale-105 transition-all shadow-xl"
+              className="absolute left-3 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-lg bg-[#0b0e15]/90 hover:bg-sky-500 hover:text-slate-950 text-white border border-[#1c2436] opacity-70 group-hover:opacity-100 transition-colors"
               title="Previous Chart"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -662,21 +662,21 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
             {/* Floating Right Arrow */}
             <button
               onClick={nextChart}
-              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/60 hover:bg-purple-600/90 text-white backdrop-blur-md border border-white/10 opacity-70 group-hover:opacity-100 hover:scale-105 transition-all shadow-xl"
+              className="absolute right-3 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-lg bg-[#0b0e15]/90 hover:bg-sky-500 hover:text-slate-950 text-white border border-[#1c2436] opacity-70 group-hover:opacity-100 transition-colors"
               title="Next Chart"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Surface-Level Plain English Bottom Line Banner */}
+          {/* Plain English Bottom Line Banner - Flat matte */}
           {currentChart.bottomLine && (
-            <div className="rounded-xl p-3.5 sm:p-4 border border-purple-500/30 bg-gradient-to-r from-purple-950/60 via-purple-900/30 to-[#07090e] flex items-start gap-3 shadow-md">
-              <div className="p-2 rounded-lg bg-purple-500/20 text-purple-300 shrink-0 mt-0.5">
-                <Sparkles className="w-4 h-4 text-purple-300" />
+            <div className="rounded-lg p-3.5 sm:p-4 border border-sky-500/40 bg-[#0c1421] flex items-start gap-3">
+              <div className="p-2 rounded-md bg-[#101b2b] text-sky-400 shrink-0 mt-0.5">
+                <Sparkles className="w-4 h-4" />
               </div>
               <div className="space-y-0.5">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-purple-300 font-bold block">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
                   The Bottom Line
                 </span>
                 <p className="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed">
@@ -686,18 +686,18 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
             </div>
           )}
 
-          {/* Clean, Uncrowded Context & Structured Triad Breakdown */}
+          {/* Structured Triad Breakdown */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 pt-1">
             {/* Left: Dimension, Question, Variables & Key Highlights */}
             <div className="lg:col-span-4 space-y-3.5">
               {/* Card 1: Focus, Inquiry & Variables */}
-              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
+              <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-2">
                 <div className="flex items-center justify-between">
                   <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 font-semibold">
                     Analysis Focus
                   </span>
                   {currentChart.analysisDimension && (
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-purple-600/30 text-purple-200 border border-purple-400/40">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-[#0c1626] text-sky-300 border border-sky-500/30">
                       {currentChart.analysisDimension}
                     </span>
                   )}
@@ -705,9 +705,9 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
                 <p className="text-xs text-slate-200 font-medium leading-snug">
                   "{currentChart.researchQuestion}"
                 </p>
-                <div className="pt-2 border-t border-white/5 flex flex-wrap gap-1">
+                <div className="pt-2 border-t border-[#1c2436] flex flex-wrap gap-1">
                   {currentChart.variables.map((v, i) => (
-                    <span key={i} className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-white/5 text-slate-400 border border-white/10">
+                    <span key={i} className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-[#0f131c] text-slate-400 border border-[#1c2436]">
                       {v}
                     </span>
                   ))}
@@ -715,14 +715,14 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
               </div>
 
               {/* Card 2: 3 Key Highlights */}
-              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
-                <span className="text-[10px] font-mono uppercase tracking-wider text-purple-300 font-bold block">
+              <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-2">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
                   3 Key Highlights
                 </span>
                 <ul className="space-y-1.5">
                   {currentChart.findings.map((f, i) => (
                     <li key={i} className="text-xs text-slate-300 leading-snug flex items-start gap-1.5">
-                      <span className="text-purple-400 font-bold shrink-0">•</span>
+                      <span className="text-sky-400 font-bold shrink-0">&bull;</span>
                       <span>{f}</span>
                     </li>
                   ))}
@@ -731,49 +731,49 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
             </div>
 
             {/* Right: Crisp 3-Part Insight Cards */}
-            <div className="lg:col-span-8 p-4 sm:p-5 rounded-xl bg-purple-950/20 border border-purple-500/20 flex flex-col justify-between space-y-3">
+            <div className="lg:col-span-8 p-4 sm:p-5 rounded-lg bg-[#0c1421] border border-sky-500/30 flex flex-col justify-between space-y-3">
               <div className="space-y-2.5">
                 {/* 1. Observation */}
-                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+                <div className="p-3 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-cyan-300 font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold">
                       1. Visual Evidence (Observation)
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-3">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-3 font-light">
                     {currentChart.observation}
                   </p>
                 </div>
 
                 {/* 2. Interpretation */}
-                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10 space-y-1">
+                <div className="p-3 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-purple-300 font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold">
                       2. Industry Context (Interpretation)
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-3">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-3 font-light">
                     {currentChart.interpretation}
                   </p>
                 </div>
 
                 {/* 3. Research Implication */}
-                <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20 space-y-1">
+                <div className="p-3 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-1">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-emerald-300 font-bold">
+                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold">
                       3. Research Takeaway (Implication)
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-3">
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed pl-3 font-light">
                     {currentChart.researchImplication}
                   </p>
                 </div>
               </div>
 
-              <div className="pt-2 border-t border-purple-500/20 flex items-center justify-between text-[10px] font-mono text-purple-300/70">
+              <div className="pt-2 border-t border-sky-500/20 flex items-center justify-between text-[10px] font-mono text-sky-300/70">
                 <span>Triad Framework: Observation &rarr; Interpretation &rarr; Research Implication</span>
                 <span>2.5x Breakeven Rule</span>
               </div>
@@ -781,64 +781,64 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           </div>
 
           {/* Bottom Prev / Next Navigation Bar */}
-          <div className="flex items-center justify-between pt-3 border-t border-white/10">
+          <div className="flex items-center justify-between pt-3 border-t border-[#1c2436]">
             <button
               onClick={prevChart}
-              className="px-4 py-2 rounded-xl bg-white/5 hover:bg-purple-900/30 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-2 text-xs font-mono"
+              className="px-4 py-2 rounded-lg bg-[#0b0e15] hover:bg-[#141d2c] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 transition-colors flex items-center gap-2 text-xs font-mono"
             >
-              <ChevronLeft className="w-4 h-4 text-purple-400" />
+              <ChevronLeft className="w-4 h-4 text-sky-400" />
               <span>Previous Chart</span>
             </button>
 
             <span className="text-xs font-mono text-slate-400">
-              Viewing {activeStage === 'input' ? 'Input EDA' : 'Model Output'} <span className="text-purple-300 font-bold">{currentChart.number}</span> of {currentCharts.length.toString().padStart(2, '0')}
+              Viewing {activeStage === 'input' ? 'Input EDA' : 'Model Output'} <span className="text-sky-400 font-bold">{currentChart.number}</span> of {currentCharts.length.toString().padStart(2, '0')}
             </span>
 
             <button
               onClick={nextChart}
-              className="px-4 py-2 rounded-xl bg-white/5 hover:bg-purple-900/30 text-slate-300 hover:text-white border border-white/10 hover:border-purple-500/40 transition-all flex items-center gap-2 text-xs font-mono"
+              className="px-4 py-2 rounded-lg bg-[#0b0e15] hover:bg-[#141d2c] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 transition-colors flex items-center gap-2 text-xs font-mono"
             >
               <span>Next Chart</span>
-              <ChevronRight className="w-4 h-4 text-purple-400" />
+              <ChevronRight className="w-4 h-4 text-sky-400" />
             </button>
           </div>
 
         </div>
       ) : selectedModel === 'classifier' ? (
         /* Staging Placeholder for Supervised Classification Model */
-        <div className="glass-panel rounded-2xl p-8 sm:p-12 border border-white/10 text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-purple-950/40 border border-purple-500/30 flex items-center justify-center mx-auto text-purple-400">
+        <div className="rounded-xl p-8 sm:p-12 border border-[#1c2436] bg-[#0f131c] text-center space-y-6">
+          <div className="w-16 h-16 rounded-xl bg-[#0c1626] border border-sky-500/30 flex items-center justify-center mx-auto text-sky-400">
             <Target className="w-8 h-8" />
           </div>
 
           <div className="max-w-2xl mx-auto space-y-3">
-            <span className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-purple-950/60 border border-purple-500/30 text-purple-300">
+            <span className="px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-[#0c1626] border border-sky-500/30 text-sky-400">
               Supervised Machine Learning Staging
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
               Supervised Classification Visualizations
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-slate-300 leading-relaxed font-light">
               Evaluating trained supervised classification models (Random Forest, XGBoost, and Logistic Regression) engineered to predict movie commercial success and diminishing returns risk.
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-left">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">01. Target Formulation</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Binary classification target <code className="text-purple-300 font-mono">is_profitable</code> (<code className="text-purple-300 font-mono">multiplier &gt;= 2.5</code>), predicting theatrical breakeven based on production capital.
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">01. Target Formulation</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
+                Binary classification target <code className="text-sky-300 font-mono">is_profitable</code> (<code className="text-sky-300 font-mono">multiplier &gt;= 2.5</code>), predicting theatrical breakeven based on production capital.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">02. Feature Pipeline</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">02. Feature Pipeline</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Multivariable feature matrix: production budget, runtime, one-hot encoded genres, studio tier (Major vs Independent), and release seasonality.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">03. Model Visualizations</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">03. Model Visualizations</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Staging ready for ROC-AUC curves, Confusion Matrix heatmaps, Precision-Recall tradeoff curves, and Tree Feature Importance rankings.
               </p>
             </div>
@@ -847,7 +847,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           <div className="pt-4">
             <button
               onClick={() => setSelectedModel('gemini')}
-              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-mono font-semibold transition-all inline-flex items-center gap-2 shadow-lg shadow-purple-900/40"
+              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-mono font-semibold transition-colors inline-flex items-center gap-2"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Return to Gemini Visualizations (Active)</span>
@@ -856,40 +856,40 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         </div>
       ) : selectedModel === 'regression' ? (
         /* Staging Placeholder for Supervised Regression Model */
-        <div className="glass-panel rounded-2xl p-8 sm:p-12 border border-white/10 text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-purple-950/40 border border-purple-500/30 flex items-center justify-center mx-auto text-purple-400">
+        <div className="rounded-xl p-8 sm:p-12 border border-[#1c2436] bg-[#0f131c] text-center space-y-6">
+          <div className="w-16 h-16 rounded-xl bg-[#0c1626] border border-sky-500/30 flex items-center justify-center mx-auto text-sky-400">
             <LineChart className="w-8 h-8" />
           </div>
 
           <div className="max-w-2xl mx-auto space-y-3">
-            <span className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-purple-950/60 border border-purple-500/30 text-purple-300">
+            <span className="px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-[#0c1626] border border-sky-500/30 text-sky-400">
               Supervised Continuous Modeling Staging
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
               Supervised Regression Visualizations
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-slate-300 leading-relaxed font-light">
               Modeling continuous box office revenue and multiplier trajectories to compute the exact marginal rate of return and mathematically pinpoint where additional budget investments yield diminishing returns.
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-left">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">01. Nonlinear Curve Fitting</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Log-transformed ElasticNet, Polynomial Ridge, and Gradient Boosted Regressors fitting continuous <code className="text-purple-300 font-mono">revenue = f(budget)</code>.
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">01. Nonlinear Curve Fitting</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
+                Log-transformed ElasticNet, Polynomial Ridge, and Gradient Boosted Regressors fitting continuous <code className="text-sky-300 font-mono">revenue = f(budget)</code>.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">02. Marginal Rate of Return</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Calculating the mathematical first derivative <code className="text-purple-300 font-mono">d(Revenue)/d(Budget)</code> to identify where marginal yield falls below the 2.5x breakeven ray.
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">02. Marginal Rate of Return</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
+                Calculating the mathematical first derivative <code className="text-sky-300 font-mono">d(Revenue)/d(Budget)</code> to identify where marginal yield falls below the 2.5x breakeven ray.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">03. Regression Diagnostics</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Staging ready for Predicted vs. Actual Gross scatters, Residual Distribution curves, <code className="text-purple-300 font-mono">R²</code> score analysis, and RMSE confidence bands.
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">03. Regression Diagnostics</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
+                Staging ready for Predicted vs. Actual Gross scatters, Residual Distribution curves, <code className="text-sky-300 font-mono">R²</code> score analysis, and RMSE confidence bands.
               </p>
             </div>
           </div>
@@ -897,7 +897,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           <div className="pt-4">
             <button
               onClick={() => setSelectedModel('gemini')}
-              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-mono font-semibold transition-all inline-flex items-center gap-2 shadow-lg shadow-purple-900/40"
+              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-mono font-semibold transition-colors inline-flex items-center gap-2"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Return to Gemini Visualizations (Active)</span>
@@ -906,39 +906,39 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         </div>
       ) : selectedModel === 'clustering' ? (
         /* Staging Placeholder for Unsupervised Clustering Model */
-        <div className="glass-panel rounded-2xl p-8 sm:p-12 border border-white/10 text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-purple-950/40 border border-purple-500/30 flex items-center justify-center mx-auto text-purple-400">
+        <div className="rounded-xl p-8 sm:p-12 border border-[#1c2436] bg-[#0f131c] text-center space-y-6">
+          <div className="w-16 h-16 rounded-xl bg-[#0c1626] border border-sky-500/30 flex items-center justify-center mx-auto text-sky-400">
             <Network className="w-8 h-8" />
           </div>
 
           <div className="max-w-2xl mx-auto space-y-3">
-            <span className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-purple-950/60 border border-purple-500/30 text-purple-300">
+            <span className="px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-[#0c1626] border border-sky-500/30 text-sky-400">
               Unsupervised Machine Learning Staging
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
-              Unsupervised Clustering & Archetypes
+              Unsupervised Clustering &amp; Archetypes
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-slate-300 leading-relaxed font-light">
               Applying K-Means clustering and Principal Component Analysis (PCA) to discover natural performance archetypes and capital risk segments without pre-assigned labels.
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-left">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">01. Multi-Attribute PCA</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">01. Multi-Attribute PCA</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Dimensionality reduction projecting budget, worldwide gross, ROI multiplier, runtime, and popularity onto principal variance axes.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">02. Archetype Discovery</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">02. Archetype Discovery</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Unsupervised partitioning into "Low-Budget High-Yield Breakouts", "Steady Mid-Budget Earners", "Mega-Blockbusters", and "High-Budget Traps".
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">03. Cluster Diagnostics</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">03. Cluster Diagnostics</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Staging ready for 2D PCA cluster scatter plots with convex hulls, Silhouette Score optimization curves, and Cluster Centroid Radar charts.
               </p>
             </div>
@@ -947,7 +947,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           <div className="pt-4">
             <button
               onClick={() => setSelectedModel('gemini')}
-              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-mono font-semibold transition-all inline-flex items-center gap-2 shadow-lg shadow-purple-900/40"
+              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-mono font-semibold transition-colors inline-flex items-center gap-2"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Return to Gemini Visualizations (Active)</span>
@@ -956,39 +956,39 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         </div>
       ) : (
         /* Staging Placeholder for Claude / Anthropic Model */
-        <div className="glass-panel rounded-2xl p-8 sm:p-12 border border-white/10 text-center space-y-6">
-          <div className="w-16 h-16 rounded-2xl bg-purple-950/40 border border-purple-500/30 flex items-center justify-center mx-auto text-purple-400">
+        <div className="rounded-xl p-8 sm:p-12 border border-[#1c2436] bg-[#0f131c] text-center space-y-6">
+          <div className="w-16 h-16 rounded-xl bg-[#0c1626] border border-sky-500/30 flex items-center justify-center mx-auto text-sky-400">
             <Cpu className="w-8 h-8" />
           </div>
 
           <div className="max-w-2xl mx-auto space-y-3">
-            <span className="px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-white/5 border border-white/10 text-slate-400">
+            <span className="px-3 py-1 rounded-md text-xs font-mono uppercase tracking-wider bg-[#0c1626] border border-sky-500/30 text-sky-400">
               Comparative Benchmark Staging
             </span>
             <h2 className="text-2xl sm:text-3xl font-bold text-white">
               Claude 3.7 Sonnet Visualizations
             </h2>
-            <p className="text-sm text-slate-300 leading-relaxed">
+            <p className="text-sm text-slate-300 leading-relaxed font-light">
               Evaluating exploratory data visualizations and analytical code generated autonomously by Anthropic Claude for benchmark comparison against Gemini.
             </p>
           </div>
 
           <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 text-left">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">01. Standardized Prompts</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">01. Standardized Prompts</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Identical research prompts evaluating budget diminishing returns and studio commercial efficiency.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">02. Identical Dataset</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">02. Identical Dataset</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Evaluated against the exact 45,466 cleaned TMDB records with identical filtering standards.
               </p>
             </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 space-y-1.5">
-              <span className="text-xs font-mono text-purple-400 font-bold">03. Comparative Evaluation</span>
-              <p className="text-xs text-slate-400 leading-relaxed">
+            <div className="p-4 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1.5">
+              <span className="text-xs font-mono text-sky-400 font-bold">03. Comparative Evaluation</span>
+              <p className="text-xs text-slate-400 leading-relaxed font-light">
                 Evaluation on statistical fidelity, visual hierarchy, aesthetic palette choice, and analytical deduction.
               </p>
             </div>
@@ -997,7 +997,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           <div className="pt-4">
             <button
               onClick={() => setSelectedModel('gemini')}
-              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-mono font-semibold transition-all inline-flex items-center gap-2 shadow-lg shadow-purple-900/40"
+              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-mono font-semibold transition-colors inline-flex items-center gap-2"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Return to Gemini Visualizations (Active)</span>
@@ -1007,15 +1007,15 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
       )}
 
       {/* 3. Research Navigation Strip */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-r from-purple-950/40 via-purple-900/20 to-transparent border border-purple-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-xl bg-[#0c1421] border border-sky-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
-          <span className="text-xs font-mono text-purple-400 font-semibold uppercase tracking-wider block">
+          <span className="text-xs font-mono text-sky-400 font-semibold uppercase tracking-wider block">
             Continue Research Exploration
           </span>
           <h3 className="text-lg font-bold text-white">
             Data Cleansing Architecture &amp; SQL Analytics
           </h3>
-          <p className="text-xs text-slate-400 max-w-xl">
+          <p className="text-xs text-slate-400 max-w-xl font-light">
             Inspect our 8-pillar data cleansing pipeline, or test relational aggregations across the 8-query SQL workbench.
           </p>
         </div>
@@ -1024,16 +1024,16 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           {onNavigateToCleaning && (
             <button
               onClick={onNavigateToCleaning}
-              className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 text-xs font-mono transition-all inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-purple-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
               <span>Data Cleansing Audit</span>
             </button>
           )}
           {onNavigateToSql && (
             <button
               onClick={onNavigateToSql}
-              className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-semibold text-xs transition-all shadow-glow-purple inline-flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition-colors inline-flex items-center gap-2"
             >
               <Database className="w-3.5 h-3.5" />
               <span>SQL Analytics Workbench (8 Queries)</span>

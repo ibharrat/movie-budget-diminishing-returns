@@ -8,15 +8,15 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-[#040507]/90 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full border-b border-[#1c2436] bg-[#08090d]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         
         {/* Brand */}
         <div 
           onClick={() => onNavigate('question')}
-          className="flex items-center gap-2.5 cursor-pointer hover:opacity-80 transition-opacity shrink-0"
+          className="flex items-center gap-2.5 cursor-pointer hover:opacity-90 transition-opacity shrink-0"
         >
-          <div className="w-8 h-8 rounded-lg bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+          <div className="w-8 h-8 rounded-lg bg-[#0f1726] border border-sky-500/40 flex items-center justify-center text-sky-400 shrink-0">
             <Film className="w-4 h-4" />
           </div>
           <span className="font-semibold text-white tracking-tight text-xs sm:text-base truncate max-w-[120px] sm:max-w-none">
@@ -25,12 +25,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         </div>
 
         {/* Page Switcher Navigation */}
-        <nav className="flex items-center gap-1 p-1 rounded-xl bg-white/5 border border-white/10 text-xs font-medium shrink-0">
+        <nav className="flex items-center gap-1 p-1 rounded-lg bg-[#0f131c] border border-[#1c2436] text-xs font-medium shrink-0">
           <button
             onClick={() => onNavigate('question')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
               currentPage === 'question'
-                ? 'bg-white/10 text-white font-semibold'
+                ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -38,9 +38,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('cleaning')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
               currentPage === 'cleaning'
-                ? 'bg-white/10 text-white font-semibold'
+                ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -48,9 +48,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('visualization')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
               currentPage === 'visualization'
-                ? 'bg-white/10 text-white font-semibold'
+                ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -58,20 +58,24 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('sql')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all flex items-center gap-1.5 ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-1.5 ${
               currentPage === 'sql'
-                ? 'bg-purple-600 text-white font-semibold shadow-glow-purple'
+                ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <span>SQL</span>
-            <span className="hidden md:inline px-1.5 py-0.2 rounded text-[10px] bg-white/10 font-mono">8</span>
+            <span className={`hidden md:inline px-1.5 py-0.2 rounded text-[10px] font-mono ${
+              currentPage === 'sql' ? 'bg-slate-950/20 text-slate-950' : 'bg-[#182233] text-sky-300'
+            }`}>
+              8
+            </span>
           </button>
           <button
             onClick={() => onNavigate('about')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-lg transition-all ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
               currentPage === 'about'
-                ? 'bg-white/10 text-white font-semibold'
+                ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -84,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-purple-400 px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/20 transition-all"
+          className="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 px-3 py-1.5 rounded-md border border-[#1c2436] hover:border-sky-500/40 transition-colors bg-[#0f131c]"
         >
           <span>45k Kaggle Dataset</span>
           <ExternalLink className="w-3.5 h-3.5" />

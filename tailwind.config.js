@@ -9,37 +9,34 @@ export default {
     extend: {
       colors: {
         dark: {
-          950: '#040507',
-          900: '#090b0e',
-          850: '#0f1217',
-          800: '#151921',
-          700: '#202632',
-          600: '#323b4c',
+          950: '#08090d',
+          900: '#0d1017',
+          850: '#121622',
+          800: '#181e2e',
+          700: '#222b40',
+          600: '#323e5c',
         },
-        accent: {
-          gold: '#f59e0b',
-          amber: '#fbbf24',
-          emerald: '#a855f7',
-          purple: '#a855f7',
-          violet: '#8b5cf6',
-          cyan: '#06b6d4',
-          crimson: '#f43f5e',
+        icy: {
+          50: '#f0f9ff',
+          100: '#e0f2fe',
+          200: '#bae6fd',
+          300: '#7dd3fc',
+          400: '#38bdf8',
+          500: '#0ea5e9',
+          600: '#0284c7',
+          700: '#0369a1',
+          800: '#075985',
+          900: '#0c4a6e',
+          950: '#082f49',
         }
       },
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-        display: ['Cal Sans', 'Inter', 'sans-serif'],
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'subtle-grid': 'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)',
+        display: ['Inter', '-apple-system', 'sans-serif'],
       },
       boxShadow: {
-        'glow-purple': '0 0 25px -5px rgba(168, 85, 247, 0.35)',
-        'glow-emerald': '0 0 25px -5px rgba(168, 85, 247, 0.35)',
-        'glow-amber': '0 0 25px -5px rgba(245, 158, 11, 0.25)',
-        'glow-cyan': '0 0 25px -5px rgba(6, 182, 212, 0.25)',
+        'flat': '0 1px 3px 0 rgba(0, 0, 0, 0.4)',
       }
     },
   },

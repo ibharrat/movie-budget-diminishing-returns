@@ -31,16 +31,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       
       {/* 1. Header Profile */}
       <div className="relative">
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-slate-300 mb-6">
-          <User className="w-3.5 h-3.5 text-purple-400" />
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0c1626] border border-sky-500/20 text-xs font-mono text-sky-300 mb-6">
+          <User className="w-3.5 h-3.5 text-sky-400" />
           <span>ABOUT THE RESEARCHER</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
-          Hi, I'm{' '}
-          <span className="bg-gradient-to-r from-purple-400 via-violet-300 to-fuchsia-400 bg-clip-text text-transparent">
-            Ian Bharrat
-          </span>
+          Hi, I'm <span className="text-sky-400">Ian Bharrat</span>
         </h1>
 
         <p className="text-base sm:text-lg text-slate-300 font-light max-w-3xl leading-relaxed">
@@ -52,13 +49,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* Tech Infrastructure & Python */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between">
+        <div className="bg-[#0f131c] rounded-2xl p-6 sm:p-8 border border-[#1c2436] flex flex-col justify-between">
           <div>
-            <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-5">
+            <div className="w-10 h-10 rounded-xl bg-[#0c1626] border border-sky-500/20 text-sky-400 flex items-center justify-center mb-5">
               <Server className="w-5 h-5" />
             </div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-semibold">
                 Core Foundation
               </span>
             </div>
@@ -70,20 +67,20 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
 
-          <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-cyan-300">
+          <div className="mt-6 pt-5 border-t border-[#1c2436] flex items-center gap-2 text-xs font-mono text-sky-300">
             <Code2 className="w-4 h-4" />
             <span>Python &bull; Systems &bull; Cloud Infrastructure</span>
           </div>
         </div>
 
         {/* Why Data Visualization */}
-        <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10 flex flex-col justify-between">
+        <div className="bg-[#0f131c] rounded-2xl p-6 sm:p-8 border border-[#1c2436] flex flex-col justify-between">
           <div>
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-5">
+            <div className="w-10 h-10 rounded-xl bg-[#0c1626] border border-sky-500/20 text-sky-400 flex items-center justify-center mb-5">
               <BarChart3 className="w-5 h-5" />
             </div>
             <div className="flex items-center gap-2 mb-2">
-              <span className="text-xs font-mono uppercase tracking-wider text-purple-400 font-semibold">
+              <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-semibold">
                 The Medium
               </span>
             </div>
@@ -95,7 +92,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </p>
           </div>
 
-          <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-purple-300">
+          <div className="mt-6 pt-5 border-t border-[#1c2436] flex items-center gap-2 text-xs font-mono text-sky-300">
             <Sparkles className="w-4 h-4" />
             <span>Transforming Data into Intuitive Insight</span>
           </div>
@@ -106,8 +103,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       {/* 3. Featured Technical Projects */}
       <div className="space-y-6">
         <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-xs font-mono text-purple-300 mb-3">
-            <Layers className="w-3.5 h-3.5 text-purple-400" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0c1626] border border-sky-500/20 text-xs font-mono text-sky-300 mb-3">
+            <Layers className="w-3.5 h-3.5 text-sky-400" />
             <span>FEATURED WORK & REPOSITORIES</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -120,18 +117,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Project 1: IT Ticketing System */}
-          <div className="glass-panel rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-purple-500/30 transition-all flex flex-col justify-between group">
+          <div className="bg-[#0f131c] rounded-2xl p-6 sm:p-7 border border-[#1c2436] hover:border-sky-500/40 transition-all flex flex-col justify-between group">
             <div>
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-[#0c1626] border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
                     <Ticket className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-purple-400 font-semibold block">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-semibold block">
                       Full-Stack Web App
                     </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-purple-200 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
                       IT Ticketing System
                     </h3>
                   </div>
@@ -140,7 +137,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   href="https://github.com/ibharrat/it-ticketing-final-version"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors"
+                  className="p-2 rounded-lg bg-[#08090d] hover:bg-[#161f30] text-slate-300 hover:text-white border border-[#1c2436] transition-colors"
                   aria-label="View IT Ticketing System on GitHub"
                 >
                   <ExternalLink className="w-4 h-4" />
@@ -153,26 +150,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
               <div className="space-y-2 mb-6">
                 <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   <span>Role-based access control (RBAC) for standard users & IT staff</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   <span>Real-time ticket assignment, prioritization & status lifecycle</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   <span>JWT-authenticated REST API with SQLite database backend</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5 mb-4">
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#1c2436] mb-4">
                 {['React', 'Node.js', 'Express', 'SQLite3', 'Tailwind CSS', 'JWT Auth'].map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-purple-950/40 text-purple-300 border border-purple-500/20"
+                    className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/20"
                   >
                     {tech}
                   </span>
@@ -183,10 +180,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 href="https://github.com/ibharrat/it-ticketing-final-version"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/5 hover:bg-purple-600/20 text-slate-200 hover:text-white border border-white/10 hover:border-purple-500/40 text-xs font-semibold transition-all group-hover:border-purple-500/40"
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#08090d] hover:bg-[#0c1626] text-slate-200 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-semibold transition-all group-hover:border-sky-500/40"
               >
                 <div className="flex items-center gap-2">
-                  <Github className="w-4 h-4 text-purple-400" />
+                  <Github className="w-4 h-4 text-sky-400" />
                   <span className="font-mono">ibharrat/it-ticketing-final-version</span>
                 </div>
                 <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
@@ -195,18 +192,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({
           </div>
 
           {/* Project 2: Packer Golden AMI – Apache */}
-          <div className="glass-panel rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-violet-500/30 transition-all flex flex-col justify-between group">
+          <div className="bg-[#0f131c] rounded-2xl p-6 sm:p-7 border border-[#1c2436] hover:border-sky-500/40 transition-all flex flex-col justify-between group">
             <div>
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-[#0c1626] border border-sky-500/20 text-sky-400 flex items-center justify-center shrink-0">
                     <Cloud className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-violet-400 font-semibold block">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-semibold block">
                       Infrastructure as Code (IaC)
                     </span>
-                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-violet-200 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
                       Packer Golden AMI – Apache
                     </h3>
                   </div>
@@ -215,7 +212,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                   href="https://github.com/ibharrat/packer-golden-ami-apache"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors"
+                  className="p-2 rounded-lg bg-[#08090d] hover:bg-[#161f30] text-slate-300 hover:text-white border border-[#1c2436] transition-colors"
                   aria-label="View Packer Golden AMI on GitHub"
                 >
                   <ExternalLink className="w-4 h-4" />
@@ -228,26 +225,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({
 
               <div className="space-y-2 mb-6">
                 <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   <span>Declarative image baking using HashiCorp Packer HCL2 configuration</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   <span>Automated Apache (httpd) setup & static web server deployment</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-slate-300 font-light">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-violet-400 shrink-0" />
+                  <CheckCircle2 className="w-3.5 h-3.5 text-sky-400 shrink-0" />
                   <span>Reusable baseline AMI generation tailored for EC2 Auto Scaling Groups</span>
                 </div>
               </div>
             </div>
 
             <div>
-              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-white/5 mb-4">
+              <div className="flex flex-wrap gap-1.5 pt-4 border-t border-[#1c2436] mb-4">
                 {['Packer (HCL2)', 'AWS EC2', 'Amazon Linux 2023', 'Apache httpd', 'AWS CLI', 'DevOps'].map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-violet-950/40 text-violet-300 border border-violet-500/20"
+                    className="px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/20"
                   >
                     {tech}
                   </span>
@@ -258,10 +255,10 @@ export const AboutPage: React.FC<AboutPageProps> = ({
                 href="https://github.com/ibharrat/packer-golden-ami-apache"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-white/5 hover:bg-violet-600/20 text-slate-200 hover:text-white border border-white/10 hover:border-violet-500/40 text-xs font-semibold transition-all group-hover:border-violet-500/40"
+                className="w-full inline-flex items-center justify-between px-4 py-2.5 rounded-xl bg-[#08090d] hover:bg-[#0c1626] text-slate-200 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-semibold transition-all group-hover:border-sky-500/40"
               >
                 <div className="flex items-center gap-2">
-                  <Github className="w-4 h-4 text-violet-400" />
+                  <Github className="w-4 h-4 text-sky-400" />
                   <span className="font-mono">ibharrat/packer-golden-ami-apache</span>
                 </div>
                 <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-white" />
@@ -272,13 +269,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </div>
 
       {/* 4. Why This Dataset & Favorite Movies */}
-      <div className="glass-panel rounded-2xl p-6 sm:p-8 border border-white/10">
+      <div className="bg-[#0f131c] rounded-2xl p-6 sm:p-8 border border-[#1c2436]">
         <div className="max-w-3xl mb-8">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-8 h-8 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-[#0c1626] border border-sky-500/20 text-sky-400 flex items-center justify-center">
               <Film className="w-4 h-4" />
             </div>
-            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 font-semibold">
+            <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-semibold">
               The Inspiration
             </span>
           </div>
@@ -293,16 +290,16 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         {/* Favorite Movies Spotlight */}
         <div>
           <h3 className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 flex items-center gap-2">
-            <Heart className="w-3.5 h-3.5 text-rose-400 fill-rose-400/20" />
+            <Heart className="w-3.5 h-3.5 text-sky-400 fill-sky-400/20" />
             <span>My Favorite Movies</span>
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* Parasite */}
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-purple-500/30 transition-all">
+            <div className="p-5 rounded-xl bg-[#08090d] border border-[#1c2436] hover:border-sky-500/30 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-purple-400 bg-purple-950/60 px-2 py-0.5 rounded border border-purple-500/30">
+                <span className="text-xs font-mono text-sky-300 bg-[#0c1626] px-2 py-0.5 rounded border border-sky-500/30">
                   2019
                 </span>
                 <span className="text-xs text-slate-400 font-mono">Bong Joon-ho</span>
@@ -314,9 +311,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
 
             {/* Birdman */}
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-cyan-500/30 transition-all">
+            <div className="p-5 rounded-xl bg-[#08090d] border border-[#1c2436] hover:border-sky-500/30 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-500/30">
+                <span className="text-xs font-mono text-sky-300 bg-[#0c1626] px-2 py-0.5 rounded border border-sky-500/30">
                   2014
                 </span>
                 <span className="text-xs text-slate-400 font-mono">Alejandro G. Iñárritu</span>
@@ -328,9 +325,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             </div>
 
             {/* Coraline */}
-            <div className="p-5 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-500/30 transition-all">
+            <div className="p-5 rounded-xl bg-[#08090d] border border-[#1c2436] hover:border-sky-500/30 transition-all">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
+                <span className="text-xs font-mono text-sky-300 bg-[#0c1626] px-2 py-0.5 rounded border border-sky-500/30">
                   2009
                 </span>
                 <span className="text-xs text-slate-400 font-mono">Henry Selick</span>
@@ -346,17 +343,17 @@ export const AboutPage: React.FC<AboutPageProps> = ({
       </div>
 
       {/* 5. Quick Action Navigation */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-white/10">
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-[#1c2436]">
         <div className="flex items-center gap-3">
           <button
             onClick={onNavigateToQuestion}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 hover:text-white border border-white/10 text-xs font-semibold transition-all"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0f131c] hover:bg-[#161f30] text-slate-200 hover:text-white border border-[#1c2436] text-xs font-semibold transition-all"
           >
             <span>View The Research Question</span>
           </button>
           <button
             onClick={onNavigateToViz}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold transition-all shadow-glow-purple"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-slate-950 text-xs font-semibold transition-all"
           >
             <span>Go to Data Visualization</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -364,7 +361,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({
         </div>
 
         <div className="flex items-center gap-2 text-xs font-mono text-slate-400">
-          <Database className="w-3.5 h-3.5 text-purple-400" />
+          <Database className="w-3.5 h-3.5 text-sky-400" />
           <span>Analyzing 45,000+ Titles via Python</span>
         </div>
       </div>
