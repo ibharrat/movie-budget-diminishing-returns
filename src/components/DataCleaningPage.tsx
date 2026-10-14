@@ -525,10 +525,10 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#1c2436]">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
+                  <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
                     Dimension {activePillar.number}
                   </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#141b29] text-slate-300 border border-[#1c2436]">
+                  <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#141b29] text-slate-300 border border-[#1c2436]">
                     {activePillar.category}
                   </span>
                 </div>
@@ -630,23 +630,23 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
               <tr className="border-b border-[#1c2436] text-slate-400 font-mono text-xs">
-                <th className="py-3 px-4 w-48">Aspect</th>
-                <th className="py-3 px-4 w-32 hidden sm:table-cell">Category</th>
-                <th className="py-3 px-4">Investigation Details</th>
-                <th className="py-3 px-4 hidden lg:table-cell">Analytical Notes</th>
+                <th className="py-3 px-4 w-48 whitespace-nowrap">Aspect</th>
+                <th className="py-3 px-4 hidden sm:table-cell whitespace-nowrap">Category</th>
+                <th className="py-3 px-4 min-w-[280px]">Investigation Details</th>
+                <th className="py-3 px-4 hidden lg:table-cell min-w-[240px]">Analytical Notes</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-[#1c2436]">
               {datasetAspects.map((item, idx) => (
                 <tr key={idx} className="hover:bg-[#121722] transition-colors">
-                  <td className="py-3.5 px-4 font-semibold text-white">
+                  <td className="py-3.5 px-4 font-semibold text-white whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
                       <span>{item.aspect}</span>
                     </div>
                   </td>
-                  <td className="py-3.5 px-4 hidden sm:table-cell">
-                    <span className="px-2 py-0.5 rounded text-[11px] font-mono bg-[#0c1626] border border-sky-500/30 text-sky-300">
+                  <td className="py-3.5 px-4 hidden sm:table-cell whitespace-nowrap">
+                    <span className="inline-flex items-center whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0c1626] border border-sky-500/30 text-sky-300">
                       {item.category}
                     </span>
                   </td>
@@ -734,7 +734,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                     {col.type}
                   </td>
                   <td className="py-3 px-3">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
+                    <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
                       {col.variableClass}
                     </span>
                   </td>
