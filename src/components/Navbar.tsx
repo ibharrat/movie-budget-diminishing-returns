@@ -58,18 +58,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('sql')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-1.5 ${
+            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
               currentPage === 'sql'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
             <span>SQL</span>
-            <span className={`hidden md:inline px-1.5 py-0.2 rounded text-[10px] font-mono ${
-              currentPage === 'sql' ? 'bg-slate-950/20 text-slate-950' : 'bg-[#182233] text-sky-300'
-            }`}>
-              8
-            </span>
           </button>
           <button
             onClick={() => onNavigate('about')}

@@ -98,7 +98,7 @@ export const SqlAnalyticsPage: React.FC = () => {
             Relational SQL Analytics &amp; Visual Insights
           </h1>
           <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed font-light">
-            Querying normalized relational cinema data across 8 analytical paradigms, evaluating budget scalability, genre commercial resilience, and corporate studio capital allocation.
+            Querying normalized relational cinema data across analytical paradigms, evaluating budget scalability, genre commercial resilience, and corporate studio capital allocation.
           </p>
         </div>
 
@@ -121,13 +121,13 @@ export const SqlAnalyticsPage: React.FC = () => {
           {/* 7 SQL Clauses Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-xs font-mono">
             {[
-              { clause: 'SELECT', desc: 'Queries 1–8' },
-              { clause: 'FROM', desc: 'Queries 1–8' },
-              { clause: 'WHERE', desc: 'Queries 2, 3, 4, 5' },
-              { clause: 'ORDER BY', desc: 'Queries 2, 3, 4, 6, 7, 8' },
-              { clause: 'GROUP BY', desc: 'Queries 6, 7, 8' },
-              { clause: 'HAVING', desc: 'Query 7 (≥ 2.5x)' },
-              { clause: 'JOIN', desc: 'Queries 7, 8 (3 Tables)' },
+              { clause: 'SELECT', desc: 'All Queries' },
+              { clause: 'FROM', desc: 'All Queries' },
+              { clause: 'WHERE', desc: 'Selective Filtering' },
+              { clause: 'ORDER BY', desc: 'Sorting & Ranking' },
+              { clause: 'GROUP BY', desc: 'Aggregations' },
+              { clause: 'HAVING', desc: 'Threshold Filtering' },
+              { clause: 'JOIN', desc: 'Multi-Table Relational' },
             ].map(item => (
               <div 
                 key={item.clause}
@@ -238,7 +238,7 @@ export const SqlAnalyticsPage: React.FC = () => {
               <span>Interactive SQL Query Suite</span>
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 font-light">
-              Select any query across the 8 analytical categories to inspect its syntax, logic, and execute against the SQLite database.
+              Select any query across the analytical categories to inspect its syntax, logic, and execute against the SQLite database.
             </p>
           </div>
 
@@ -252,7 +252,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              All (8)
+              All
             </button>
             <button
               onClick={() => setActiveFilterCategory('basic')}
@@ -262,7 +262,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              Basic &amp; Filtering (3)
+              Basic &amp; Filtering
             </button>
             <button
               onClick={() => setActiveFilterCategory('agg')}
@@ -272,7 +272,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              Agg &amp; Groups (3)
+              Agg &amp; Groups
             </button>
             <button
               onClick={() => setActiveFilterCategory('relational')}
@@ -282,7 +282,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              HAVING &amp; JOIN (2)
+              HAVING &amp; JOIN
             </button>
             <button
               onClick={() => setActiveFilterCategory('viz')}
@@ -293,12 +293,12 @@ export const SqlAnalyticsPage: React.FC = () => {
               }`}
             >
               <Sparkles className="w-3 h-3 text-sky-400" />
-              <span>Visual Targets (3)</span>
+              <span>Visual Targets</span>
             </button>
           </div>
         </div>
 
-        {/* 8-Query Horizontal Selector Grid */}
+        {/* Query Horizontal Selector Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-2">
           {sqlQueries.map(q => {
             const isSelected = q.id === selectedQueryId;

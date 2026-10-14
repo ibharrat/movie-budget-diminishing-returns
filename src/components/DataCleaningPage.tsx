@@ -771,7 +771,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
               onClick={onNavigateToSql}
               className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] text-xs font-mono transition-colors"
             >
-              SQL Workbench (8 Queries)
+              SQL Workbench
             </button>
           )}
           {onNavigateToViz && (

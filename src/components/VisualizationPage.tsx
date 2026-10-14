@@ -1016,7 +1016,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
             Data Cleansing Architecture &amp; SQL Analytics
           </h3>
           <p className="text-xs text-slate-400 max-w-xl font-light">
-            Inspect our 8-pillar data cleansing pipeline, or test relational aggregations across the 8-query SQL workbench.
+            Inspect our 8-pillar data cleansing pipeline, or test relational aggregations across the SQL workbench.
           </p>
         </div>
 
@@ -1036,7 +1036,7 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
               className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition-colors inline-flex items-center gap-2"
             >
               <Database className="w-3.5 h-3.5" />
-              <span>SQL Analytics Workbench (8 Queries)</span>
+              <span>SQL Analytics Workbench</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           )}
