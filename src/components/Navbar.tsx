@@ -14,11 +14,9 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         {/* Brand */}
         <div 
           onClick={() => onNavigate('question')}
-          className="flex items-center gap-2.5 cursor-pointer hover:opacity-90 transition-opacity shrink-0"
+          className="flex items-center gap-2.5 cursor-pointer hover:opacity-85 transition-opacity shrink-0"
         >
-          <div className="w-8 h-8 rounded-lg bg-[#0f1726] border border-sky-500/40 flex items-center justify-center text-sky-400 shrink-0">
-            <Film className="w-4 h-4" />
-          </div>
+          <Film className="w-5 h-5 text-sky-400 shrink-0" />
           <span className="font-semibold text-white tracking-tight text-xs sm:text-base truncate max-w-[120px] sm:max-w-none">
             Movie Budget Analysis
           </span>
