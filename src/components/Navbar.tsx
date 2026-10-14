@@ -9,15 +9,15 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-[#1c2436] bg-[#08090d]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
         
         {/* Brand */}
         <div 
           onClick={() => onNavigate('question')}
-          className="flex items-center gap-2.5 cursor-pointer hover:opacity-85 transition-opacity shrink-0"
+          className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer hover:opacity-90 transition-opacity shrink-0 group"
         >
-          <Film className="w-5 h-5 text-sky-400 shrink-0" />
-          <span className="font-semibold text-white tracking-tight text-xs sm:text-base truncate max-w-[120px] sm:max-w-none">
+          <Film className="w-7 h-7 sm:w-9 sm:h-9 text-sky-400 shrink-0 group-hover:scale-105 transition-transform" />
+          <span className="font-extrabold text-white tracking-tight text-sm sm:text-xl lg:text-2xl truncate max-w-[150px] sm:max-w-none">
             Movie Budget Analysis
           </span>
         </div>
@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 px-3 py-1.5 rounded-md border border-[#1c2436] hover:border-sky-500/40 transition-colors bg-[#0f131c]"
+          className="hidden lg:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 px-3 py-1.5 rounded-md border border-[#1c2436] hover:border-sky-500/40 transition-colors bg-[#0f131c]"
         >
           <span>45k Kaggle Dataset</span>
           <ExternalLink className="w-3.5 h-3.5" />
