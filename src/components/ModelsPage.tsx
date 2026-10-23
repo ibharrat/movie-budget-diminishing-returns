@@ -22,8 +22,7 @@ import {
   ArrowRight, 
   Code, 
   Award,
-  Zap,
-  HelpCircle
+  Zap
 } from 'lucide-react';
 
 export interface ModelDetail {
@@ -1370,6 +1369,15 @@ export const ModelsPage: React.FC<ModelsPageProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-3 shrink-0">
+          {onNavigateToCleaning && (
+            <button
+              onClick={onNavigateToCleaning}
+              className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono transition-colors inline-flex items-center gap-2"
+            >
+              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
+              <span>Data Cleansing Audit</span>
+            </button>
+          )}
           {onNavigateToViz && (
             <button
               onClick={onNavigateToViz}
