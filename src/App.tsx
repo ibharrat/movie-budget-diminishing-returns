@@ -3,12 +3,13 @@ import { Navbar } from './components/Navbar';
 import { QuestionPage } from './components/QuestionPage';
 import { DataCleaningPage } from './components/DataCleaningPage';
 import { VisualizationPage } from './components/VisualizationPage';
+import { ModelsPage } from './components/ModelsPage';
 import { SqlAnalyticsPage } from './components/SqlAnalyticsPage';
 import { AboutPage } from './components/AboutPage';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'question' | 'cleaning' | 'visualization' | 'sql' | 'about'>('question');
+  const [currentPage, setCurrentPage] = useState<'question' | 'cleaning' | 'visualization' | 'models' | 'sql' | 'about'>('question');
 
   return (
     <div className="min-h-screen bg-[#08090d] text-slate-200 flex flex-col font-sans selection:bg-sky-500/20 selection:text-sky-200 overflow-x-hidden w-full max-w-full">
@@ -25,6 +26,14 @@ export const App: React.FC = () => {
         )}
         {currentPage === 'visualization' && (
           <VisualizationPage 
+            onNavigateToModels={() => setCurrentPage('models')}
+            onNavigateToSql={() => setCurrentPage('sql')}
+            onNavigateToCleaning={() => setCurrentPage('cleaning')}
+          />
+        )}
+        {currentPage === 'models' && (
+          <ModelsPage 
+            onNavigateToViz={() => setCurrentPage('visualization')}
             onNavigateToSql={() => setCurrentPage('sql')}
             onNavigateToCleaning={() => setCurrentPage('cleaning')}
           />

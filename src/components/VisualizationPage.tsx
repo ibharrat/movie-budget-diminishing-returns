@@ -75,11 +75,13 @@ interface RedesignStudy {
 interface VisualizationPageProps {
   onNavigateToSql?: () => void;
   onNavigateToCleaning?: () => void;
+  onNavigateToModels?: () => void;
 }
 
 export const VisualizationPage: React.FC<VisualizationPageProps> = ({ 
   onNavigateToSql,
-  onNavigateToCleaning 
+  onNavigateToCleaning,
+  onNavigateToModels
 }) => {
   const [selectedModel, setSelectedModel] = useState<string>('gemini');
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'llm' | 'ensemble' | 'deep_learning' | 'econometric'>('all');
@@ -986,24 +988,59 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400">
               <BarChart3 className="w-3.5 h-3.5" />
-              <span>MODEL BENCHMARK SUITE</span>
+              <span>VISUAL ANALYTICS & EVIDENCE-BASED FINDINGS</span>
             </div>
-            {onNavigateToSql && (
-              <button
-                onClick={onNavigateToSql}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors self-start sm:self-auto"
-              >
-                <Database className="w-3.5 h-3.5 text-sky-400" />
-                <span>Explore Relational SQL Analytics &amp; Visualizations &rarr;</span>
-              </button>
-            )}
+            <div className="flex items-center gap-2 self-start sm:self-auto">
+              {onNavigateToModels && (
+                <button
+                  onClick={onNavigateToModels}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors"
+                >
+                  <Cpu className="w-3.5 h-3.5 text-sky-400" />
+                  <span>20 Machine Learning Models &rarr;</span>
+                </button>
+              )}
+              {onNavigateToSql && (
+                <button
+                  onClick={onNavigateToSql}
+                  className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors"
+                >
+                  <Database className="w-3.5 h-3.5 text-sky-400" />
+                  <span>SQL Analytics &rarr;</span>
+                </button>
+              )}
+            </div>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Visualizations &amp; Model Comparison
+            Visual Analytics &amp; Evidence-Based Findings
           </h1>
-          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed">
-            Comparing visual exploratory analytics and predictive architectures on movie budget diminishing returns across AI agents and machine learning models.
+          <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed font-light">
+            Transforming exploratory movie budget data into evidence-based analytical findings across Relationships, Comparisons, Trends, and Correlations, paired with professional static communication redesigns.
           </p>
+
+          {/* 4 Analytical Inquiry Dimensions */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 pt-2">
+            <div className="p-3 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">1. Relationships</span>
+              <p className="text-xs text-slate-300 font-medium leading-snug">"Is X associated with Y?"</p>
+              <span className="text-[10px] font-mono text-slate-500 block">EDA 03: Sublinear Budget Curve</span>
+            </div>
+            <div className="p-3 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">2. Comparisons</span>
+              <p className="text-xs text-slate-300 font-medium leading-snug">"How do groups differ?"</p>
+              <span className="text-[10px] font-mono text-slate-500 block">EDA 04 &bull; 07 &bull; 09: Tiers &amp; Studios</span>
+            </div>
+            <div className="p-3 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">3. Trends</span>
+              <p className="text-xs text-slate-300 font-medium leading-snug">"Outcome change over time?"</p>
+              <span className="text-[10px] font-mono text-slate-500 block">EDA 06: 40-Year Macro Trends</span>
+            </div>
+            <div className="p-3 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
+              <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">4. Correlations</span>
+              <p className="text-xs text-slate-300 font-medium leading-snug">"Which variables relate?"</p>
+              <span className="text-[10px] font-mono text-slate-500 block">EDA 02: Empirical Correlation Matrix</span>
+            </div>
+          </div>
         </div>
 
         {/* Consolidated Model Segmented Control Bar */}
@@ -1724,6 +1761,15 @@ export const VisualizationPage: React.FC<VisualizationPageProps> = ({
         </div>
 
         <div className="flex flex-wrap items-center gap-3 shrink-0">
+          {onNavigateToModels && (
+            <button
+              onClick={onNavigateToModels}
+              className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono transition-colors inline-flex items-center gap-2"
+            >
+              <Cpu className="w-3.5 h-3.5 text-sky-400" />
+              <span>20 Machine Learning Models</span>
+            </button>
+          )}
           {onNavigateToCleaning && (
             <button
               onClick={onNavigateToCleaning}
