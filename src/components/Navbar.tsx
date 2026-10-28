@@ -2,8 +2,8 @@ import React from 'react';
 import { Film, ExternalLink } from 'lucide-react';
 
 interface NavbarProps {
-  currentPage: 'question' | 'cleaning' | 'visualization' | 'models' | 'sql' | 'about';
-  onNavigate: (page: 'question' | 'cleaning' | 'visualization' | 'models' | 'sql' | 'about') => void;
+  currentPage: 'question' | 'cleaning' | 'analysis' | 'sql' | 'about';
+  onNavigate: (page: 'question' | 'cleaning' | 'analysis' | 'sql' | 'about') => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
@@ -45,24 +45,14 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             Data Cleaning
           </button>
           <button
-            onClick={() => onNavigate('visualization')}
+            onClick={() => onNavigate('analysis')}
             className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
-              currentPage === 'visualization'
+              currentPage === 'analysis'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Visualizations
-          </button>
-          <button
-            onClick={() => onNavigate('models')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
-              currentPage === 'models'
-                ? 'bg-sky-500 text-slate-950 font-semibold'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            Models
+            Visualizations &amp; Models
           </button>
           <button
             onClick={() => onNavigate('sql')}
@@ -88,12 +78,12 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
 
         {/* Kaggle Dataset Link */}
         <a
-          href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
+          href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset"
           target="_blank"
           rel="noreferrer"
-          className="hidden lg:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 px-3 py-1.5 rounded-md border border-[#1c2436] hover:border-sky-500/40 transition-colors bg-[#0f131c]"
+          className="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 font-mono transition-colors border border-[#1c2436] hover:border-sky-500/40 px-3 py-1.5 rounded-md bg-[#0f131c] shrink-0"
         >
-          <span>45k Kaggle Dataset</span>
+          <span>Dataset</span>
           <ExternalLink className="w-3.5 h-3.5" />
         </a>
 
