@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import { Navbar } from './components/Navbar';
+import { Navbar, PageKey } from './components/Navbar';
 import { QuestionPage } from './components/QuestionPage';
 import { DataCleaningPage } from './components/DataCleaningPage';
-import { AnalysisPage } from './components/AnalysisPage';
+import { ModelsAndFindingsPage } from './components/ModelsAndFindingsPage';
+import { RedesignStudioPage } from './components/RedesignStudioPage';
 import { SqlAnalyticsPage } from './components/SqlAnalyticsPage';
 import { AboutPage } from './components/AboutPage';
 import { Footer } from './components/Footer';
 
 export const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'question' | 'cleaning' | 'analysis' | 'sql' | 'about'>('question');
+  const [currentPage, setCurrentPage] = useState<PageKey>('question');
 
   return (
     <div className="min-h-screen bg-[#08090d] text-slate-200 flex flex-col font-sans selection:bg-sky-500/20 selection:text-sky-200 overflow-x-hidden w-full max-w-full">
@@ -19,12 +20,20 @@ export const App: React.FC = () => {
         )}
         {currentPage === 'cleaning' && (
           <DataCleaningPage 
-            onNavigateToViz={() => setCurrentPage('analysis')} 
+            onNavigateToViz={() => setCurrentPage('models')} 
             onNavigateToSql={() => setCurrentPage('sql')}
           />
         )}
-        {currentPage === 'analysis' && (
-          <AnalysisPage 
+        {currentPage === 'models' && (
+          <ModelsAndFindingsPage 
+            onNavigateToRedesigns={() => setCurrentPage('redesigns')}
+            onNavigateToSql={() => setCurrentPage('sql')}
+            onNavigateToCleaning={() => setCurrentPage('cleaning')}
+          />
+        )}
+        {currentPage === 'redesigns' && (
+          <RedesignStudioPage 
+            onNavigateToModels={() => setCurrentPage('models')}
             onNavigateToSql={() => setCurrentPage('sql')}
             onNavigateToCleaning={() => setCurrentPage('cleaning')}
           />
@@ -35,7 +44,7 @@ export const App: React.FC = () => {
         {currentPage === 'about' && (
           <AboutPage 
             onNavigateToQuestion={() => setCurrentPage('question')}
-            onNavigateToViz={() => setCurrentPage('analysis')}
+            onNavigateToViz={() => setCurrentPage('models')}
           />
         )}
       </main>

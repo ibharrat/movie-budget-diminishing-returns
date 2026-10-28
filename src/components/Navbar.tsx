@@ -1,9 +1,11 @@
 import React from 'react';
 import { Film, ExternalLink } from 'lucide-react';
 
+export type PageKey = 'question' | 'cleaning' | 'models' | 'redesigns' | 'sql' | 'about';
+
 interface NavbarProps {
-  currentPage: 'question' | 'cleaning' | 'analysis' | 'sql' | 'about';
-  onNavigate: (page: 'question' | 'cleaning' | 'analysis' | 'sql' | 'about') => void;
+  currentPage: PageKey;
+  onNavigate: (page: PageKey) => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
@@ -11,7 +13,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
     <header className="sticky top-0 z-50 w-full border-b border-[#1c2436] bg-[#08090d]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
         
-        {/* Brand */}
+        {/* Brand Logo & Title */}
         <div 
           onClick={() => onNavigate('question')}
           className="flex items-center gap-2.5 sm:gap-3.5 cursor-pointer hover:opacity-90 transition-opacity shrink-0 group"
@@ -22,11 +24,11 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </span>
         </div>
 
-        {/* Page Switcher Navigation */}
-        <nav className="flex items-center gap-1 p-1 rounded-lg bg-[#0f131c] border border-[#1c2436] text-xs font-medium shrink-0">
+        {/* Navigation Tabs */}
+        <nav className="flex items-center gap-1 p-1 rounded-lg bg-[#0f131c] border border-[#1c2436] text-xs font-medium shrink-0 overflow-x-auto max-w-full">
           <button
             onClick={() => onNavigate('question')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'question'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
@@ -36,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('cleaning')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'cleaning'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
@@ -45,18 +47,28 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             Data Cleaning
           </button>
           <button
-            onClick={() => onNavigate('analysis')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
-              currentPage === 'analysis'
+            onClick={() => onNavigate('models')}
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
+              currentPage === 'models'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
-            Visualizations &amp; Models
+            Models &amp; Findings
+          </button>
+          <button
+            onClick={() => onNavigate('redesigns')}
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
+              currentPage === 'redesigns'
+                ? 'bg-sky-500 text-slate-950 font-semibold'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            Redesign Studio
           </button>
           <button
             onClick={() => onNavigate('sql')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'sql'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
@@ -66,7 +78,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
           <button
             onClick={() => onNavigate('about')}
-            className={`px-2.5 sm:px-3.5 py-1.5 rounded-md transition-colors ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'about'
                 ? 'bg-sky-500 text-slate-950 font-semibold'
                 : 'text-slate-400 hover:text-white'
