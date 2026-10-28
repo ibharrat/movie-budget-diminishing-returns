@@ -1075,12 +1075,21 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
 
           <div className="flex flex-wrap items-center gap-2 self-start md:self-auto shrink-0 font-mono text-xs">
             <a
-              href="/notebooks/movie_budget_diminishing_returns_20_models.ipynb"
-              download="movie_budget_diminishing_returns_20_models.ipynb"
+              href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing"
+              target="_blank"
+              rel="noreferrer"
               className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold transition-colors shadow-sm"
             >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span>Colab</span>
+            </a>
+            <a
+              href="/notebooks/movie_budget_diminishing_returns_20_models.ipynb"
+              download="movie_budget_diminishing_returns_20_models.ipynb"
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#0f131c] hover:bg-[#131824] border border-sky-500/40 hover:border-sky-400 text-sky-300 hover:text-white transition-colors"
+            >
               <Download className="w-3.5 h-3.5" />
-              <span>Download Colab Notebook (.ipynb)</span>
+              <span>Download .ipynb</span>
             </a>
             <a
               href="/notebooks/run_all_20_models.py"
@@ -1495,8 +1504,8 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                         How to Run in Google Colab:
                       </span>
                       <ol className="text-xs text-slate-300 space-y-1.5 list-decimal list-inside font-light">
-                        <li>Download the full notebook (<code className="text-sky-300 font-mono">.ipynb</code>) using the top banner.</li>
-                        <li>Open <a href="https://colab.research.google.com" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline">colab.research.google.com</a> and click <em>File &rarr; Upload notebook</em>.</li>
+                        <li>Open the shared notebook directly: <a href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline font-mono">Colab Live Link &rarr;</a></li>
+                        <li>Or download the full notebook (<code className="text-sky-300 font-mono">.ipynb</code>) using the top banner.</li>
                         <li>Click <em>Runtime &rarr; Run all</em> (executes all 20 models in ~75 seconds).</li>
                       </ol>
                     </div>

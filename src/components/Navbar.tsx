@@ -88,16 +88,27 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
         </nav>
 
-        {/* Kaggle Dataset Link */}
-        <a
-          href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset"
-          target="_blank"
-          rel="noreferrer"
-          className="hidden md:inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 font-mono transition-colors border border-[#1c2436] hover:border-sky-500/40 px-3 py-1.5 rounded-md bg-[#0f131c] shrink-0"
-        >
-          <span>Dataset</span>
-          <ExternalLink className="w-3.5 h-3.5" />
-        </a>
+        {/* External Colab & Kaggle Links */}
+        <div className="hidden md:flex items-center gap-2 shrink-0">
+          <a
+            href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-sky-300 hover:text-white font-mono transition-colors border border-sky-500/40 hover:border-sky-400 px-3 py-1.5 rounded-md bg-[#0c1626]"
+          >
+            <span>Colab</span>
+            <ExternalLink className="w-3.5 h-3.5 text-sky-400" />
+          </a>
+          <a
+            href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-sky-400 font-mono transition-colors border border-[#1c2436] hover:border-sky-500/40 px-3 py-1.5 rounded-md bg-[#0f131c]"
+          >
+            <span>Dataset</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
+        </div>
 
       </div>
     </header>
