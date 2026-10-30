@@ -1,3 +1,4 @@
+import { InteractiveVisualizationsSection } from './InteractiveVisualizationsSection';
 import React, { useState } from 'react';
 import { 
   Cpu, 
@@ -64,7 +65,7 @@ export const ModelsAndFindingsPage: React.FC<ModelsAndFindingsPageProps> = ({
   onNavigateToSql,
   onNavigateToCleaning
 }) => {
-  const [activeSubView, setActiveSubView] = useState<'explorer' | 'matrix' | 'analysis'>('explorer');
+  const [activeSubView, setActiveSubView] = useState<'interactive' | 'explorer' | 'matrix' | 'analysis'>('interactive');
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'linear_kernel' | 'ensemble' | 'deep_learning' | 'econometric'>('all');
   const [selectedModelId, setSelectedModelId] = useState<string>('catboost');
   const [modelCardTab, setModelCardTab] = useState<'evidence' | 'code'>('evidence');
@@ -1125,9 +1126,20 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           </div>
         </div>
 
-        {/* 3 Main View Switcher Tabs */}
+        {/* 4 Main View Switcher Tabs */}
         <div className="pt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-1.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+            <button
+              onClick={() => setActiveSubView('interactive')}
+              className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
+                activeSubView === 'interactive'
+                  ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
+                  : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+              }`}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span>1. Interactive Visualizations (3)</span>
+            </button>
             <button
               onClick={() => setActiveSubView('explorer')}
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
@@ -1137,7 +1149,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               }`}
             >
               <Cpu className="w-4 h-4" />
-              <span>1. Model Explorer &amp; Visualizations</span>
+              <span>2. Model Explorer (20 Static)</span>
             </button>
             <button
               onClick={() => setActiveSubView('matrix')}
@@ -1148,7 +1160,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               }`}
             >
               <Table className="w-4 h-4" />
-              <span>2. 20-Model Benchmark Table</span>
+              <span>3. 20-Model Benchmark Table</span>
             </button>
             <button
               onClick={() => setActiveSubView('analysis')}
@@ -1159,7 +1171,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               }`}
             >
               <Award className="w-4 h-4" />
-              <span>3. Best Models Analysis &amp; Why</span>
+              <span>4. Best Models Analysis &amp; Why</span>
             </button>
           </div>
         </div>
@@ -1167,7 +1179,14 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       </div>
 
       {/* ===================================================================== */}
-      {/* VIEW 1: MODEL EXPLORER & TIED VISUALIZATIONS                          */}
+      {/* VIEW 1: INTERACTIVE VISUALIZATIONS SECTION (3 DEDICATED MODELS)       */}
+      {/* ===================================================================== */}
+      {activeSubView === 'interactive' && (
+        <InteractiveVisualizationsSection />
+      )}
+
+      {/* ===================================================================== */}
+      {/* VIEW 2: MODEL EXPLORER & TIED VISUALIZATIONS (20 STATIC MODELS)       */}
       {/* ===================================================================== */}
       {activeSubView === 'explorer' && (
         <div className="space-y-6">
