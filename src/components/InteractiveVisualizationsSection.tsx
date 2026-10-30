@@ -18,11 +18,9 @@ import {
   ComposedChart
 } from 'recharts';
 import {
-  Sparkles,
   Sliders,
   Filter,
   Eye,
-  Maximize2,
   Layers,
   Activity,
   Calendar,
@@ -286,8 +284,8 @@ const HISTORICAL_TIME_SERIES: TimeSeriesPoint[] = [
 ];
 
 export const InteractiveVisualizationsSection: React.FC = () => {
-  // Navigation inside the interactive section
-  const [activeInteractiveTab, setActiveInteractiveTab] = useState<'all' | 'catboost' | 'rf' | 'bayesian'>('all');
+  // Navigation inside the interactive section - exactly 3 clean options
+  const [activeInteractiveTab, setActiveInteractiveTab] = useState<'catboost' | 'rf' | 'bayesian'>('catboost');
 
   // ==========================================================================
   // CHART 1 CONTROLS: Model 06 CatBoost Scatter Plot
@@ -297,7 +295,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
   const [scatterMaxBudget, setScatterMaxBudget] = useState<number>(360);
   const [scatterViewMode, setScatterViewMode] = useState<'actual' | 'overestimate' | 'residuals'>('actual');
 
-  // Filtered scatter data
   const filteredScatterMovies = useMemo(() => {
     return SCATTER_MOVIES.filter(m => {
       if (m.budget > scatterMaxBudget) return false;
@@ -308,7 +305,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
     });
   }, [scatterGenre, scatterBreakevenFilter, scatterMaxBudget]);
 
-  // Curve points within current budget window
   const filteredCurvePoints = useMemo(() => {
     return MODEL_CURVE_POINTS.filter(pt => pt.budget <= scatterMaxBudget);
   }, [scatterMaxBudget]);
@@ -320,11 +316,9 @@ export const InteractiveVisualizationsSection: React.FC = () => {
   const [rfStudioFilter, setRfStudioFilter] = useState<'all' | 'major' | 'indie'>('all');
   const [rfHurdleThreshold, setRfHurdleThreshold] = useState<number>(2.5);
 
-  // Dynamic calculation reacting to Hurdle Threshold Slider (1.8x - 3.2x)
   const adjustedBarData = useMemo(() => {
-    const shift = (2.5 - rfHurdleThreshold) * 12.5; // Hurdle higher = lower breakeven rate
+    const shift = (2.5 - rfHurdleThreshold) * 12.5;
     return TIER_BAR_DATA.map(tier => {
-      // Mega budgets are much more sensitive to marketing inflation than low budgets
       const tierSensitivity = tier.tierId === 'mega' ? 1.4 : tier.tierId === 'high' ? 1.2 : tier.tierId === 'mid' ? 1.0 : 0.7;
       const dynEmpirical = Math.min(95, Math.max(15, Number((tier.empiricalRate + shift * tierSensitivity).toFixed(1))));
       const dynRfPred = Math.min(95, Math.max(15, Number((tier.rfPredictedRate + shift * tierSensitivity).toFixed(1))));
@@ -336,7 +330,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
     });
   }, [rfHurdleThreshold]);
 
-  // Filter by studio segment if selected
   const displayBarData = useMemo(() => {
     if (rfStudioFilter === 'major') {
       return adjustedBarData.map(d => ({ ...d, dynamicEmpirical: d.majorStudioRate, dynamicRfPred: d.majorStudioRate }));
@@ -360,143 +353,81 @@ export const InteractiveVisualizationsSection: React.FC = () => {
   }, [bayesianDecade]);
 
   return (
-    <div className="space-y-10">
+    <div className="space-y-5">
 
       {/* ===================================================================== */}
-      {/* SECTION BANNER & CONTROLS MATRIX                                      */}
+      {/* CLEAN 3-OPTION SELECTOR BAR                                           */}
       {/* ===================================================================== */}
-      <div className="p-6 sm:p-8 rounded-2xl bg-gradient-to-br from-[#0c1626] via-[#0b0e15] to-[#07090e] border border-sky-500/30 space-y-5">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="space-y-1.5">
-            <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-[#0f1d33] border border-sky-500/40 text-[11px] font-mono font-semibold text-sky-300">
-              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-              <span>Interactive Visualizations Section &bull; 3 Dedicated Machine Learning Models</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Interactive Empirical Findings Workbench
-            </h2>
-            <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-3xl">
-              Manipulate filters, slide parameter ranges, zoom time horizons, and inspect model predictions on hover. Each visualization below is powered by and explicitly labeled with a distinct machine learning model architecture.
-            </p>
-          </div>
+      <div className="p-1.5 rounded-xl bg-[#0b0e15] border border-[#1c2436] grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <button
+          onClick={() => setActiveInteractiveTab('catboost')}
+          className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
+            activeInteractiveTab === 'catboost'
+              ? 'bg-sky-500 text-slate-950 shadow-sm'
+              : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+          }`}
+        >
+          <ScatterIcon className="w-4 h-4" />
+          <span>1. CatBoost Scatter Plot</span>
+        </button>
 
-          {/* Quick Sub-Tab Pill Filter */}
-          <div className="inline-flex p-1 rounded-xl bg-[#07090e] border border-[#1c2436] text-xs font-mono shrink-0 overflow-x-auto max-w-full">
-            <button
-              onClick={() => setActiveInteractiveTab('all')}
-              className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${
-                activeInteractiveTab === 'all'
-                  ? 'bg-sky-500 text-slate-950 font-bold'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              All 3 Visualizations
-            </button>
-            <button
-              onClick={() => setActiveInteractiveTab('catboost')}
-              className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex items-center gap-1.5 ${
-                activeInteractiveTab === 'catboost'
-                  ? 'bg-sky-500 text-slate-950 font-bold'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <ScatterIcon className="w-3 h-3" />
-              <span>1. CatBoost Scatter</span>
-            </button>
-            <button
-              onClick={() => setActiveInteractiveTab('rf')}
-              className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex items-center gap-1.5 ${
-                activeInteractiveTab === 'rf'
-                  ? 'bg-sky-500 text-slate-950 font-bold'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <BarChart3 className="w-3 h-3" />
-              <span>2. Random Forest Bar</span>
-            </button>
-            <button
-              onClick={() => setActiveInteractiveTab('bayesian')}
-              className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap flex items-center gap-1.5 ${
-                activeInteractiveTab === 'bayesian'
-                  ? 'bg-sky-500 text-slate-950 font-bold'
-                  : 'text-slate-400 hover:text-white'
-              }`}
-            >
-              <LineChartIcon className="w-3 h-3" />
-              <span>3. Bayesian Ridge Series</span>
-            </button>
-          </div>
-        </div>
+        <button
+          onClick={() => setActiveInteractiveTab('rf')}
+          className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
+            activeInteractiveTab === 'rf'
+              ? 'bg-sky-500 text-slate-950 shadow-sm'
+              : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+          }`}
+        >
+          <BarChart3 className="w-4 h-4" />
+          <span>2. Random Forest Bar Chart</span>
+        </button>
 
-        {/* Feature Matrix Badges */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2 border-t border-[#1c2436]">
-          {[
-            { label: 'Hover Tooltips', desc: 'Active on all charts' },
-            { label: 'Category Filter', desc: 'Genre, Studio & Decades' },
-            { label: 'View Dropdown', desc: 'Overestimate & Metrics' },
-            { label: 'Zoom Brush', desc: '40-Year Time Horizons' },
-            { label: 'Range Sliders', desc: 'Budget & Hurdle Limits' },
-            { label: 'Live Residuals', desc: 'Actual vs ML Forecast' },
-          ].map((feat, idx) => (
-            <div key={idx} className="p-2.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-0.5">
-              <span className="text-[10px] font-mono text-sky-400 font-bold uppercase tracking-wider block">
-                {feat.label}
-              </span>
-              <span className="text-[11px] text-slate-400 font-light block truncate">
-                {feat.desc}
-              </span>
-            </div>
-          ))}
-        </div>
+        <button
+          onClick={() => setActiveInteractiveTab('bayesian')}
+          className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
+            activeInteractiveTab === 'bayesian'
+              ? 'bg-sky-500 text-slate-950 shadow-sm'
+              : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+          }`}
+        >
+          <LineChartIcon className="w-4 h-4" />
+          <span>3. Bayesian Ridge Time-Series</span>
+        </button>
       </div>
 
 
       {/* ===================================================================== */}
-      {/* VISUALIZATION 1: INTERACTIVE SCATTER PLOT                             */}
-      {/* MODEL 06: CatBoost Regressor (Oblivious Trees, R² = 0.771)            */}
+      {/* OPTION 1: CATBOOST INTERACTIVE SCATTER PLOT                           */}
       {/* ===================================================================== */}
-      {(activeInteractiveTab === 'all' || activeInteractiveTab === 'catboost') && (
-        <div className="p-6 sm:p-7 rounded-2xl bg-[#0f131c] border border-[#1c2436] space-y-6">
+      {activeInteractiveTab === 'catboost' && (
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0f131c] border border-[#1c2436] space-y-4">
           
-          {/* Header & Model Metadata */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#1c2436]">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
-                  Interactive Visualization 01 of 03 &bull; Scatter Plot
-                </span>
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#121824] text-emerald-400 border border-emerald-500/30">
-                  Model 06: CatBoost Regressor
-                </span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Budget vs Box Office Revenue: Non-Linear Oblivious Tree Fit &amp; Residuals
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1c2436]">
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#0c1626] text-emerald-400 border border-emerald-500/30">
+                Model 06: CatBoost Regressor
+              </span>
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                Budget vs Revenue Non-Linear Curve &amp; Residuals
               </h3>
-              <p className="text-xs text-slate-400 font-light mt-1">
-                <strong>Research Question:</strong> How does CatBoost&apos;s symmetric oblivious tree architecture prevent the multi-hundred-million-dollar overestimates made by classical linear models above $150M?
-              </p>
             </div>
-
-            <div className="flex items-center gap-2 font-mono text-xs shrink-0">
-              <div className="px-3 py-1.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">Cross-Val R²</span>
-                <span className="text-sky-300 font-bold">0.771 (Top Score)</span>
-              </div>
-              <div className="px-3 py-1.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">Residual RMSE</span>
-                <span className="text-emerald-400 font-bold">$34.8M</span>
-              </div>
+            <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
+              <span>Cross-Val R²: <strong className="text-sky-300 font-bold">0.771</strong></span>
+              <span>&bull;</span>
+              <span>RMSE: <strong className="text-emerald-400 font-bold">$34.8M</strong></span>
             </div>
           </div>
 
-          {/* Interactive Controls Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 p-4 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+          {/* Controls Bar */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
             
-            {/* Control 1: View Mode Dropdown */}
+            {/* View Dropdown */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Eye className="w-3 h-3 text-sky-400" />
-                <span>Dropdown: View Mode</span>
+                <span>View Mode</span>
               </label>
               <select
                 value={scatterViewMode}
@@ -509,11 +440,11 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               </select>
             </div>
 
-            {/* Control 2: Genre Category Filter */}
+            {/* Genre Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Filter className="w-3 h-3 text-sky-400" />
-                <span>Category: Primary Genre</span>
+                <span>Primary Genre</span>
               </label>
               <select
                 value={scatterGenre}
@@ -529,29 +460,29 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               </select>
             </div>
 
-            {/* Control 3: Breakeven Filter */}
+            {/* Breakeven Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Layers className="w-3 h-3 text-sky-400" />
-                <span>Filter: Breakeven (2.5x)</span>
+                <span>Commercial Status</span>
               </label>
               <select
                 value={scatterBreakevenFilter}
                 onChange={(e) => setScatterBreakevenFilter(e.target.value as any)}
                 className="w-full bg-[#07090e] border border-[#1c2436] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
               >
-                <option value="all">All Commercial Outcomes</option>
-                <option value="profitable">Profitable Only (&ge; 2.5x Multiplier)</option>
-                <option value="unprofitable">Theatrical Flops (&lt; 2.5x Multiplier)</option>
+                <option value="all">All Films</option>
+                <option value="profitable">Profitable Only (&ge; 2.5x Breakeven)</option>
+                <option value="unprofitable">Theatrical Losses (&lt; 2.5x)</option>
               </select>
             </div>
 
-            {/* Control 4: Range Selection Slider */}
+            {/* Budget Slider */}
             <div className="space-y-1">
               <div className="flex items-center justify-between text-[10px] font-mono uppercase text-slate-400 font-bold">
                 <span className="flex items-center gap-1">
                   <Sliders className="w-3 h-3 text-sky-400" />
-                  <span>Range: Max Budget</span>
+                  <span>Max Budget</span>
                 </span>
                 <span className="text-sky-400 font-bold">${scatterMaxBudget}M</span>
               </div>
@@ -562,18 +493,18 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 step="25"
                 value={scatterMaxBudget}
                 onChange={(e) => setScatterMaxBudget(Number(e.target.value))}
-                className="w-full accent-sky-400 cursor-pointer h-1.5 bg-[#07090e] rounded-lg"
+                className="w-full accent-sky-400 cursor-pointer h-1.5 bg-[#07090e] rounded-lg mt-1"
               />
               <div className="flex justify-between text-[9px] font-mono text-slate-500">
-                <span>$25M (Zoom Indies)</span>
-                <span>$360M (Full Scale)</span>
+                <span>$25M</span>
+                <span>$360M</span>
               </div>
             </div>
 
           </div>
 
           {/* Recharts Canvas */}
-          <div className="h-[430px] w-full bg-[#07090e] rounded-xl border border-[#1c2436] p-3 sm:p-4 relative">
+          <div className="h-[460px] w-full bg-[#07090e] rounded-xl border border-[#1c2436] p-3 sm:p-4 relative">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 20, right: 30, bottom: 25, left: 15 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1c2436" opacity={0.6} />
@@ -606,12 +537,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 />
                 <ZAxis range={[50, 160]} />
 
-                {/* Reference Line for 2.5x Breakeven Rule (when in actual view) */}
                 {scatterViewMode === 'residuals' && (
-                  <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" label={{ value: 'Zero Residual (Perfect Prediction)', fill: '#94a3b8', fontSize: 10, position: 'right' }} />
+                  <ReferenceLine y={0} stroke="#94a3b8" strokeDasharray="3 3" label={{ value: 'Zero Residual', fill: '#94a3b8', fontSize: 10, position: 'right' }} />
                 )}
 
-                {/* Custom Tooltip */}
                 <Tooltip 
                   cursor={{ strokeDasharray: '3 3', stroke: '#38bdf8' }}
                   content={({ active, payload }) => {
@@ -645,7 +574,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   }}
                 />
 
-                {/* Primary Movie Scatter Points */}
                 <Scatter name="Films" data={filteredScatterMovies}>
                   {filteredScatterMovies.map((entry, index) => {
                     let fill = entry.breakeven ? '#10b981' : '#f43f5e';
@@ -656,7 +584,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   })}
                 </Scatter>
 
-                {/* Model Fitted Curves as Secondary Scatter Line */}
                 {scatterViewMode !== 'residuals' && (
                   <Scatter 
                     name="CatBoost Fitted Curve" 
@@ -677,36 +604,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          {/* Scatter Chart Legend & Analytical Finding Box */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-sky-400 font-bold block">
-                CatBoost Architecture Insight:
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                CatBoost builds <strong>symmetric oblivious trees</strong> where identical split features are used across each depth level. This naturally enforces smooth sublinear concavity, preventing the runaway <strong>+$320M linear overestimate</strong> at budgets past $150M.
-              </p>
-            </div>
-
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-emerald-400 font-bold block">
-                Green vs Rose Node Distribution:
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Green nodes cleared the 2.5x theatrical breakeven threshold. Notice how green density dominates below $50M, while red nodes (theatrical losses) cluster densely in the $150M–$250M range (e.g., <em>John Carter</em>, <em>Battleship</em>, <em>Tomorrowland</em>).
-              </p>
-            </div>
-
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-sky-300 font-bold block">
-                Active Cohort Filter Stats:
-              </span>
-              <div className="text-xs font-mono text-slate-200 pt-0.5 space-y-1">
-                <div>Showing: <strong className="text-white">{filteredScatterMovies.length}</strong> of 52 sample films</div>
-                <div>Breakeven Rate in view: <strong className="text-emerald-400">{((filteredScatterMovies.filter(m => m.breakeven).length / Math.max(1, filteredScatterMovies.length)) * 100).toFixed(1)}%</strong></div>
-                <div>CatBoost Mean Residual: <strong className="text-sky-300">${(filteredScatterMovies.reduce((a, b) => a + Math.abs(b.residual), 0) / Math.max(1, filteredScatterMovies.length)).toFixed(1)}M</strong></div>
-              </div>
-            </div>
+          {/* Quick Stats Strip */}
+          <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 px-2">
+            <span>Showing <strong className="text-white">{filteredScatterMovies.length}</strong> films in view</span>
+            <span>Green = Cleared 2.5x Breakeven &bull; Rose = Theatrical Loss &bull; Sky Line = CatBoost Oblivious Tree Fit</span>
           </div>
 
         </div>
@@ -714,51 +615,36 @@ export const InteractiveVisualizationsSection: React.FC = () => {
 
 
       {/* ===================================================================== */}
-      {/* VISUALIZATION 2: INTERACTIVE BAR CHART                                */}
-      {/* MODEL 09: Random Forest Classifier (84.6% Acc, 0.892 ROC-AUC)         */}
+      {/* OPTION 2: RANDOM FOREST INTERACTIVE BAR CHART                         */}
       {/* ===================================================================== */}
-      {(activeInteractiveTab === 'all' || activeInteractiveTab === 'rf') && (
-        <div className="p-6 sm:p-7 rounded-2xl bg-[#0f131c] border border-[#1c2436] space-y-6">
+      {activeInteractiveTab === 'rf' && (
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0f131c] border border-[#1c2436] space-y-4">
           
-          {/* Header & Model Metadata */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#1c2436]">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
-                  Interactive Visualization 02 of 03 &bull; Bar Chart
-                </span>
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#121824] text-purple-400 border border-purple-500/30">
-                  Model 09: Random Forest Classifier
-                </span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Theatrical Breakeven Probabilities &amp; Margin Degradation Across 5 Budget Tiers
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1c2436]">
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#0c1626] text-purple-400 border border-purple-500/30">
+                Model 09: Random Forest Classifier
+              </span>
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                Breakeven Probabilities &amp; Margins Across 5 Budget Tiers
               </h3>
-              <p className="text-xs text-slate-400 font-light mt-1">
-                <strong>Research Question:</strong> At what capital threshold does the probability of theatrical breakeven plunge below 50%, and how does studio distribution power alter this threshold?
-              </p>
             </div>
-
-            <div className="flex items-center gap-2 font-mono text-xs shrink-0">
-              <div className="px-3 py-1.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">Classification Acc</span>
-                <span className="text-purple-300 font-bold">84.6% (500 Trees)</span>
-              </div>
-              <div className="px-3 py-1.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">ROC-AUC Score</span>
-                <span className="text-sky-400 font-bold">0.892</span>
-              </div>
+            <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
+              <span>Accuracy: <strong className="text-purple-300 font-bold">84.6%</strong></span>
+              <span>&bull;</span>
+              <span>ROC-AUC: <strong className="text-sky-400 font-bold">0.892</strong></span>
             </div>
           </div>
 
-          {/* Interactive Controls Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 p-4 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+          {/* Controls Bar */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
             
-            {/* Control 1: Metric Dropdown */}
+            {/* Metric Dropdown */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Eye className="w-3 h-3 text-sky-400" />
-                <span>Dropdown: Comparison Metric</span>
+                <span>Metric</span>
               </label>
               <select
                 value={rfMetric}
@@ -766,17 +652,17 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 className="w-full bg-[#07090e] border border-[#1c2436] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
               >
                 <option value="breakeven_comparison">Random Forest Predicted vs Empirical Breakeven (%)</option>
-                <option value="multiplier">Median Box Office Multiplier (x Gross Return)</option>
+                <option value="multiplier">Median Box Office Multiplier (x Return)</option>
                 <option value="studios">Major Conglomerate vs Independent Breakeven (%)</option>
                 <option value="flop_risk">Flop Risk Rate (Multiplier &lt; 1.0x) (%)</option>
               </select>
             </div>
 
-            {/* Control 2: Studio Category Selection */}
+            {/* Studio Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Filter className="w-3 h-3 text-sky-400" />
-                <span>Category: Production Studio Segment</span>
+                <span>Studio Segment</span>
               </label>
               <select
                 value={rfStudioFilter}
@@ -789,14 +675,14 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               </select>
             </div>
 
-            {/* Control 3: Hurdle Threshold Slider */}
+            {/* Breakeven Hurdle Slider */}
             <div className="space-y-1">
               <div className="flex items-center justify-between text-[10px] font-mono uppercase text-slate-400 font-bold">
                 <span className="flex items-center gap-1">
                   <Sliders className="w-3 h-3 text-sky-400" />
-                  <span>Breakeven Hurdle Slider</span>
+                  <span>Breakeven Hurdle</span>
                 </span>
-                <span className="text-purple-400 font-bold">{rfHurdleThreshold.toFixed(1)}x Breakeven</span>
+                <span className="text-purple-400 font-bold">{rfHurdleThreshold.toFixed(1)}x Multiple</span>
               </div>
               <input
                 type="range"
@@ -805,19 +691,19 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 step="0.1"
                 value={rfHurdleThreshold}
                 onChange={(e) => setRfHurdleThreshold(Number(e.target.value))}
-                className="w-full accent-purple-400 cursor-pointer h-1.5 bg-[#07090e] rounded-lg"
+                className="w-full accent-purple-400 cursor-pointer h-1.5 bg-[#07090e] rounded-lg mt-1"
               />
               <div className="flex justify-between text-[9px] font-mono text-slate-500">
-                <span>1.8x (Lean Theatrical)</span>
+                <span>1.8x</span>
                 <span>2.5x Standard</span>
-                <span>3.2x (High P&amp;A Surcharge)</span>
+                <span>3.2x</span>
               </div>
             </div>
 
           </div>
 
           {/* Recharts Bar Canvas */}
-          <div className="h-[400px] w-full bg-[#07090e] rounded-xl border border-[#1c2436] p-3 sm:p-4">
+          <div className="h-[430px] w-full bg-[#07090e] rounded-xl border border-[#1c2436] p-3 sm:p-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={displayBarData} margin={{ top: 20, right: 30, bottom: 25, left: 15 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1c2436" opacity={0.6} />
@@ -843,9 +729,8 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   }}
                 />
                 
-                {/* 50% Threshold Reference Line */}
                 {rfMetric !== 'multiplier' && (
-                  <ReferenceLine y={50} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: '50% Majority Breakeven Line', fill: '#94a3b8', fontSize: 10, position: 'right' }} />
+                  <ReferenceLine y={50} stroke="#94a3b8" strokeDasharray="4 4" label={{ value: '50% Threshold', fill: '#94a3b8', fontSize: 10, position: 'right' }} />
                 )}
 
                 <Tooltip 
@@ -866,9 +751,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                             <div><span className="text-slate-500">Median Multiplier:</span> {d.medianMultiplier}x</div>
                             <div><span className="text-slate-500">Major Studios:</span> {d.majorStudioRate}% &bull; <span className="text-slate-500">Indies:</span> {d.indieStudioRate}%</div>
                             <div><span className="text-slate-500">Flop Rate (&lt;1.0x):</span> <span className="text-rose-400">{d.flopRate}%</span></div>
-                          </div>
-                          <div className="pt-1 border-t border-[#1c2436] text-[10px] text-amber-300">
-                            Risk Profile: {d.marginRisk}
                           </div>
                         </div>
                       );
@@ -910,34 +792,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          {/* Key Empirical Takeaways */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-purple-400 font-bold block">
-                Peak Capital Efficiency Peak ($5M–$25M):
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                The Low-Budget bracket displays the highest breakeven clearance rate in the industry at <strong>61.8%</strong>, with the lowest catastrophic flop risk (21.2%). Random Forest attributes highest positive leaf weight to this band.
-              </p>
-            </div>
-
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-rose-400 font-bold block">
-                The Mega-Budget Trap ($140M+):
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Above $140M, the breakeven rate plummets to <strong>43.4%</strong>. Over 46% of mega-budget releases fail to recoup their production budget theatrical costs, exposing studio balance sheets to severe single-project downside.
-              </p>
-            </div>
-
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-sky-400 font-bold block">
-                Dynamic Hurdle Sensitivity:
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                When you increase the breakeven hurdle from 2.0x to 3.0x using the slider above, mega-budget profitability collapses from 52% down to 31%, proving that studio marketing escalation disproportionately punishes large-scale productions.
-              </p>
-            </div>
+          {/* Quick Stats Strip */}
+          <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 px-2">
+            <span>Peak capital efficiency in <strong className="text-emerald-400">$5M–$25M sweet spot (61.8% Breakeven)</strong></span>
+            <span>Mega-budgets ($140M+) collapse to <strong className="text-rose-400">43.4% breakeven</strong> with 46.1% flop risk</span>
           </div>
 
         </div>
@@ -945,51 +803,36 @@ export const InteractiveVisualizationsSection: React.FC = () => {
 
 
       {/* ===================================================================== */}
-      {/* VISUALIZATION 3: INTERACTIVE TIME-SERIES                              */}
-      {/* MODEL 19: Bayesian Ridge Regression (40-Year Macro ROI, Credible Band) */}
+      {/* OPTION 3: BAYESIAN RIDGE TIME-SERIES                                  */}
       {/* ===================================================================== */}
-      {(activeInteractiveTab === 'all' || activeInteractiveTab === 'bayesian') && (
-        <div className="p-6 sm:p-7 rounded-2xl bg-[#0f131c] border border-[#1c2436] space-y-6">
+      {activeInteractiveTab === 'bayesian' && (
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#0f131c] border border-[#1c2436] space-y-4">
           
-          {/* Header & Model Metadata */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#1c2436]">
-            <div>
-              <div className="flex items-center gap-2 mb-1.5">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
-                  Interactive Visualization 03 of 03 &bull; Time-Series
-                </span>
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#121824] text-amber-400 border border-amber-500/30">
-                  Model 19: Bayesian Ridge Time-Series Regression
-                </span>
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                40-Year Macro ROI Erosion (1980–2020) &amp; Bayesian 95% Credible Corridor
+          {/* Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1c2436]">
+            <div className="flex items-center gap-2.5">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#0c1626] text-amber-400 border border-amber-500/30">
+                Model 19: Bayesian Ridge Regression
+              </span>
+              <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                40-Year Macro ROI Trajectory (1980–2020) &amp; Credible Corridor
               </h3>
-              <p className="text-xs text-slate-400 font-light mt-1">
-                <strong>Research Question:</strong> How has the secular rise in tentpole production budgets eroded industry-wide box office multipliers over four decades, and what does the Bayesian credible corridor reveal about post-2010 risk?
-              </p>
             </div>
-
-            <div className="flex items-center gap-2 font-mono text-xs shrink-0">
-              <div className="px-3 py-1.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">Posterior Residual Std</span>
-                <span className="text-amber-400 font-bold">&sigma; = 0.142</span>
-              </div>
-              <div className="px-3 py-1.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-right">
-                <span className="text-[10px] text-slate-400 block uppercase">Historical Span</span>
-                <span className="text-sky-300 font-bold">41 Years (1980–2020)</span>
-              </div>
+            <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
+              <span>Residual Std: <strong className="text-amber-400 font-bold">&sigma; = 0.142</strong></span>
+              <span>&bull;</span>
+              <span>Span: <strong className="text-sky-300 font-bold">41 Years</strong></span>
             </div>
           </div>
 
-          {/* Interactive Controls Bar */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-3 p-4 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+          {/* Controls Bar */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
             
-            {/* Control 1: Metric Dropdown */}
+            {/* Metric Dropdown */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Eye className="w-3 h-3 text-sky-400" />
-                <span>Dropdown: Time-Series Metric</span>
+                <span>Metric</span>
               </label>
               <select
                 value={bayesianMetric}
@@ -998,34 +841,34 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               >
                 <option value="multiplier">Median Box Office Multiplier &amp; Bayesian Posterior (x)</option>
                 <option value="budget">Average Industry Production Budget ($M Escalation)</option>
-                <option value="mega_share">Mega-Budget ($100M+) Share of Theatrical Releases (%)</option>
+                <option value="mega_share">Mega-Budget ($100M+) Share of Releases (%)</option>
               </select>
             </div>
 
-            {/* Control 2: Category Decade Filter */}
+            {/* Decade Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Calendar className="w-3 h-3 text-sky-400" />
-                <span>Category: Filter by Era</span>
+                <span>Filter Era</span>
               </label>
               <select
                 value={bayesianDecade}
                 onChange={(e) => setBayesianDecade(e.target.value as any)}
                 className="w-full bg-[#07090e] border border-[#1c2436] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
               >
-                <option value="all">All 41 Years (1980–2020 Full Span)</option>
-                <option value="1980s">1980s Era (Golden ROI Peak: 4.35x &rarr; 3.6x)</option>
+                <option value="all">All 41 Years (1980–2020)</option>
+                <option value="1980s">1980s Era (Golden ROI Peak: 4.35x)</option>
                 <option value="1990s">1990s Era (Blockbuster Industrialization)</option>
-                <option value="2000s">2000s Era (CGI Escalation &amp; Franchise Era)</option>
+                <option value="2000s">2000s Era (CGI &amp; Franchise Era)</option>
                 <option value="2010s">2010s Era (Mega-Budget Diminishing Returns)</option>
               </select>
             </div>
 
-            {/* Control 3: Credible Interval Toggle */}
+            {/* Credible Band Toggle */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
                 <Activity className="w-3 h-3 text-sky-400" />
-                <span>Category: Uncertainty Band</span>
+                <span>95% Credible Band</span>
               </label>
               <button
                 onClick={() => setShowCredibleBand(!showCredibleBand)}
@@ -1035,26 +878,15 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                     : 'bg-[#07090e] border-[#1c2436] text-slate-400'
                 }`}
               >
-                <span>95% Credible Band</span>
+                <span>Shaded Corridor</span>
                 <span className="text-[10px] font-bold">{showCredibleBand ? 'Visible' : 'Hidden'}</span>
               </button>
-            </div>
-
-            {/* Control 4: Quick Reset or Brush Info */}
-            <div className="space-y-1">
-              <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Maximize2 className="w-3 h-3 text-sky-400" />
-                <span>Interactive Zoom Brush</span>
-              </label>
-              <div className="p-1.5 rounded-lg bg-[#07090e] border border-[#1c2436] text-[11px] font-mono text-slate-400">
-                Drag the bottom handles to pan and zoom across any decade
-              </div>
             </div>
 
           </div>
 
           {/* Recharts Composed Time-Series Canvas */}
-          <div className="h-[430px] w-full bg-[#07090e] rounded-xl border border-[#1c2436] p-3 sm:p-4">
+          <div className="h-[460px] w-full bg-[#07090e] rounded-xl border border-[#1c2436] p-3 sm:p-4">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={filteredTimeSeries} margin={{ top: 20, right: 30, bottom: 10, left: 15 }}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#1c2436" opacity={0.6} />
@@ -1082,9 +914,8 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   }}
                 />
 
-                {/* Theatrical Breakeven Reference Line */}
                 {bayesianMetric === 'multiplier' && (
-                  <ReferenceLine y={2.5} stroke="#f43f5e" strokeDasharray="4 4" label={{ value: '2.5x Breakeven Baseline', fill: '#f43f5e', fontSize: 10, position: 'right' }} />
+                  <ReferenceLine y={2.5} stroke="#f43f5e" strokeDasharray="4 4" label={{ value: '2.5x Breakeven', fill: '#f43f5e', fontSize: 10, position: 'right' }} />
                 )}
 
                 <Tooltip 
@@ -1113,7 +944,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   }}
                 />
 
-                {/* Shaded 95% Credible Band */}
                 {bayesianMetric === 'multiplier' && showCredibleBand && (
                   <Area 
                     type="monotone" 
@@ -1135,7 +965,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   />
                 )}
 
-                {/* Bayesian Mean Trajectory */}
                 {bayesianMetric === 'multiplier' && (
                   <Line 
                     type="monotone" 
@@ -1147,7 +976,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   />
                 )}
 
-                {/* Empirical Historical Data */}
                 {bayesianMetric === 'multiplier' && (
                   <Line 
                     type="monotone" 
@@ -1159,7 +987,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   />
                 )}
 
-                {/* Production Budget Metric View */}
                 {bayesianMetric === 'budget' && (
                   <Area 
                     type="monotone" 
@@ -1173,7 +1000,6 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   />
                 )}
 
-                {/* Mega-Budget Share View */}
                 {bayesianMetric === 'mega_share' && (
                   <Area 
                     type="monotone" 
@@ -1187,7 +1013,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   />
                 )}
 
-                {/* Interactive Zoom Brush at the bottom of the time series */}
+                {/* Interactive Zoom Brush at the bottom */}
                 <Brush 
                   dataKey="year" 
                   height={28} 
@@ -1200,34 +1026,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             </ResponsiveContainer>
           </div>
 
-          {/* Time-Series Analytical Takeaways */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-amber-400 font-bold block">
-                The Secular Multiplier Halving:
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                In the early 1980s, the median theatrical release returned <strong>4.35x its production budget</strong>. By 2019, that median plummeted to <strong>2.18x</strong>—slipping below the 2.5x marketing breakeven threshold.
-              </p>
-            </div>
-
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-sky-400 font-bold block">
-                Average Production Budget Hyper-Inflation:
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Average studio production budgets escalated by nearly 10x (from $11.2M in 1980 to $104M in 2019). Switch the metric dropdown above to &quot;Average Production Budget&quot; to inspect this exponential climb.
-              </p>
-            </div>
-
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-1">
-              <span className="text-[10px] font-mono uppercase text-purple-400 font-bold block">
-                Bayesian Prior Regularization:
-              </span>
-              <p className="text-xs text-slate-300 font-light leading-relaxed">
-                Model 19 imposes a Gamma prior over observation precision, insulating the secular macro trend line from viral box office anomalies (such as <em>Avatar</em> in 2009 or the 2020 theater lockdowns).
-              </p>
-            </div>
+          {/* Quick Stats Strip */}
+          <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 px-2">
+            <span>Historical Multiplier eroded from <strong className="text-emerald-400">4.35x (1980)</strong> down to <strong className="text-rose-400">2.18x (2019)</strong></span>
+            <span>Use the drag handles on the bottom timeline brush to zoom into specific eras</span>
           </div>
 
         </div>
