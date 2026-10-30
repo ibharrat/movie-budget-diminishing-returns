@@ -88,7 +88,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           </button>
         </nav>
 
-        {/* External Colab & Kaggle Links */}
+        {/* External Colab, Overleaf & Kaggle Links */}
         <div className="hidden md:flex items-center gap-2 shrink-0">
           <a
             href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing"
@@ -98,6 +98,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
           >
             <span>Colab</span>
             <ExternalLink className="w-3.5 h-3.5 text-sky-400" />
+          </a>
+          <a
+            href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-xs text-emerald-300 hover:text-white font-mono transition-colors border border-emerald-500/40 hover:border-emerald-400 px-3 py-1.5 rounded-md bg-[#0c1f18]"
+          >
+            <span>Overleaf</span>
+            <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
           </a>
           <a
             href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset"

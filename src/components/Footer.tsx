@@ -18,6 +18,16 @@ export const Footer: React.FC = () => {
           </a>
           <span className="text-slate-600 hidden sm:inline">&bull;</span>
           <a
+            href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-emerald-300 text-emerald-400 transition-colors inline-flex items-center gap-1.5 font-mono"
+          >
+            <span>Overleaf Paper</span>
+            <ExternalLink className="w-3 h-3 text-emerald-400" />
+          </a>
+          <span className="text-slate-600 hidden sm:inline">&bull;</span>
+          <a
             href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
             target="_blank"
             rel="noreferrer"
