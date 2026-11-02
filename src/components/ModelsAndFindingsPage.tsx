@@ -71,7 +71,7 @@ export const ModelsAndFindingsPage: React.FC<ModelsAndFindingsPageProps> = ({
   onNavigateToSql,
   onNavigateToCleaning
 }) => {
-  const [activeSubView, setActiveSubView] = useState<'interactive' | 'explorer' | 'matrix' | 'analysis'>('interactive');
+  const [activeSubView, setActiveSubView] = useState<'interactive' | 'explorer' | 'matrix'>('interactive');
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'linear_kernel' | 'ensemble' | 'deep_learning' | 'econometric'>('all');
   const [selectedModelId, setSelectedModelId] = useState<string>('catboost');
   const [modelCardTab, setModelCardTab] = useState<'evidence' | 'code'>('evidence');
@@ -1242,9 +1242,9 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           </div>
         </div>
 
-        {/* 4 Main View Switcher Tabs */}
+        {/* 3 Main View Switcher Tabs */}
         <div className="pt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-1.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
             <button
               onClick={() => setActiveSubView('interactive')}
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
@@ -1277,17 +1277,6 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
             >
               <Table className="w-4 h-4" />
               <span>3. 20-Model Benchmark Table</span>
-            </button>
-            <button
-              onClick={() => setActiveSubView('analysis')}
-              className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
-                activeSubView === 'analysis'
-                  ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-[#121824]'
-              }`}
-            >
-              <Award className="w-4 h-4" />
-              <span>4. Best Models Analysis &amp; Why</span>
             </button>
           </div>
         </div>
@@ -1888,122 +1877,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
         </div>
       )}
 
-      {/* ===================================================================== */}
-      {/* VIEW 3: BEST MODELS ANALYSIS & WHY                                    */}
-      {/* ===================================================================== */}
-      {activeSubView === 'analysis' && (
-        <div className="space-y-6">
-          <div className="p-6 sm:p-8 rounded-xl bg-[#0f131c] border border-[#1c2436] space-y-6">
-            <div className="space-y-1 pb-4 border-b border-[#1c2436]">
-              <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
-                Experimental Synthesis &amp; Findings
-              </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Which Models Perform Best and Why: Comparative Analysis
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-3xl">
-                Addressing the experimental requirement: an evidence-based breakdown analyzing performance tradeoffs across continuous regression, binary breakeven classification, mathematical interpretability, and unsupervised archetype discovery.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              
-              {/* Finding 1 */}
-              <div className="p-5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-sky-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    1. Best Continuous Revenue Regressors
-                  </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/30 font-bold">
-                    CatBoost &amp; XGBoost
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white">
-                  Why Tree Boosting Beats Linear Baselines on Revenue Scale (R² = 0.771 vs 0.548)
-                </h4>
-                <p className="text-xs text-slate-300 leading-relaxed font-light">
-                  Standard Ordinary Least Squares (OLS) and Ridge baselines fail (R² = 0.548) because movie box office data follows an extreme power-law distribution. CatBoost achieves the top score (R² = 0.771) because its online target statistics natively process high-cardinality studio identities (150+ companies) and multi-genre labels without data leakage. XGBoost (R² = 0.768) follows closely, utilizing second-order Taylor series gradients and regularized leaf splits to capture the steep sublinear flattening of revenue past $100M without being distorted by mega-budget outliers.
-                </p>
-              </div>
-
-              {/* Finding 2 */}
-              <div className="p-5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-sky-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    2. Best Binary Breakeven Classifier
-                  </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/30 font-bold">
-                    Random Forest (84.6% Acc)
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white">
-                  Why Bagging Outperforms Single Models on Theatrical Breakeven
-                </h4>
-                <p className="text-xs text-slate-300 leading-relaxed font-light">
-                  Predicting binary commercial breakeven (<code className="text-sky-300 font-mono">multiplier &gt;= 2.5x</code>) is highly susceptible to viral low-budget anomalies like <em>Paranormal Activity</em> (12,890x return). Random Forest excels (84.6% accuracy, 0.892 ROC-AUC) because bootstrap aggregating across 500 decision trees averages out extreme variance. Individual outliers cannot hijack the majority vote, allowing the ensemble to learn robust, generalizable breakeven rules based on budget bracket and release seasonality.
-                </p>
-              </div>
-
-              {/* Finding 3 */}
-              <div className="p-5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-sky-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    3. Best Mathematical Interpretability
-                  </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/30 font-bold">
-                    ElasticNet Splines &amp; Logistic
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white">
-                  Isolating the Mathematical Inflection Point ($42.5M dy/dx Threshold)
-                </h4>
-                <p className="text-xs text-slate-300 leading-relaxed font-light">
-                  While deep transformers act as black boxes, ElasticNet Polynomial Splines and Logistic Regression provide closed-form, transparent mathematical representations. ElasticNet Splines enables the continuous first derivative <code className="text-sky-300 font-mono">d(Revenue)/d(Budget)</code>, which identifies that the marginal return per dollar invested drops below the $2.50 theatrical breakeven threshold at exactly $42.5 Million. Logistic regression validates this, showing that odds of breakeven drop by 18.4% for every $10M added.
-                </p>
-              </div>
-
-              {/* Finding 4 */}
-              <div className="p-5 rounded-lg bg-[#0b0e15] border border-[#1c2436] space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold text-sky-400 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-sky-400" />
-                    4. Best Unsupervised Market Archetyping
-                  </span>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/30 font-bold">
-                    K-Means &amp; PCA (78.4% Var)
-                  </span>
-                </div>
-                <h4 className="text-base font-bold text-white">
-                  Discovering Natural Commercial Segments Without Human Bias
-                </h4>
-                <p className="text-xs text-slate-300 leading-relaxed font-light">
-                  Rather than grouping films by arbitrary genre classifications, projecting 24 variables onto 2 principal variance axes (PCA) captures 78.4% of total variance. K-Means clustering (k=4) cleanly segments the industry into: (1) High-Efficiency Indie Breakouts, (2) Disciplined Mid-Budget Profiteers, (3) Mega-Blockbuster Scale Drivers, and (4) High-Budget Loss Traps—proving that capital structure dictates movie outcomes more than genre alone.
-                </p>
-              </div>
-
-            </div>
-
-            {/* Python Environment Verification */}
-            <div className="p-4 sm:p-5 rounded-lg bg-[#0c1421] border border-sky-500/30 space-y-2">
-              <div className="flex items-center gap-2">
-                <Code className="w-4 h-4 text-sky-400" />
-                <span className="text-xs font-mono text-sky-400 font-bold uppercase tracking-wider">
-                  Python Environment &amp; Code Execution Standards
-                </span>
-              </div>
-              <p className="text-xs text-slate-300 leading-relaxed font-light">
-                All models are executed in Python utilizing standardized open-source libraries: <code className="text-sky-300 font-mono">xgboost</code>, <code className="text-sky-300 font-mono">catboost</code>, <code className="text-sky-300 font-mono">lightgbm</code>, and <code className="text-sky-300 font-mono">scikit-learn</code>. Datasets are standardized using 5-fold cross-validation, stratified sampling on the 2.5x breakeven target, and log10 feature scaling to guarantee scientific reproducibility.
-              </p>
-            </div>
-
-          </div>
-        </div>
-      )}
-
-      {/* 5. Bottom Navigation Strip */}
+{/* 5. Bottom Navigation Strip */}
       <div className="p-6 sm:p-8 rounded-xl bg-[#0c1421] border border-sky-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
           <span className="text-xs font-mono text-sky-400 font-semibold uppercase tracking-wider block">
