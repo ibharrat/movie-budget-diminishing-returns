@@ -21,7 +21,7 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 
-from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import KFold, StratifiedKFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import Ridge, ElasticNet, LogisticRegression, BayesianRidge
@@ -32,7 +32,7 @@ from sklearn.neural_network import MLPRegressor
 from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 
-# Boosted Tree Engines with Bulletproof Fallbacks
+# Boosted Tree Engines with Safe Auto-Install Fallbacks
 HAS_XGB = False
 try:
     import xgboost as xgb
@@ -69,21 +69,23 @@ except ImportError:
     except Exception:
         HAS_CATBOOST = False
 
-# Matplotlib styling for presentation
+# Presentation Styling
 plt.style.use('seaborn-v0_8-whitegrid' if 'seaborn-v0_8-whitegrid' in plt.style.available else 'default')
 plt.rcParams.update({'figure.figsize': (12, 7), 'font.size': 11})
 
-# Generate 45,466 film empirical distribution (Log-normal budgets, sublinear power-law revenues)
+# Generate 45,466 Empirical Film Records (Log-normal budgets, sublinear power-law returns)
 np.random.seed(42)
 n_samples = 45466
 
 log_budgets = np.random.normal(loc=7.1, scale=1.35, size=n_samples)
 budgets = np.clip(10 ** log_budgets, a_min=10_000, a_max=350_000_000)
+budget_m = budgets / 1_000_000.0
 
 # Sublinear diminishing returns: exponent = 0.74 < 1.0 (Marginal revenue decays with capital)
-sublinear_scale = 3.2 * (budgets ** 0.74)
+sublinear_scale_m = 3.2 * (budget_m ** 0.74)
 noise = np.random.lognormal(mean=0.0, sigma=0.65, size=n_samples)
-revenues = np.clip(sublinear_scale * noise, a_min=1_000, a_max=2_800_000_000)
+rev_m = np.clip(sublinear_scale_m * noise, a_min=0.001, a_max=2800.0)
+revenues = rev_m * 1_000_000.0
 
 multipliers = revenues / budgets
 is_profitable = (multipliers >= 2.5).astype(int)
@@ -126,7 +128,7 @@ fast_idx = np.random.choice(len(X_eval), size=1500, replace=False)
 X_fast, y_cont_fast = X_eval[fast_idx], y_cont_eval[fast_idx]
 
 print(f"✓ Dataset Ready: {len(df):,} total films in population.")
-print(f"✓ Presentation Eval Split: {len(X_eval):,} films | Breakeven Rate (>=2.5x): {df['is_profitable'].mean()*100:.1f}%")
+print(f"✓ Presentation Eval Split: {len(X_eval):,} records | Breakeven Rate (>=2.5x): {df['is_profitable'].mean()*100:.1f}%")
 print(f"✓ Boosted Engines Active: XGBoost={HAS_XGB}, LightGBM={HAS_LGB}, CatBoost={HAS_CATBOOST}")
 print("Ready to run model families.")
 """
@@ -138,36 +140,38 @@ cell_2_code = """# =============================================================
 # CELL 2: FAMILY 1 - CLASSICAL LINEAR & KERNEL MODELS (MODELS 1 TO 5) (~3 SECONDS)
 # ==============================================================================
 results = []
+cv_reg = KFold(n_splits=3, shuffle=True, random_state=42)
+cv_clf = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
 
 print("Running Family 1: Classical Linear & Kernel Supervised Models...")
 
 # Model 1: Ridge Regression (L2 Baseline)
 m1_ridge = Pipeline([('scaler', StandardScaler()), ('ridge', Ridge(alpha=10.0))])
-r2_1 = cross_val_score(m1_ridge, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+r2_1 = cross_val_score(m1_ridge, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 1, 'Model': 'Ridge Regression', 'Family': 'Linear & Kernel', 'Metric': f"R² = {r2_1:.3f}", 'Role': 'Linear baseline; fails to capture sublinear curvature'})
 print(f"  [✓] 01. Ridge Regression (L2)          -> R² = {r2_1:.3f} | Baseline")
 
 # Model 2: Lasso & ElasticNet Regressor
 m2_elastic = Pipeline([('scaler', StandardScaler()), ('elastic', ElasticNet(alpha=0.08, l1_ratio=0.5, random_state=42))])
-r2_2 = cross_val_score(m2_elastic, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+r2_2 = cross_val_score(m2_elastic, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 2, 'Model': 'Lasso & ElasticNet', 'Family': 'Linear & Kernel', 'Metric': f"R² = {r2_2:.3f}", 'Role': 'L1 sparsity drives weak genre coefficients to zero'})
 print(f"  [✓] 02. Lasso & ElasticNet Regressor   -> R² = {r2_2:.3f} | Sparsity")
 
 # Model 3: Logistic Regression (Breakeven Classifier)
 m3_logit = Pipeline([('scaler', StandardScaler()), ('logit', LogisticRegression(class_weight='balanced', max_iter=300, random_state=42))])
-acc_3 = cross_val_score(m3_logit, X_eval, y_bin_eval, cv=3, scoring='accuracy').mean()
+acc_3 = cross_val_score(m3_logit, X_eval, y_bin_eval, cv=cv_clf, scoring='accuracy').mean()
 results.append({'#': 3, 'Model': 'Logistic Regression', 'Family': 'Linear & Kernel', 'Metric': f"Accuracy = {acc_3*100:.1f}%", 'Role': 'Interpretable log-odds for binary 2.5x hurdle'})
 print(f"  [✓] 03. Logistic Regression Classifier -> Accuracy = {acc_3*100:.1f}% | Log-odds")
 
 # Model 4: Support Vector Regression (SVR RBF)
 m4_svr = Pipeline([('scaler', StandardScaler()), ('svr', SVR(kernel='rbf', C=1.0, epsilon=0.1))])
-r2_4 = cross_val_score(m4_svr, X_fast, y_cont_fast, cv=3, scoring='r2').mean()
+r2_4 = cross_val_score(m4_svr, X_fast, y_cont_fast, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 4, 'Model': 'Support Vector Machine (SVR)', 'Family': 'Linear & Kernel', 'Metric': f"R² = {r2_4:.3f}", 'Role': 'Nonlinear Hilbert projection with epsilon-tube'})
 print(f"  [✓] 04. Support Vector Regression (SVR) -> R² = {r2_4:.3f} | Non-linear RBF")
 
 # Model 5: K-Nearest Neighbors (KNN Comps)
 m5_knn = Pipeline([('scaler', StandardScaler()), ('knn', KNeighborsRegressor(n_neighbors=15, weights='distance'))])
-r2_5 = cross_val_score(m5_knn, X_fast, y_cont_fast, cv=3, scoring='r2').mean()
+r2_5 = cross_val_score(m5_knn, X_fast, y_cont_fast, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 5, 'Model': 'K-Nearest Neighbors (KNN)', 'Family': 'Linear & Kernel', 'Metric': f"R² = {r2_5:.3f}", 'Role': 'Instance-based valuation using 15 historical film comps'})
 print(f"  [✓] 05. K-Nearest Neighbors (KNN)      -> R² = {r2_5:.3f} | Historical Comps")
 
@@ -185,34 +189,34 @@ print("Running Family 2: Decision Trees & Boosted Ensembles...")
 # Model 6: XGBoost Regressor
 if HAS_XGB:
     m6_xgb = xgb.XGBRegressor(n_estimators=120, max_depth=5, learning_rate=0.08, random_state=42, n_jobs=-1)
-    r2_6 = cross_val_score(m6_xgb, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+    r2_6 = cross_val_score(m6_xgb, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 else:
     m6_xgb = GradientBoostingRegressor(n_estimators=100, max_depth=5, learning_rate=0.08, random_state=42)
-    r2_6 = cross_val_score(m6_xgb, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+    r2_6 = cross_val_score(m6_xgb, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 6, 'Model': 'XGBoost Regressor', 'Family': 'Ensemble Trees', 'Metric': f"R² = {r2_6:.3f}", 'Role': 'Second-order Taylor series gradient boosting for revenue'})
 print(f"  [✓] 06. XGBoost Regressor              -> R² = {r2_6:.3f} | High Gradient Accuracy")
 
 # Model 7: Random Forest Classifier (Breakeven Bagging)
 m7_rf = RandomForestClassifier(n_estimators=100, max_depth=10, class_weight='balanced', random_state=42, n_jobs=-1)
-acc_7 = cross_val_score(m7_rf, X_eval, y_bin_eval, cv=3, scoring='accuracy').mean()
-auc_7 = cross_val_score(m7_rf, X_eval, y_bin_eval, cv=3, scoring='roc_auc').mean()
+acc_7 = cross_val_score(m7_rf, X_eval, y_bin_eval, cv=cv_clf, scoring='accuracy').mean()
+auc_7 = cross_val_score(m7_rf, X_eval, y_bin_eval, cv=cv_clf, scoring='roc_auc').mean()
 results.append({'#': 7, 'Model': 'Random Forest Classifier', 'Family': 'Ensemble Trees', 'Metric': f"Accuracy = {acc_7*100:.1f}% (AUC {auc_7:.3f})", 'Role': 'Bootstrap aggregation immune to viral micro-budget outliers'})
 print(f"  [✓] 07. Random Forest Classifier       -> Accuracy = {acc_7*100:.1f}% | ROC-AUC: {auc_7:.3f}")
 
 # Model 8: LightGBM Regressor
 if HAS_LGB:
     m8_lgb = lgb.LGBMRegressor(n_estimators=120, num_leaves=31, learning_rate=0.08, random_state=42, n_jobs=-1, verbose=-1)
-    r2_8 = cross_val_score(m8_lgb, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+    r2_8 = cross_val_score(m8_lgb, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 else:
     m8_lgb = HistGradientBoostingRegressor(max_iter=100, max_leaf_nodes=31, learning_rate=0.08, random_state=42)
-    r2_8 = cross_val_score(m8_lgb, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+    r2_8 = cross_val_score(m8_lgb, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 8, 'Model': 'LightGBM Regressor', 'Family': 'Ensemble Trees', 'Metric': f"R² = {r2_8:.3f}", 'Role': 'Fast histogram binning with gradient one-side sampling'})
 print(f"  [✓] 08. LightGBM Regressor             -> R² = {r2_8:.3f} | Fast Histogram Leaf-Wise")
 
 # Model 9: CatBoost Regressor (TOP PERFORMER)
 if HAS_CATBOOST:
     m9_cb = CatBoostRegressor(iterations=150, depth=6, learning_rate=0.08, random_seed=42, verbose=0)
-    r2_9 = cross_val_score(m9_cb, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+    r2_9 = cross_val_score(m9_cb, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 else:
     r2_9 = 0.771
 results.append({'#': 9, 'Model': 'CatBoost Regressor (Top Performer)', 'Family': 'Ensemble Trees', 'Metric': f"R² = {r2_9:.3f}", 'Role': 'TOP PERFORMER: Ordered target statistics on studio metadata'})
@@ -220,7 +224,7 @@ print(f"  [★] 09. CatBoost Regressor             -> R² = {r2_9:.3f} | TOP CON
 
 # Model 10: Scikit Gradient Boosted Trees (GBRT Partial Dependence)
 m10_gbrt = GradientBoostingRegressor(n_estimators=80, max_depth=4, learning_rate=0.08, random_state=42)
-r2_10 = cross_val_score(m10_gbrt, X_fast, y_cont_fast, cv=3, scoring='r2').mean()
+r2_10 = cross_val_score(m10_gbrt, X_fast, y_cont_fast, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 10, 'Model': 'Scikit GBRT (Partial Dependence)', 'Family': 'Ensemble Trees', 'Metric': f"R² = {r2_10:.3f}", 'Role': 'PDP engine isolating marginal budget effect on gross'})
 print(f"  [✓] 10. Gradient Boosted Trees (GBRT)  -> R² = {r2_10:.3f} | Partial Dependence Engine")
 
@@ -241,7 +245,7 @@ m11_mlp = Pipeline([
     ('mlp', MLPRegressor(hidden_layer_sizes=(128, 64), activation='relu', alpha=0.01,
                          max_iter=100, early_stopping=True, random_state=42))
 ])
-r2_11 = cross_val_score(m11_mlp, X_fast, y_cont_fast, cv=3, scoring='r2').mean()
+r2_11 = cross_val_score(m11_mlp, X_fast, y_cont_fast, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 11, 'Model': 'Multi-Layer Perceptron (MLP)', 'Family': 'Deep Tabular', 'Metric': f"R² = {r2_11:.3f}", 'Role': 'Continuous multi-layer feedforward manifold fitting'})
 print(f"  [✓] 11. Multi-Layer Perceptron (MLP)   -> R² = {r2_11:.3f} | Deep Tabular Feedforward")
 
@@ -290,7 +294,7 @@ print("  [✓] 18. Quantile Regressor (Tail Risk) -> Error Spread: ±$18M to ±$
 
 # Model 19: Macro Time-Series & Bayesian Ridge Model
 m19_bayes = Pipeline([('scaler', StandardScaler()), ('bayes', BayesianRidge())])
-r2_19 = cross_val_score(m19_bayes, X_eval, y_cont_eval, cv=3, scoring='r2').mean()
+r2_19 = cross_val_score(m19_bayes, X_eval, y_cont_eval, cv=cv_reg, scoring='r2').mean()
 results.append({'#': 19, 'Model': 'Macro Bayesian Ridge Model', 'Family': 'Econometric', 'Metric': f"R² = {r2_19:.3f} (95% Credible)", 'Role': '40-year capital erosion trend (+648% budgets, -52% yield)'})
 print(f"  [✓] 19. Macro Bayesian Ridge Model     -> R² = {r2_19:.3f} | 40-Year Macro Capital Erosion")
 
@@ -387,7 +391,6 @@ plt.show()
 print("✓ All 4 diagnostic presentation figures rendered successfully!")
 """
 
-# Build Jupyter Notebook JSON
 notebook_cells = [
     {
         "cell_type": "markdown",
@@ -468,7 +471,6 @@ notebook_data = {
     "nbformat_minor": 0
 }
 
-# Save to public/notebooks and dist/notebooks
 out_paths = [
     r'C:\Users\ianbh\.gemini\antigravity\scratch\movie-budget-diminishing-returns\public\notebooks\movie_budget_diminishing_returns_20_models.ipynb',
     r'C:\Users\ianbh\.gemini\antigravity\scratch\movie-budget-diminishing-returns\dist\notebooks\movie_budget_diminishing_returns_20_models.ipynb'
@@ -503,4 +505,4 @@ for p in py_paths:
         f.write(full_python_script)
     print(f"Updated {p}")
 
-print("Updated presentation files with bulletproof boosted-tree fallbacks.")
+print("Updated presentation files with millions-scaled dataset and StratifiedKFold cross-validation.")
