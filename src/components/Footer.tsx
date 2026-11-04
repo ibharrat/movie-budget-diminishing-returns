@@ -11,10 +11,10 @@ export const Footer: React.FC = () => {
             href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-white text-sky-400 transition-colors inline-flex items-center gap-1.5 font-mono"
+            className="hover:text-white text-red-500 transition-colors inline-flex items-center gap-1.5 font-mono"
           >
             <span>Colab</span>
-            <ExternalLink className="w-3 h-3 text-sky-400" />
+            <ExternalLink className="w-3 h-3 text-red-500" />
           </a>
           <span className="text-slate-600 hidden sm:inline">&bull;</span>
           <a
@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
             className="hover:text-white text-slate-300 transition-colors inline-flex items-center gap-1.5"
           >
             <span>Kaggle Dataset by sibamsamanta07</span>
-            <ExternalLink className="w-3 h-3 text-sky-400" />
+            <ExternalLink className="w-3 h-3 text-red-500" />
           </a>
         </div>
       </div>

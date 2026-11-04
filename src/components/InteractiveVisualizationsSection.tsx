@@ -363,7 +363,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           onClick={() => setActiveInteractiveTab('catboost')}
           className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
             activeInteractiveTab === 'catboost'
-              ? 'bg-sky-500 text-slate-950 shadow-sm'
+              ? 'bg-red-600 text-slate-950 shadow-sm'
               : 'text-slate-300 hover:text-white hover:bg-[#151518]'
           }`}
         >
@@ -375,7 +375,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           onClick={() => setActiveInteractiveTab('rf')}
           className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
             activeInteractiveTab === 'rf'
-              ? 'bg-sky-500 text-slate-950 shadow-sm'
+              ? 'bg-red-600 text-slate-950 shadow-sm'
               : 'text-slate-300 hover:text-white hover:bg-[#151518]'
           }`}
         >
@@ -387,7 +387,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           onClick={() => setActiveInteractiveTab('bayesian')}
           className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
             activeInteractiveTab === 'bayesian'
-              ? 'bg-sky-500 text-slate-950 shadow-sm'
+              ? 'bg-red-600 text-slate-950 shadow-sm'
               : 'text-slate-300 hover:text-white hover:bg-[#151518]'
           }`}
         >
@@ -406,7 +406,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#0c1a29] text-emerald-400 border border-[#1c4d37]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#220909] text-emerald-400 border border-[#1c4d37]">
                 Model 06: CatBoost Regressor
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -414,7 +414,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               </h3>
             </div>
             <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
-              <span>Cross-Val R²: <strong className="text-sky-300 font-bold">0.771</strong></span>
+              <span>Cross-Val R²: <strong className="text-red-400 font-bold">0.771</strong></span>
               <span>&bull;</span>
               <span>RMSE: <strong className="text-emerald-400 font-bold">$34.8M</strong></span>
             </div>
@@ -426,13 +426,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* View Dropdown */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Eye className="w-3 h-3 text-sky-400" />
+                <Eye className="w-3 h-3 text-red-500" />
                 <span>View Mode</span>
               </label>
               <select
                 value={scatterViewMode}
                 onChange={(e) => setScatterViewMode(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="actual">Actual Box Office vs Budget</option>
                 <option value="overestimate">CatBoost vs Linear Baseline (+320M)</option>
@@ -443,13 +443,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Genre Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Filter className="w-3 h-3 text-sky-400" />
+                <Filter className="w-3 h-3 text-red-500" />
                 <span>Primary Genre</span>
               </label>
               <select
                 value={scatterGenre}
                 onChange={(e) => setScatterGenre(e.target.value)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All Genres (52 Sample Films)</option>
                 <option value="Action / Adventure">Action / Adventure</option>
@@ -463,13 +463,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Breakeven Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Layers className="w-3 h-3 text-sky-400" />
+                <Layers className="w-3 h-3 text-red-500" />
                 <span>Commercial Status</span>
               </label>
               <select
                 value={scatterBreakevenFilter}
                 onChange={(e) => setScatterBreakevenFilter(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All Films</option>
                 <option value="profitable">Profitable Only (&ge; 2.5x Breakeven)</option>
@@ -481,10 +481,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             <div className="space-y-1">
               <div className="flex items-center justify-between text-[10px] font-mono uppercase text-slate-400 font-bold">
                 <span className="flex items-center gap-1">
-                  <Sliders className="w-3 h-3 text-sky-400" />
+                  <Sliders className="w-3 h-3 text-red-500" />
                   <span>Max Budget</span>
                 </span>
-                <span className="text-sky-400 font-bold">${scatterMaxBudget}M</span>
+                <span className="text-red-500 font-bold">${scatterMaxBudget}M</span>
               </div>
               <input
                 type="range"
@@ -542,12 +542,12 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 )}
 
                 <Tooltip 
-                  cursor={{ strokeDasharray: '3 3', stroke: '#38bdf8' }}
+                  cursor={{ strokeDasharray: '3 3', stroke: '#ef4444' }}
                   content={({ active, payload }) => {
                     if (active && payload && payload.length) {
                       const data: ScatterMoviePoint = payload[0].payload;
                       return (
-                        <div className="p-3 rounded-lg bg-[#121215] border border-[#1e446e] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
+                        <div className="p-3 rounded-lg bg-[#121215] border border-[#5e1e1e] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
                           <div className="flex items-center justify-between border-b border-[#222226] pb-1">
                             <span className="font-bold text-white">{data.title} ({data.year})</span>
                             <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
@@ -559,7 +559,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                           <div className="grid grid-cols-2 gap-x-2 text-[11px] text-slate-300">
                             <div><span className="text-slate-500">Budget:</span> ${data.budget.toFixed(1)}M</div>
                             <div><span className="text-slate-500">Actual Gross:</span> ${data.revenue.toFixed(1)}M</div>
-                            <div><span className="text-slate-500">CatBoost Pred:</span> <span className="text-sky-300">${data.catboostPred.toFixed(1)}M</span></div>
+                            <div><span className="text-slate-500">CatBoost Pred:</span> <span className="text-red-400">${data.catboostPred.toFixed(1)}M</span></div>
                             <div><span className="text-slate-500">Linear Pred:</span> ${data.linearPred.toFixed(1)}M</div>
                             <div><span className="text-slate-500">Residual:</span> <span className={data.residual >= 0 ? 'text-emerald-400' : 'text-amber-400'}>{data.residual >= 0 ? '+' : ''}${data.residual.toFixed(1)}M</span></div>
                             <div><span className="text-slate-500">Multiplier:</span> {data.multiplier.toFixed(2)}x</div>
@@ -578,7 +578,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   {filteredScatterMovies.map((entry, index) => {
                     let fill = entry.breakeven ? '#10b981' : '#f43f5e';
                     if (scatterViewMode === 'residuals') {
-                      fill = entry.residual >= 0 ? '#38bdf8' : '#fb923c';
+                      fill = entry.residual >= 0 ? '#ef4444' : '#fb923c';
                     }
                     return <Cell key={`cell-${index}`} fill={fill} fillOpacity={1} stroke="#08080a" strokeWidth={1} />;
                   })}
@@ -588,7 +588,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   <Scatter 
                     name="CatBoost Fitted Curve" 
                     data={filteredCurvePoints.map(p => ({ budget: p.budget, revenue: p.catboostPred }))} 
-                    line={{ stroke: '#38bdf8', strokeWidth: 2.5 }}
+                    line={{ stroke: '#ef4444', strokeWidth: 2.5 }}
                     shape={() => <g />}
                   />
                 )}
@@ -623,7 +623,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#0c1a29] text-purple-400 border border-[#442c68]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#220909] text-purple-400 border border-[#442c68]">
                 Model 09: Random Forest Classifier
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -633,7 +633,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
               <span>Accuracy: <strong className="text-purple-300 font-bold">84.6%</strong></span>
               <span>&bull;</span>
-              <span>ROC-AUC: <strong className="text-sky-400 font-bold">0.892</strong></span>
+              <span>ROC-AUC: <strong className="text-red-500 font-bold">0.892</strong></span>
             </div>
           </div>
 
@@ -643,13 +643,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Metric Dropdown */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Eye className="w-3 h-3 text-sky-400" />
+                <Eye className="w-3 h-3 text-red-500" />
                 <span>Metric</span>
               </label>
               <select
                 value={rfMetric}
                 onChange={(e) => setRfMetric(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="breakeven_comparison">Random Forest Predicted vs Empirical Breakeven (%)</option>
                 <option value="multiplier">Median Box Office Multiplier (x Return)</option>
@@ -661,13 +661,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Studio Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Filter className="w-3 h-3 text-sky-400" />
+                <Filter className="w-3 h-3 text-red-500" />
                 <span>Studio Segment</span>
               </label>
               <select
                 value={rfStudioFilter}
                 onChange={(e) => setRfStudioFilter(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All Studios Combined (5,372 Cleaned Films)</option>
                 <option value="major">Major Studios Only (Disney, Warner, Universal, Sony, Fox)</option>
@@ -679,7 +679,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             <div className="space-y-1">
               <div className="flex items-center justify-between text-[10px] font-mono uppercase text-slate-400 font-bold">
                 <span className="flex items-center gap-1">
-                  <Sliders className="w-3 h-3 text-sky-400" />
+                  <Sliders className="w-3 h-3 text-red-500" />
                   <span>Breakeven Hurdle</span>
                 </span>
                 <span className="text-purple-400 font-bold">{rfHurdleThreshold.toFixed(1)}x Multiple</span>
@@ -747,7 +747,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                           <div className="space-y-1 text-[11px] text-slate-300">
                             <div><span className="text-slate-500">Cohort Sample:</span> {d.sampleCount.toLocaleString()} films</div>
                             <div><span className="text-slate-500">RF Predicted Breakeven:</span> <strong className="text-purple-300">{d.dynamicRfPred}%</strong></div>
-                            <div><span className="text-slate-500">Empirical Breakeven:</span> <strong className="text-sky-300">{d.dynamicEmpirical}%</strong></div>
+                            <div><span className="text-slate-500">Empirical Breakeven:</span> <strong className="text-red-400">{d.dynamicEmpirical}%</strong></div>
                             <div><span className="text-slate-500">Median Multiplier:</span> {d.medianMultiplier}x</div>
                             <div><span className="text-slate-500">Major Studios:</span> {d.majorStudioRate}% &bull; <span className="text-slate-500">Indies:</span> {d.indieStudioRate}%</div>
                             <div><span className="text-slate-500">Flop Rate (&lt;1.0x):</span> <span className="text-rose-400">{d.flopRate}%</span></div>
@@ -762,21 +762,21 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 {rfMetric === 'breakeven_comparison' && (
                   <>
                     <Bar dataKey="dynamicRfPred" name="RF Model Prediction (%)" fill="#c084fc" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="dynamicEmpirical" name="Empirical Ground Truth (%)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="dynamicEmpirical" name="Empirical Ground Truth (%)" fill="#ef4444" radius={[4, 4, 0, 0]} />
                   </>
                 )}
 
                 {rfMetric === 'multiplier' && (
                   <Bar dataKey="medianMultiplier" name="Median Box Office Multiplier (x)" fill="#34d399" radius={[4, 4, 0, 0]}>
                     {displayBarData.map((_, index) => (
-                      <Cell key={`cell-${index}`} fill={index === 1 ? '#10b981' : index > 2 ? '#fb7185' : '#38bdf8'} />
+                      <Cell key={`cell-${index}`} fill={index === 1 ? '#10b981' : index > 2 ? '#fb7185' : '#ef4444'} />
                     ))}
                   </Bar>
                 )}
 
                 {rfMetric === 'studios' && (
                   <>
-                    <Bar dataKey="majorStudioRate" name="Major Conglomerates (%)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="majorStudioRate" name="Major Conglomerates (%)" fill="#ef4444" radius={[4, 4, 0, 0]} />
                     <Bar dataKey="indieStudioRate" name="Independents / Mini-Majors (%)" fill="#a78bfa" radius={[4, 4, 0, 0]} />
                   </>
                 )}
@@ -811,7 +811,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#0c1a29] text-amber-400 border border-[#5c3e14]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#220909] text-amber-400 border border-[#5c3e14]">
                 Model 19: Bayesian Ridge Regression
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -821,7 +821,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
               <span>Residual Std: <strong className="text-amber-400 font-bold">&sigma; = 0.142</strong></span>
               <span>&bull;</span>
-              <span>Span: <strong className="text-sky-300 font-bold">41 Years</strong></span>
+              <span>Span: <strong className="text-red-400 font-bold">41 Years</strong></span>
             </div>
           </div>
 
@@ -831,13 +831,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Metric Dropdown */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Eye className="w-3 h-3 text-sky-400" />
+                <Eye className="w-3 h-3 text-red-500" />
                 <span>Metric</span>
               </label>
               <select
                 value={bayesianMetric}
                 onChange={(e) => setBayesianMetric(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="multiplier">Median Box Office Multiplier &amp; Bayesian Posterior (x)</option>
                 <option value="budget">Average Industry Production Budget ($M Escalation)</option>
@@ -848,13 +848,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Decade Filter */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Calendar className="w-3 h-3 text-sky-400" />
+                <Calendar className="w-3 h-3 text-red-500" />
                 <span>Filter Era</span>
               </label>
               <select
                 value={bayesianDecade}
                 onChange={(e) => setBayesianDecade(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-sky-500 outline-none"
+                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All 41 Years (1980–2020)</option>
                 <option value="1980s">1980s Era (Golden ROI Peak: 4.35x)</option>
@@ -867,14 +867,14 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             {/* Credible Band Toggle */}
             <div className="space-y-1">
               <label className="text-[10px] font-mono uppercase text-slate-400 font-bold flex items-center gap-1">
-                <Activity className="w-3 h-3 text-sky-400" />
+                <Activity className="w-3 h-3 text-red-500" />
                 <span>95% Credible Band</span>
               </label>
               <button
                 onClick={() => setShowCredibleBand(!showCredibleBand)}
                 className={`w-full py-1.5 px-3 rounded-lg text-xs font-mono border transition-colors flex items-center justify-between ${
                   showCredibleBand
-                    ? 'bg-[#16283d] border-sky-400 text-sky-200'
+                    ? 'bg-[#2e0e0e] border-red-500 text-red-200'
                     : 'bg-[#08080a] border-[#222226] text-slate-400'
                 }`}
               >
@@ -934,7 +934,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                             <div><span className="text-slate-500">95% Credible Interval:</span> <span className="text-slate-400">[{pt.lower95.toFixed(2)}x &ndash; {pt.upper95.toFixed(2)}x]</span></div>
                             <div><span className="text-slate-500">Avg Budget:</span> ${pt.avgBudgetMil}M &bull; <span className="text-slate-500">Mega Share:</span> {pt.megaBudgetSharePct}%</div>
                           </div>
-                          <div className="pt-1.5 border-t border-[#222226] text-[10px] text-sky-300">
+                          <div className="pt-1.5 border-t border-[#222226] text-[10px] text-red-400">
                             Iconic Film: {pt.landmarkFilm} ({pt.landmarkGross})
                           </div>
                         </div>
@@ -980,9 +980,9 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   <Line 
                     type="monotone" 
                     dataKey="historicalMultiplier" 
-                    stroke="#38bdf8" 
+                    stroke="#ef4444" 
                     strokeWidth={2} 
-                    dot={{ r: 3, fill: '#38bdf8', strokeWidth: 0 }} 
+                    dot={{ r: 3, fill: '#ef4444', strokeWidth: 0 }} 
                     name="Historical Median" 
                   />
                 )}
@@ -991,11 +991,11 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   <Area 
                     type="monotone" 
                     dataKey="avgBudgetMil" 
-                    stroke="#38bdf8" 
-                    fill="#38bdf8" 
+                    stroke="#ef4444" 
+                    fill="#ef4444" 
                     fillOpacity={0.2} 
                     strokeWidth={2.5} 
-                    dot={{ r: 3, fill: '#38bdf8' }}
+                    dot={{ r: 3, fill: '#ef4444' }}
                     name="Avg Budget ($M)" 
                   />
                 )}
@@ -1017,7 +1017,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 <Brush 
                   dataKey="year" 
                   height={28} 
-                  stroke="#38bdf8" 
+                  stroke="#ef4444" 
                   fill="#121215"
                   tickFormatter={(val) => `${val}`}
                 />

@@ -112,7 +112,7 @@ export const ModelsAndFindingsPage: React.FC<ModelsAndFindingsPageProps> = ({
         'Closed-form convex solution guaranteeing zero gradient oscillation.',
         'Captures only 54.8% of variance, demonstrating the necessity of non-linear tree models.'
       ],
-      icon: <LineChart className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <LineChart className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.linear_model import Ridge
 from sklearn.model_selection import KFold, cross_val_score
 import numpy as np
@@ -162,7 +162,7 @@ print(f"Ridge Test Set R²: {ridge_model.score(X_test_scaled, y_test):.4f}")`,
         'Stabilizes coefficient shrinkage across power-law budget distributions ($10k to $300M).',
         'Regularization paths trace parameter decay as alpha penalty increases.'
       ],
-      icon: <Sliders className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Sliders className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.linear_model import LassoCV, ElasticNetCV
 import numpy as np
 
@@ -209,7 +209,7 @@ print(f"Lasso Test R²: {lasso_model.score(X_test_scaled, y_test):.4f}")`,
         'Balanced class weights counteract industry imbalance (only 31.8% surpass 2.5x).',
         'S-curve probability plots map capital investment directly to success probability.'
       ],
-      icon: <Target className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Target className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report
 
@@ -262,7 +262,7 @@ print(f"Logistic ROC-AUC: {roc_auc_score(y_test_breakeven, y_prob):.4f}")`,
         'RBF projection maps non-linear revenue boundaries into infinite-dimensional Hilbert space.',
         'Substantially outperforms linear Ridge (R² = 0.672 vs 0.548).'
       ],
-      icon: <Layers className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Layers className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.svm import SVR
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -308,7 +308,7 @@ print(f"SVR Test RMSE: {rmse:.2f}M USD")`,
         'Inverse-distance weighting prevents distant outliers from distorting valuations.',
         'Confirms that local comps fail when budgets exceed $150M due to extreme data sparsity.'
       ],
-      icon: <Network className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Network className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -362,7 +362,7 @@ print(f"KNN Test RMSE: {rmse:.2f}M USD")`,
         'Symmetric trees provide extremely fast inference and resist overfitting on power-law revenue tails.',
         'Identifies the exact non-linear inflection curvature where revenue flattens past $100M budget.'
       ],
-      icon: <Sparkles className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Sparkles className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from catboost import CatBoostRegressor
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -415,7 +415,7 @@ print(f"CatBoost Test RMSE: {rmse:.2f}M USD")`,
         'Subsample ratio of 0.85 stabilizes gradient variance across small indie releases.',
         'Achieves 0.768 cross-val R², demonstrating tree boosting superiority over neural approaches on tabular data.'
       ],
-      icon: <Activity className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Activity className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `import xgboost as xgb
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -470,7 +470,7 @@ print(f"XGBoost Test RMSE: {rmse:.2f}M USD")`,
         'GOSS focuses gradient updates on samples with large residual errors (surprise hits/flops).',
         'Leaf-wise strategy achieves lower loss faster than depth-wise alternatives.'
       ],
-      icon: <Boxes className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Boxes className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `import lightgbm as lgb
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -525,7 +525,7 @@ print(f"LightGBM Test RMSE: {rmse:.2f}M USD")`,
         'Achieves 84.6% classification accuracy and 0.892 ROC-AUC on the 2.5x breakeven target.',
         'Eliminates the bias created by viral low-budget anomalies like Paranormal Activity (12,890x return).'
       ],
-      icon: <Award className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Award className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, roc_auc_score, confusion_matrix
 
@@ -580,7 +580,7 @@ print(f"Random Forest ROC-AUC: {roc_auc_score(y_test_breakeven, y_prob):.4f}")`,
         'Stage-wise tree additions iteratively correct residual errors from earlier iterations.',
         'Validates that ensemble boosting consistently outperforms neural networks on tabular cinema data.'
       ],
-      icon: <Layers className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Layers className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -634,7 +634,7 @@ print(f"Scikit GBRT Test RMSE: {rmse:.2f}M USD")`,
         'Reaches 0.738 R², competitive with GBRT but trailing CatBoost (0.771).',
         'Validates academic findings that boosted tree ensembles retain advantages over MLPs on heterogeneous tabular data.'
       ],
-      icon: <Network className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Network className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.neural_network import MLPRegressor
 from sklearn.metrics import r2_score, root_mean_squared_error
 
@@ -691,7 +691,7 @@ print(f"Deep MLP Test RMSE: {rmse:.2f}M USD")`,
         'Subsequent steps shift attention to genre interactions (Horror vs Sci-Fi).',
         'Combines neural expressive power with interpretable decision masking.'
       ],
-      icon: <Target className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Target className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `# Model 12: Google Research TabNet (Sequential Attention for Tabular Data)
 # Architecture: Sparsemax attention masks + multi-step decision transformers
 from pytorch_tabnet.tab_model import TabNetRegressor # pip install pytorch-tabnet
@@ -741,7 +741,7 @@ tabnet_model = TabNetRegressor(
         'Multi-head attention layers capture combinatorial interactions between budget scale and studio pedigree.',
         'Highest performing pure deep learning model on tabular box office data (R² = 0.752).'
       ],
-      icon: <Boxes className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Boxes className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `# Model 13: Feature Tokenizer Transformer (FT-Transformer)
 # Maps each tabular column into a dense embedding vector + multi-head self-attention
 import torch
@@ -792,7 +792,7 @@ class FeatureTokenizer(nn.Module):
         'Directly graphs the exact non-linear shape function of diminishing returns.',
         'Combines neural expressive capacity with linear interpretability.'
       ],
-      icon: <Sliders className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Sliders className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `# Model 14: Neural Additive Models (NAM) - 100% Intrinsic Explainability
 # y_hat = sum_i(f_i(x_i)) + bias, where each f_i is an independent MLP shape network
 import torch
@@ -844,7 +844,7 @@ class FeatureShapeNet(nn.Module):
         'Reconstruction MSE flags anomalous films that violate industry physics.',
         'Unsupervised detection of viral hits and catastrophic mega-budget write-downs.'
       ],
-      icon: <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <ShieldCheck className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `# Model 15: Tabular Autoencoder Anomaly Detector
 # 24 input features -> 8-dimensional bottleneck -> 24 reconstructed features
 from sklearn.neural_network import MLPRegressor
@@ -898,7 +898,7 @@ reconstruction_mse = np.mean(np.square(X_test_scaled - reconstructions), axis=1)
         'Continuous first derivative dy/dx isolates the exact point where returns cross the breakeven threshold.',
         'Establishes the empirical $42.5M capital expenditure cap for optimal risk-adjusted returns.'
       ],
-      icon: <LineChart className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <LineChart className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.linear_model import ElasticNet
 from sklearn.preprocessing import SplineTransformer
 from sklearn.pipeline import Pipeline
@@ -952,7 +952,7 @@ print(f"Optimal Diminishing Returns Capital Cap (dy/dx < 2.5x): {cap_threshold:.
         'Segments films into: (1) Indie Breakouts, (2) Mid-Budget Profiteers, (3) Blockbuster Drivers, (4) High-Budget Traps.',
         'Proves capital structure dictates performance more reliably than genre alone.'
       ],
-      icon: <Network className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Network className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.decomposition import PCA
 from sklearn.cluster import KMeans
 
@@ -998,7 +998,7 @@ print(f"PCA Variance Explained: {pca.explained_variance_ratio_.sum() * 100:.1f}%
         'Prediction error explodes eightfold from ±$18M on small films to ±$142M on films over $140M.',
         'Confirms capital risk escalates non-linearly with production budget scale.'
       ],
-      icon: <TrendingDown className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <TrendingDown className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.linear_model import QuantileRegressor
 import numpy as np
 
@@ -1045,7 +1045,7 @@ for tau in quantiles:
         'Identifies 2008 financial crisis as the permanent structural break below 2.5x breakeven.',
         'Bayesian credible intervals widen significantly in sparse mega-budget tiers.'
       ],
-      icon: <Activity className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Activity className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `from sklearn.linear_model import BayesianRidge
 import numpy as np
 
@@ -1089,7 +1089,7 @@ y_mean, y_std = bayes_model.predict(X_test_scaled, return_std=True)
         'Log10 transformation eliminates severe power-law distortion.',
         'Essential foundational preprocessing step enabling all 19 other machine learning models.'
       ],
-      icon: <Network className="w-3.5 h-3.5 text-sky-400" />,
+      icon: <Network className="w-3.5 h-3.5 text-red-500" />,
       pythonCode: `import numpy as np
 from sklearn.preprocessing import PowerTransformer
 
@@ -1123,7 +1123,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       
       {/* 1. Header & Navigation */}
       <div className="space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1a29] border border-[#1e446e] text-xs font-mono text-sky-400">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#220909] border border-[#5e1e1e] text-xs font-mono text-red-500">
           <Cpu className="w-3.5 h-3.5" />
           <span>20 DEDICATED MODEL-GENERATED VISUALIZATIONS &bull; GRADE TIER A</span>
         </div>
@@ -1142,7 +1142,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               onClick={() => setActiveSubView('interactive')}
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
                 activeSubView === 'interactive'
-                  ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
+                  ? 'bg-red-600 text-slate-950 font-bold shadow-sm'
                   : 'text-slate-300 hover:text-white hover:bg-[#151518]'
               }`}
             >
@@ -1153,7 +1153,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               onClick={() => setActiveSubView('explorer')}
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
                 activeSubView === 'explorer'
-                  ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
+                  ? 'bg-red-600 text-slate-950 font-bold shadow-sm'
                   : 'text-slate-300 hover:text-white hover:bg-[#151518]'
               }`}
             >
@@ -1164,7 +1164,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               onClick={() => setActiveSubView('matrix')}
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
                 activeSubView === 'matrix'
-                  ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
+                  ? 'bg-red-600 text-slate-950 font-bold shadow-sm'
                   : 'text-slate-300 hover:text-white hover:bg-[#151518]'
               }`}
             >
@@ -1194,7 +1194,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
             {/* Category Filter Tabs */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold block">
                   Select Model to View Architecture &amp; Dedicated Visualization:
                 </span>
                 <span className="text-xs text-slate-400 font-light">
@@ -1215,7 +1215,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     onClick={() => setSelectedCategory(cat.id as any)}
                     className={`px-3 py-1 rounded-md transition-colors whitespace-nowrap ${
                       selectedCategory === cat.id
-                        ? 'bg-sky-500 text-slate-950 font-semibold'
+                        ? 'bg-red-600 text-slate-950 font-semibold'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
@@ -1235,19 +1235,19 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     onClick={() => setSelectedModelId(m.id)}
                     className={`p-2.5 rounded-lg text-left transition-all border flex flex-col justify-between gap-1.5 ${
                       isSelected
-                        ? 'bg-[#16283d] border-sky-400 text-white'
-                        : 'bg-[#121215] border-[#222226] hover:border-[#1e446e] text-slate-300 hover:text-white'
+                        ? 'bg-[#2e0e0e] border-red-500 text-white'
+                        : 'bg-[#121215] border-[#222226] hover:border-[#5e1e1e] text-slate-300 hover:text-white'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
                       <span className={`text-[10px] font-mono font-bold uppercase truncate ${
-                        isSelected ? 'text-sky-300' : 'text-slate-400'
+                        isSelected ? 'text-red-400' : 'text-slate-400'
                       }`}>
                         {m.categoryLabel.split(' ')[0]}
                       </span>
                       <span className={`px-1.5 py-0.2 rounded text-[9px] font-mono ${
                         m.status === 'active' 
-                          ? 'bg-[#0c1a29] text-sky-300 border border-[#1e446e] font-bold' 
+                          ? 'bg-[#220909] text-red-400 border border-[#5e1e1e] font-bold' 
                           : 'bg-[#121215] text-slate-500'
                       }`}>
                         {m.status === 'active' ? 'Active' : 'Staged'}
@@ -1255,7 +1255,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     </div>
 
                     <div className="flex items-center gap-1.5 truncate">
-                      <div className={isSelected ? 'text-sky-400' : 'text-slate-400'}>
+                      <div className={isSelected ? 'text-red-500' : 'text-slate-400'}>
                         {m.icon}
                       </div>
                       <span className="font-semibold text-xs text-white truncate">
@@ -1274,7 +1274,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#222226]">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1a29] text-sky-300 border border-[#1e446e]">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#220909] text-red-400 border border-[#5e1e1e]">
                       {selectedModel.categoryLabel}
                     </span>
                     <span className="text-xs font-mono text-slate-400">
@@ -1289,9 +1289,9 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 <div className="flex items-center gap-3">
                   <div className="px-3 py-1.5 rounded-lg bg-[#0d0d0f] border border-[#222226] text-right font-mono text-xs">
                     <span className="text-slate-400 block text-[10px] uppercase">{selectedModel.primaryMetric.label}</span>
-                    <span className="text-sky-300 font-bold">{selectedModel.primaryMetric.value}</span>
+                    <span className="text-red-400 font-bold">{selectedModel.primaryMetric.value}</span>
                   </div>
-                  <span className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[#0c1a29] text-sky-400 border border-[#1e446e] font-bold">
+                  <span className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[#220909] text-red-500 border border-[#5e1e1e] font-bold">
                     {selectedModel.badge}
                   </span>
                 </div>
@@ -1304,7 +1304,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     onClick={() => setModelCardTab('evidence')}
                     className={`px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-2 ${
                       modelCardTab === 'evidence'
-                        ? 'bg-sky-500 text-slate-950 font-bold'
+                        ? 'bg-red-600 text-slate-950 font-bold'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
@@ -1315,7 +1315,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     onClick={() => setModelCardTab('code')}
                     className={`px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-2 ${
                       modelCardTab === 'code'
-                        ? 'bg-sky-500 text-slate-950 font-bold'
+                        ? 'bg-red-600 text-slate-950 font-bold'
                         : 'text-slate-400 hover:text-white'
                     }`}
                   >
@@ -1329,7 +1329,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     href={selectedModel.tiedVisualization.imageSrc}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-sky-300 transition-colors"
+                    className="inline-flex items-center gap-1 text-xs font-mono text-slate-400 hover:text-red-400 transition-colors"
                   >
                     <span>Full Res Image</span>
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -1338,7 +1338,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleCopyCode(selectedModel.pythonCode)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0d0d0f] hover:bg-[#151518] border border-[#222226] hover:border-[#1e446e] text-xs font-mono text-sky-300 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0d0d0f] hover:bg-[#151518] border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono text-red-400 transition-colors"
                     >
                       {copiedSnippet ? (
                         <>
@@ -1363,8 +1363,8 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-sky-400" />
-                      <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold">
+                      <span className="w-2 h-2 rounded-full bg-red-600" />
+                      <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold">
                         Dedicated Model Output Visualization:
                       </span>
                       <span className="text-xs text-white font-semibold">
@@ -1385,12 +1385,12 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   </div>
 
                   {/* The Bottom Line Banner */}
-                  <div className="rounded-lg p-3.5 sm:p-4 border border-[#1e446e] bg-[#0e1824] flex items-start gap-3">
-                    <div className="p-2 rounded-md bg-[#122030] text-sky-400 shrink-0 mt-0.5">
+                  <div className="rounded-lg p-3.5 sm:p-4 border border-[#5e1e1e] bg-[#280c0c] flex items-start gap-3">
+                    <div className="p-2 rounded-md bg-[#250a0a] text-red-500 shrink-0 mt-0.5">
                       <Sparkles className="w-4 h-4" />
                     </div>
                     <div className="space-y-0.5">
-                      <span className="text-[10px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-red-500 font-bold block">
                         Core Empirical Finding &bull; Bottom Line
                       </span>
                       <p className="text-xs sm:text-sm text-slate-100 font-medium leading-relaxed">
@@ -1402,7 +1402,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   {/* 3 Evidence Breakdown Cards: Research Question -> Evidence -> Economic Meaning */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
                     <div className="p-3.5 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-red-500 font-bold block">
                         1. Research Question
                       </span>
                       <p className="text-xs text-slate-200 leading-snug font-medium">
@@ -1418,7 +1418,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     </div>
 
                     <div className="p-3.5 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-red-500 font-bold block">
                         2. Model Mathematical Observation
                       </span>
                       <p className="text-xs text-slate-300 leading-relaxed font-light">
@@ -1427,7 +1427,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     </div>
 
                     <div className="p-3.5 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
-                      <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-red-500 font-bold block">
                         3. Economic Interpretation
                       </span>
                       <p className="text-xs text-slate-300 leading-relaxed font-light">
@@ -1439,7 +1439,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   {/* Architectural Insights */}
                   <div className="p-4 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold">
+                      <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold">
                         Architectural Role in Diminishing Returns:
                       </span>
                       <span className="text-xs font-mono text-slate-400">
@@ -1452,7 +1452,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 border-t border-[#222226]">
                       {selectedModel.keyInsights.map((insight, i) => (
                         <li key={i} className="text-xs text-slate-300 font-light flex items-start gap-1.5">
-                          <span className="text-sky-400 font-bold">&bull;</span>
+                          <span className="text-red-500 font-bold">&bull;</span>
                           <span>{insight}</span>
                         </li>
                       ))}
@@ -1466,14 +1466,14 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               {/* ============================================================= */}
               {modelCardTab === 'code' && (
                 <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-lg bg-[#0c1a29] border border-[#1e446e]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-lg bg-[#220909] border border-[#5e1e1e]">
                     <div className="flex items-center gap-2">
-                      <Terminal className="w-4 h-4 text-sky-400" />
+                      <Terminal className="w-4 h-4 text-red-500" />
                       <span className="text-xs font-mono text-white font-bold">
                         Python 3.11 Execution Environment &bull; Standardized 5-Fold Cross-Validation
                       </span>
                     </div>
-                    <span className="text-xs font-mono text-sky-300">
+                    <span className="text-xs font-mono text-red-400">
                       Standardized on 45,466 Cleaned Film Records
                     </span>
                   </div>
@@ -1492,7 +1492,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
 
                       <button
                         onClick={() => handleCopyCode(selectedModel.pythonCode)}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0d0d0f] hover:bg-[#16283d] border border-[#222226] text-[11px] font-mono text-sky-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0d0d0f] hover:bg-[#2e0e0e] border border-[#222226] text-[11px] font-mono text-red-400 transition-colors"
                       >
                         {copiedSnippet ? (
                           <>
@@ -1516,11 +1516,11 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   {/* Colab Execution Guide */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
                     <div className="p-4 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-2">
-                      <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                      <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold block">
                         How to Run in Google Colab:
                       </span>
                       <ol className="text-xs text-slate-300 space-y-1.5 list-decimal list-inside font-light">
-                        <li>Open the shared notebook directly: <a href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline font-mono">Colab Live Link &rarr;</a></li>
+                        <li>Open the shared notebook directly: <a href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-mono">Colab Live Link &rarr;</a></li>
                         <li>Read the IEEE research paper draft: <a href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline font-mono">Overleaf Paper &rarr;</a></li>
                         <li>Or open the live Colab link in the top navbar.</li>
                         <li>Click <em>Runtime &rarr; Run all</em> (executes all 20 models in ~75 seconds).</li>
@@ -1528,7 +1528,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     </div>
 
                     <div className="p-4 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-2">
-                      <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                      <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold block">
                         Hyperparameter Specifications:
                       </span>
                       <ul className="text-xs text-slate-300 space-y-1 list-disc list-inside font-light">
@@ -1601,7 +1601,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           <div className="p-5 sm:p-7 rounded-xl bg-[#0d0d0f] border border-[#222226] space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#222226]">
               <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
+                <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold block">
                   Controlled Scientific Experiment (Single Standardized Benchmark Metric)
                 </span>
                 <h3 className="text-base sm:text-lg font-bold text-white tracking-tight mt-0.5">
@@ -1615,7 +1615,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 <a
                   href="/notebooks/movie_budget_diminishing_returns_20_models.ipynb"
                   download="movie_budget_diminishing_returns_20_models.ipynb"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0c1a29] border border-[#1e446e] text-xs font-mono text-sky-300 hover:text-white"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#220909] border border-[#5e1e1e] text-xs font-mono text-red-400 hover:text-white"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download .ipynb</span>
@@ -1648,7 +1648,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                           isTop1 
                             ? 'bg-[#0d241a] hover:bg-[#112b1f] border-l-4 border-l-emerald-400 font-semibold' 
                             : m.id === selectedModelId 
-                            ? 'bg-[#16283d]' 
+                            ? 'bg-[#2e0e0e]' 
                             : 'hover:bg-[#0d0d0f]'
                         }`}
                       >
@@ -1674,7 +1674,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                               </span>
                             )}
                             {m.rank === 2 && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#0c1a29] text-sky-300 border border-[#1e446e]">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#220909] text-red-400 border border-[#5e1e1e]">
                                 Runner-Up
                               </span>
                             )}
@@ -1699,7 +1699,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                                   m.r2Score >= 0.75
                                     ? 'bg-emerald-400'
                                     : m.r2Score >= 0.70
-                                    ? 'bg-sky-400'
+                                    ? 'bg-red-600'
                                     : m.r2Score >= 0.60
                                     ? 'bg-amber-400'
                                     : 'bg-rose-400'
@@ -1712,7 +1712,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                                 m.r2Score >= 0.75
                                   ? 'text-emerald-400'
                                   : m.r2Score >= 0.70
-                                  ? 'text-sky-300'
+                                  ? 'text-red-400'
                                   : m.r2Score >= 0.60
                                   ? 'text-amber-300'
                                   : 'text-rose-300'
@@ -1748,9 +1748,9 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       )}
 
 {/* 5. Bottom Navigation Strip */}
-      <div className="p-6 sm:p-8 rounded-xl bg-[#0e1824] border border-[#1e446e] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-xl bg-[#280c0c] border border-[#5e1e1e] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
-          <span className="text-xs font-mono text-sky-400 font-semibold uppercase tracking-wider block">
+          <span className="text-xs font-mono text-red-500 font-semibold uppercase tracking-wider block">
             Continue Research Exploration
           </span>
           <h3 className="text-lg font-bold text-white">
@@ -1765,25 +1765,25 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           {onNavigateToCleaning && (
             <button
               onClick={onNavigateToCleaning}
-              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#1e446e] text-xs font-mono transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
-              <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
+              <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
               <span>Data Cleansing Audit</span>
             </button>
           )}
           {onNavigateToRedesigns && (
             <button
               onClick={onNavigateToRedesigns}
-              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#1e446e] text-xs font-mono transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
-              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+              <Sparkles className="w-3.5 h-3.5 text-red-500" />
               <span>Redesign Studio</span>
             </button>
           )}
           {onNavigateToSql && (
             <button
               onClick={onNavigateToSql}
-              className="px-5 py-2.5 rounded-lg bg-sky-400 hover:bg-sky-300 text-black font-bold text-xs transition-colors inline-flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-xs transition-colors inline-flex items-center gap-2"
             >
               <Database className="w-3.5 h-3.5" />
               <span>SQL Analytics Workbench</span>
