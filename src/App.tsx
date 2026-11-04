@@ -12,7 +12,7 @@ export const App: React.FC = () => {
   const [currentPage, setCurrentPage] = useState<PageKey>('question');
 
   return (
-    <div className="min-h-screen bg-[#08090d] text-slate-200 flex flex-col font-sans selection:bg-sky-500/20 selection:text-sky-200 overflow-x-hidden w-full max-w-full">
+    <div className="min-h-screen bg-black text-slate-200 flex flex-col font-sans selection:bg-sky-400 selection:text-black overflow-x-hidden w-full max-w-full">
       <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
       <main className="flex-1 flex flex-col">
         {currentPage === 'question' && (

@@ -1123,7 +1123,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       
       {/* 1. Header & Navigation */}
       <div className="space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1a29] border border-[#1e446e] text-xs font-mono text-sky-400">
           <Cpu className="w-3.5 h-3.5" />
           <span>20 DEDICATED MODEL-GENERATED VISUALIZATIONS &bull; GRADE TIER A</span>
         </div>
@@ -1137,13 +1137,13 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
 
         {/* 3 Main View Switcher Tabs */}
         <div className="pt-2">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 rounded-xl bg-[#0b0e15] border border-[#1c2436]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-1.5 rounded-xl bg-[#121215] border border-[#222226]">
             <button
               onClick={() => setActiveSubView('interactive')}
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
                 activeSubView === 'interactive'
                   ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+                  : 'text-slate-300 hover:text-white hover:bg-[#151518]'
               }`}
             >
               <Sparkles className="w-4 h-4" />
@@ -1154,7 +1154,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
                 activeSubView === 'explorer'
                   ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+                  : 'text-slate-300 hover:text-white hover:bg-[#151518]'
               }`}
             >
               <Cpu className="w-4 h-4" />
@@ -1165,7 +1165,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               className={`py-3 px-4 rounded-lg text-xs font-mono transition-all flex items-center justify-center gap-2 ${
                 activeSubView === 'matrix'
                   ? 'bg-sky-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-300 hover:text-white hover:bg-[#121824]'
+                  : 'text-slate-300 hover:text-white hover:bg-[#151518]'
               }`}
             >
               <Table className="w-4 h-4" />
@@ -1189,10 +1189,10 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       {activeSubView === 'explorer' && (
         <div className="space-y-6">
           
-          <div className="rounded-xl p-5 sm:p-7 border border-[#1c2436] bg-[#0f131c] space-y-6">
+          <div className="rounded-xl p-5 sm:p-7 border border-[#222226] bg-[#0d0d0f] space-y-6">
             
             {/* Category Filter Tabs */}
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#1c2436]">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
               <div>
                 <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
                   Select Model to View Architecture &amp; Dedicated Visualization:
@@ -1202,7 +1202,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 </span>
               </div>
 
-              <div className="inline-flex p-1 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-xs font-mono overflow-x-auto max-w-full">
+              <div className="inline-flex p-1 rounded-lg bg-[#121215] border border-[#222226] text-xs font-mono overflow-x-auto max-w-full">
                 {[
                   { id: 'all', label: 'All (20)' },
                   { id: 'linear_kernel', label: 'Linear & Kernel (5)' },
@@ -1235,8 +1235,8 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     onClick={() => setSelectedModelId(m.id)}
                     className={`p-2.5 rounded-lg text-left transition-all border flex flex-col justify-between gap-1.5 ${
                       isSelected
-                        ? 'bg-[#152338] border-sky-400 text-white'
-                        : 'bg-[#0b0e15] border-[#1c2436] hover:border-sky-500/40 text-slate-300 hover:text-white'
+                        ? 'bg-[#16283d] border-sky-400 text-white'
+                        : 'bg-[#121215] border-[#222226] hover:border-[#1e446e] text-slate-300 hover:text-white'
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
@@ -1247,8 +1247,8 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       </span>
                       <span className={`px-1.5 py-0.2 rounded text-[9px] font-mono ${
                         m.status === 'active' 
-                          ? 'bg-[#0c1626] text-sky-300 border border-sky-500/30 font-bold' 
-                          : 'bg-[#121722] text-slate-500'
+                          ? 'bg-[#0c1a29] text-sky-300 border border-[#1e446e] font-bold' 
+                          : 'bg-[#121215] text-slate-500'
                       }`}>
                         {m.status === 'active' ? 'Active' : 'Staged'}
                       </span>
@@ -1268,13 +1268,13 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
             </div>
 
             {/* Selected Model Details & Dedicated Visualization / Python Code */}
-            <div className="p-5 sm:p-6 rounded-xl bg-[#0b0e15] border border-[#1c2436] space-y-6">
+            <div className="p-5 sm:p-6 rounded-xl bg-[#121215] border border-[#222226] space-y-6">
               
               {/* Model Specs Header Bar */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#1c2436]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-[#222226]">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1a29] text-sky-300 border border-[#1e446e]">
                       {selectedModel.categoryLabel}
                     </span>
                     <span className="text-xs font-mono text-slate-400">
@@ -1287,19 +1287,19 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <div className="px-3 py-1.5 rounded-lg bg-[#0f131c] border border-[#1c2436] text-right font-mono text-xs">
+                  <div className="px-3 py-1.5 rounded-lg bg-[#0d0d0f] border border-[#222226] text-right font-mono text-xs">
                     <span className="text-slate-400 block text-[10px] uppercase">{selectedModel.primaryMetric.label}</span>
                     <span className="text-sky-300 font-bold">{selectedModel.primaryMetric.value}</span>
                   </div>
-                  <span className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[#0c1626] text-sky-400 border border-sky-500/30 font-bold">
+                  <span className="px-3 py-1.5 rounded-lg text-xs font-mono bg-[#0c1a29] text-sky-400 border border-[#1e446e] font-bold">
                     {selectedModel.badge}
                   </span>
                 </div>
               </div>
 
               {/* Sub-Tab Navigation: 1. Empirical Finding vs 2. Python Colab Code */}
-              <div className="flex items-center justify-between border-b border-[#1c2436] pb-3">
-                <div className="inline-flex p-1 rounded-lg bg-[#07090e] border border-[#1c2436] text-xs font-mono">
+              <div className="flex items-center justify-between border-b border-[#222226] pb-3">
+                <div className="inline-flex p-1 rounded-lg bg-[#08080a] border border-[#222226] text-xs font-mono">
                   <button
                     onClick={() => setModelCardTab('evidence')}
                     className={`px-3.5 py-1.5 rounded-md transition-colors flex items-center gap-2 ${
@@ -1338,7 +1338,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleCopyCode(selectedModel.pythonCode)}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0d0d0f] hover:bg-[#151518] border border-[#222226] hover:border-[#1e446e] text-xs font-mono text-sky-300 transition-colors"
                     >
                       {copiedSnippet ? (
                         <>
@@ -1374,7 +1374,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   </div>
 
                   {/* Chart Image */}
-                  <div className="rounded-lg overflow-hidden border border-[#1c2436] bg-[#07090e] p-2 sm:p-4 flex items-center justify-center min-h-[340px]">
+                  <div className="rounded-lg overflow-hidden border border-[#222226] bg-[#08080a] p-2 sm:p-4 flex items-center justify-center min-h-[340px]">
                     <img
                       key={selectedModel.id}
                       src={selectedModel.tiedVisualization.imageSrc}
@@ -1385,8 +1385,8 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   </div>
 
                   {/* The Bottom Line Banner */}
-                  <div className="rounded-lg p-3.5 sm:p-4 border border-sky-500/40 bg-[#0c1421] flex items-start gap-3">
-                    <div className="p-2 rounded-md bg-[#101b2b] text-sky-400 shrink-0 mt-0.5">
+                  <div className="rounded-lg p-3.5 sm:p-4 border border-[#1e446e] bg-[#0e1824] flex items-start gap-3">
+                    <div className="p-2 rounded-md bg-[#122030] text-sky-400 shrink-0 mt-0.5">
                       <Sparkles className="w-4 h-4" />
                     </div>
                     <div className="space-y-0.5">
@@ -1401,23 +1401,23 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
 
                   {/* 3 Evidence Breakdown Cards: Research Question -> Evidence -> Economic Meaning */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-                    <div className="p-3.5 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-1.5">
+                    <div className="p-3.5 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
                       <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
                         1. Research Question
                       </span>
                       <p className="text-xs text-slate-200 leading-snug font-medium">
                         "{selectedModel.tiedVisualization.researchQuestion}"
                       </p>
-                      <div className="pt-2 border-t border-[#1c2436] flex flex-wrap gap-1">
+                      <div className="pt-2 border-t border-[#222226] flex flex-wrap gap-1">
                         {selectedModel.tiedVisualization.variables.map((v, i) => (
-                          <span key={i} className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-[#0b0e15] text-slate-400 border border-[#1c2436]">
+                          <span key={i} className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-[#121215] text-slate-400 border border-[#222226]">
                             {v}
                           </span>
                         ))}
                       </div>
                     </div>
 
-                    <div className="p-3.5 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-1.5">
+                    <div className="p-3.5 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
                       <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
                         2. Model Mathematical Observation
                       </span>
@@ -1426,7 +1426,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       </p>
                     </div>
 
-                    <div className="p-3.5 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-1.5">
+                    <div className="p-3.5 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
                       <span className="text-[11px] font-mono uppercase tracking-wider text-sky-400 font-bold block">
                         3. Economic Interpretation
                       </span>
@@ -1437,7 +1437,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   </div>
 
                   {/* Architectural Insights */}
-                  <div className="p-4 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-2">
+                  <div className="p-4 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-2">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold">
                         Architectural Role in Diminishing Returns:
@@ -1449,7 +1449,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     <p className="text-xs text-slate-200 font-light leading-relaxed">
                       {selectedModel.bestFitRole}
                     </p>
-                    <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 border-t border-[#1c2436]">
+                    <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2 pt-1 border-t border-[#222226]">
                       {selectedModel.keyInsights.map((insight, i) => (
                         <li key={i} className="text-xs text-slate-300 font-light flex items-start gap-1.5">
                           <span className="text-sky-400 font-bold">&bull;</span>
@@ -1466,7 +1466,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               {/* ============================================================= */}
               {modelCardTab === 'code' && (
                 <div className="space-y-4">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-lg bg-[#0c1626] border border-sky-500/30">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-lg bg-[#0c1a29] border border-[#1e446e]">
                     <div className="flex items-center gap-2">
                       <Terminal className="w-4 h-4 text-sky-400" />
                       <span className="text-xs font-mono text-white font-bold">
@@ -1479,12 +1479,12 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   </div>
 
                   {/* Syntax Styled Code Container */}
-                  <div className="rounded-xl border border-[#1c2436] bg-[#07090e] overflow-hidden">
-                    <div className="flex items-center justify-between px-4 py-2.5 bg-[#0b0e15] border-b border-[#1c2436]">
+                  <div className="rounded-xl border border-[#222226] bg-[#08080a] overflow-hidden">
+                    <div className="flex items-center justify-between px-4 py-2.5 bg-[#121215] border-b border-[#222226]">
                       <div className="flex items-center gap-2">
-                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                         <span className="ml-2 text-xs font-mono text-slate-400">
                           models/{selectedModel.id}_model.py
                         </span>
@@ -1492,7 +1492,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
 
                       <button
                         onClick={() => handleCopyCode(selectedModel.pythonCode)}
-                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0f131c] hover:bg-[#152338] border border-[#1c2436] text-[11px] font-mono text-sky-300 transition-colors"
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0d0d0f] hover:bg-[#16283d] border border-[#222226] text-[11px] font-mono text-sky-300 transition-colors"
                       >
                         {copiedSnippet ? (
                           <>
@@ -1515,7 +1515,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
 
                   {/* Colab Execution Guide */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
-                    <div className="p-4 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-2">
+                    <div className="p-4 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-2">
                       <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
                         How to Run in Google Colab:
                       </span>
@@ -1527,7 +1527,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       </ol>
                     </div>
 
-                    <div className="p-4 rounded-lg bg-[#0f131c] border border-[#1c2436] space-y-2">
+                    <div className="p-4 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-2">
                       <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
                         Hyperparameter Specifications:
                       </span>
@@ -1554,9 +1554,9 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       {activeSubView === 'matrix' && (
         <div className="space-y-5">
           {/* Scientific Experiment Winner Callout Banner */}
-          <div className="p-5 sm:p-6 rounded-xl bg-gradient-to-r from-[#071d14] via-[#0c241a] to-[#0f131c] border-2 border-emerald-500/50 shadow-lg shadow-emerald-950/30 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="p-5 sm:p-6 rounded-xl bg-[#0d241a] border-2 border-emerald-500 flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-start sm:items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/60 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
+              <div className="w-12 h-12 rounded-xl bg-[#0d241a] border border-emerald-500 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
                 <Award className="w-6 h-6 text-emerald-400" />
               </div>
               <div className="space-y-1">
@@ -1564,10 +1564,10 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                   <span className="text-xs font-mono uppercase font-bold text-emerald-400 tracking-wider flex items-center gap-1.5">
                     <span>🏆 Scientific Experiment Winner: #1 Best Model</span>
                   </span>
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-[#0d241a] text-emerald-300 border border-[#1c4d37]">
                     Highest Cross-Val R²: 0.771
                   </span>
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-[#0d241a] text-emerald-300 border border-[#1c4d37]">
                     77.1% Variance Explained
                   </span>
                 </div>
@@ -1598,8 +1598,8 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
             </div>
           </div>
 
-          <div className="p-5 sm:p-7 rounded-xl bg-[#0f131c] border border-[#1c2436] space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#1c2436]">
+          <div className="p-5 sm:p-7 rounded-xl bg-[#0d0d0f] border border-[#222226] space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#222226]">
               <div>
                 <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold block">
                   Controlled Scientific Experiment (Single Standardized Benchmark Metric)
@@ -1615,7 +1615,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 <a
                   href="/notebooks/movie_budget_diminishing_returns_20_models.ipynb"
                   download="movie_budget_diminishing_returns_20_models.ipynb"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-300 hover:text-white"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0c1a29] border border-[#1e446e] text-xs font-mono text-sky-300 hover:text-white"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download .ipynb</span>
@@ -1623,9 +1623,9 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               </div>
             </div>
 
-            <div className="overflow-x-auto rounded-lg border border-[#1c2436]">
+            <div className="overflow-x-auto rounded-lg border border-[#222226]">
               <table className="w-full text-left text-xs font-mono">
-                <thead className="bg-[#0b0e15] text-slate-400 border-b border-[#1c2436]">
+                <thead className="bg-[#121215] text-slate-400 border-b border-[#222226]">
                   <tr>
                     <th className="py-3 px-3 text-center">Rank</th>
                     <th className="py-3 px-3">Model Architecture</th>
@@ -1634,7 +1634,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                     <th className="py-3 px-3">Scientific Outcome / Key Takeaway</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#1c2436] bg-[#07090e]">
+                <tbody className="divide-y divide-[#222226] bg-[#08080a]">
                   {[...modelsList].sort((a, b) => a.rank - b.rank).map((m) => {
                     const isTop1 = m.rank === 1;
                     return (
@@ -1646,15 +1646,15 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                         }}
                         className={`cursor-pointer transition-colors ${
                           isTop1 
-                            ? 'bg-[#0b1f16] hover:bg-[#102d20] border-l-4 border-l-emerald-400 font-semibold' 
+                            ? 'bg-[#0d241a] hover:bg-[#112b1f] border-l-4 border-l-emerald-400 font-semibold' 
                             : m.id === selectedModelId 
-                            ? 'bg-[#152338]' 
-                            : 'hover:bg-[#0f131c]'
+                            ? 'bg-[#16283d]' 
+                            : 'hover:bg-[#0d0d0f]'
                         }`}
                       >
                         <td className="py-3 px-3 text-center">
                           {isTop1 ? (
-                            <span className="inline-flex items-center gap-1 text-emerald-400 font-bold px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-500/40">
+                            <span className="inline-flex items-center gap-1 text-emerald-400 font-bold px-2 py-0.5 rounded bg-[#0d241a] border border-[#1c4d37]">
                               ★ #01
                             </span>
                           ) : (
@@ -1669,22 +1669,22 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                               {m.shortName}
                             </span>
                             {isTop1 && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#0d241a] text-emerald-300 border border-[#1c4d37]">
                                 🏆 #1 BEST MODEL
                               </span>
                             )}
                             {m.rank === 2 && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#0c1a29] text-sky-300 border border-[#1e446e]">
                                 Runner-Up
                               </span>
                             )}
                             {m.rank === 4 && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/40">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#1f1530] text-purple-300 border border-[#442c68]">
                                 Top Deep
                               </span>
                             )}
                             {m.id === 'splines' && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#291b0c] text-amber-300 border border-[#5c3e14]">
                                 $42.5M Inflection
                               </span>
                             )}
@@ -1693,7 +1693,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                         <td className="py-3 px-3 text-slate-300">{m.categoryLabel}</td>
                         <td className="py-3 px-4 text-center">
                           <div className="inline-flex items-center justify-center gap-3 w-full max-w-xs mx-auto">
-                            <div className="flex-1 h-2 rounded-full bg-[#121824] overflow-hidden border border-[#1c2436] hidden sm:block">
+                            <div className="flex-1 h-2 rounded-full bg-[#151518] overflow-hidden border border-[#222226] hidden sm:block">
                               <div
                                 className={`h-full rounded-full transition-all ${
                                   m.r2Score >= 0.75
@@ -1734,7 +1734,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
               </table>
             </div>
 
-            <div className="p-3.5 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-xs text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="p-3.5 rounded-lg bg-[#121215] border border-[#222226] text-xs text-slate-400 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <div>
                 <span className="text-slate-300 font-bold">Scientific Conclusion:</span> Constant dependent variable measured across all 20 models. 
                 CatBoost Regressor proves to be the definitive #1 model with statistically significant superiority (R² = 0.771, RMSE = $46.1M, p &lt; 0.001).
@@ -1748,7 +1748,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       )}
 
 {/* 5. Bottom Navigation Strip */}
-      <div className="p-6 sm:p-8 rounded-xl bg-[#0c1421] border border-sky-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-xl bg-[#0e1824] border border-[#1e446e] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
           <span className="text-xs font-mono text-sky-400 font-semibold uppercase tracking-wider block">
             Continue Research Exploration
@@ -1765,7 +1765,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           {onNavigateToCleaning && (
             <button
               onClick={onNavigateToCleaning}
-              className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#1e446e] text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
               <span>Data Cleansing Audit</span>
@@ -1774,7 +1774,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           {onNavigateToRedesigns && (
             <button
               onClick={onNavigateToRedesigns}
-              className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#1e446e] text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
               <Sparkles className="w-3.5 h-3.5 text-sky-400" />
               <span>Redesign Studio</span>
@@ -1783,7 +1783,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
           {onNavigateToSql && (
             <button
               onClick={onNavigateToSql}
-              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition-colors inline-flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-sky-400 hover:bg-sky-300 text-black font-bold text-xs transition-colors inline-flex items-center gap-2"
             >
               <Database className="w-3.5 h-3.5" />
               <span>SQL Analytics Workbench</span>

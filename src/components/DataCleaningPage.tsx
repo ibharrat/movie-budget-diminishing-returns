@@ -382,7 +382,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       {/* 1. Header & Lead */}
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#0c1a29] border border-[#1e446e] text-xs font-mono text-sky-400">
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>DATA AUDIT &amp; CLEANSING PIPELINE</span>
           </div>
@@ -391,7 +391,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             {onNavigateToViz && (
               <button
                 onClick={onNavigateToViz}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] text-xs font-mono transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] text-xs font-mono transition-colors"
               >
                 <span>View Visualizations</span>
                 <ArrowRight className="w-3.5 h-3.5 text-sky-400" />
@@ -401,7 +401,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
               href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-sky-400 border border-[#1c2436] text-xs font-mono transition-colors"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-sky-400 border border-[#222226] text-xs font-mono transition-colors"
             >
               <span>Kaggle 45k Source</span>
               <ExternalLink className="w-3 h-3 text-slate-400" />
@@ -424,22 +424,22 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
 
       {/* 2. Quick Metric KPI Strip */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="p-5 rounded-xl bg-[#0f131c] border border-[#1c2436]">
+        <div className="p-5 rounded-xl bg-[#0d0d0f] border border-[#222226]">
           <span className="text-xs font-mono text-slate-400 block mb-1">Raw Observations</span>
           <span className="text-2xl font-bold text-white">45,466</span>
           <span className="text-[11px] text-slate-500 block mt-1 font-mono">Total ingested records</span>
         </div>
-        <div className="p-5 rounded-xl bg-[#0f131c] border border-[#1c2436]">
+        <div className="p-5 rounded-xl bg-[#0d0d0f] border border-[#222226]">
           <span className="text-xs font-mono text-sky-400 block mb-1 font-semibold">Variable Count</span>
           <span className="text-2xl font-bold text-sky-300">24 Columns</span>
           <span className="text-[11px] text-slate-500 block mt-1 font-mono">Financial &amp; metadata</span>
         </div>
-        <div className="p-5 rounded-xl bg-[#0f131c] border border-[#1c2436]">
+        <div className="p-5 rounded-xl bg-[#0d0d0f] border border-[#222226]">
           <span className="text-xs font-mono text-sky-400 block mb-1 font-semibold">Verified Clean Pairs</span>
           <span className="text-2xl font-bold text-sky-300">~5,372</span>
           <span className="text-[11px] text-slate-500 block mt-1 font-mono">Non-zero budget &amp; revenue</span>
         </div>
-        <div className="p-5 rounded-xl bg-[#0f131c] border border-[#1c2436]">
+        <div className="p-5 rounded-xl bg-[#0d0d0f] border border-[#222226]">
           <span className="text-xs font-mono text-sky-400 block mb-1 font-semibold">Primary Target</span>
           <span className="text-2xl font-bold text-white">Revenue / ROI</span>
           <span className="text-[11px] text-slate-500 block mt-1 font-mono">Box office multiplier</span>
@@ -447,12 +447,12 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       </div>
 
       {/* 3. 8-Pillar Data Cleansing Architecture */}
-      <div className="rounded-xl p-6 sm:p-8 border border-[#1c2436] bg-[#0f131c] space-y-8">
+      <div className="rounded-xl p-6 sm:p-8 border border-[#222226] bg-[#0d0d0f] space-y-8">
         
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-[#1c2436]">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-[#222226]">
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400 mb-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1a29] border border-[#1e446e] text-xs font-mono text-sky-400 mb-3">
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>DATA PIPELINE WORKFLOW</span>
             </div>
@@ -464,14 +464,14 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             </p>
           </div>
 
-          <div className="flex items-center gap-2 text-xs font-mono text-sky-400 bg-[#0c1626] border border-sky-500/30 px-3 py-2 rounded-lg self-start lg:self-auto font-semibold">
+          <div className="flex items-center gap-2 text-xs font-mono text-sky-400 bg-[#0c1a29] border border-[#1e446e] px-3 py-2 rounded-lg self-start lg:self-auto font-semibold">
             <Sliders className="w-3.5 h-3.5" />
             <span>8 Pipeline Dimensions Active</span>
           </div>
         </div>
 
         {/* Data Pipeline Flow Banner */}
-        <div className="p-4 rounded-xl bg-[#0c1421] border border-sky-500/30 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        <div className="p-4 rounded-xl bg-[#0e1824] border border-[#1e446e] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
           <div className="flex items-center gap-2 text-sky-300 font-semibold">
             <Database className="w-4 h-4 text-sky-400" />
             <span>Raw Corpus: 45,466 Records</span>
@@ -499,8 +499,8 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                 onClick={() => setSelectedPillarId(pillar.id)}
                 className={`p-3 rounded-lg text-left border transition-colors flex flex-col justify-between gap-1.5 ${
                   isSelected
-                    ? 'bg-[#152338] border-sky-400 text-white'
-                    : 'bg-[#0b0e15] border-[#1c2436] hover:border-sky-500/40 text-slate-400 hover:text-white'
+                    ? 'bg-[#16283d] border-sky-400 text-white'
+                    : 'bg-[#121215] border-[#222226] hover:border-[#1e446e] text-slate-400 hover:text-white'
                 }`}
               >
                 <span className={`text-[10px] font-mono font-bold ${isSelected ? 'text-sky-300' : 'text-sky-400'}`}>
@@ -519,16 +519,16 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
 
         {/* Active Pillar Detail Box */}
         {activePillar && (
-          <div className="p-6 sm:p-7 rounded-xl bg-[#0b0e15] border border-[#1c2436] space-y-6">
+          <div className="p-6 sm:p-7 rounded-xl bg-[#121215] border border-[#222226] space-y-6">
             
             {/* Active Pillar Top Bar */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#1c2436]">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 border-b border-[#222226]">
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
+                  <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#0c1a29] text-sky-300 border border-[#1e446e]">
                     Dimension {activePillar.number}
                   </span>
-                  <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#141b29] text-slate-300 border border-[#1c2436]">
+                  <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#141c26] text-slate-300 border border-[#222226]">
                     {activePillar.category}
                   </span>
                 </div>
@@ -537,7 +537,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                 </h3>
               </div>
 
-              <div className="flex items-center gap-2 self-start md:self-auto px-3.5 py-1.5 rounded-lg bg-[#0c1626] border border-sky-500/30 text-sky-300 text-xs font-mono font-medium">
+              <div className="flex items-center gap-2 self-start md:self-auto px-3.5 py-1.5 rounded-lg bg-[#0c1a29] border border-[#1e446e] text-sky-300 text-xs font-mono font-medium">
                 <AlertTriangle className="w-3.5 h-3.5 text-sky-400" />
                 <span>Scope: {activePillar.scope}</span>
               </div>
@@ -552,7 +552,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
               {activePillar.affectedColumns.map((col) => (
                 <span
                   key={col}
-                  className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-[#0c1626] text-sky-300 border border-sky-500/20"
+                  className="px-2.5 py-0.5 rounded-md text-[11px] font-mono bg-[#0c1a29] text-sky-300 border border-[#1e446e]"
                 >
                   {col}
                 </span>
@@ -563,7 +563,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
               
               {/* Investigation Box */}
-              <div className="p-5 rounded-xl bg-[#0f131c] border border-[#1c2436] flex flex-col justify-between">
+              <div className="p-5 rounded-xl bg-[#0d0d0f] border border-[#222226] flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 text-sky-400 text-xs font-mono font-semibold uppercase tracking-wider mb-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
@@ -576,7 +576,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
               </div>
 
               {/* Remediation Box */}
-              <div className="p-5 rounded-xl bg-[#0f131c] border border-[#1c2436] flex flex-col justify-between">
+              <div className="p-5 rounded-xl bg-[#0d0d0f] border border-[#222226] flex flex-col justify-between">
                 <div>
                   <div className="flex items-center gap-2 text-sky-400 text-xs font-mono font-semibold uppercase tracking-wider mb-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
@@ -600,7 +600,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                 <span className="text-[11px] text-slate-500">scripts/clean_kaggle_movies.py</span>
               </div>
               
-              <div className="p-4 rounded-xl bg-[#08090d] border border-[#1c2436] font-mono text-xs overflow-x-auto text-sky-200">
+              <div className="p-4 rounded-xl bg-[#08080a] border border-[#222226] font-mono text-xs overflow-x-auto text-sky-200">
                 <pre className="text-sky-300 font-mono leading-relaxed">
                   <code>{activePillar.codeSnippet}</code>
                 </pre>
@@ -613,8 +613,8 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       </div>
 
       {/* 4. Comprehensive 15-Aspect Investigation Table */}
-      <div className="rounded-xl p-6 sm:p-8 border border-[#1c2436] bg-[#0f131c]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-[#1c2436]">
+      <div className="rounded-xl p-6 sm:p-8 border border-[#222226] bg-[#0d0d0f]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 pb-4 border-b border-[#222226]">
           <div className="flex items-center gap-2.5">
             <Table className="w-5 h-5 text-sky-400" />
             <h2 className="text-lg sm:text-xl font-bold text-white">
@@ -629,16 +629,16 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs sm:text-sm">
             <thead>
-              <tr className="border-b border-[#1c2436] text-slate-400 font-mono text-xs">
+              <tr className="border-b border-[#222226] text-slate-400 font-mono text-xs">
                 <th className="py-3 px-4 w-48 whitespace-nowrap">Aspect</th>
                 <th className="py-3 px-4 hidden sm:table-cell whitespace-nowrap">Category</th>
                 <th className="py-3 px-4 min-w-[280px]">Investigation Details</th>
                 <th className="py-3 px-4 hidden lg:table-cell min-w-[240px]">Analytical Notes</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1c2436]">
+            <tbody className="divide-y divide-[#222226]">
               {datasetAspects.map((item, idx) => (
-                <tr key={idx} className="hover:bg-[#121722] transition-colors">
+                <tr key={idx} className="hover:bg-[#121215] transition-colors">
                   <td className="py-3.5 px-4 font-semibold text-white whitespace-nowrap">
                     <div className="flex items-center gap-2">
                       <span className="w-1.5 h-1.5 rounded-full bg-sky-400 shrink-0"></span>
@@ -646,7 +646,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                     </div>
                   </td>
                   <td className="py-3.5 px-4 hidden sm:table-cell whitespace-nowrap">
-                    <span className="inline-flex items-center whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0c1626] border border-sky-500/30 text-sky-300">
+                    <span className="inline-flex items-center whitespace-nowrap px-2.5 py-1 rounded-md text-[11px] font-mono bg-[#0c1a29] border border-[#1e446e] text-sky-300">
                       {item.category}
                     </span>
                   </td>
@@ -664,8 +664,8 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       </div>
 
       {/* 5. Key Column Dictionary & Data Types Table */}
-      <div className="rounded-xl p-6 sm:p-8 border border-[#1c2436] bg-[#0f131c]">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#1c2436]">
+      <div className="rounded-xl p-6 sm:p-8 border border-[#222226] bg-[#0d0d0f]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#222226]">
           <div>
             <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
               <Tag className="w-4 h-4 text-sky-400" />
@@ -677,7 +677,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
           </div>
 
           {/* Filter Pills */}
-          <div className="flex items-center gap-1.5 p-1 rounded-lg bg-[#0b0e15] border border-[#1c2436] text-xs font-mono self-start sm:self-auto">
+          <div className="flex items-center gap-1.5 p-1 rounded-lg bg-[#121215] border border-[#222226] text-xs font-mono self-start sm:self-auto">
             <button
               onClick={() => setActiveFilter('all')}
               className={`px-3 py-1 rounded-md transition-colors ${
@@ -716,7 +716,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-[#1c2436] text-slate-400 font-mono">
+              <tr className="border-b border-[#222226] text-slate-400 font-mono">
                 <th className="py-2.5 px-3">Variable Name</th>
                 <th className="py-2.5 px-3">Data Type</th>
                 <th className="py-2.5 px-3">Role</th>
@@ -724,9 +724,9 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                 <th className="py-2.5 px-3">Description</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1c2436] font-mono">
+            <tbody className="divide-y divide-[#222226] font-mono">
               {filteredColumns.map((col, idx) => (
-                <tr key={idx} className="hover:bg-[#121722] transition-colors">
+                <tr key={idx} className="hover:bg-[#121215] transition-colors">
                   <td className="py-3 px-3 font-semibold text-white font-mono">
                     {col.name}
                   </td>
@@ -734,7 +734,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
                     {col.type}
                   </td>
                   <td className="py-3 px-3">
-                    <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-[#0c1626] text-sky-300 border border-sky-500/30">
+                    <span className="inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded text-[10px] font-semibold uppercase bg-[#0c1a29] text-sky-300 border border-[#1e446e]">
                       {col.variableClass}
                     </span>
                   </td>
@@ -752,7 +752,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
       </div>
 
       {/* 6. Navigation Footer Strip */}
-      <div className="p-6 sm:p-8 rounded-xl bg-[#0c1421] border border-sky-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-xl bg-[#0e1824] border border-[#1e446e] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
           <span className="text-xs font-mono text-sky-400 font-semibold uppercase tracking-wider block">
             Next Stage in Research Pipeline
@@ -769,7 +769,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
           {onNavigateToSql && (
             <button
               onClick={onNavigateToSql}
-              className="px-4 py-2.5 rounded-lg bg-[#0f131c] hover:bg-[#131824] text-slate-300 hover:text-white border border-[#1c2436] text-xs font-mono transition-colors"
+              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] text-xs font-mono transition-colors"
             >
               SQL Workbench
             </button>
@@ -777,7 +777,7 @@ df['is_holiday'] = df['release_date'].dt.month.isin([11, 12])`
           {onNavigateToViz && (
             <button
               onClick={onNavigateToViz}
-              className="px-5 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-xs transition-colors inline-flex items-center gap-2"
+              className="px-5 py-2.5 rounded-lg bg-sky-400 hover:bg-sky-300 text-black font-bold text-xs transition-colors inline-flex items-center gap-2"
             >
               <span>Explore Visualizations</span>
               <ArrowRight className="w-3.5 h-3.5" />

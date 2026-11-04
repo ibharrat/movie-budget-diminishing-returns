@@ -8,36 +8,36 @@
     max-width: 100vw;
   }
   body {
-    background-color: #08090d;
+    background-color: #000000;
     color: #e2e8f0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
-/* Custom subtle scrollbar */
+/* Custom subtle matte scrollbar */
 ::-webkit-scrollbar {
   width: 7px;
   height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #08090d;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1c2436;
+  background: #222226;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2a3752;
+  background: #333338;
 }
 
-/* Flat & Matte Surface Panels - Zero blur, zero translucency, crisp borders */
+/* Solid Flat & Matte Surface Panels - Zero blur, zero translucency, crisp borders */
 .glass-panel,
 .matte-panel {
-  background-color: #0f131c;
-  border: 1px solid #1c2436;
+  background-color: #0d0d0f;
+  border: 1px solid #222226;
 }
 
 .glass-panel-hover {
@@ -46,5 +46,5 @@
 
 .glass-panel-hover:hover {
   border-color: #38bdf8;
-  background-color: #121824;
+  background-color: #151518;
 }
