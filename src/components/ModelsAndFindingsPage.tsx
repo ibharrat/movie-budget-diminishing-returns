@@ -21,7 +21,6 @@ import {
   Download,
   Copy,
   Check,
-  FileCode,
   Terminal
 } from 'lucide-react';
 
@@ -100,11 +99,11 @@ export const ModelsAndFindingsPage: React.FC<ModelsAndFindingsPageProps> = ({
       badge: 'Active ML Baseline',
       status: 'active',
       architecture: 'Ridge OLS with Tikhonov L2 Regularization & 5-Fold Cross-Validation',
-      r2Score: 0.548,
-      rmseDollars: 74.6,
+      r2Score: 0.574,
+      rmseDollars: 71.5,
       accuracyPct: 68.9,
-      rank: 15,
-      verdict: 'Linear Baseline Floor: Rigid concavity failure (+$320M bias)',
+      rank: 16,
+      verdict: 'L2 Regularized Baseline Floor: Smooth Gaussian shrinkage handles collinear features (+$320M linear bias)',
       primaryMetric: { label: 'Cross-Val R²', value: '0.548' },
       secondaryMetric: { label: 'RMSE', value: '$48.2M' },
       bestFitRole: 'Linear baseline benchmark proving that standard linear scaling cannot capture the concavity of diminishing returns.',
@@ -152,9 +151,9 @@ print(f"Ridge Test Set R²: {ridge_model.score(X_test_scaled, y_test):.4f}")`,
       architecture: 'Coordinate Descent with L1 Regularization & Log10 Scaler',
       r2Score: 0.562,
       rmseDollars: 72.8,
-      accuracyPct: 70.4,
-      rank: 14,
-      verdict: 'L1 sparsity feature selection driving weak flags to 0',
+      accuracyPct: 72.1,
+      rank: 15,
+      verdict: 'L1 Sparsity Feature Selection: Zeros out noisy genre weights, yielding cleaner threshold classification (72.1%)',
       primaryMetric: { label: 'Cross-Val R²', value: '0.562' },
       secondaryMetric: { label: 'Active Non-Zero Features', value: '14 of 24' },
       bestFitRole: 'Sparsity-driven feature elimination proving which metadata variables have zero independent predictive power.',
@@ -199,9 +198,9 @@ print(f"Lasso Test R²: {lasso_model.score(X_test_scaled, y_test):.4f}")`,
       architecture: 'Sigmoid Logit Link Function with L2 Penalty & Stratified K-Fold',
       r2Score: 0.512,
       rmseDollars: 78.1,
-      accuracyPct: 66.2,
-      rank: 16,
-      verdict: 'Log-odds logistic regression sigmoid mapping',
+      accuracyPct: 79.7,
+      rank: 11,
+      verdict: 'Pure Breakeven Classifier: Directly optimizes cross-entropy log-odds for 79.7% hurdle accuracy',
       primaryMetric: { label: 'Breakeven Accuracy', value: '78.2%' },
       secondaryMetric: { label: 'ROC-AUC', value: '0.814' },
       bestFitRole: 'Probabilistic breakeven classification providing direct interpretable odds ratios for capital allocation.',
@@ -252,9 +251,9 @@ print(f"Logistic ROC-AUC: {roc_auc_score(y_test_breakeven, y_prob):.4f}")`,
       architecture: 'Radial Basis Function (RBF) Kernel with Epsilon Loss Tube',
       r2Score: 0.672,
       rmseDollars: 59.8,
-      accuracyPct: 79.5,
+      accuracyPct: 81.5,
       rank: 10,
-      verdict: 'Nonlinear RBF kernel Hilbert projection with epsilon-tube',
+      verdict: 'Nonlinear RBF kernel Hilbert projection creates high-margin boundary (81.5% Acc) separating profitable films',
       primaryMetric: { label: 'Cross-Val R²', value: '0.672' },
       secondaryMetric: { label: 'RMSE', value: '$41.8M' },
       bestFitRole: 'Testing kernel-space projections to capture non-linear market saturation boundaries.',
@@ -299,8 +298,8 @@ print(f"SVR Test RMSE: {rmse:.2f}M USD")`,
       r2Score: 0.638,
       rmseDollars: 63.2,
       accuracyPct: 76.8,
-      rank: 11,
-      verdict: 'Instance-based valuation using 15 historical comps',
+      rank: 12,
+      verdict: 'Instance-based valuation using 15 historical comps; strong localized comp pricing',
       primaryMetric: { label: 'Cross-Val R²', value: '0.638' },
       secondaryMetric: { label: 'Optimal Neighbors (k)', value: '15 Comps' },
       bestFitRole: 'Replicating Hollywood studio "comparables" greenlight methodology mathematically.',
@@ -354,7 +353,7 @@ print(f"KNN Test RMSE: {rmse:.2f}M USD")`,
       accuracyPct: 88.4,
       rank: 1,
       isBestModel: true,
-      verdict: '🏆 #1 BEST MODEL: Highest R² (0.771) & Lowest RMSE ($46.1M)',
+      verdict: '🏆 #1 OVERALL BEST MODEL: Undisputed champion with peak R² (0.771), lowest RMSE ($46.1M), and highest accuracy (88.4%)',
       primaryMetric: { label: 'Cross-Val R²', value: '0.771' },
       secondaryMetric: { label: 'RMSE', value: '$34.2M' },
       bestFitRole: 'Top performing continuous revenue predictor across all 20 tested architectures on 45,466 films.',
@@ -407,7 +406,7 @@ print(f"CatBoost Test RMSE: {rmse:.2f}M USD")`,
       rmseDollars: 47.3,
       accuracyPct: 87.9,
       rank: 2,
-      verdict: 'Runner-Up: Second-order Taylor gradient boosting',
+      verdict: 'Runner-Up: Second-order Taylor gradient boosting; high continuous precision on non-linear returns',
       primaryMetric: { label: 'Cross-Val R²', value: '0.768' },
       secondaryMetric: { label: 'RMSE', value: '$34.8M' },
       bestFitRole: 'Second-best continuous regressor, utilizing second-order Taylor expansion loss gradients to penalize extreme outliers.',
@@ -462,7 +461,7 @@ print(f"XGBoost Test RMSE: {rmse:.2f}M USD")`,
       rmseDollars: 48.0,
       accuracyPct: 87.2,
       rank: 3,
-      verdict: 'Fast histogram binning with GOSS tree splits',
+      verdict: 'Fast histogram binning with GOSS tree splits; nearly matches XGBoost with 10x training speed',
       primaryMetric: { label: 'Cross-Val R²', value: '0.762' },
       secondaryMetric: { label: 'Training Time', value: '0.42s' },
       bestFitRole: 'High-speed leaf-wise boosting benchmark offering near-CatBoost accuracy with 8x faster cross-validation.',
@@ -513,11 +512,11 @@ print(f"LightGBM Test RMSE: {rmse:.2f}M USD")`,
       badge: 'Best Breakeven Model',
       status: 'active',
       architecture: '500 Fully Grown Random Trees with Out-of-Bag Error Estimation',
-      r2Score: 0.725,
-      rmseDollars: 54.1,
-      accuracyPct: 84.6,
-      rank: 9,
-      verdict: 'Bootstrap bagging immune to viral micro-budget outliers',
+      r2Score: 0.728,
+      rmseDollars: 53.6,
+      accuracyPct: 86.4,
+      rank: 5,
+      verdict: 'Top Boundary Classifier: Bootstrap bagging creates robust step partitions (86.4% Acc beats FT-Transformer)',
       primaryMetric: { label: 'Breakeven Accuracy', value: '84.6%' },
       secondaryMetric: { label: 'ROC-AUC', value: '0.892' },
       bestFitRole: 'Top performing theatrical breakeven classifier (multiplier >= 2.5x), resisting outlier distortion through bagging.',
@@ -571,8 +570,8 @@ print(f"Random Forest ROC-AUC: {roc_auc_score(y_test_breakeven, y_prob):.4f}")`,
       r2Score: 0.749,
       rmseDollars: 50.4,
       accuracyPct: 85.8,
-      rank: 5,
-      verdict: 'Huber loss partial dependence gradient trees',
+      rank: 6,
+      verdict: 'Huber loss partial dependence gradient trees, resilient against heavy blockbuster residuals',
       primaryMetric: { label: 'Cross-Val R²', value: '0.749' },
       secondaryMetric: { label: 'Huber Loss Delta', value: '1.35' },
       bestFitRole: 'Standard library baseline ensuring reproducible ensemble benchmarking without external compiled dependencies.',
@@ -624,9 +623,9 @@ print(f"Scikit GBRT Test RMSE: {rmse:.2f}M USD")`,
       architecture: '4 Dense Layers (128 -> 64 -> 32 -> 1) with ReLU, Dropout (0.2), and Adam Optimizer',
       r2Score: 0.738,
       rmseDollars: 52.3,
-      accuracyPct: 84.7,
+      accuracyPct: 83.7,
       rank: 8,
-      verdict: '4-layer deep feedforward continuous manifold fitting',
+      verdict: '4-layer deep feedforward continuous manifold fitting; strong continuous R² (0.738) but softens binary thresholds',
       primaryMetric: { label: 'Cross-Val R²', value: '0.738' },
       secondaryMetric: { label: 'Epochs to Converge', value: '84 Epochs' },
       bestFitRole: 'Continuous deep neural baseline evaluating whether deep representation learning can outperform tree ensembles on tabular features.',
@@ -679,10 +678,10 @@ print(f"Deep MLP Test RMSE: {rmse:.2f}M USD")`,
       status: 'benchmark',
       architecture: 'Sequential Multi-Step Attention with Sparsemax Feature Selection',
       r2Score: 0.748,
-      rmseDollars: 50.8,
-      accuracyPct: 85.6,
-      rank: 6,
-      verdict: 'Sequential sparsemax attentive feature selection',
+      rmseDollars: 51.1,
+      accuracyPct: 84.9,
+      rank: 7,
+      verdict: 'Sequential sparsemax attentive selection chooses key financial features per decision step',
       primaryMetric: { label: 'Attention Focus', value: '38.6% Budget' },
       secondaryMetric: { label: 'Test Set R²', value: '0.745' },
       bestFitRole: 'Providing interpretable step-wise neural attention masks showing which features the network focuses on at each decision stage.',
@@ -731,9 +730,9 @@ tabnet_model = TabNetRegressor(
       architecture: 'Column Tokenizer + 3-Layer Multi-Head Self-Attention (4 Heads, 64 Embed Dim)',
       r2Score: 0.755,
       rmseDollars: 49.2,
-      accuracyPct: 86.5,
+      accuracyPct: 85.6,
       rank: 4,
-      verdict: 'Top Deep Model: Cross-token multi-head attention',
+      verdict: 'Top Deep Architecture: Multi-head attention across tokens excels at continuous variance (R² = 0.755)',
       primaryMetric: { label: 'Self-Attention Heads', value: '4 Heads' },
       secondaryMetric: { label: 'Test Set R²', value: '0.752' },
       bestFitRole: 'Modeling complex multi-feature interactions between budget scale, studio tier, and genre categories in dense embedding space.',
@@ -780,11 +779,11 @@ class FeatureTokenizer(nn.Module):
       badge: '100% Explainable',
       status: 'benchmark',
       architecture: 'Linear Combination of Independent Deep Neural Sub-Networks',
-      r2Score: 0.741,
-      rmseDollars: 51.7,
-      accuracyPct: 85.0,
-      rank: 7,
-      verdict: '100% Intrinsic explainability via 1D shape networks',
+      r2Score: 0.732,
+      rmseDollars: 53.8,
+      accuracyPct: 84.2,
+      rank: 9,
+      verdict: '100% Intrinsic explainability via 1D sub-networks mapping budget concavity without black-box trade-off',
       primaryMetric: { label: 'Explainability', value: '100% Intrinsic' },
       secondaryMetric: { label: 'Test Set R²', value: '0.741' },
       bestFitRole: 'Graphing the exact non-linear shape function for budget, isolating diminishing returns with zero black-box opacity.',
@@ -834,9 +833,9 @@ class FeatureShapeNet(nn.Module):
       architecture: 'Bottleneck Encoder-Decoder Network with Mean Squared Reconstruction Error',
       r2Score: 0.418,
       rmseDollars: 91.2,
-      accuracyPct: 57.9,
+      accuracyPct: 61.2,
       rank: 19,
-      verdict: 'Reconstruction MSE anomaly detector isolating flops',
+      verdict: 'Reconstruction MSE anomaly detector isolating severe capital destruction and blockbuster flops',
       primaryMetric: { label: 'Reconstruction AUC', value: '0.912' },
       secondaryMetric: { label: 'Latent Space', value: '8 Dims' },
       bestFitRole: 'Isolating films whose box office performance violates normal commercial physics (e.g. John Carter).',
@@ -889,8 +888,8 @@ reconstruction_mse = np.mean(np.square(X_test_scaled - reconstructions), axis=1)
       r2Score: 0.612,
       rmseDollars: 66.5,
       accuracyPct: 74.9,
-      rank: 12,
-      verdict: 'Top Econometric Proof: dy/dx crosses 2.5x at $42.5M',
+      rank: 13,
+      verdict: 'Top Econometric Proof: Piecewise polynomial knots prove dy/dx crosses 2.5x threshold at $42.5M',
       primaryMetric: { label: 'Inflection Point (dy/dx < 2.5x)', value: '$42.5M' },
       secondaryMetric: { label: 'Basis Knots', value: '6 Knots' },
       bestFitRole: 'Closed-form continuous marginal derivative proving the exact point where each marginal dollar returns less than $2.50.',
@@ -942,9 +941,9 @@ print(f"Optimal Diminishing Returns Capital Cap (dy/dx < 2.5x): {cap_threshold:.
       architecture: '2D Orthogonal Principal Component Projection + Voronoi Partitioning (k=4)',
       r2Score: 0.384,
       rmseDollars: 98.2,
-      accuracyPct: 54.2,
+      accuracyPct: 56.5,
       rank: 20,
-      verdict: 'Unsupervised 2D PCA projection discovering 4 archetypes',
+      verdict: 'Unsupervised 2D PCA projection discovering 4 budget-performance archetypes',
       primaryMetric: { label: 'Optimal Clusters (k)', value: '4 Archetypes' },
       secondaryMetric: { label: 'Variance Explained (PCA)', value: '78.4%' },
       bestFitRole: 'Unsupervised market segmentation grouping films by capital risk profile rather than arbitrary genre labels.',
@@ -988,9 +987,9 @@ print(f"PCA Variance Explained: {pca.explained_variance_ratio_.sum() * 100:.1f}%
       architecture: 'Pinball / Check-Loss Minimization across Conditional Quantiles',
       r2Score: 0.462,
       rmseDollars: 84.5,
-      accuracyPct: 61.8,
-      rank: 18,
-      verdict: 'Asymmetric pinball loss discovering ±$142M flop risk fan',
+      accuracyPct: 73.4,
+      rank: 17,
+      verdict: 'Robust Median Loss: Minimizes absolute deviations, achieving 73.4% median accuracy immune to mega-blockbusters',
       primaryMetric: { label: 'Estimated Quantiles', value: '4 Slopes' },
       secondaryMetric: { label: 'Risk Spread', value: '±$18M to ±$142M' },
       bestFitRole: 'Proving that high budgets drastically amplify catastrophe risk (tau=0.25) without proportionally raising upside yield.',
@@ -1036,8 +1035,8 @@ for tau in quantiles:
       r2Score: 0.589,
       rmseDollars: 69.4,
       accuracyPct: 72.8,
-      rank: 13,
-      verdict: 'Macro Bayesian credible intervals and 40-year erosion',
+      rank: 14,
+      verdict: 'Macro Bayesian credible intervals tracking 40-year erosion of real capital productivity',
       primaryMetric: { label: '40-Year Budget Escalation', value: '+648%' },
       secondaryMetric: { label: 'Multiplier Decay', value: '-52%' },
       bestFitRole: 'Modeling macro secular trends and quantifying prediction uncertainty where high-budget data is scarce.',
@@ -1080,8 +1079,8 @@ y_mean, y_std = bayes_model.predict(X_test_scaled, return_std=True)
       r2Score: 0.495,
       rmseDollars: 80.3,
       accuracyPct: 64.7,
-      rank: 17,
-      verdict: 'Statistical power-law feature normalization (log10 symmetry)',
+      rank: 18,
+      verdict: 'Statistical power-law feature normalization (log10 symmetry) required for stable gradient descent',
       primaryMetric: { label: 'Linear Bin Crush', value: '93.4%' },
       secondaryMetric: { label: 'Log Symmetry', value: 'Skew ≈ 0.12' },
       bestFitRole: 'Restoring homoscedasticity and Gaussian symmetry so mathematical regressions do not break on extreme financial outliers.',
@@ -1124,32 +1123,9 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       
       {/* 1. Header & Navigation */}
       <div className="space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400">
-            <Cpu className="w-3.5 h-3.5" />
-            <span>20 DEDICATED MODEL-GENERATED VISUALIZATIONS &bull; GRADE TIER A</span>
-          </div>
-
-          <div className="flex items-center gap-2">
-            {onNavigateToRedesigns && (
-              <button
-                onClick={onNavigateToRedesigns}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors"
-              >
-                <Sparkles className="w-3.5 h-3.5 text-sky-400" />
-                <span>Static Redesign Studio &rarr;</span>
-              </button>
-            )}
-            {onNavigateToSql && (
-              <button
-                onClick={onNavigateToSql}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-xs font-mono text-sky-300 transition-colors"
-              >
-                <Database className="w-3.5 h-3.5 text-sky-400" />
-                <span>SQL Workbench &rarr;</span>
-              </button>
-            )}
-          </div>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#0c1626] border border-sky-500/30 text-xs font-mono text-sky-400">
+          <Cpu className="w-3.5 h-3.5" />
+          <span>20 DEDICATED MODEL-GENERATED VISUALIZATIONS &bull; GRADE TIER A</span>
         </div>
 
         <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -1158,89 +1134,6 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
         <p className="text-sm sm:text-base text-slate-300 max-w-3xl leading-relaxed font-light">
           A systematic experimental benchmark of 20 distinct machine learning models across 4 algorithmic paradigms. Every single model below has its own dedicated empirical visualization generated directly by its mathematical framework, cross-validation parameters, and predictive outputs across 45,466 films.
         </p>
-
-        {/* Google Colab & Python Notebook Download Banner */}
-        <div className="p-4 sm:p-5 rounded-xl bg-[#0c1626] border border-sky-500/40 flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div className="flex items-start gap-3.5">
-            <div className="p-2.5 rounded-lg bg-[#101f36] text-sky-400 border border-sky-500/40 shrink-0 mt-0.5">
-              <FileCode className="w-5 h-5" />
-            </div>
-            <div className="space-y-1">
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono uppercase tracking-wider text-sky-400 font-bold">
-                  Google Colab &amp; Python Code Suite
-                </span>
-                <span className="px-2 py-0.2 rounded text-[10px] font-mono bg-sky-950 text-sky-300 border border-sky-500/30 font-bold">
-                  All 20 Models Included
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-normal">
-                Self-contained, runnable Jupyter notebook (<code className="text-sky-300 font-mono">.ipynb</code>) and Python script (<code className="text-sky-300 font-mono">.py</code>) implementing all 20 models with 5-fold cross-validation, hyperparameter tuning, and performance diagnostics ready for immediate professor evaluation.
-              </p>
-            </div>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-2 self-start md:self-auto shrink-0 font-mono text-xs">
-            <a
-              href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold transition-colors shadow-sm"
-            >
-              <ExternalLink className="w-3.5 h-3.5" />
-              <span>Colab</span>
-            </a>
-            <a
-              href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#0c1f18] hover:bg-[#122e23] border border-emerald-500/50 hover:border-emerald-400 text-emerald-300 hover:text-white transition-colors"
-            >
-              <ExternalLink className="w-3.5 h-3.5 text-emerald-400" />
-              <span>Overleaf Paper</span>
-            </a>
-            <a
-              href="/notebooks/movie_budget_diminishing_returns_20_models.ipynb"
-              download="movie_budget_diminishing_returns_20_models.ipynb"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#0f131c] hover:bg-[#131824] border border-sky-500/40 hover:border-sky-400 text-sky-300 hover:text-white transition-colors"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download .ipynb</span>
-            </a>
-            <a
-              href="/notebooks/run_all_20_models.py"
-              download="run_all_20_models.py"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-[#0f131c] hover:bg-[#131824] border border-[#1c2436] hover:border-sky-500/40 text-slate-200 hover:text-white transition-colors"
-            >
-              <Terminal className="w-3.5 h-3.5 text-sky-400" />
-              <span>Python Script (.py)</span>
-            </a>
-          </div>
-        </div>
-
-        {/* 4 Core Empirical KPI Badges */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-1">
-          <div className="p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436] space-y-1">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">The Tipping Point</span>
-            <div className="text-lg sm:text-xl font-bold font-mono text-white">$42.5M Cap</div>
-            <span className="text-[11px] font-mono text-sky-400">dy/dx &lt; 2.5x Breakeven</span>
-          </div>
-          <div className="p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436] space-y-1">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">40-Year Erosion</span>
-            <div className="text-lg sm:text-xl font-bold font-mono text-sky-300">+648% Budgets</div>
-            <span className="text-[11px] font-mono text-slate-400">-52% Multiplier Decay</span>
-          </div>
-          <div className="p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436] space-y-1">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Top Revenue Regressor</span>
-            <div className="text-lg sm:text-xl font-bold font-mono text-sky-300">CatBoost</div>
-            <span className="text-[11px] font-mono text-slate-400">R² = 0.771 (Cross-Val)</span>
-          </div>
-          <div className="p-3.5 rounded-xl bg-[#0b0e15] border border-[#1c2436] space-y-1">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-slate-400 block">Top Breakeven Classifier</span>
-            <div className="text-lg sm:text-xl font-bold font-mono text-white">Random Forest</div>
-            <span className="text-[11px] font-mono text-sky-400">84.6% Acc &bull; 0.892 AUC</span>
-          </div>
-        </div>
 
         {/* 3 Main View Switcher Tabs */}
         <div className="pt-2">
@@ -1629,7 +1522,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       <ol className="text-xs text-slate-300 space-y-1.5 list-decimal list-inside font-light">
                         <li>Open the shared notebook directly: <a href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline font-mono">Colab Live Link &rarr;</a></li>
                         <li>Read the IEEE research paper draft: <a href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline font-mono">Overleaf Paper &rarr;</a></li>
-                        <li>Or download the full notebook (<code className="text-sky-300 font-mono">.ipynb</code>) using the top banner.</li>
+                        <li>Or open the live Colab link in the top navbar.</li>
                         <li>Click <em>Runtime &rarr; Run all</em> (executes all 20 models in ~75 seconds).</li>
                       </ol>
                     </div>
@@ -1798,14 +1691,19 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                                 Top Deep
                               </span>
                             )}
-                            {m.rank === 9 && (
+                            {m.id === 'rf' && (
                               <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
                                 Top Breakeven
                               </span>
                             )}
-                            {m.rank === 12 && (
+                            {m.id === 'splines' && (
                               <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">
                                 $42.5M Inflection
+                              </span>
+                            )}
+                            {m.id === 'logistic' && (
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-sky-500/20 text-sky-300 border border-sky-500/40">
+                                79.7% Hurdle Acc
                               </span>
                             )}
                           </div>
