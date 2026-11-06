@@ -271,7 +271,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
           onClick={onNavigateToViz}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-colors"
         >
-          <span>Continue to Data Cleaning</span>
+          <span>Continue to Models &amp; Findings</span>
           <ArrowRight className="w-4 h-4" />
         </button>
 

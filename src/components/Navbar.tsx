@@ -37,16 +37,6 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             The Question
           </button>
           <button
-            onClick={() => onNavigate('cleaning')}
-            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
-              currentPage === 'cleaning'
-                ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
-            }`}
-          >
-            Data Cleaning
-          </button>
-          <button
             onClick={() => onNavigate('models')}
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'models'
@@ -55,6 +45,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             }`}
           >
             Models &amp; Findings
+          </button>
+          <button
+            onClick={() => onNavigate('cleaning')}
+            className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
+              currentPage === 'cleaning'
+                ? 'bg-red-600 text-white font-bold'
+                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+            }`}
+          >
+            Data Cleaning
           </button>
           <button
             onClick={() => onNavigate('redesigns')}

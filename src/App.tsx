@@ -16,7 +16,7 @@ export const App: React.FC = () => {
       <Navbar currentPage={currentPage} onNavigate={setCurrentPage} />
       <main className="flex-1 flex flex-col">
         {currentPage === 'question' && (
-          <QuestionPage onNavigateToViz={() => setCurrentPage('cleaning')} />
+          <QuestionPage onNavigateToViz={() => setCurrentPage('models')} />
         )}
         {currentPage === 'cleaning' && (
           <DataCleaningPage 
