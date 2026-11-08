@@ -200,7 +200,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
       {/* 1. Header & Context */}
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#220909] border border-[#5e1e1e] text-xs font-mono text-red-500">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#270e10] border border-[#631f24] text-xs font-mono text-red-500">
             <Sparkles className="w-3.5 h-3.5" />
             <span>ASSIGNMENT 6 &bull; STATIC VISUALIZATION &amp; REDESIGN STUDIO</span>
           </div>
@@ -209,7 +209,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             {onNavigateToModels && (
               <button
                 onClick={onNavigateToModels}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0d0d0f] hover:bg-[#151518] border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono text-red-400 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#191a1f] hover:bg-[#23262f] border border-[#282b34] hover:border-[#631f24] text-xs font-mono text-red-400 transition-colors"
               >
                 <Cpu className="w-3.5 h-3.5 text-red-500" />
                 <span>Models &amp; Findings &rarr;</span>
@@ -218,7 +218,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             {onNavigateToSql && (
               <button
                 onClick={onNavigateToSql}
-                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#0d0d0f] hover:bg-[#151518] border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono text-red-400 transition-colors"
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#191a1f] hover:bg-[#23262f] border border-[#282b34] hover:border-[#631f24] text-xs font-mono text-red-400 transition-colors"
               >
                 <Database className="w-3.5 h-3.5 text-red-500" />
                 <span>SQL Workbench &rarr;</span>
@@ -235,9 +235,9 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
         </p>
 
         {/* Assignment 6 Objective & Rubric Banner */}
-        <div className="p-4 sm:p-5 rounded-xl bg-[#280c0c] border border-[#5e1e1e] flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="p-4 sm:p-5 rounded-xl bg-[#2d1113] border border-[#631f24] flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div className="flex items-start gap-3.5">
-            <div className="p-2.5 rounded-lg bg-[#250a0a] text-red-500 border border-[#5e1e1e] shrink-0 mt-0.5">
+            <div className="p-2.5 rounded-lg bg-[#2a0e10] text-red-500 border border-[#631f24] shrink-0 mt-0.5">
               <Eye className="w-5 h-5" />
             </div>
             <div className="space-y-1">
@@ -245,7 +245,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
                 <span className="text-xs font-mono uppercase tracking-wider text-red-500 font-bold">
                   Assignment 6 Design Objective
                 </span>
-                <span className="px-2 py-0.2 rounded text-[10px] font-mono bg-[#220909] text-red-400 border border-[#5e1e1e] font-bold">
+                <span className="px-2 py-0.2 rounded text-[10px] font-mono bg-[#270e10] text-red-400 border border-[#631f24] font-bold">
                   5 Case Studies &bull; 9 Improvement Pillars
                 </span>
               </div>
@@ -258,7 +258,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
 
         {/* 5 Case Studies Navigation Pills */}
         <div className="pt-2">
-          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 rounded-xl bg-[#121215] border border-[#222226]">
+          <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 rounded-xl bg-[#1e2026] border border-[#282b34]">
             {studiesList.map((s, idx) => {
               const isSelected = idx === currentStudyIndex;
               return (
@@ -268,7 +268,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
                   className={`py-2.5 px-3 rounded-lg text-xs font-mono transition-all text-left flex flex-col gap-0.5 ${
                     isSelected
                       ? 'bg-red-600 text-slate-950 font-bold shadow-sm'
-                      : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                      : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
                   }`}
                 >
                   <span className={`text-[10px] uppercase font-bold ${
@@ -288,13 +288,13 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
       </div>
 
       {/* 2. Active Redesign Study Workspace */}
-      <div className="rounded-xl p-5 sm:p-7 border border-[#222226] bg-[#0d0d0f] space-y-6">
+      <div className="rounded-xl p-5 sm:p-7 border border-[#282b34] bg-[#191a1f] space-y-6">
         
         {/* Study Header & View Mode Switcher */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#222226]">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-[#282b34]">
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#220909] text-red-400 border border-[#5e1e1e]">
+              <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#270e10] text-red-400 border border-[#631f24]">
                 Case Study {currentStudy.number} of 05
               </span>
               <span className="text-xs font-mono text-slate-400">
@@ -308,7 +308,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
 
           <div className="flex items-center gap-2 self-start lg:self-auto">
             {/* View Mode Toggle */}
-            <div className="inline-flex p-1 rounded-lg bg-[#121215] border border-[#222226] text-xs font-mono">
+            <div className="inline-flex p-1 rounded-lg bg-[#1e2026] border border-[#282b34] text-xs font-mono">
               <button
                 onClick={() => setViewMode('comparison')}
                 className={`px-3 py-1 rounded-md transition-colors ${
@@ -345,14 +345,14 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             <div className="flex items-center gap-1.5 pl-1">
               <button
                 onClick={prevStudy}
-                className="p-1.5 rounded-md bg-[#121215] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] transition-colors"
+                className="p-1.5 rounded-md bg-[#1e2026] hover:bg-[#23262f] text-slate-300 hover:text-white border border-[#282b34] transition-colors"
                 title="Previous Case Study"
               >
                 <ChevronLeft className="w-4 h-4 text-red-500" />
               </button>
               <button
                 onClick={nextStudy}
-                className="p-1.5 rounded-md bg-[#121215] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] transition-colors"
+                className="p-1.5 rounded-md bg-[#1e2026] hover:bg-[#23262f] text-slate-300 hover:text-white border border-[#282b34] transition-colors"
                 title="Next Case Study"
               >
                 <ChevronRight className="w-4 h-4 text-red-500" />
@@ -365,9 +365,9 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
         {viewMode === 'comparison' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Left: Original Exploratory Chart */}
-            <div className="rounded-xl p-4 bg-[#08080a] border border-[#222226] space-y-3 flex flex-col justify-between">
-              <div className="flex items-center justify-between pb-2 border-b border-[#222226]">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#151518] text-slate-400 border border-[#222226]">
+            <div className="rounded-xl p-4 bg-[#0e0f12] border border-[#282b34] space-y-3 flex flex-col justify-between">
+              <div className="flex items-center justify-between pb-2 border-b border-[#282b34]">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#23262f] text-slate-400 border border-[#282b34]">
                   Original Exploratory Baseline
                 </span>
                 <span className="text-[10px] font-mono text-slate-500">{currentStudy.originalId.toUpperCase()}</span>
@@ -377,7 +377,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
                 alt={currentStudy.originalTitle}
                 className="w-full h-auto object-contain max-h-[380px] rounded opacity-80"
               />
-              <div className="p-3 rounded-lg bg-[#121215] border border-[#222226] space-y-1">
+              <div className="p-3 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-1">
                 <span className="text-[10px] font-mono text-slate-400 uppercase font-bold block">
                   Identified Baseline Limitations:
                 </span>
@@ -388,9 +388,9 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             </div>
 
             {/* Right: Redesigned Static Communication Chart */}
-            <div className="rounded-xl p-4 bg-[#08080a] border border-[#5e1e1e] space-y-3 flex flex-col justify-between">
-              <div className="flex items-center justify-between pb-2 border-b border-[#5e1e1e]">
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#220909] text-red-400 border border-[#5e1e1e] font-bold">
+            <div className="rounded-xl p-4 bg-[#0e0f12] border border-[#631f24] space-y-3 flex flex-col justify-between">
+              <div className="flex items-center justify-between pb-2 border-b border-[#631f24]">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono uppercase bg-[#270e10] text-red-400 border border-[#631f24] font-bold">
                   Redesigned Static Communication &bull; Final
                 </span>
                 <span className="text-[10px] font-mono text-red-500 font-bold">9-Pillar Upgrade</span>
@@ -400,7 +400,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
                 alt={currentStudy.findingTitle}
                 className="w-full h-auto object-contain max-h-[380px] rounded"
               />
-              <div className="p-3 rounded-lg bg-[#280c0c] border border-[#5e1e1e] space-y-1">
+              <div className="p-3 rounded-lg bg-[#2d1113] border border-[#631f24] space-y-1">
                 <span className="text-[10px] font-mono text-red-400 uppercase font-bold block">
                   Communication Breakthrough:
                 </span>
@@ -411,8 +411,8 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             </div>
           </div>
         ) : (
-          <div className="rounded-xl p-4 sm:p-6 bg-[#08080a] border border-[#222226] flex flex-col items-center justify-center space-y-4">
-            <div className="flex items-center justify-between w-full pb-3 border-b border-[#222226]">
+          <div className="rounded-xl p-4 sm:p-6 bg-[#0e0f12] border border-[#282b34] flex flex-col items-center justify-center space-y-4">
+            <div className="flex items-center justify-between w-full pb-3 border-b border-[#282b34]">
               <span className="text-xs font-mono text-slate-400 uppercase">
                 {viewMode === 'redesign' ? 'Viewing Upgraded Redesign (Final)' : 'Viewing Original Baseline'}
               </span>
@@ -438,8 +438,8 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
         )}
 
         {/* The Bottom Line Banner */}
-        <div className="rounded-lg p-3.5 sm:p-4 border border-[#5e1e1e] bg-[#280c0c] flex items-start gap-3">
-          <div className="p-2 rounded-md bg-[#250a0a] text-red-500 shrink-0 mt-0.5">
+        <div className="rounded-lg p-3.5 sm:p-4 border border-[#631f24] bg-[#2d1113] flex items-start gap-3">
+          <div className="p-2 rounded-md bg-[#2a0e10] text-red-500 shrink-0 mt-0.5">
             <CheckCircle2 className="w-4 h-4" />
           </div>
           <div className="space-y-0.5">
@@ -465,8 +465,8 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3.5">
             {/* Column 1: Form & Framing */}
-            <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-2.5">
-              <div className="flex items-center gap-2 pb-1.5 border-b border-[#222226]">
+            <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-2.5">
+              <div className="flex items-center gap-2 pb-1.5 border-b border-[#282b34]">
                 <Layout className="w-4 h-4 text-red-500" />
                 <span className="text-xs font-mono font-bold text-red-400 uppercase">1. Form &amp; Framing</span>
               </div>
@@ -487,8 +487,8 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             </div>
 
             {/* Column 2: Scales, Labels & Keys */}
-            <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-2.5">
-              <div className="flex items-center gap-2 pb-1.5 border-b border-[#222226]">
+            <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-2.5">
+              <div className="flex items-center gap-2 pb-1.5 border-b border-[#282b34]">
                 <Sliders className="w-4 h-4 text-red-500" />
                 <span className="text-xs font-mono font-bold text-red-400 uppercase">2. Scales, Labels &amp; Keys</span>
               </div>
@@ -509,8 +509,8 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
             </div>
 
             {/* Column 3: Context & Accessibility */}
-            <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-2.5">
-              <div className="flex items-center gap-2 pb-1.5 border-b border-[#222226]">
+            <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-2.5">
+              <div className="flex items-center gap-2 pb-1.5 border-b border-[#282b34]">
                 <Palette className="w-4 h-4 text-red-500" />
                 <span className="text-xs font-mono font-bold text-red-400 uppercase">3. Context &amp; Accessibility</span>
               </div>
@@ -535,7 +535,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
       </div>
 
       {/* 3. Bottom Navigation Strip */}
-      <div className="p-6 sm:p-8 rounded-xl bg-[#280c0c] border border-[#5e1e1e] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+      <div className="p-6 sm:p-8 rounded-xl bg-[#2d1113] border border-[#631f24] flex flex-col sm:flex-row sm:items-center justify-between gap-5">
         <div className="space-y-1">
           <span className="text-xs font-mono text-red-500 font-semibold uppercase tracking-wider block">
             Continue Research Exploration
@@ -552,7 +552,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
           {onNavigateToCleaning && (
             <button
               onClick={onNavigateToCleaning}
-              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#191a1f] hover:bg-[#23262f] text-slate-300 hover:text-white border border-[#282b34] hover:border-[#631f24] text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
               <ShieldCheck className="w-3.5 h-3.5 text-red-500" />
               <span>Data Cleansing Audit</span>
@@ -561,7 +561,7 @@ export const RedesignStudioPage: React.FC<RedesignStudioPageProps> = ({
           {onNavigateToModels && (
             <button
               onClick={onNavigateToModels}
-              className="px-4 py-2.5 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#5e1e1e] text-xs font-mono transition-colors inline-flex items-center gap-2"
+              className="px-4 py-2.5 rounded-lg bg-[#191a1f] hover:bg-[#23262f] text-slate-300 hover:text-white border border-[#282b34] hover:border-[#631f24] text-xs font-mono transition-colors inline-flex items-center gap-2"
             >
               <Cpu className="w-3.5 h-3.5 text-red-500" />
               <span>Models &amp; Findings</span>

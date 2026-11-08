@@ -26,7 +26,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       
       {/* 1. Header & Primary Question */}
       <div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#220909] border border-[#5e1e1e] text-xs font-mono text-red-500 mb-6">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#270e10] border border-[#631f24] text-xs font-mono text-red-500 mb-6">
           <HelpCircle className="w-3.5 h-3.5" />
           <span>CENTRAL RESEARCH QUESTION</span>
         </div>
@@ -47,9 +47,9 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       {/* 2. Real-World Problem & Why This Matters */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         {/* The Real-World Problem */}
-        <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] flex flex-col gap-3.5">
+        <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] flex flex-col gap-3.5">
           <div className="flex items-start gap-4">
-            <div className="p-2.5 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 shrink-0 mt-0.5">
+            <div className="p-2.5 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 shrink-0 mt-0.5">
               <AlertTriangle className="w-5 h-5" />
             </div>
             <div>
@@ -67,9 +67,9 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
         </div>
 
         {/* Why This Project Matters */}
-        <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] flex flex-col gap-3.5">
+        <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] flex flex-col gap-3.5">
           <div className="flex items-start gap-4">
-            <div className="p-2.5 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 shrink-0 mt-0.5">
+            <div className="p-2.5 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 shrink-0 mt-0.5">
               <Target className="w-5 h-5" />
             </div>
             <div>
@@ -98,9 +98,9 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* Subquestion 1 */}
-          <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] hover:border-red-500 transition-colors flex flex-col justify-between">
+          <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] hover:border-red-500 transition-colors flex flex-col justify-between">
             <div>
-              <div className="w-9 h-9 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 flex items-center justify-center mb-4">
+              <div className="w-9 h-9 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 flex items-center justify-center mb-4">
                 <Film className="w-4 h-4" />
               </div>
               <span className="text-xs font-mono text-red-500 uppercase tracking-wide block mb-2 font-semibold">
@@ -110,15 +110,15 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
                 Does the movie genre have an impact on overall revenue trends?
               </h3>
             </div>
-            <p className="text-xs text-slate-400 mt-4 pt-4 border-t border-[#222226] font-mono">
+            <p className="text-xs text-slate-400 mt-4 pt-4 border-t border-[#282b34] font-mono">
               Genre ROI &amp; category sensitivity
             </p>
           </div>
 
           {/* Subquestion 2 */}
-          <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] hover:border-red-500 transition-colors flex flex-col justify-between">
+          <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] hover:border-red-500 transition-colors flex flex-col justify-between">
             <div>
-              <div className="w-9 h-9 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 flex items-center justify-center mb-4">
+              <div className="w-9 h-9 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 flex items-center justify-center mb-4">
                 <Tv className="w-4 h-4" />
               </div>
               <span className="text-xs font-mono text-red-500 uppercase tracking-wide block mb-2 font-semibold">
@@ -128,15 +128,15 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
                 How many movies are making up for revenue through other means (streaming, merchandise, etc.)?
               </h3>
             </div>
-            <p className="text-xs text-slate-400 mt-4 pt-4 border-t border-[#222226] font-mono">
+            <p className="text-xs text-slate-400 mt-4 pt-4 border-t border-[#282b34] font-mono">
               Ancillary &amp; post-theatrical channels
             </p>
           </div>
 
           {/* Subquestion 3 */}
-          <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] hover:border-red-500 transition-colors flex flex-col justify-between">
+          <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] hover:border-red-500 transition-colors flex flex-col justify-between">
             <div>
-              <div className="w-9 h-9 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 flex items-center justify-center mb-4">
+              <div className="w-9 h-9 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 flex items-center justify-center mb-4">
                 <Building2 className="w-4 h-4" />
               </div>
               <span className="text-xs font-mono text-red-500 uppercase tracking-wide block mb-2 font-semibold">
@@ -146,7 +146,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
                 Do larger studios deal with diminishing returns more?
               </h3>
             </div>
-            <p className="text-xs text-slate-400 mt-4 pt-4 border-t border-[#222226] font-mono">
+            <p className="text-xs text-slate-400 mt-4 pt-4 border-t border-[#282b34] font-mono">
               Studio size vs. capital efficiency
             </p>
           </div>
@@ -163,9 +163,9 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] relative">
+          <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] relative">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 flex items-center justify-center">
                 <Lightbulb className="w-4 h-4" />
               </div>
               <span className="text-xs font-mono text-red-500 font-semibold uppercase tracking-wider">
@@ -177,9 +177,9 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </p>
           </div>
 
-          <div className="rounded-xl p-6 border border-[#222226] bg-[#0d0d0f] relative">
+          <div className="rounded-xl p-6 border border-[#282b34] bg-[#191a1f] relative">
             <div className="flex items-center gap-3 mb-3">
-              <div className="w-8 h-8 rounded-lg bg-[#220909] border border-[#5e1e1e] text-red-500 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-lg bg-[#270e10] border border-[#631f24] text-red-500 flex items-center justify-center">
                 <Lightbulb className="w-4 h-4" />
               </div>
               <span className="text-xs font-mono text-red-500 font-semibold uppercase tracking-wider">
@@ -203,8 +203,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <div className="p-4 rounded-xl bg-[#0d0d0f] border border-[#222226] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#240a0a] text-red-500">
+          <div className="p-4 rounded-xl bg-[#191a1f] border border-[#282b34] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#280e10] text-red-500">
               <Calendar className="w-4 h-4" />
             </div>
             <div>
@@ -213,8 +213,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0d0d0f] border border-[#222226] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#240a0a] text-red-500">
+          <div className="p-4 rounded-xl bg-[#191a1f] border border-[#282b34] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#280e10] text-red-500">
               <Film className="w-4 h-4" />
             </div>
             <div>
@@ -223,8 +223,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0d0d0f] border border-[#222226] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#240a0a] text-red-500">
+          <div className="p-4 rounded-xl bg-[#191a1f] border border-[#282b34] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#280e10] text-red-500">
               <Users className="w-4 h-4" />
             </div>
             <div>
@@ -233,8 +233,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0d0d0f] border border-[#222226] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#240a0a] text-red-500">
+          <div className="p-4 rounded-xl bg-[#191a1f] border border-[#282b34] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#280e10] text-red-500">
               <Building2 className="w-4 h-4" />
             </div>
             <div>
@@ -243,8 +243,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#0d0d0f] border border-[#222226] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#240a0a] text-red-500">
+          <div className="p-4 rounded-xl bg-[#191a1f] border border-[#282b34] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#280e10] text-red-500">
               <Clock className="w-4 h-4" />
             </div>
             <div>
@@ -253,8 +253,8 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
             </div>
           </div>
 
-          <div className="p-4 rounded-xl bg-[#220909] border border-[#5e1e1e] flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#260b0b] text-red-500">
+          <div className="p-4 rounded-xl bg-[#270e10] border border-[#631f24] flex items-center gap-3">
+            <div className="p-2 rounded-lg bg-[#2b0f11] text-red-500">
               <SlidersHorizontal className="w-4 h-4" />
             </div>
             <div>
@@ -266,7 +266,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
       </div>
 
       {/* 6. Action & Dataset Footer */}
-      <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-[#222226]">
+      <div className="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-[#282b34]">
         <button
           onClick={onNavigateToViz}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold text-sm transition-colors"
@@ -279,7 +279,7 @@ export const QuestionPage: React.FC<QuestionPageProps> = ({ onNavigateToViz }) =
           href="https://www.kaggle.com/datasets/sibamsamanta07/movies-dataset-45k-films-with-budget-and-revenue"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-[#0d0d0f] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-red-500 text-xs font-medium transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-3 rounded-lg bg-[#191a1f] hover:bg-[#23262f] text-slate-300 hover:text-white border border-[#282b34] hover:border-red-500 text-xs font-medium transition-colors"
         >
           <Database className="w-4 h-4 text-red-500" />
           <span>Kaggle: Movies Dataset 45k Films</span>

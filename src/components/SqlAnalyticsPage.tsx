@@ -90,7 +90,7 @@ export const SqlAnalyticsPage: React.FC = () => {
       {/* 1. Header & Architecture Status */}
       <div className="space-y-4">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#220909] border border-[#5e1e1e] text-xs font-mono text-red-500">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#270e10] border border-[#631f24] text-xs font-mono text-red-500">
             <Database className="w-3.5 h-3.5" />
             <span>RELATIONAL SQL WORKBENCH</span>
           </div>
@@ -103,15 +103,15 @@ export const SqlAnalyticsPage: React.FC = () => {
         </div>
 
         {/* Clause Coverage & Relational Architecture */}
-        <div className="p-4 sm:p-5 rounded-xl bg-[#0d0d0f] border border-[#222226] space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#222226] pb-3">
+        <div className="p-4 sm:p-5 rounded-xl bg-[#191a1f] border border-[#282b34] space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#282b34] pb-3">
             <span className="text-xs font-mono text-red-500 uppercase tracking-wider font-bold flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4" />
               SQL Query Architecture &amp; Clause Coverage
             </span>
             <button
               onClick={() => setShowErd(!showErd)}
-              className="px-3 py-1 rounded-md bg-[#220909] hover:bg-[#151518] border border-[#5e1e1e] text-xs font-mono text-red-400 flex items-center gap-1.5 transition-colors self-start sm:self-auto"
+              className="px-3 py-1 rounded-md bg-[#270e10] hover:bg-[#23262f] border border-[#631f24] text-xs font-mono text-red-400 flex items-center gap-1.5 transition-colors self-start sm:self-auto"
             >
               <Network className="w-3.5 h-3.5 text-red-500" />
               <span>{showErd ? 'Hide Relational ERD' : 'View Relational ERD Schema'}</span>
@@ -131,7 +131,7 @@ export const SqlAnalyticsPage: React.FC = () => {
             ].map(item => (
               <div 
                 key={item.clause}
-                className="p-2.5 rounded-lg bg-[#121215] border border-[#222226] flex flex-col items-center justify-center text-center gap-1"
+                className="p-2.5 rounded-lg bg-[#1e2026] border border-[#282b34] flex flex-col items-center justify-center text-center gap-1"
               >
                 <div className="flex items-center gap-1 text-red-500 font-bold">
                   <CheckCircle2 className="w-3 h-3" />
@@ -144,7 +144,7 @@ export const SqlAnalyticsPage: React.FC = () => {
 
           {/* Collapsible Relational ERD Schema */}
           {showErd && (
-            <div className="p-4 sm:p-5 rounded-lg bg-[#121215] border border-[#222226] space-y-4">
+            <div className="p-4 sm:p-5 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-mono uppercase text-red-500 font-bold flex items-center gap-1.5">
                   <Layers className="w-4 h-4 text-red-500" />
@@ -155,8 +155,8 @@ export const SqlAnalyticsPage: React.FC = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs font-mono">
                 {/* movies Table */}
-                <div className="p-3 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-1.5">
-                  <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-1.5">
+                  <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                     <span className="text-red-500 font-bold">TABLE movies</span>
                     <span className="text-[10px] text-slate-500">50 Rows Sample</span>
                   </div>
@@ -174,9 +174,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </div>
 
                 {/* Junction Tables */}
-                <div className="p-3 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-3">
+                <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-3">
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                    <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                       <span className="text-red-500 font-bold">TABLE movie_genres</span>
                       <span className="text-[10px] text-slate-500">Junction (M:N)</span>
                     </div>
@@ -186,8 +186,8 @@ export const SqlAnalyticsPage: React.FC = () => {
                     </ul>
                   </div>
 
-                  <div className="space-y-1 pt-1 border-t border-[#222226]">
-                    <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                  <div className="space-y-1 pt-1 border-t border-[#282b34]">
+                    <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                       <span className="text-red-500 font-bold">TABLE movie_studios</span>
                       <span className="text-[10px] text-slate-500">Junction (M:N)</span>
                     </div>
@@ -199,9 +199,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </div>
 
                 {/* Dimension Tables */}
-                <div className="p-3 rounded-lg bg-[#0d0d0f] border border-[#222226] space-y-3">
+                <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-3">
                   <div className="space-y-1">
-                    <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                    <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                       <span className="text-red-500 font-bold">TABLE genres</span>
                       <span className="text-[10px] text-slate-500">Dimension</span>
                     </div>
@@ -211,8 +211,8 @@ export const SqlAnalyticsPage: React.FC = () => {
                     </ul>
                   </div>
 
-                  <div className="space-y-1 pt-1 border-t border-[#222226]">
-                    <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                  <div className="space-y-1 pt-1 border-t border-[#282b34]">
+                    <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                       <span className="text-red-500 font-bold">TABLE studios</span>
                       <span className="text-[10px] text-slate-500">Dimension</span>
                     </div>
@@ -243,7 +243,7 @@ export const SqlAnalyticsPage: React.FC = () => {
           </div>
 
           {/* Category Filter Pills */}
-          <div className="inline-flex p-1 rounded-lg bg-[#121215] border border-[#222226] text-xs font-mono self-start sm:self-auto overflow-x-auto max-w-full">
+          <div className="inline-flex p-1 rounded-lg bg-[#1e2026] border border-[#282b34] text-xs font-mono self-start sm:self-auto overflow-x-auto max-w-full">
             <button
               onClick={() => setActiveFilterCategory('all')}
               className={`px-2.5 py-1 rounded-md transition-colors ${
@@ -314,15 +314,15 @@ export const SqlAnalyticsPage: React.FC = () => {
                 }}
                 className={`p-3 rounded-lg text-left border transition-colors flex flex-col justify-between gap-1.5 ${
                   isSelected
-                    ? 'bg-[#2e0e0e] border-red-500 text-white'
+                    ? 'bg-[#331215] border-red-500 text-white'
                     : matchesFilter
-                    ? 'bg-[#0d0d0f] border-[#222226] hover:border-[#5e1e1e] text-slate-400 hover:text-white'
-                    : 'opacity-40 bg-[#121215] border-[#222226]'
+                    ? 'bg-[#191a1f] border-[#282b34] hover:border-[#631f24] text-slate-400 hover:text-white'
+                    : 'opacity-40 bg-[#1e2026] border-[#282b34]'
                 }`}
               >
                 <div className="flex items-center justify-between">
                   <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
-                    isSelected ? 'bg-[#220909] text-red-400 border border-[#5e1e1e]' : 'bg-[#121215] text-slate-400'
+                    isSelected ? 'bg-[#270e10] text-red-400 border border-[#631f24]' : 'bg-[#1e2026] text-slate-400'
                   }`}>
                     Q{q.number}
                   </span>
@@ -344,22 +344,22 @@ export const SqlAnalyticsPage: React.FC = () => {
         </div>
 
         {/* Active Query Display & Runner Panel */}
-        <div className="rounded-xl p-5 sm:p-7 border border-[#222226] bg-[#0d0d0f] space-y-6">
+        <div className="rounded-xl p-5 sm:p-7 border border-[#282b34] bg-[#191a1f] space-y-6">
           
           {/* Query Header: Metadata, Category & Question */}
-          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-4 border-b border-[#222226]">
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 pb-4 border-b border-[#282b34]">
             <div className="space-y-1.5">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#220909] text-red-400 border border-[#5e1e1e]">
+                <span className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#270e10] text-red-400 border border-[#631f24]">
                   Query {activeQuery.number} &bull; {activeQuery.category}
                 </span>
                 {activeQuery.clauses.map(c => (
-                  <span key={c} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#121215] text-slate-300 border border-[#222226]">
+                  <span key={c} className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#1e2026] text-slate-300 border border-[#282b34]">
                     {c}
                   </span>
                 ))}
                 {activeQuery.isVisualizationTarget && (
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#220909] text-red-400 border border-[#5e1e1e] flex items-center gap-1 font-semibold">
+                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-[#270e10] text-red-400 border border-[#631f24] flex items-center gap-1 font-semibold">
                     <Sparkles className="w-3 h-3 text-red-500" />
                     Visual Target
                   </span>
@@ -377,7 +377,7 @@ export const SqlAnalyticsPage: React.FC = () => {
             <div className="flex items-center gap-2 shrink-0">
               <button
                 onClick={() => handleCopy(activeQuery.sql, activeQuery.id)}
-                className="px-3 py-1.5 rounded-md bg-[#121215] hover:bg-[#151518] text-slate-300 hover:text-white border border-[#222226] hover:border-[#5e1e1e] transition-colors flex items-center gap-1.5 text-xs font-mono"
+                className="px-3 py-1.5 rounded-md bg-[#1e2026] hover:bg-[#23262f] text-slate-300 hover:text-white border border-[#282b34] hover:border-[#631f24] transition-colors flex items-center gap-1.5 text-xs font-mono"
               >
                 {copiedQueryId === activeQuery.id ? (
                   <>
@@ -404,8 +404,8 @@ export const SqlAnalyticsPage: React.FC = () => {
           </div>
 
           {/* SQL Code Block with Syntax Accent */}
-          <div className="relative rounded-lg overflow-hidden border border-[#222226] bg-[#08080a] p-4 font-mono text-xs sm:text-sm text-slate-200">
-            <div className="flex items-center justify-between text-[11px] text-slate-500 pb-2 border-b border-[#222226] mb-3">
+          <div className="relative rounded-lg overflow-hidden border border-[#282b34] bg-[#0e0f12] p-4 font-mono text-xs sm:text-sm text-slate-200">
+            <div className="flex items-center justify-between text-[11px] text-slate-500 pb-2 border-b border-[#282b34] mb-3">
               <span>SQL Query Statement &bull; SQLite Engine</span>
               <span>{activeQuery.clauses.join(' • ')}</span>
             </div>
@@ -415,7 +415,7 @@ export const SqlAnalyticsPage: React.FC = () => {
           </div>
 
           {/* Analytical Explanation */}
-          <div className="p-3.5 rounded-lg bg-[#280c0c] border border-[#5e1e1e] flex items-start gap-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <div className="p-3.5 rounded-lg bg-[#2d1113] border border-[#631f24] flex items-start gap-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
             <Info className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
             <div>
               <span className="font-semibold text-red-500 font-mono">Analytical Insight: </span>
@@ -464,9 +464,9 @@ export const SqlAnalyticsPage: React.FC = () => {
               </span>
             </div>
 
-            <div className="rounded-lg border border-[#222226] bg-[#08080a] overflow-x-auto">
-              <table className="w-full text-left text-xs font-mono divide-y divide-[#222226] min-w-[600px]">
-                <thead className="bg-[#121215] text-slate-300">
+            <div className="rounded-lg border border-[#282b34] bg-[#0e0f12] overflow-x-auto">
+              <table className="w-full text-left text-xs font-mono divide-y divide-[#282b34] min-w-[600px]">
+                <thead className="bg-[#1e2026] text-slate-300">
                   <tr>
                     {activeQuery.columns.map(col => (
                       <th key={col} className="px-3.5 py-2.5 font-bold uppercase tracking-wider text-[11px] text-red-500">
@@ -475,9 +475,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-[#222226] text-slate-300">
+                <tbody className="divide-y divide-[#282b34] text-slate-300">
                   {activeQuery.rows.map((row, idx) => (
-                    <tr key={idx} className="hover:bg-[#151518] transition-colors">
+                    <tr key={idx} className="hover:bg-[#23262f] transition-colors">
                       {activeQuery.columns.map(col => {
                         const val = row[col];
                         let renderedVal: React.ReactNode = val;
@@ -486,7 +486,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                         if (typeof val === 'number') {
                           if (col.includes('pct') || col.includes('rate')) {
                             renderedVal = (
-                              <span className="px-2 py-0.5 rounded font-bold bg-[#220909] text-red-400 border border-[#5e1e1e]">
+                              <span className="px-2 py-0.5 rounded font-bold bg-[#270e10] text-red-400 border border-[#631f24]">
                                 {val.toFixed(1)}%
                               </span>
                             );
@@ -507,7 +507,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                           }
                         } else if (val === 'Profitable') {
                           renderedVal = (
-                            <span className="px-2 py-0.5 rounded bg-[#220909] text-red-400 border border-[#5e1e1e] font-bold">
+                            <span className="px-2 py-0.5 rounded bg-[#270e10] text-red-400 border border-[#631f24] font-bold">
                               Profitable (&ge; 2.5x)
                             </span>
                           );
@@ -530,9 +530,9 @@ export const SqlAnalyticsPage: React.FC = () => {
       </div>
 
       {/* 3. SQL → Visual Analytics Showcase */}
-      <div id="sql-viz-section" className="space-y-6 pt-4 border-t border-[#222226]">
+      <div id="sql-viz-section" className="space-y-6 pt-4 border-t border-[#282b34]">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#220909] border border-[#5e1e1e] text-xs font-mono text-red-500">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-[#270e10] border border-[#631f24] text-xs font-mono text-red-500">
             <Sparkles className="w-3.5 h-3.5" />
             <span>DATA VISUALIZATION</span>
           </div>
@@ -545,14 +545,14 @@ export const SqlAnalyticsPage: React.FC = () => {
         </div>
 
         {/* Visual Showcase Sub-tabs */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-1.5 rounded-lg bg-[#121215] border border-[#222226]">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-1.5 rounded-lg bg-[#1e2026] border border-[#282b34]">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-1.5 w-full sm:w-auto">
             <button
               onClick={() => setActiveVizTab('q6')}
               className={`px-3.5 py-2 rounded-md text-xs font-mono transition-colors flex items-center justify-center gap-2 border ${
                 activeVizTab === 'q6'
-                  ? 'bg-[#2e0e0e] border-red-500 text-white font-semibold'
-                  : 'border-transparent text-slate-400 hover:text-white hover:bg-[#151518]'
+                  ? 'bg-[#331215] border-red-500 text-white font-semibold'
+                  : 'border-transparent text-slate-400 hover:text-white hover:bg-[#23262f]'
               }`}
             >
               <span>Viz 1: Budget Tiers (Q06)</span>
@@ -561,8 +561,8 @@ export const SqlAnalyticsPage: React.FC = () => {
               onClick={() => setActiveVizTab('q7')}
               className={`px-3.5 py-2 rounded-md text-xs font-mono transition-colors flex items-center justify-center gap-2 border ${
                 activeVizTab === 'q7'
-                  ? 'bg-[#2e0e0e] border-red-500 text-white font-semibold'
-                  : 'border-transparent text-slate-400 hover:text-white hover:bg-[#151518]'
+                  ? 'bg-[#331215] border-red-500 text-white font-semibold'
+                  : 'border-transparent text-slate-400 hover:text-white hover:bg-[#23262f]'
               }`}
             >
               <span>Viz 2: Genre HAVING (Q07)</span>
@@ -571,15 +571,15 @@ export const SqlAnalyticsPage: React.FC = () => {
               onClick={() => setActiveVizTab('q8')}
               className={`px-3.5 py-2 rounded-md text-xs font-mono transition-colors flex items-center justify-center gap-2 border ${
                 activeVizTab === 'q8'
-                  ? 'bg-[#2e0e0e] border-red-500 text-white font-semibold'
-                  : 'border-transparent text-slate-400 hover:text-white hover:bg-[#151518]'
+                  ? 'bg-[#331215] border-red-500 text-white font-semibold'
+                  : 'border-transparent text-slate-400 hover:text-white hover:bg-[#23262f]'
               }`}
             >
               <span>Viz 3: Studio JOIN (Q08)</span>
             </button>
           </div>
 
-          <div className="inline-flex p-1 rounded-md bg-[#08080a] border border-[#222226] text-xs font-mono self-start sm:self-auto">
+          <div className="inline-flex p-1 rounded-md bg-[#0e0f12] border border-[#282b34] text-xs font-mono self-start sm:self-auto">
             <button
               onClick={() => setActiveViewMode('viz')}
               className={`px-3 py-1 rounded-md transition-colors flex items-center gap-1.5 ${
@@ -603,10 +603,10 @@ export const SqlAnalyticsPage: React.FC = () => {
 
         {/* Dynamic Visualization Container */}
         {activeVizTab === 'q6' && (
-          <div className="rounded-xl p-6 sm:p-8 border border-[#222226] bg-[#0d0d0f] space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#222226]">
+          <div className="rounded-xl p-6 sm:p-8 border border-[#282b34] bg-[#191a1f] space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#282b34]">
               <div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#220909] text-red-400 border border-[#5e1e1e]">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#270e10] text-red-400 border border-[#631f24]">
                   SQL &rarr; Visual Analytics &bull; Query 06 (Group Comparison)
                 </span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">
@@ -616,14 +616,14 @@ export const SqlAnalyticsPage: React.FC = () => {
                   Generated directly from: <code className="text-red-400 font-mono">GROUP BY budget_tier</code>
                 </p>
               </div>
-              <span className="text-xs font-mono text-red-400 bg-[#220909] px-3 py-1 rounded-md border border-[#5e1e1e]">
+              <span className="text-xs font-mono text-red-400 bg-[#270e10] px-3 py-1 rounded-md border border-[#631f24]">
                 Breakeven Benchmark: 2.5x Multiplier
               </span>
             </div>
 
             {/* Top 3 KPI Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-1">
+              <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-1">
                 <span className="text-[11px] font-mono uppercase text-red-500 font-bold flex items-center gap-1.5">
                   <TrendingUp className="w-3.5 h-3.5" />
                   Optimal Efficiency Zone
@@ -634,7 +634,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-1">
+              <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-1">
                 <span className="text-[11px] font-mono uppercase text-red-500 font-bold flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5" />
                   Inflection Threshold
@@ -645,7 +645,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-1">
+              <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-1">
                 <span className="text-[11px] font-mono uppercase text-red-500 font-bold flex items-center gap-1.5">
                   <AlertTriangle className="w-3.5 h-3.5" />
                   Diminishing Return Trap
@@ -660,8 +660,8 @@ export const SqlAnalyticsPage: React.FC = () => {
             {activeViewMode === 'viz' ? (
               <div className="space-y-6">
                 {/* Visual Column / Vertical Bar Canvas */}
-                <div className="p-6 rounded-lg bg-[#08080a] border border-[#222226] space-y-6">
-                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-[#222226] pb-2">
+                <div className="p-6 rounded-lg bg-[#0e0f12] border border-[#282b34] space-y-6">
+                  <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-[#282b34] pb-2">
                     <span className="flex items-center gap-2">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-600" />
                       % of Films Clearing Theatrical Breakeven (2.5x Multiplier)
@@ -675,10 +675,10 @@ export const SqlAnalyticsPage: React.FC = () => {
                   <div className="relative pt-8 pb-4">
                     {/* 50% Horizontal Reference Line */}
                     <div 
-                      className="absolute left-0 right-0 border-b-2 border-dashed border-[#5e1e1e] z-10 flex items-center justify-end pr-2 pointer-events-none"
+                      className="absolute left-0 right-0 border-b-2 border-dashed border-[#631f24] z-10 flex items-center justify-end pr-2 pointer-events-none"
                       style={{ bottom: '48%' }}
                     >
-                      <span className="text-[10px] font-mono text-red-400 bg-[#08080a] px-1.5 py-0.5 rounded border border-[#5e1e1e] -translate-y-2">
+                      <span className="text-[10px] font-mono text-red-400 bg-[#0e0f12] px-1.5 py-0.5 rounded border border-[#631f24] -translate-y-2">
                         50% Breakeven Line
                       </span>
                     </div>
@@ -694,20 +694,20 @@ export const SqlAnalyticsPage: React.FC = () => {
                             <div className="mb-2 text-center">
                               <span className={`text-[10px] sm:text-xs font-mono font-bold px-2 py-0.5 rounded-md ${
                                 isOptimal 
-                                  ? 'bg-[#220909] text-red-400 border border-[#5e1e1e]' 
-                                  : 'bg-[#151518] text-slate-300 border border-[#222226]'
+                                  ? 'bg-[#270e10] text-red-400 border border-[#631f24]' 
+                                  : 'bg-[#23262f] text-slate-300 border border-[#282b34]'
                               }`}>
                                 {tier.avg_multiplier > 100 ? `${tier.avg_multiplier.toFixed(0)}x` : `${tier.avg_multiplier.toFixed(1)}x`}
                               </span>
                             </div>
 
                             {/* Vertical Bar - Flat Matte */}
-                            <div className="w-full max-w-[70px] bg-[#121215] rounded-t-lg overflow-hidden relative flex flex-col justify-end p-1 transition-colors group-hover:border-red-500 border border-[#222226]"
+                            <div className="w-full max-w-[70px] bg-[#1e2026] rounded-t-lg overflow-hidden relative flex flex-col justify-end p-1 transition-colors group-hover:border-red-500 border border-[#282b34]"
                               style={{ height: `${pct}%` }}
                             >
                               <div 
                                 className={`w-full h-full rounded-t-md transition-colors flex flex-col items-center justify-between py-2 ${
-                                  isOptimal ? 'bg-red-600 text-slate-950 font-bold' : 'bg-[#321010] text-red-400 font-semibold'
+                                  isOptimal ? 'bg-red-600 text-slate-950 font-bold' : 'bg-[#371417] text-red-400 font-semibold'
                                 }`}
                               >
                                 <span className="font-mono text-xs sm:text-sm">
@@ -736,7 +736,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </div>
 
                 {/* Analytical Interpretation Callout */}
-                <div className="p-4 rounded-lg bg-[#280c0c] border border-[#5e1e1e] text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed font-light">
+                <div className="p-4 rounded-lg bg-[#2d1113] border border-[#631f24] text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed font-light">
                   <span className="font-bold text-red-500 font-mono block">Key Analytical Deduction:</span>
                   <p>
                     The SQL aggregation confirms the diminishing returns law: movies produced for <strong className="text-white">&lt; $5M</strong> and <strong className="text-white">$5M–$25M</strong> surpass the 2.5x theatrical breakeven threshold at <strong>100%</strong> and <strong>90%</strong> rates. In stark contrast, mega-budget releases (<strong className="text-white">$140M+</strong>) collapse to a <strong>38.9% success rate</strong>, despite averaging $766M in gross box office revenue.
@@ -745,9 +745,9 @@ export const SqlAnalyticsPage: React.FC = () => {
               </div>
             ) : (
               /* Raw SQL Table View */
-              <div className="rounded-lg border border-[#222226] bg-[#08080a] overflow-x-auto">
-                <table className="w-full text-left text-xs font-mono divide-y divide-[#222226]">
-                  <thead className="bg-[#121215] text-red-500">
+              <div className="rounded-lg border border-[#282b34] bg-[#0e0f12] overflow-x-auto">
+                <table className="w-full text-left text-xs font-mono divide-y divide-[#282b34]">
+                  <thead className="bg-[#1e2026] text-red-500">
                     <tr>
                       <th className="px-4 py-3">Budget Tier</th>
                       <th className="px-4 py-3">Sample Count</th>
@@ -757,9 +757,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <th className="px-4 py-3">% Profitable (&ge; 2.5x)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#222226] text-slate-300">
+                  <tbody className="divide-y divide-[#282b34] text-slate-300">
                     {q6Rows.map(r => (
-                      <tr key={r.budget_tier} className="hover:bg-[#151518] transition-colors">
+                      <tr key={r.budget_tier} className="hover:bg-[#23262f] transition-colors">
                         <td className="px-4 py-2.5 font-bold text-white">{r.budget_tier}</td>
                         <td className="px-4 py-2.5">{r.movie_count}</td>
                         <td className="px-4 py-2.5">${r.avg_budget_mil}M</td>
@@ -776,10 +776,10 @@ export const SqlAnalyticsPage: React.FC = () => {
         )}
 
         {activeVizTab === 'q7' && (
-          <div className="rounded-xl p-6 sm:p-8 border border-[#222226] bg-[#0d0d0f] space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#222226]">
+          <div className="rounded-xl p-6 sm:p-8 border border-[#282b34] bg-[#191a1f] space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#282b34]">
               <div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#220909] text-red-400 border border-[#5e1e1e]">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#270e10] text-red-400 border border-[#631f24]">
                   SQL &rarr; Visual Analytics &bull; Query 07 (HAVING Clause)
                 </span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">
@@ -789,14 +789,14 @@ export const SqlAnalyticsPage: React.FC = () => {
                   Post-aggregation filter: <code className="text-red-400 font-mono">HAVING COUNT(*) &ge; 4 AND AVG(multiplier) &ge; 2.5</code>
                 </p>
               </div>
-              <span className="text-xs font-mono text-red-400 bg-[#220909] px-3 py-1 rounded-md border border-[#5e1e1e]">
+              <span className="text-xs font-mono text-red-400 bg-[#270e10] px-3 py-1 rounded-md border border-[#631f24]">
                 10 Qualifying Genres
               </span>
             </div>
 
             {/* Quick KPI comparison */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-1">
+              <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-1">
                 <span className="text-[11px] font-mono uppercase text-red-500 font-bold flex items-center gap-1.5">
                   <Film className="w-3.5 h-3.5" />
                   Most Resilient: Horror &amp; Thriller
@@ -807,7 +807,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </p>
               </div>
 
-              <div className="p-4 rounded-lg bg-[#121215] border border-[#222226] space-y-1">
+              <div className="p-4 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-1">
                 <span className="text-[11px] font-mono uppercase text-red-500 font-bold flex items-center gap-1.5">
                   <AlertTriangle className="w-3.5 h-3.5" />
                   Highest Risk: Action &amp; Adventure
@@ -822,9 +822,9 @@ export const SqlAnalyticsPage: React.FC = () => {
             {activeViewMode === 'viz' ? (
               <div className="space-y-6">
                 {/* Ranked Horizontal Bar Chart */}
-                <div className="p-5 sm:p-6 rounded-lg bg-[#08080a] border border-[#222226] space-y-4">
+                <div className="p-5 sm:p-6 rounded-lg bg-[#0e0f12] border border-[#282b34] space-y-4">
                   {/* Axis Header */}
-                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-[#222226] pb-2">
+                  <div className="flex items-center justify-between text-[11px] font-mono text-slate-400 border-b border-[#282b34] pb-2">
                     <span>Rank &amp; Genre</span>
                     <div className="hidden sm:flex items-center gap-8 pr-16 text-slate-500">
                       <span>0%</span>
@@ -847,7 +847,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                           <div className="flex items-center justify-between text-xs font-mono">
                             <div className="flex items-center gap-2 w-32 sm:w-44 shrink-0">
                               <span className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
-                                idx < 3 ? 'bg-red-600 text-slate-950' : 'bg-[#151518] text-slate-400'
+                                idx < 3 ? 'bg-red-600 text-slate-950' : 'bg-[#23262f] text-slate-400'
                               }`}>
                                 #{idx + 1}
                               </span>
@@ -856,10 +856,10 @@ export const SqlAnalyticsPage: React.FC = () => {
                             </div>
 
                             {/* Visual Bar - Flat Matte */}
-                            <div className="flex-1 mx-3 sm:mx-6 h-4 bg-[#121215] rounded-full overflow-hidden relative border border-[#222226]">
+                            <div className="flex-1 mx-3 sm:mx-6 h-4 bg-[#1e2026] rounded-full overflow-hidden relative border border-[#282b34]">
                               <div 
                                 className={`h-full rounded-full transition-all flex items-center justify-end pr-2 ${
-                                  isTopTier ? 'bg-red-600 text-slate-950 font-bold' : 'bg-[#321010] text-red-400'
+                                  isTopTier ? 'bg-red-600 text-slate-950 font-bold' : 'bg-[#371417] text-red-400'
                                 }`}
                                 style={{ width: `${breakevenPct}%` }}
                               >
@@ -882,7 +882,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="p-4 rounded-lg bg-[#280c0c] border border-[#5e1e1e] text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed font-light">
+                <div className="p-4 rounded-lg bg-[#2d1113] border border-[#631f24] text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed font-light">
                   <span className="font-bold text-red-500 font-mono block">Key Analytical Deduction:</span>
                   <p>
                     The <code className="text-red-400 font-mono">HAVING</code> clause isolates genres that simultaneously satisfy sample reliability and profitability. <strong className="text-white">Horror</strong> and <strong className="text-white">Thriller</strong> boast the highest commercial resilience (100% and 86.7% breakeven rates), whereas heavy-CGI genres like <strong className="text-white">Action</strong> and <strong className="text-white">Adventure</strong> hover at ~46%–50% due to budget inflation exceeding $160M+ averages.
@@ -890,9 +890,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div className="rounded-lg border border-[#222226] bg-[#08080a] overflow-x-auto">
-                <table className="w-full text-left text-xs font-mono divide-y divide-[#222226]">
-                  <thead className="bg-[#121215] text-red-500">
+              <div className="rounded-lg border border-[#282b34] bg-[#0e0f12] overflow-x-auto">
+                <table className="w-full text-left text-xs font-mono divide-y divide-[#282b34]">
+                  <thead className="bg-[#1e2026] text-red-500">
                     <tr>
                       <th className="px-4 py-3">Genre Name</th>
                       <th className="px-4 py-3">Release Count</th>
@@ -902,9 +902,9 @@ export const SqlAnalyticsPage: React.FC = () => {
                       <th className="px-4 py-3">Breakeven Rate (%)</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-[#222226] text-slate-300">
+                  <tbody className="divide-y divide-[#282b34] text-slate-300">
                     {q7Rows.map(r => (
-                      <tr key={r.genre_name} className="hover:bg-[#151518] transition-colors">
+                      <tr key={r.genre_name} className="hover:bg-[#23262f] transition-colors">
                         <td className="px-4 py-2.5 font-bold text-white">{r.genre_name}</td>
                         <td className="px-4 py-2.5">{r.total_releases}</td>
                         <td className="px-4 py-2.5">${r.avg_budget_mil}M</td>
@@ -921,10 +921,10 @@ export const SqlAnalyticsPage: React.FC = () => {
         )}
 
         {activeVizTab === 'q8' && (
-          <div className="rounded-xl p-6 sm:p-8 border border-[#222226] bg-[#0d0d0f] space-y-6">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#222226]">
+          <div className="rounded-xl p-6 sm:p-8 border border-[#282b34] bg-[#191a1f] space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#282b34]">
               <div>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#220909] text-red-400 border border-[#5e1e1e]">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase bg-[#270e10] text-red-400 border border-[#631f24]">
                   SQL &rarr; Visual Analytics &bull; Query 08 (Relational JOIN)
                 </span>
                 <h3 className="text-xl font-bold text-white tracking-tight mt-1">
@@ -934,7 +934,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                   Joined across 3 tables: <code className="text-red-400 font-mono">studios JOIN movie_studios JOIN movies</code>
                 </p>
               </div>
-              <span className="text-xs font-mono text-red-400 bg-[#220909] px-3 py-1 rounded-md border border-[#5e1e1e]">
+              <span className="text-xs font-mono text-red-400 bg-[#270e10] px-3 py-1 rounded-md border border-[#631f24]">
                 10 Production Studios
               </span>
             </div>
@@ -942,8 +942,8 @@ export const SqlAnalyticsPage: React.FC = () => {
             {/* Split Comparison Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Independent / Boutique Model */}
-              <div className="p-5 rounded-lg bg-[#121215] border border-[#222226] space-y-3">
-                <div className="flex items-center justify-between border-b border-[#222226] pb-2">
+              <div className="p-5 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-3">
+                <div className="flex items-center justify-between border-b border-[#282b34] pb-2">
                   <div className="flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-red-500" />
                     <span className="text-sm font-bold text-white font-mono">Boutique &amp; Mini-Major Studios</span>
@@ -952,7 +952,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </div>
                 <div className="space-y-2 text-xs font-mono">
                   {q8Rows.filter(s => s.studio_tier !== 'Major Conglomerate').map(studio => (
-                    <div key={studio.studio_name} className="p-2.5 rounded-md bg-[#0d0d0f] border border-[#222226] space-y-1">
+                    <div key={studio.studio_name} className="p-2.5 rounded-md bg-[#191a1f] border border-[#282b34] space-y-1">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-white">{studio.studio_name}</span>
                         <span className="text-red-500 font-bold">{studio.profitable_success_rate}% Success</span>
@@ -968,8 +968,8 @@ export const SqlAnalyticsPage: React.FC = () => {
               </div>
 
               {/* Major Conglomerate Model */}
-              <div className="p-5 rounded-lg bg-[#121215] border border-[#222226] space-y-3">
-                <div className="flex items-center justify-between border-b border-[#222226] pb-2">
+              <div className="p-5 rounded-lg bg-[#1e2026] border border-[#282b34] space-y-3">
+                <div className="flex items-center justify-between border-b border-[#282b34] pb-2">
                   <div className="flex items-center gap-2">
                     <Building2 className="w-4 h-4 text-red-500" />
                     <span className="text-sm font-bold text-white font-mono">Major Conglomerate Studios</span>
@@ -978,7 +978,7 @@ export const SqlAnalyticsPage: React.FC = () => {
                 </div>
                 <div className="space-y-2 text-xs font-mono">
                   {q8Rows.filter(s => s.studio_tier === 'Major Conglomerate').map(studio => (
-                    <div key={studio.studio_name} className="p-2.5 rounded-md bg-[#0d0d0f] border border-[#222226] space-y-1">
+                    <div key={studio.studio_name} className="p-2.5 rounded-md bg-[#191a1f] border border-[#282b34] space-y-1">
                       <div className="flex items-center justify-between">
                         <span className="font-bold text-white">{studio.studio_name}</span>
                         <span className={`font-bold ${
@@ -998,7 +998,7 @@ export const SqlAnalyticsPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-4 rounded-lg bg-[#280c0c] border border-[#5e1e1e] text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed font-light">
+            <div className="p-4 rounded-lg bg-[#2d1113] border border-[#631f24] text-xs sm:text-sm text-slate-300 space-y-1.5 leading-relaxed font-light">
               <span className="font-bold text-red-500 font-mono block">Key Analytical Deduction:</span>
               <p>
                 The relational multi-table JOIN reveals an inverse relationship between corporate scale and portfolio hit rate: Boutique/indie distributors (<strong className="text-white">Blumhouse, Lionsgate, A24</strong>) maintain near <strong>100% breakeven rates</strong> by limiting exposure per film, while major conglomerates (<strong className="text-white">Disney, Warner Bros</strong>) sink billions into mega-productions where only <strong>36%–40%</strong> clear theatrical breakeven.

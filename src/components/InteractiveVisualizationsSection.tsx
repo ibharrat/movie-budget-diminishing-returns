@@ -358,13 +358,13 @@ export const InteractiveVisualizationsSection: React.FC = () => {
       {/* ===================================================================== */}
       {/* CLEAN 3-OPTION SELECTOR BAR                                           */}
       {/* ===================================================================== */}
-      <div className="p-1.5 rounded-xl bg-[#121215] border border-[#222226] grid grid-cols-1 sm:grid-cols-3 gap-2">
+      <div className="p-1.5 rounded-xl bg-[#1e2026] border border-[#282b34] grid grid-cols-1 sm:grid-cols-3 gap-2">
         <button
           onClick={() => setActiveInteractiveTab('catboost')}
           className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
             activeInteractiveTab === 'catboost'
               ? 'bg-red-600 text-slate-950 shadow-sm'
-              : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+              : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
           }`}
         >
           <ScatterIcon className="w-4 h-4" />
@@ -376,7 +376,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
             activeInteractiveTab === 'rf'
               ? 'bg-red-600 text-slate-950 shadow-sm'
-              : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+              : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
           }`}
         >
           <BarChart3 className="w-4 h-4" />
@@ -388,7 +388,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           className={`py-3 px-4 rounded-lg text-xs font-mono font-bold transition-all flex items-center justify-center gap-2 ${
             activeInteractiveTab === 'bayesian'
               ? 'bg-red-600 text-slate-950 shadow-sm'
-              : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+              : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
           }`}
         >
           <LineChartIcon className="w-4 h-4" />
@@ -401,12 +401,12 @@ export const InteractiveVisualizationsSection: React.FC = () => {
       {/* OPTION 1: CATBOOST INTERACTIVE SCATTER PLOT                           */}
       {/* ===================================================================== */}
       {activeInteractiveTab === 'catboost' && (
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#0d0d0f] border border-[#222226] space-y-4">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#191a1f] border border-[#282b34] space-y-4">
           
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#220909] text-emerald-400 border border-[#1c4d37]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#270e10] text-emerald-400 border border-[#1c4d37]">
                 Model 06: CatBoost Regressor
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -421,7 +421,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           </div>
 
           {/* Controls Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 p-3.5 rounded-xl bg-[#121215] border border-[#222226]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 p-3.5 rounded-xl bg-[#1e2026] border border-[#282b34]">
             
             {/* View Dropdown */}
             <div className="space-y-1">
@@ -432,7 +432,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={scatterViewMode}
                 onChange={(e) => setScatterViewMode(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="actual">Actual Box Office vs Budget</option>
                 <option value="overestimate">CatBoost vs Linear Baseline (+320M)</option>
@@ -449,7 +449,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={scatterGenre}
                 onChange={(e) => setScatterGenre(e.target.value)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All Genres (52 Sample Films)</option>
                 <option value="Action / Adventure">Action / Adventure</option>
@@ -469,7 +469,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={scatterBreakevenFilter}
                 onChange={(e) => setScatterBreakevenFilter(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All Films</option>
                 <option value="profitable">Profitable Only (&ge; 2.5x Breakeven)</option>
@@ -493,7 +493,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 step="25"
                 value={scatterMaxBudget}
                 onChange={(e) => setScatterMaxBudget(Number(e.target.value))}
-                className="w-full accent-sky-400 cursor-pointer h-1.5 bg-[#08080a] rounded-lg mt-1"
+                className="w-full accent-sky-400 cursor-pointer h-1.5 bg-[#0e0f12] rounded-lg mt-1"
               />
               <div className="flex justify-between text-[9px] font-mono text-slate-500">
                 <span>$25M</span>
@@ -504,10 +504,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           </div>
 
           {/* Recharts Canvas */}
-          <div className="h-[460px] w-full bg-[#08080a] rounded-xl border border-[#222226] p-3 sm:p-4 relative">
+          <div className="h-[460px] w-full bg-[#0e0f12] rounded-xl border border-[#282b34] p-3 sm:p-4 relative">
             <ResponsiveContainer width="100%" height="100%">
               <ScatterChart margin={{ top: 20, right: 30, bottom: 25, left: 15 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#222226" opacity={1} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#282b34" opacity={1} />
                 <XAxis 
                   type="number" 
                   dataKey="budget" 
@@ -547,8 +547,8 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                     if (active && payload && payload.length) {
                       const data: ScatterMoviePoint = payload[0].payload;
                       return (
-                        <div className="p-3 rounded-lg bg-[#121215] border border-[#5e1e1e] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
-                          <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                        <div className="p-3 rounded-lg bg-[#1e2026] border border-[#631f24] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
+                          <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                             <span className="font-bold text-white">{data.title} ({data.year})</span>
                             <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
                               data.breakeven ? 'bg-[#0d241a] text-emerald-400' : 'bg-[#2c1017] text-rose-400'
@@ -564,7 +564,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                             <div><span className="text-slate-500">Residual:</span> <span className={data.residual >= 0 ? 'text-emerald-400' : 'text-amber-400'}>{data.residual >= 0 ? '+' : ''}${data.residual.toFixed(1)}M</span></div>
                             <div><span className="text-slate-500">Multiplier:</span> {data.multiplier.toFixed(2)}x</div>
                           </div>
-                          <div className="pt-1 border-t border-[#222226] text-[10px] text-slate-400">
+                          <div className="pt-1 border-t border-[#282b34] text-[10px] text-slate-400">
                             {data.genre} &bull; {data.studio}
                           </div>
                         </div>
@@ -580,7 +580,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                     if (scatterViewMode === 'residuals') {
                       fill = entry.residual >= 0 ? '#ef4444' : '#fb923c';
                     }
-                    return <Cell key={`cell-${index}`} fill={fill} fillOpacity={1} stroke="#08080a" strokeWidth={1} />;
+                    return <Cell key={`cell-${index}`} fill={fill} fillOpacity={1} stroke="#0e0f12" strokeWidth={1} />;
                   })}
                 </Scatter>
 
@@ -618,12 +618,12 @@ export const InteractiveVisualizationsSection: React.FC = () => {
       {/* OPTION 2: RANDOM FOREST INTERACTIVE BAR CHART                         */}
       {/* ===================================================================== */}
       {activeInteractiveTab === 'rf' && (
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#0d0d0f] border border-[#222226] space-y-4">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#191a1f] border border-[#282b34] space-y-4">
           
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#220909] text-purple-400 border border-[#442c68]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#270e10] text-purple-400 border border-[#442c68]">
                 Model 09: Random Forest Classifier
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -638,7 +638,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           </div>
 
           {/* Controls Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#121215] border border-[#222226]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#1e2026] border border-[#282b34]">
             
             {/* Metric Dropdown */}
             <div className="space-y-1">
@@ -649,7 +649,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={rfMetric}
                 onChange={(e) => setRfMetric(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="breakeven_comparison">Random Forest Predicted vs Empirical Breakeven (%)</option>
                 <option value="multiplier">Median Box Office Multiplier (x Return)</option>
@@ -667,7 +667,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={rfStudioFilter}
                 onChange={(e) => setRfStudioFilter(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All Studios Combined (5,372 Cleaned Films)</option>
                 <option value="major">Major Studios Only (Disney, Warner, Universal, Sony, Fox)</option>
@@ -691,7 +691,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 step="0.1"
                 value={rfHurdleThreshold}
                 onChange={(e) => setRfHurdleThreshold(Number(e.target.value))}
-                className="w-full accent-purple-400 cursor-pointer h-1.5 bg-[#08080a] rounded-lg mt-1"
+                className="w-full accent-purple-400 cursor-pointer h-1.5 bg-[#0e0f12] rounded-lg mt-1"
               />
               <div className="flex justify-between text-[9px] font-mono text-slate-500">
                 <span>1.8x</span>
@@ -703,10 +703,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           </div>
 
           {/* Recharts Bar Canvas */}
-          <div className="h-[430px] w-full bg-[#08080a] rounded-xl border border-[#222226] p-3 sm:p-4">
+          <div className="h-[430px] w-full bg-[#0e0f12] rounded-xl border border-[#282b34] p-3 sm:p-4">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={displayBarData} margin={{ top: 20, right: 30, bottom: 25, left: 15 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#222226" opacity={1} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#282b34" opacity={1} />
                 <XAxis 
                   dataKey="name" 
                   stroke="#64748b" 
@@ -739,8 +739,8 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                     if (active && payload && payload.length) {
                       const d: BarTierData & { dynamicEmpirical: number; dynamicRfPred: number } = payload[0].payload;
                       return (
-                        <div className="p-3.5 rounded-lg bg-[#121215] border border-[#442c68] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
-                          <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                        <div className="p-3.5 rounded-lg bg-[#1e2026] border border-[#442c68] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
+                          <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                             <span className="font-bold text-white">{d.name}</span>
                             <span className="text-slate-400 text-[10px]">{d.rangeLabel}</span>
                           </div>
@@ -806,12 +806,12 @@ export const InteractiveVisualizationsSection: React.FC = () => {
       {/* OPTION 3: BAYESIAN RIDGE TIME-SERIES                                  */}
       {/* ===================================================================== */}
       {activeInteractiveTab === 'bayesian' && (
-        <div className="p-5 sm:p-6 rounded-2xl bg-[#0d0d0f] border border-[#222226] space-y-4">
+        <div className="p-5 sm:p-6 rounded-2xl bg-[#191a1f] border border-[#282b34] space-y-4">
           
           {/* Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#222226]">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#220909] text-amber-400 border border-[#5c3e14]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#270e10] text-amber-400 border border-[#5c3e14]">
                 Model 19: Bayesian Ridge Regression
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -826,7 +826,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           </div>
 
           {/* Controls Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#121215] border border-[#222226]">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-3.5 rounded-xl bg-[#1e2026] border border-[#282b34]">
             
             {/* Metric Dropdown */}
             <div className="space-y-1">
@@ -837,7 +837,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={bayesianMetric}
                 onChange={(e) => setBayesianMetric(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="multiplier">Median Box Office Multiplier &amp; Bayesian Posterior (x)</option>
                 <option value="budget">Average Industry Production Budget ($M Escalation)</option>
@@ -854,7 +854,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <select
                 value={bayesianDecade}
                 onChange={(e) => setBayesianDecade(e.target.value as any)}
-                className="w-full bg-[#08080a] border border-[#222226] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
+                className="w-full bg-[#0e0f12] border border-[#282b34] text-slate-200 text-xs font-mono rounded-lg px-2.5 py-1.5 focus:border-red-500 outline-none"
               >
                 <option value="all">All 41 Years (1980–2020)</option>
                 <option value="1980s">1980s Era (Golden ROI Peak: 4.35x)</option>
@@ -874,8 +874,8 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 onClick={() => setShowCredibleBand(!showCredibleBand)}
                 className={`w-full py-1.5 px-3 rounded-lg text-xs font-mono border transition-colors flex items-center justify-between ${
                   showCredibleBand
-                    ? 'bg-[#2e0e0e] border-red-500 text-red-200'
-                    : 'bg-[#08080a] border-[#222226] text-slate-400'
+                    ? 'bg-[#331215] border-red-500 text-red-200'
+                    : 'bg-[#0e0f12] border-[#282b34] text-slate-400'
                 }`}
               >
                 <span>Shaded Corridor</span>
@@ -886,10 +886,10 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           </div>
 
           {/* Recharts Composed Time-Series Canvas */}
-          <div className="h-[460px] w-full bg-[#08080a] rounded-xl border border-[#222226] p-3 sm:p-4">
+          <div className="h-[460px] w-full bg-[#0e0f12] rounded-xl border border-[#282b34] p-3 sm:p-4">
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart data={filteredTimeSeries} margin={{ top: 20, right: 30, bottom: 10, left: 15 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#222226" opacity={1} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#282b34" opacity={1} />
                 <XAxis 
                   dataKey="year" 
                   stroke="#64748b" 
@@ -923,8 +923,8 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                     if (active && payload && payload.length) {
                       const pt: TimeSeriesPoint = payload[0].payload;
                       return (
-                        <div className="p-3.5 rounded-lg bg-[#121215] border border-[#5c3e14] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
-                          <div className="flex items-center justify-between border-b border-[#222226] pb-1">
+                        <div className="p-3.5 rounded-lg bg-[#1e2026] border border-[#5c3e14] shadow-xl space-y-1.5 font-mono text-xs max-w-xs z-50">
+                          <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                             <span className="font-bold text-white">Year {pt.year}</span>
                             <span className="text-amber-400 text-[10px]">{pt.decade}</span>
                           </div>
@@ -934,7 +934,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                             <div><span className="text-slate-500">95% Credible Interval:</span> <span className="text-slate-400">[{pt.lower95.toFixed(2)}x &ndash; {pt.upper95.toFixed(2)}x]</span></div>
                             <div><span className="text-slate-500">Avg Budget:</span> ${pt.avgBudgetMil}M &bull; <span className="text-slate-500">Mega Share:</span> {pt.megaBudgetSharePct}%</div>
                           </div>
-                          <div className="pt-1.5 border-t border-[#222226] text-[10px] text-red-400">
+                          <div className="pt-1.5 border-t border-[#282b34] text-[10px] text-red-400">
                             Iconic Film: {pt.landmarkFilm} ({pt.landmarkGross})
                           </div>
                         </div>
@@ -959,7 +959,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                     type="monotone" 
                     dataKey="lower95" 
                     stroke="none" 
-                    fill="#08080a" 
+                    fill="#0e0f12" 
                     fillOpacity={0.9} 
                     name="95% Bayesian Lower Bound"
                   />
@@ -1018,7 +1018,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   dataKey="year" 
                   height={28} 
                   stroke="#ef4444" 
-                  fill="#121215"
+                  fill="#1e2026"
                   tickFormatter={(val) => `${val}`}
                 />
 

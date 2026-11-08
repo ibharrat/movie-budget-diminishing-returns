@@ -10,7 +10,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-[#222226] bg-black">
+    <header className="sticky top-0 z-50 w-full border-b border-[#282b34] bg-[#121316]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-4">
         
         {/* Brand Logo & Title */}
@@ -25,13 +25,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
         </div>
 
         {/* Navigation Tabs */}
-        <nav className="flex items-center gap-1 p-1 rounded-lg bg-[#0d0d0f] border border-[#222226] text-xs font-medium shrink-0 overflow-x-auto max-w-full">
+        <nav className="flex items-center gap-1 p-1 rounded-lg bg-[#191a1f] border border-[#282b34] text-xs font-medium shrink-0 overflow-x-auto max-w-full">
           <button
             onClick={() => onNavigate('question')}
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'question'
                 ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
             The Question
@@ -41,7 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'models'
                 ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
             Models &amp; Findings
@@ -51,7 +51,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'cleaning'
                 ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
             Data Cleaning
@@ -61,7 +61,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'redesigns'
                 ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
             Redesign Studio
@@ -71,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'sql'
                 ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
             <span>SQL</span>
@@ -81,7 +81,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             className={`px-2.5 sm:px-3 py-1.5 rounded-md transition-colors whitespace-nowrap ${
               currentPage === 'about'
                 ? 'bg-red-600 text-white font-bold'
-                : 'text-slate-300 hover:text-white hover:bg-[#151518]'
+                : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
             About Me
@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-white font-mono transition-colors border border-[#5e1e1e] hover:border-red-500 px-3 py-1.5 rounded-md bg-[#220909]"
+            className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-white font-mono transition-colors border border-[#631f24] hover:border-red-500 px-3 py-1.5 rounded-md bg-[#270e10]"
           >
             <span>Colab</span>
             <ExternalLink className="w-3.5 h-3.5 text-red-500" />
@@ -112,7 +112,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             href="https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-red-400 font-mono transition-colors border border-[#222226] hover:border-red-500 px-3 py-1.5 rounded-md bg-[#0d0d0f]"
+            className="inline-flex items-center gap-1.5 text-xs text-slate-300 hover:text-red-400 font-mono transition-colors border border-[#282b34] hover:border-red-500 px-3 py-1.5 rounded-md bg-[#191a1f]"
           >
             <span>Dataset</span>
             <ExternalLink className="w-3.5 h-3.5" />
