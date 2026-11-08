@@ -406,7 +406,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#270e10] text-emerald-400 border border-[#1c4d37]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#1e2026] text-white border border-[#282b34]">
                 Model 06: CatBoost Regressor
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -416,7 +416,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
             <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
               <span>Cross-Val R²: <strong className="text-red-400 font-bold">0.771</strong></span>
               <span>&bull;</span>
-              <span>RMSE: <strong className="text-emerald-400 font-bold">$34.8M</strong></span>
+              <span>RMSE: <strong className="text-white font-bold">$34.8M</strong></span>
             </div>
           </div>
 
@@ -493,7 +493,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 step="25"
                 value={scatterMaxBudget}
                 onChange={(e) => setScatterMaxBudget(Number(e.target.value))}
-                className="w-full accent-sky-400 cursor-pointer h-1.5 bg-[#0e0f12] rounded-lg mt-1"
+                className="w-full accent-red-600 cursor-pointer h-1.5 bg-[#0e0f12] rounded-lg mt-1"
               />
               <div className="flex justify-between text-[9px] font-mono text-slate-500">
                 <span>$25M</span>
@@ -551,7 +551,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                           <div className="flex items-center justify-between border-b border-[#282b34] pb-1">
                             <span className="font-bold text-white">{data.title} ({data.year})</span>
                             <span className={`px-1.5 py-0.2 rounded text-[9px] font-bold ${
-                              data.breakeven ? 'bg-[#0d241a] text-emerald-400' : 'bg-[#2c1017] text-rose-400'
+                              data.breakeven ? 'bg-[#1e2026] text-white' : 'bg-[#270e10] text-red-400'
                             }`}>
                               {data.breakeven ? '2.5x Cleared' : 'Under 2.5x'}
                             </span>
@@ -561,7 +561,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                             <div><span className="text-slate-500">Actual Gross:</span> ${data.revenue.toFixed(1)}M</div>
                             <div><span className="text-slate-500">CatBoost Pred:</span> <span className="text-red-400">${data.catboostPred.toFixed(1)}M</span></div>
                             <div><span className="text-slate-500">Linear Pred:</span> ${data.linearPred.toFixed(1)}M</div>
-                            <div><span className="text-slate-500">Residual:</span> <span className={data.residual >= 0 ? 'text-emerald-400' : 'text-amber-400'}>{data.residual >= 0 ? '+' : ''}${data.residual.toFixed(1)}M</span></div>
+                            <div><span className="text-slate-500">Residual:</span> <span className={data.residual >= 0 ? 'text-white font-bold' : 'text-slate-300'}>{data.residual >= 0 ? '+' : ''}${data.residual.toFixed(1)}M</span></div>
                             <div><span className="text-slate-500">Multiplier:</span> {data.multiplier.toFixed(2)}x</div>
                           </div>
                           <div className="pt-1 border-t border-[#282b34] text-[10px] text-slate-400">
@@ -623,7 +623,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#270e10] text-purple-400 border border-[#442c68]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#1e2026] text-white border border-[#282b34]">
                 Model 09: Random Forest Classifier
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -631,7 +631,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               </h3>
             </div>
             <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
-              <span>Accuracy: <strong className="text-purple-300 font-bold">84.6%</strong></span>
+              <span>Accuracy: <strong className="text-white font-bold">84.6%</strong></span>
               <span>&bull;</span>
               <span>ROC-AUC: <strong className="text-red-500 font-bold">0.892</strong></span>
             </div>
@@ -682,7 +682,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                   <Sliders className="w-3 h-3 text-red-500" />
                   <span>Breakeven Hurdle</span>
                 </span>
-                <span className="text-purple-400 font-bold">{rfHurdleThreshold.toFixed(1)}x Multiple</span>
+                <span className="text-red-500 font-bold">{rfHurdleThreshold.toFixed(1)}x Multiple</span>
               </div>
               <input
                 type="range"
@@ -691,7 +691,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
                 step="0.1"
                 value={rfHurdleThreshold}
                 onChange={(e) => setRfHurdleThreshold(Number(e.target.value))}
-                className="w-full accent-purple-400 cursor-pointer h-1.5 bg-[#0e0f12] rounded-lg mt-1"
+                className="w-full accent-red-600 cursor-pointer h-1.5 bg-[#0e0f12] rounded-lg mt-1"
               />
               <div className="flex justify-between text-[9px] font-mono text-slate-500">
                 <span>1.8x</span>
@@ -794,7 +794,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
 
           {/* Quick Stats Strip */}
           <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 px-2">
-            <span>Peak capital efficiency in <strong className="text-emerald-400">$5M–$25M sweet spot (61.8% Breakeven)</strong></span>
+            <span>Peak capital efficiency in <strong className="text-white font-bold">$5M–$25M sweet spot (61.8% Breakeven)</strong></span>
             <span>Mega-budgets ($140M+) collapse to <strong className="text-rose-400">43.4% breakeven</strong> with 46.1% flop risk</span>
           </div>
 
@@ -811,7 +811,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           {/* Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
-              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#270e10] text-amber-400 border border-[#5c3e14]">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#1e2026] text-white border border-[#282b34]">
                 Model 19: Bayesian Ridge Regression
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
@@ -819,7 +819,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               </h3>
             </div>
             <div className="flex items-center gap-2 font-mono text-xs text-slate-400">
-              <span>Residual Std: <strong className="text-amber-400 font-bold">&sigma; = 0.142</strong></span>
+              <span>Residual Std: <strong className="text-white font-bold">&sigma; = 0.142</strong></span>
               <span>&bull;</span>
               <span>Span: <strong className="text-red-400 font-bold">41 Years</strong></span>
             </div>
@@ -1028,7 +1028,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
 
           {/* Quick Stats Strip */}
           <div className="flex flex-wrap items-center justify-between text-xs font-mono text-slate-400 px-2">
-            <span>Historical Multiplier eroded from <strong className="text-emerald-400">4.35x (1980)</strong> down to <strong className="text-rose-400">2.18x (2019)</strong></span>
+            <span>Historical Multiplier eroded from <strong className="text-white font-bold">4.35x (1980)</strong> down to <strong className="text-red-400 font-bold">2.18x (2019)</strong></span>
             <span>Use the drag handles on the bottom timeline brush to zoom into specific eras</span>
           </div>
 

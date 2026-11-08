@@ -1521,7 +1521,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       </span>
                       <ol className="text-xs text-slate-300 space-y-1.5 list-decimal list-inside font-light">
                         <li>Open the shared notebook directly: <a href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-mono">Colab Live Link &rarr;</a></li>
-                        <li>Read the IEEE research paper draft: <a href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd" target="_blank" rel="noreferrer" className="text-emerald-400 hover:underline font-mono">Overleaf Paper &rarr;</a></li>
+                        <li>Read the IEEE research paper draft: <a href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-mono">Overleaf Paper &rarr;</a></li>
                         <li>Or open the live Colab link in the top navbar.</li>
                         <li>Click <em>Runtime &rarr; Run all</em> (executes all 20 models in ~75 seconds).</li>
                       </ol>
@@ -1554,20 +1554,20 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
       {activeSubView === 'matrix' && (
         <div className="space-y-5">
           {/* Scientific Experiment Winner Callout Banner */}
-          <div className="p-5 sm:p-6 rounded-xl bg-[#0d241a] border-2 border-emerald-500 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="p-5 sm:p-6 rounded-xl bg-[#191a1f] border-2 border-white flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div className="flex items-start sm:items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-[#0d241a] border border-emerald-500 flex items-center justify-center text-emerald-400 shrink-0 shadow-inner">
-                <Award className="w-6 h-6 text-emerald-400" />
+              <div className="w-12 h-12 rounded-xl bg-[#23262f] border border-white flex items-center justify-center text-white shrink-0 shadow-inner">
+                <Award className="w-6 h-6 text-white" />
               </div>
               <div className="space-y-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-xs font-mono uppercase font-bold text-emerald-400 tracking-wider flex items-center gap-1.5">
+                  <span className="text-xs font-mono uppercase font-bold text-white tracking-wider flex items-center gap-1.5">
                     <span>🏆 Scientific Experiment Winner: #1 Best Model</span>
                   </span>
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-[#0d241a] text-emerald-300 border border-[#1c4d37]">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-[#23262f] text-white border border-[#282b34]">
                     Highest Cross-Val R²: 0.771
                   </span>
-                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-[#0d241a] text-emerald-300 border border-[#1c4d37]">
+                  <span className="px-2.5 py-0.5 rounded text-[10px] font-bold font-mono bg-[#23262f] text-white border border-[#282b34]">
                     77.1% Variance Explained
                   </span>
                 </div>
@@ -1583,14 +1583,14 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
             <div className="flex items-center gap-3 shrink-0 self-start md:self-auto pl-16 md:pl-0">
               <div className="text-right">
                 <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Experimental R²</div>
-                <div className="text-2xl font-bold font-mono text-emerald-400">0.771</div>
+                <div className="text-2xl font-bold font-mono text-white">0.771</div>
               </div>
               <button
                 onClick={() => {
                   setSelectedModelId('catboost');
                   setActiveSubView('explorer');
                 }}
-                className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono transition-colors flex items-center gap-1.5 shadow-sm"
+                className="px-4 py-2 rounded-lg bg-white hover:bg-slate-200 text-black font-bold text-xs font-mono transition-colors flex items-center gap-1.5 shadow-sm"
               >
                 <span>Inspect #1 Model</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -1646,7 +1646,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                         }}
                         className={`cursor-pointer transition-colors ${
                           isTop1 
-                            ? 'bg-[#0d241a] hover:bg-[#112b1f] border-l-4 border-l-emerald-400 font-semibold' 
+                            ? 'bg-[#23262f] hover:bg-[#282b34] border-l-4 border-l-white font-semibold' 
                             : m.id === selectedModelId 
                             ? 'bg-[#331215]' 
                             : 'hover:bg-[#191a1f]'
@@ -1654,7 +1654,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       >
                         <td className="py-3 px-3 text-center">
                           {isTop1 ? (
-                            <span className="inline-flex items-center gap-1 text-emerald-400 font-bold px-2 py-0.5 rounded bg-[#0d241a] border border-[#1c4d37]">
+                            <span className="inline-flex items-center gap-1 text-white font-bold px-2 py-0.5 rounded bg-[#1e2026] border border-white">
                               ★ #01
                             </span>
                           ) : (
@@ -1665,11 +1665,11 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                         </td>
                         <td className="py-3 px-3">
                           <div className="flex items-center gap-2">
-                            <span className={`font-bold ${isTop1 ? 'text-emerald-300' : 'text-white'}`}>
+                            <span className="font-bold text-white">
                               {m.shortName}
                             </span>
                             {isTop1 && (
-                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#0d241a] text-emerald-300 border border-[#1c4d37]">
+                              <span className="px-1.5 py-0.5 rounded text-[9px] font-bold bg-[#1e2026] text-white border border-white">
                                 🏆 #1 BEST MODEL
                               </span>
                             )}
@@ -1697,7 +1697,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                               <div
                                 className={`h-full rounded-full transition-all ${
                                   m.r2Score >= 0.75
-                                    ? 'bg-emerald-400'
+                                    ? 'bg-white'
                                     : m.r2Score >= 0.70
                                     ? 'bg-red-600'
                                     : m.r2Score >= 0.60
@@ -1710,7 +1710,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                             <span
                               className={`font-mono font-bold text-xs whitespace-nowrap ${
                                 m.r2Score >= 0.75
-                                  ? 'text-emerald-400'
+                                  ? 'text-white'
                                   : m.r2Score >= 0.70
                                   ? 'text-red-400'
                                   : m.r2Score >= 0.60
@@ -1723,7 +1723,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                           </div>
                         </td>
                         <td className="py-3 px-3">
-                          <span className={`text-xs ${isTop1 ? 'text-emerald-300 font-bold' : 'text-slate-300'}`}>
+                          <span className={`text-xs ${isTop1 ? 'text-white font-bold' : 'text-slate-300'}`}>
                             {m.verdict}
                           </span>
                         </td>
@@ -1739,7 +1739,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 <span className="text-slate-300 font-bold">Scientific Conclusion:</span> Constant dependent variable measured across all 20 models. 
                 CatBoost Regressor proves to be the definitive #1 model with statistically significant superiority (R² = 0.771, RMSE = $46.1M, p &lt; 0.001).
               </div>
-              <div className="text-emerald-400 font-mono font-bold shrink-0">
+              <div className="text-white font-mono font-bold shrink-0">
                 #1 Champion: CatBoost Regressor
               </div>
             </div>
