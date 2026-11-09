@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar, PageKey } from './components/Navbar';
 import { QuestionPage } from './components/QuestionPage';
+import { ProposedAlgorithmPage } from './components/ProposedAlgorithmPage';
 import { DataCleaningPage } from './components/DataCleaningPage';
 import { ModelsAndFindingsPage } from './components/ModelsAndFindingsPage';
 import { RedesignStudioPage } from './components/RedesignStudioPage';
@@ -18,17 +19,24 @@ export const App: React.FC = () => {
         {currentPage === 'question' && (
           <QuestionPage onNavigateToViz={() => setCurrentPage('models')} />
         )}
-        {currentPage === 'cleaning' && (
-          <DataCleaningPage 
-            onNavigateToViz={() => setCurrentPage('models')} 
-            onNavigateToSql={() => setCurrentPage('sql')}
-          />
-        )}
         {currentPage === 'models' && (
           <ModelsAndFindingsPage 
             onNavigateToRedesigns={() => setCurrentPage('redesigns')}
             onNavigateToSql={() => setCurrentPage('sql')}
             onNavigateToCleaning={() => setCurrentPage('cleaning')}
+          />
+        )}
+        {currentPage === 'algorithm' && (
+          <ProposedAlgorithmPage 
+            onNavigateToModels={() => setCurrentPage('models')}
+            onNavigateToCleaning={() => setCurrentPage('cleaning')}
+            onNavigateToSql={() => setCurrentPage('sql')}
+          />
+        )}
+        {currentPage === 'cleaning' && (
+          <DataCleaningPage 
+            onNavigateToViz={() => setCurrentPage('models')} 
+            onNavigateToSql={() => setCurrentPage('sql')}
           />
         )}
         {currentPage === 'redesigns' && (
