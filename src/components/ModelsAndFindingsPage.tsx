@@ -340,12 +340,12 @@ print(f"KNN Test RMSE: {rmse:.2f}M USD")`,
     // Family 2: Decision Trees & Boosted Ensembles
     {
       id: 'catboost',
-      name: 'CatBoost Regressor (Best Continuous Fit)',
+      name: 'CatBoost-DR (Proposed Diminishing Returns Regressor)',
       shortName: 'CatBoost Regressor',
       category: 'ensemble',
       categoryLabel: 'Ensemble Trees',
       tagline: 'Symmetric Decision Trees & Ordered Boosting',
-      badge: 'Best Revenue Model',
+      badge: 'Proposed Algorithm (#1 Champion)',
       status: 'active',
       architecture: 'Oblivious / Symmetric Decision Trees with Native Categorical Target Encoding',
       r2Score: 0.771,
@@ -1619,6 +1619,14 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Download .ipynb</span>
+                </a>
+                <a
+                  href="/notebooks/catboost_dr_implementation.py"
+                  download="catboost_dr_implementation.py"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bold text-xs font-mono transition-colors shadow-sm"
+                >
+                  <Code className="w-3.5 h-3.5" />
+                  <span>CatBoost-DR Python (.py)</span>
                 </a>
               </div>
             </div>
