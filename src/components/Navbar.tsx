@@ -93,7 +93,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                 : 'text-slate-300 hover:text-white hover:bg-[#23262f]'
             }`}
           >
-            Models &amp; Findings
+            Models
           </button>
 
           {/* Consolidated Dropdown: Further Analysis */}
