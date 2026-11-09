@@ -368,7 +368,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           }`}
         >
           <ScatterIcon className="w-4 h-4" />
-          <span>1. CatBoost Scatter Plot</span>
+          <span>1. CatBoost-DR (Proposed Algorithm)</span>
         </button>
 
         <button
@@ -407,7 +407,7 @@ export const InteractiveVisualizationsSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[#282b34]">
             <div className="flex items-center gap-2.5">
               <span className="px-2.5 py-1 rounded text-xs font-mono font-bold bg-[#1e2026] text-white border border-[#282b34]">
-                Model 06: CatBoost Regressor
+                Model 06: CatBoost-DR (Proposed Algorithm)
               </span>
               <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
                 Budget vs Revenue Non-Linear Curve &amp; Residuals
@@ -417,6 +417,65 @@ export const InteractiveVisualizationsSection: React.FC = () => {
               <span>Cross-Val R²: <strong className="text-red-400 font-bold">0.771</strong></span>
               <span>&bull;</span>
               <span>RMSE: <strong className="text-white font-bold">$34.8M</strong></span>
+            </div>
+          </div>
+
+          {/* PROPOSED ALGORITHM EXPLAINER: CatBoost-DR 4-STEP PIPELINE */}
+          <div className="p-4 rounded-xl bg-[#121316] border border-[#282b34] space-y-3">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <span className="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-red-600 text-white uppercase tracking-wider">
+                  Proposed Algorithm Architecture
+                </span>
+                <h4 className="text-sm font-bold text-white tracking-tight">
+                  How CatBoost-DR Quantifies Diminishing Returns
+                </h4>
+              </div>
+              <div className="text-xs font-mono text-slate-300">
+                Critical Saturation Ceiling: <strong className="text-red-400 font-bold">$42.5M &ndash; $50.0M</strong> (Inflection Point B*)
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 pt-1">
+              <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-1">
+                <div className="text-[10px] font-mono uppercase text-red-400 font-bold flex items-center gap-1.5">
+                  <span className="w-4 h-4 rounded-full bg-[#270e10] border border-[#631f24] text-red-400 inline-flex items-center justify-center text-[10px]">1</span>
+                  <span>Log-Transform</span>
+                </div>
+                <p className="text-[11px] text-slate-300 leading-snug">
+                  Compresses Pareto right-skew with log(1+x), ensuring uniform gradient flow without $200M+ blockbusters dominating the loss surface.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-1">
+                <div className="text-[10px] font-mono uppercase text-red-400 font-bold flex items-center gap-1.5">
+                  <span className="w-4 h-4 rounded-full bg-[#270e10] border border-[#631f24] text-red-400 inline-flex items-center justify-center text-[10px]">2</span>
+                  <span>Ordered Target Stats</span>
+                </div>
+                <p className="text-[11px] text-slate-300 leading-snug">
+                  Encodes 150+ studios &amp; multi-genre tags using random record permutations, strictly eliminating target leakage across 5-fold CV.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-1">
+                <div className="text-[10px] font-mono uppercase text-red-400 font-bold flex items-center gap-1.5">
+                  <span className="w-4 h-4 rounded-full bg-[#270e10] border border-[#631f24] text-red-400 inline-flex items-center justify-center text-[10px]">3</span>
+                  <span>Symmetric Trees</span>
+                </div>
+                <p className="text-[11px] text-slate-300 leading-snug">
+                  Ensembles balanced 64-leaf oblivious trees (R² = 0.771 vs linear 0.574) with early stopping, preventing memorization of outliers.
+                </p>
+              </div>
+
+              <div className="p-3 rounded-lg bg-[#191a1f] border border-[#282b34] space-y-1">
+                <div className="text-[10px] font-mono uppercase text-red-400 font-bold flex items-center gap-1.5">
+                  <span className="w-4 h-4 rounded-full bg-[#270e10] border border-[#631f24] text-red-400 inline-flex items-center justify-center text-[10px]">4</span>
+                  <span>Marginal Yield dR/dB</span>
+                </div>
+                <p className="text-[11px] text-slate-300 leading-snug">
+                  Evaluates continuous derivatives to isolate where marginal revenue decays below 2.0x, triggering a 46.1% flop risk at mega-budgets.
+                </p>
+              </div>
             </div>
           </div>
 
