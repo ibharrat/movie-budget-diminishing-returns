@@ -137,10 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
                   >
                     <Sparkles className="w-4 h-4 text-red-500 shrink-0" />
                     <div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="font-semibold text-white">Proposed Algorithm</span>
-                        <span className="text-[9px] font-mono px-1.5 py-0.2 rounded bg-red-600 text-white font-bold">CatBoost-DR</span>
-                      </div>
+                      <span className="font-semibold text-white block">Proposed Algorithm</span>
                       <span className="text-[10px] text-slate-400 block font-light">Marginal yield &amp; inflection B*</span>
                     </div>
                   </button>
