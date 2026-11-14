@@ -219,7 +219,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage, onNavigate }) => {
             <ExternalLink className="w-3.5 h-3.5 text-red-500" />
           </a>
           <a
-            href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd"
+            href="https://www.overleaf.com/project/6acf8acd1e342bf0d51b7f88"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-1.5 text-xs text-red-400 hover:text-white font-mono transition-colors border border-[#631f24] hover:border-red-500 px-3 py-1.5 rounded-md bg-[#270e10]"

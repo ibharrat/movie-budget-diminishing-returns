@@ -1521,7 +1521,7 @@ print(f"Power-law skew reduced from {raw_skew:.2f} down to {trans_skew:.2f}")`,
                       </span>
                       <ol className="text-xs text-slate-300 space-y-1.5 list-decimal list-inside font-light">
                         <li>Open the shared notebook directly: <a href="https://colab.research.google.com/drive/1p-kZEzo7pI1qkmJsUF4ropuIlHgBRKr-?usp=sharing" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-mono">Colab Live Link &rarr;</a></li>
-                        <li>Read the IEEE research paper draft: <a href="https://www.overleaf.com/project/6ae4f1a9ab7573986e4f9503/share#3169a13f81cef47ecc8193540af92c636aaa406949d8cabd" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-mono">Overleaf Paper &rarr;</a></li>
+                        <li>Read the IEEE research paper draft: <a href="https://www.overleaf.com/project/6acf8acd1e342bf0d51b7f88" target="_blank" rel="noreferrer" className="text-red-500 hover:underline font-mono">Overleaf Paper &rarr;</a></li>
                         <li>Or open the live Colab link in the top navbar.</li>
                         <li>Click <em>Runtime &rarr; Run all</em> (executes all 20 models in ~75 seconds).</li>
                       </ol>
