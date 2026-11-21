@@ -355,7 +355,7 @@ print(f"KNN Test RMSE: {rmse:.2f}M USD")`,
       isBestModel: true,
       verdict: '🏆 #1 BEST MODEL: Highest variance explained (77.1%) capturing non-linear diminishing returns',
       primaryMetric: { label: 'Cross-Val R²', value: '0.771' },
-      secondaryMetric: { label: 'RMSE', value: '$34.2M' },
+      secondaryMetric: { label: 'RMSE', value: '$34.8M' },
       bestFitRole: 'Top performing continuous revenue predictor across all 20 tested architectures on 45,466 films.',
       keyInsights: [
         'Ordered boosting eliminates target leakage across 150+ studio production company identities.',
@@ -387,7 +387,7 @@ print(f"CatBoost Test RMSE: {rmse:.2f}M USD")`,
         imageSrc: '/charts/model_6_catboost.png',
         researchQuestion: 'How does the top-performing CatBoost model predict revenue scaling as budgets climb from $1M to $300M?',
         bottomLine: 'CatBoost captures the steep early revenue gains ($0 to $40M) and precisely models the flattening plateau above $100M, proving revenue scales sublinearly at Budget^0.72.',
-        observation: 'CatBoost achieves top continuous performance (R2=0.771, RMSE=$34.2M) by capturing the steep early gains and the asymptotic flattening of revenue past $100M budget.',
+        observation: 'CatBoost achieves top continuous performance (R2=0.771, RMSE=$34.8M) by capturing the steep early gains and the asymptotic flattening of revenue past $100M budget.',
         interpretation: 'A film budget of $200M does not generate double the revenue of a $100M film. CatBoost reveals an empirical ceiling where market saturation limits theatrical returns.',
         variables: ['actual_gross', 'catboost_pred_gross', 'budget_tier', 'cross_val_r2 = 0.771']
       }
