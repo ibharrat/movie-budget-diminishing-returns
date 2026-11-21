@@ -294,48 +294,70 @@ export const AboutPage: React.FC<AboutPageProps> = ({
             <span>My Favorite Movies</span>
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             
+            {/* Kubo and the Two Strings */}
+            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
+                    2016
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Travis Knight</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Kubo and the Two Strings</h4>
+                <p className="text-xs text-slate-300 leading-relaxed font-light">
+                  Kubo mesmerizes the people in his village with his magical gift for spinning wild tales with origami. When he accidentally summons an evil spirit seeking vengeance, Kubo is forced to go on a quest to solve the mystery of his fallen samurai father and his mystical weaponry, as well as discover his own magical powers.
+                </p>
+              </div>
+            </div>
+
             {/* Parasite */}
-            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
-                  2019
-                </span>
-                <span className="text-xs text-slate-400 font-mono">Bong Joon-ho</span>
+            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
+                    2019
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Bong Joon-ho</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Parasite</h4>
+                <p className="text-xs text-slate-300 leading-relaxed font-light">
+                  All unemployed, Ki-taek’s family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.
+                </p>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">Parasite</h4>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                A brilliantly crafted thriller and social satire. A standout example of a modest ~$11M budget yielding global acclaim and massive worldwide box office.
-              </p>
             </div>
 
-            {/* Birdman */}
-            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
-                  2014
-                </span>
-                <span className="text-xs text-slate-400 font-mono">Alejandro G. Iñárritu</span>
+            {/* Black Swan */}
+            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
+                    2010
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Darren Aronofsky</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Black Swan</h4>
+                <p className="text-xs text-slate-300 leading-relaxed font-light">
+                  A committed dancer struggles to maintain her sanity after winning the lead role in a production of Tchaikovsky’s “Swan Lake.”
+                </p>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">Birdman</h4>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                A technical marvel of cinematography and kinetic pacing, exploring creative ego, legacy, and artistic reinvention inside Broadway theater.
-              </p>
             </div>
 
-            {/* Coraline */}
-            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all">
-              <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
-                  2009
-                </span>
-                <span className="text-xs text-slate-400 font-mono">Henry Selick</span>
+            {/* Exhibiting Forgiveness */}
+            <div className="p-5 rounded-xl bg-[#0e0f12] border border-[#282b34] hover:border-red-500 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono text-red-500 bg-[#270e10] px-2 py-0.5 rounded border border-[#631f24]">
+                    2024
+                  </span>
+                  <span className="text-xs text-slate-400 font-mono">Titus Kaphar</span>
+                </div>
+                <h4 className="text-lg font-bold text-white mb-2">Exhibiting Forgiveness</h4>
+                <p className="text-xs text-slate-300 leading-relaxed font-light">
+                  A Black artist on the path to success is derailed by an unexpected visit from his estranged father, a recovering addict desperate to reconcile. Together, they struggle and learn that forgetting might be a greater challenge than forgiving.
+                </p>
               </div>
-              <h4 className="text-lg font-bold text-white mb-2">Coraline</h4>
-              <p className="text-xs text-slate-300 leading-relaxed">
-                An unforgettable stop-motion masterpiece by LAIKA. Meticulous artisanal craft, eerie worldbuilding, and enduring atmospheric storytelling.
-              </p>
             </div>
 
           </div>
